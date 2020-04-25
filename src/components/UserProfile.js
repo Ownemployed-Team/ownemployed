@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Avatar, Card, Col, List, Row, Typography, Descriptions} from 'antd'
+import {Avatar, Card, Col, List, Row, Typography, Descriptions, Button} from 'antd'
 import PageLayout from './PageLayout'
 import {useParams} from "react-router";
 
@@ -13,12 +13,16 @@ export const profiles = {
             "facebook": "https://facebook.com",
             "linkedin": "https://linkedin.com",
         },
-        ownedModels: [
-            "Project X"
+        ownedModels: [{
+            name: "Marketing Biz",
+            summary: "All in one marketing"
+        }
+
         ],
-        connectedModels: [
-            "Project Y"
-        ]
+        connectedModels: [{
+            name: "Linda's Marketing",
+            summary: "Marketing on the move"
+        }],
 
     },
 }
@@ -44,19 +48,7 @@ const UserProfile = () => {
             <div style={{textAlign: 'center'}}>
                 <Row gutter={4}>
                     <Col span={12}>
-                        <Card
-                            cover={<img alt={profile.name} src={`/imgs/users/${userProfileId}.png`}/>}>
-                            <Meta title={profile.name} description={profile.summary}/>
-                        </Card>
-                        <Row gutter={4}>
-                            {Object.keys(profile.socialMedia).map(k =>
-                                <Col span={4}>
-                                    <a href={profile.socialMedia[k]}>
-                                        <img alt={k} src={`/imgs/social-media/${k}.svg`}/></a>
-                                </Col>
-                            )}
 
-                        </Row>
                         <Card>
                             <List
                                 header="Looking for"
@@ -102,35 +94,56 @@ const UserProfile = () => {
                         </Card>
                     </Col>
                     <Col span={12}>
+                        <Card
+                            cover={<img alt={profile.name} src={`/imgs/users/${userProfileId}.png`}/>}>
+                            <Meta title={profile.name} description={profile.summary}/>
+                        </Card>
+                        <Row gutter={4}>
+                            {Object.keys(profile.socialMedia).map(k =>
+                                <Col span={4}>
+                                    <a href={profile.socialMedia[k]}>
+                                        <img alt={k} src={`/imgs/social-media/${k}.svg`}/></a>
+                                </Col>
+                            )}
 
+                        </Row>
 
                         <Card>
                             <List
-                                header={<div>Business model projects</div>}
+                                header={<div>Deborah's founding</div>}
                                 itemLayout="horizontal"
-                                dataSource={[
-                                    {
-                                        title: 'Marketing Biz',
-                                        description: "All in one marketing solution"
-                                    }
-                                ]}
+                                dataSource={profile.ownedModels}
                                 renderItem={item => (
                                     <List.Item>
                                         <List.Item.Meta
                                             avatar={<Avatar
                                                 src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
-                                            title={<a href="/business-profile">{item.title}</a>}
-                                            description={item.description}
+                                            title={<a href="/business-profile">{item.name}</a>}
+                                            description={item.summary}
                                         />
                                     </List.Item>
                                 )}
                             />
                         </Card>
                         <Card>
-                            Deborah's activity
+                            <List
+                                header={<div>Deborah's connected to</div>}
+                                itemLayout="horizontal"
+                                dataSource={profile.connectedModels}
+                                renderItem={item => (
+                                    <List.Item>
+                                        <List.Item.Meta
+                                            avatar={<Avatar
+                                                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
+                                            title={<a href="/business-profile">{item.name}</a>}
+                                            description={item.summary}
+                                        />
+                                    </List.Item>
+                                )}
+                            />
                         </Card>
                         <Card>
-                            Deborah's activity
+                            <Button>Connect</Button>
                         </Card>
 
 
