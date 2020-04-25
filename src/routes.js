@@ -14,6 +14,6 @@ export default [
   },
   {
     component: UserProfile,
-    path: '/user-profile'
+    path: '/user-profile/:userProfileId'
   }
 ]

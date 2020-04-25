@@ -10,7 +10,7 @@ const PageLayout = ({ children }) => (
       <Menu mode='horizontal' theme='light'>
         <Menu.Item><Link to='/'>Home</Link></Menu.Item>
         <Menu.Item><Link to='/business-profile'>Business Profile</Link></Menu.Item>
-        <Menu.Item><Link to='/user-profile'>User Profile</Link></Menu.Item>
+        <Menu.Item><Link to='/user-profile/deborah'>User Profile</Link></Menu.Item>
       </Menu>
     </Header>
     <Content style={{ padding: '20px 50px' }}>
