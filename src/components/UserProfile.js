@@ -5,6 +5,7 @@ import profiles from '../data/users.json'
 import businesses from '../data/businesses.json'
 
 import {useParams} from "react-router";
+import TagsCard from "./TagsCard";
 const {Meta} = Card;
 
 const UserProfile = () => {
@@ -18,46 +19,26 @@ const UserProfile = () => {
                     <Col span={12}>
 
                         <Card>
-                            <List
-                                header="Looking for"
-                                dataSource={profile.lookingFor}
-                                renderItem={item => (
-                                    <List.Item>
-                                        {item}
-                                    </List.Item>
-                                )}
-                            />
-                        </Card>
-                        <Card>
                             <Descriptions title="User Info" column={1}>
                                 <Descriptions.Item label="Location">{profile.location}</Descriptions.Item>
                                 <Descriptions.Item label="Summary">{profile.summary}</Descriptions.Item>
                                 <Descriptions.Item label="Education">{profile.education}</Descriptions.Item>
                             </Descriptions>,
                         </Card>
-                        <Card>
-                            <List
-                                header="Skills"
-                                dataSource={profile.skills}
-                                renderItem={item => (
-                                    <List.Item>
-                                        {item}
-                                    </List.Item>
-                                )}
-                            />
-                        </Card>
 
-                        <Card>
-                            <List
-                                header="Interests"
-                                dataSource={profile.interests}
-                                renderItem={item => (
-                                    <List.Item>
-                                        {item}
-                                    </List.Item>
-                                )}
-                            />
-                        </Card>
+                        <TagsCard
+                            title="Seeking"
+                            tags={profile.lookingFor}
+                        />
+                        <TagsCard
+                            title="Skills"
+                            tags={profile.skills}
+                        />
+                        <TagsCard
+                            title="Interests"
+                            tags={profile.interests}
+                        />
+
                     </Col>
                     <Col span={12}>
                         <Card
