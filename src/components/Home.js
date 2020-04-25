@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { Typography, Row, Col } from 'antd'
 import PageLayout from './PageLayout'
-import { LandingPageCard } from './LandingPageCard'
+import LandingPageCard from './LandingPageCard'
 
 const { Paragraph } = Typography
 
