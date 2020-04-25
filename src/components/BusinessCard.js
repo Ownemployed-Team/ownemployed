@@ -1,34 +1,31 @@
 import React from 'react'
-import { Card, Avatar } from 'antd'
+import {Card, Avatar} from 'antd'
 import avatar from '../static/avatars/business/Captain_Planet.png'
 
 const { Meta } = Card
 
-const BusinessCard = ({ business }) => (
-  <Card style={{ height: '220px', width: '300px', margin: '8px' }} title={business.name}>
-    <Meta
-      avatar={<Avatar src={avatar}/>}
-      title={business.name}
-      description={business.tagline}
-    />
-    <div
-      style={{
-        fontSize: '10px',
-        borderTop: '1px solid lightgray',
-        padding: '8px 24px',
-        height: '32px',
-        width: '100%',
-        position: 'absolute',
-        bottom: '10px',
-        left: '0px'
-        }}
-        >
-        {business.status && business.status === 'open'
-        ? 'Status: Open for collaborators'
-        : 'Status: Closed'
-        }
-    </div>
-  </Card>
-)
+let defaultStyle={ textAlign: 'center' }
+const BusinessCard = ({ business, style }) => {
+    let businessStatus = business.status && business.status === 'open'
+        ? 'Open for collaborators'
+        : 'Closed';
+    return (
+        <Card style={{...defaultStyle,...style}}  >
+            <Card>
+                <Meta
+                    avatar={<Avatar src={avatar}/>}
+                    title={business.name}
+
+                />
+            </Card>
+            <Card bordered={false}>
+                {business.tagline}
+            </Card>
+            <Card size="small" bordered={false}>
+                {businessStatus}
+            </Card>
+        </Card>
+    )
+}
 
 export default BusinessCard

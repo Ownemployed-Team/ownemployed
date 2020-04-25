@@ -17,7 +17,7 @@ const ExploreIdeas = () => (
       <Button>Add Your Product</Button>
     </div>
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', margin: 'auto' }}>
-      {Object.values(businesses).map((business) => (<BusinessCard business={business}/>))}
+      {Object.values(businesses).map((business) => (<BusinessCard business={business} style={{ width: '300px', margin: '8px' }}/>))}
     </div>
   </PageLayout>
 )

@@ -29,8 +29,10 @@ const UserProfile = () => {
                         <Row gutter={4}>
                             {Object.keys(profile.socialMedia).map(k =>
                                 <Col span={4}>
+                                    <Card>
                                     <a href={profile.socialMedia[k]}>
                                         <img alt={k} src={`/imgs/social-media/${k}.svg`}/></a>
+                                    </Card>
                                 </Col>
                             )}
 
