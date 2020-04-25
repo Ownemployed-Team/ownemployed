@@ -2,14 +2,14 @@ import * as React from 'react'
 import PageLayout from './PageLayout'
 import {useParams} from "react-router";
 
-import {Avatar, Button, Card, Col, Descriptions, List, Row} from "antd";
+import { Button, Card, Col, Row} from "antd";
 import businesses from "../data/businesses.json";
 import users from "../data/users.json";
 import TagsCard from "./TagsCard";
 import BusinessCard from "./BusinessCard";
 import UserCard from "./UserCard";
 
-const {Meta} = Card;
+
 
 const BusinessProfile = () => {
 

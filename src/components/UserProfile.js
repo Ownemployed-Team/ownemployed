@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Avatar, Card, Col, List, Row,     Descriptions, Button} from 'antd'
+import { Card, Col, Row,    Descriptions, Button} from 'antd'
 import PageLayout from './PageLayout'
 import profiles from '../data/users.json'
 import businesses from '../data/businesses.json'
@@ -8,7 +8,6 @@ import {useParams} from "react-router";
 import TagsCard from "./TagsCard";
 import BusinessCard from "./BusinessCard";
 import UserCard from "./UserCard";
-const {Meta} = Card;
 
 const UserProfile = () => {
 
