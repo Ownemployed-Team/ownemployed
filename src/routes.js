@@ -15,7 +15,7 @@ export default [
   },
   {
     component: BusinessProfile,
-    path: '/business-profile'
+    path: '/business-profile/:businessProfileId'
   },
   {
     component: UserProfile,
