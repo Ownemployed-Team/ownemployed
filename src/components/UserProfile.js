@@ -1,38 +1,10 @@
 import * as React from 'react'
 import {Avatar, Card, Col, List, Row,     Descriptions, Button} from 'antd'
 import PageLayout from './PageLayout'
+import profiles from '../data/users.json'
+
 import {useParams} from "react-router";
-
 const {Meta} = Card;
-
-export const profiles = {
-    deborah: {
-        name: "Deborah",
-        summary: "Experienced Marketing Manager with entrepreneurial pitch solving problems for flower shops",
-        socialMedia: {
-            "facebook": "https://facebook.com",
-            "linkedin": "https://linkedin.com",
-        },
-        ownedModels: [{
-            name: "Marketing Biz",
-            summary: "All in one marketing"
-        }
-
-        ],
-        connectedModels: [{
-            name: "Linda's Marketing",
-            summary: "Marketing on the move"
-        }],
-        interests: ["Sustainability", "Blockchain", "Volunteering"],
-        lookingFor: ["Business Networking", "Product Launch"],
-        skills: ["Brand Management", "Product Launch"],
-        location: "Copenhagon, Denmark",
-        education: "Msc Logistics and Supply Chain, Aarhus University"
-
-    },
-}
-
-
 
 const UserProfile = () => {
 
