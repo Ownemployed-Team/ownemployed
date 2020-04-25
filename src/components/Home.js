@@ -1,6 +1,14 @@
 import * as React from 'react'
-import { Card } from 'antd'
+import { Typography, Card } from 'antd'
+import PageLayout from './PageLayout'
 
-const Home = () => (<Card title="test">Some content</Card>)
+const { Text, Title } = Typography
+
+const Home = () => (
+  <PageLayout>
+    <Title>OWN-EMPLOYED</Title>
+    Landing Page
+  </PageLayout>
+)
 
 export default Home

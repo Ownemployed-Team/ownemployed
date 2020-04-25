@@ -1,17 +1,10 @@
 import * as React from 'react'
-import { Layout } from 'antd';
-
-const { Header, Footer, Sider, Content } = Layout;
+import PageLayout from './PageLayout'
 
 const BusinessProfile = () => (
-  <Layout>
-    <Header>
-      Menu
-    </Header>
-    <Content>
-      Some Content
-    </Content>
-  </Layout>
+  <PageLayout>
+    Business Profile
+  </PageLayout>
 )
 
 export default BusinessProfile
