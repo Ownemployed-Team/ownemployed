@@ -6,6 +6,7 @@ import businesses from '../data/businesses.json'
 
 import {useParams} from "react-router";
 import TagsCard from "./TagsCard";
+import BusinessCard from "./BusinessCard";
 const {Meta} = Card;
 
 const UserProfile = () => {
@@ -55,47 +56,16 @@ const UserProfile = () => {
                             )}
 
                         </Row>
-
-                        <Card>
-                            <List
-                                header={<div>Deborah's founding</div>}
-                                itemLayout="horizontal"
-                                dataSource={profile.ownedModels}
-                                renderItem={ownedModel => {
-                                    const item = businesses[ownedModel]
-                                    return <List.Item>
-                                        <List.Item.Meta
-                                            avatar={<Avatar
-                                                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
-                                            title={<a href="/business-profile">{item.name}</a>}
-
-                                        />
-                                    </List.Item>}}
-                            />
+                        <Card title="Founding">
+                            {profile.ownedModels.map(businessId => businesses[businessId]).map((business) => (<BusinessCard business={business}/>))}
                         </Card>
-                        <Card>
-                            <List
-                                header={<div>Deborah's connected to</div>}
-                                itemLayout="horizontal"
-                                dataSource={profile.connectedModels}
-                                renderItem={connectedModel => {
-                                    const item = businesses[connectedModel]
-                                    return <List.Item>
-                                        <List.Item.Meta
-                                            avatar={<Avatar
-                                                src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
-                                            title={<a href="/business-profile">{item.name}</a>}
-                                            description={item.summary}
-                                        />
-                                    </List.Item>
-                                }}
-                            />
+                        <Card title="Connected">
+                            {profile.connectedModels.map(businessId => businesses[businessId]).map((business) => (<BusinessCard business={business}/>))}
                         </Card>
+
                         <Card>
                             <Button>Connect</Button>
                         </Card>
-
-
 
                     </Col>
 
