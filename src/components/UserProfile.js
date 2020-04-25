@@ -1,5 +1,5 @@
 import * as React from 'react'
-import {Avatar, Card, Col, List, Row, Typography, Descriptions, Button} from 'antd'
+import {Avatar, Card, Col, List, Row,     Descriptions, Button} from 'antd'
 import PageLayout from './PageLayout'
 import {useParams} from "react-router";
 
@@ -32,16 +32,6 @@ export const profiles = {
     },
 }
 
-const socialMediaText = {
-    "facebook": {
-        "name": "Facebook",
-        "connectionType": "Friend"
-    },
-    "linkedin": {
-        "name": "LinkedIn",
-        "connectionType": "Connect"
-    },
-}
 
 
 const UserProfile = () => {
