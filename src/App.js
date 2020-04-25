@@ -1,13 +1,18 @@
 import React from 'react';
+import { Router } from 'react-router-dom'
+import { renderRoutes } from 'react-router-config'
+import { createBrowserHistory } from 'history'
 import 'antd/dist/antd.css'
 import './index.css'
-import { Card } from 'antd'
+import routes from './routes'
+
+const history = createBrowserHistory()
 
 function App() {
   return (
-    <Card bordered title="Ant Design Card">
-      Test
-    </Card>
+    <Router history={history}>
+      {renderRoutes(routes)}
+    </Router>
   );
 }
 
