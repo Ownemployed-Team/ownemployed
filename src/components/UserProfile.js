@@ -8,7 +8,7 @@ const {Meta} = Card;
 export const profiles = {
     deborah: {
         name: "Deborah",
-        summary: "Marketing Manager",
+        summary: "Experienced Marketing Manager with entrepreneurial pitch solving problems for flower shops",
         socialMedia: {
             "facebook": "https://facebook.com",
             "linkedin": "https://linkedin.com",
@@ -23,6 +23,11 @@ export const profiles = {
             name: "Linda's Marketing",
             summary: "Marketing on the move"
         }],
+        interests: ["Sustainability", "Blockchain", "Volunteering"],
+        lookingFor: ["Business Networking", "Product Launch"],
+        skills: ["Brand Management", "Product Launch"],
+        location: "Copenhagon, Denmark",
+        education: "Msc Logistics and Supply Chain, Aarhus University"
 
     },
 }
@@ -52,7 +57,7 @@ const UserProfile = () => {
                         <Card>
                             <List
                                 header="Looking for"
-                                dataSource={["Business Networking", "Product Launch"]}
+                                dataSource={profile.lookingFor}
                                 renderItem={item => (
                                     <List.Item>
                                         {item}
@@ -62,17 +67,15 @@ const UserProfile = () => {
                         </Card>
                         <Card>
                             <Descriptions title="User Info" column={1}>
-                                <Descriptions.Item label="Location">Copenhagon, Denmark</Descriptions.Item>
-                                <Descriptions.Item label="Summary">Experienced Marketing Manager with entrepreneurial
-                                    itch solving problems for flower shops</Descriptions.Item>
-                                <Descriptions.Item label="Education">Msc Logistics and Supply Chain, Aarhus
-                                    University</Descriptions.Item>
+                                <Descriptions.Item label="Location">{profile.location}</Descriptions.Item>
+                                <Descriptions.Item label="Summary">{profile.summary}</Descriptions.Item>
+                                <Descriptions.Item label="Education">{profile.education}</Descriptions.Item>
                             </Descriptions>,
                         </Card>
                         <Card>
                             <List
                                 header="Skills"
-                                dataSource={["Brand Management", "Product Launch"]}
+                                dataSource={profile.skills}
                                 renderItem={item => (
                                     <List.Item>
                                         {item}
@@ -84,7 +87,7 @@ const UserProfile = () => {
                         <Card>
                             <List
                                 header="Interests"
-                                dataSource={["Sustainability", "Blockchain", "Volunteering"]}
+                                dataSource={profile.interests}
                                 renderItem={item => (
                                     <List.Item>
                                         {item}
@@ -98,6 +101,7 @@ const UserProfile = () => {
                             cover={<img alt={profile.name} src={`/imgs/users/${userProfileId}.png`}/>}>
                             <Meta title={profile.name} description={profile.summary}/>
                         </Card>
+
                         <Row gutter={4}>
                             {Object.keys(profile.socialMedia).map(k =>
                                 <Col span={4}>
@@ -119,7 +123,7 @@ const UserProfile = () => {
                                             avatar={<Avatar
                                                 src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
                                             title={<a href="/business-profile">{item.name}</a>}
-                                            description={item.summary}
+
                                         />
                                     </List.Item>
                                 )}
