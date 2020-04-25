@@ -7,7 +7,6 @@ const { Paragraph, Title } = Typography
 const Home = () => (
   <PageLayout>
     <div style={{ textAlign: 'center'}}>
-      <Title>OWN-EMPLOYED</Title>
       <Paragraph>From unemployed to entrepreneur - own your employment.</Paragraph>
       <Paragraph>We are a networking site helping people like you take control & own your employment.</Paragraph>
       <Paragraph>Find other budding entrepreneurs & start your new business today!</Paragraph>
