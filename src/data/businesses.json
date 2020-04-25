@@ -2,11 +2,49 @@
   "marketingBiz": {
     "id": "marketingBiz",
     "name": "Marketing Biz",
-    "summary": "All in one marketing"
+    "ownerId": "deborah",
+    "tagline": "All in one marketing",
+    "description": "",
+    "status": "open"
   },
   "lindasMarketing": {
     "id": "lindasMarketing",
     "name": "Linda's Marketing",
-    "summary": "Marketing on the move"
+    "ownerId": "linda",
+    "tagline": "Marketing on the move",
+    "description": "",
+    "status": "open"
+  },
+  "medFindIt": {
+    "id": "medFindIt",
+    "name": "Med Find It",
+    "ownerId": null,
+    "tagline": "A social platform to find innovative medical solutions.",
+    "description": "",
+    "status": "open"
+  },
+  "spacerapp": {
+    "id": "spacerapp",
+    "name": "Spacerapp",
+    "ownerId": null,
+    "tagline": "The best way to find space information",
+    "description": "",
+    "status": "closed"
+  },
+  "foodForGood": {
+    "id": "foodForGood",
+    "name": "FoodforGood",
+    "ownerId": null,
+    "tagline": "Share food with your neighbours!",
+    "description": "",
+    "status": "closed"
+  },
+  "theWolve": {
+    "id": "theWolve",
+    "name": "The Wolve",
+    "ownerId": null,
+    "tagline": "A security solution to avoid damages on your motorbike",
+    "description": "",
+    "status": "closed"
   }
 }
