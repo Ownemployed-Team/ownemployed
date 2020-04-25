@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { Typography, Card, Row, Col } from 'antd'
+import { Typography, Row, Col } from 'antd'
 import PageLayout from './PageLayout'
+import { LandingPageCard } from './LandingPageCard'
 
-const { Paragraph, Title } = Typography
+const { Paragraph } = Typography
 
 const Home = () => (
   <PageLayout>
@@ -11,9 +12,9 @@ const Home = () => (
       <Paragraph>We are a networking site helping people like you take control & own your employment.</Paragraph>
       <Paragraph>Find other budding entrepreneurs & start your new business today!</Paragraph>
       <Row gutter={16}>
-        <Col span={8}><Card style={{ height: '300px' }}>I have a business idea</Card></Col>
-        <Col span={8}><Card style={{ height: '300px' }}>I want to join others with a business idea</Card></Col>
-        <Col span={8}><Card style={{ height: '300px' }}>I want to help others with their business idea</Card></Col>
+        <Col span={8}><LandingPageCard text='I have a business idea'/></Col>
+        <Col span={8}><LandingPageCard text='I want to join others with a business idea'/></Col>
+        <Col span={8}><LandingPageCard text='I want to help others with their business idea'/></Col>
       </Row>
     </div>
   </PageLayout>
