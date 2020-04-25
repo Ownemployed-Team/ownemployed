@@ -1,23 +1,14 @@
 {
   "deborah": {
+    "id": "deborah",
     "name": "Deborah",
     "summary": "Experienced Marketing Manager with entrepreneurial pitch solving problems for flower shops",
     "socialMedia": {
       "facebook": "https://facebook.com",
       "linkedin": "https://linkedin.com"
     },
-    "ownedModels": [
-      {
-        "name": "Marketing Biz",
-        "summary": "All in one marketing"
-      }
-    ],
-    "connectedModels": [
-      {
-        "name": "Linda's Marketing",
-        "summary": "Marketing on the move"
-      }
-    ],
+    "ownedModels": ["marketingBiz"],
+    "connectedModels": ["lindasMarketing"],
     "interests": [
       "Sustainability",
       "Blockchain",

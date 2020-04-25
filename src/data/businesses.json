@@ -1,0 +1,12 @@
+{
+  "marketingBiz": {
+    "id": "marketingBiz",
+    "name": "Marketing Biz",
+    "summary": "All in one marketing"
+  },
+  "lindasMarketing": {
+    "id": "lindasMarketing",
+    "name": "Linda's Marketing",
+    "summary": "Marketing on the move"
+  }
+}

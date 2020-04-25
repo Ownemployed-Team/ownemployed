@@ -2,6 +2,7 @@ import * as React from 'react'
 import {Avatar, Card, Col, List, Row,     Descriptions, Button} from 'antd'
 import PageLayout from './PageLayout'
 import profiles from '../data/users.json'
+import businesses from '../data/businesses.json'
 
 import {useParams} from "react-router";
 const {Meta} = Card;
@@ -79,16 +80,16 @@ const UserProfile = () => {
                                 header={<div>Deborah's founding</div>}
                                 itemLayout="horizontal"
                                 dataSource={profile.ownedModels}
-                                renderItem={item => (
-                                    <List.Item>
+                                renderItem={ownedModel => {
+                                    const item = businesses[ownedModel]
+                                    return <List.Item>
                                         <List.Item.Meta
                                             avatar={<Avatar
                                                 src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
                                             title={<a href="/business-profile">{item.name}</a>}
 
                                         />
-                                    </List.Item>
-                                )}
+                                    </List.Item>}}
                             />
                         </Card>
                         <Card>
@@ -96,8 +97,9 @@ const UserProfile = () => {
                                 header={<div>Deborah's connected to</div>}
                                 itemLayout="horizontal"
                                 dataSource={profile.connectedModels}
-                                renderItem={item => (
-                                    <List.Item>
+                                renderItem={connectedModel => {
+                                    const item = businesses[connectedModel]
+                                    return <List.Item>
                                         <List.Item.Meta
                                             avatar={<Avatar
                                                 src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
@@ -105,7 +107,7 @@ const UserProfile = () => {
                                             description={item.summary}
                                         />
                                     </List.Item>
-                                )}
+                                }}
                             />
                         </Card>
                         <Card>
