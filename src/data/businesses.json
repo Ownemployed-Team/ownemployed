@@ -5,7 +5,17 @@
     "ownerId": "deborah",
     "tagline": "All in one marketing",
     "description": "",
-    "status": "open"
+    "status": "open",
+    "keyActivities": ["Platform development"],
+    "keyResources": ["Hosting service", "User base"],
+    "valueProposition": "Take great photos and promptly share them with your friends",
+    "customerRelationships": ["Internal forum", "Social networks"],
+    "channels": ["Appstores (Apple, Android)", "App"],
+    "customerSegments": ["Developers","Smartphone users"],
+    "costStructure": ["Servers", "Development", "Marketing"],
+    "revenueStream": ["ads"],
+    "keyPartners": ["Investors"]
+
   },
   "lindasMarketing": {
     "id": "lindasMarketing",
