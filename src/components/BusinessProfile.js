@@ -6,6 +6,8 @@ import {Avatar, Button, Card, Col, Descriptions, List, Row} from "antd";
 import businesses from "../data/businesses.json";
 import users from "../data/users.json";
 import TagsCard from "./TagsCard";
+import BusinessCard from "./BusinessCard";
+import UserCard from "./UserCard";
 
 const {Meta} = Card;
 
@@ -18,12 +20,8 @@ const BusinessProfile = () => {
             <div style={{textAlign: 'center'}}>
                 <Row gutter={4}>
                     <Col span={12}>
-                        <Card>
-                            <Descriptions title={business.name} column={1}>
-                                <Descriptions.Item label="Owner"><a href={`/user-profile/${owner.id}`}>{owner.name}</a></Descriptions.Item>
-                                <Descriptions.Item label="Summary">{business.tagline}</Descriptions.Item>
-                            </Descriptions>
-                        </Card>
+                        <BusinessCard business={business}/>
+                        <UserCard user={owner} />
                         <Card title="Value Proposition">{business.valueProposition}</Card>
                         <Card><Button>Want to Join?</Button></Card>
                         <Card><Button>Offer Mentoring</Button></Card>
