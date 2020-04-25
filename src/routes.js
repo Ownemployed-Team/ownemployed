@@ -2,6 +2,7 @@ import Home from './components/Home'
 import BusinessProfile from './components/BusinessProfile'
 import UserProfile from './components/UserProfile'
 import ExploreIdeas from './components/ExploreIdeas'
+import Members from './components/Members'
 
 export default [
   {
@@ -12,6 +13,10 @@ export default [
   {
     component: ExploreIdeas,
     path: '/explore-ideas'
+  },
+  {
+    component: Members,
+    path: '/members'
   },
   {
     component: BusinessProfile,

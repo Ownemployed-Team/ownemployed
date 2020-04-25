@@ -6,7 +6,7 @@ import businesses from '../data/businesses.json'
 
 const { Title, Paragraph } = Typography
 
-const IdeaSearch = () => (
+const ExploreIdeas = () => (
   <PageLayout>
     <div style={{ textAlign: 'center' }}>
       <Title level={3}>Search among OwnEmployed's business ideas!</Title>
@@ -22,4 +22,4 @@ const IdeaSearch = () => (
   </PageLayout>
 )
 
-export default IdeaSearch
+export default ExploreIdeas

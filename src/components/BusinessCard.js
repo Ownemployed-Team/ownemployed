@@ -8,7 +8,7 @@ const BusinessCard = ({ business }) => (
   <Card style={{ height: '220px', width: '300px', margin: '8px' }} title={business.name}>
     <Meta
       avatar={<Avatar src={avatar}/>}
-      title="Card title"
+      title={business.name}
       description={business.tagline}
     />
     <div
