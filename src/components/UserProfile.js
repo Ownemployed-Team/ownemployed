@@ -10,7 +10,8 @@ export const profiles = {
         name: "Deborah",
         summary: "Marketing Manager",
         socialMedia: {
-            "facebook": "https://facebook.com"
+            "facebook": "https://facebook.com",
+            "linkedin": "https://linkedin.com",
         },
         ownedModels: [
             "Project X"
@@ -26,17 +27,13 @@ const socialMediaText = {
     "facebook": {
         "name": "Facebook",
         "connectionType": "Friend"
-    }
+    },
+    "linkedin": {
+        "name": "LinkedIn",
+        "connectionType": "Connect"
+    },
 }
 
-const data = [
-    {
-        title: 'Ant Design Title 1',
-    },
-    {
-        title: 'Ant Design Title 2',
-    }
-];
 
 const UserProfile = () => {
 
@@ -51,6 +48,15 @@ const UserProfile = () => {
                             cover={<img alt={profile.name} src={`/imgs/users/${userProfileId}.png`}/>}>
                             <Meta title={profile.name} description={profile.summary}/>
                         </Card>
+                        <Row gutter={4}>
+                            {Object.keys(profile.socialMedia).map(k =>
+                                <Col span={4}>
+                                    <a href={profile.socialMedia[k]}>
+                                        <img alt={k} src={`/imgs/social-media/${k}.svg`}/></a>
+                                </Col>
+                            )}
+
+                        </Row>
                         <Card>
                             <List
                                 header="Looking for"
@@ -96,18 +102,25 @@ const UserProfile = () => {
                         </Card>
                     </Col>
                     <Col span={12}>
+
+
                         <Card>
                             <List
                                 header={<div>Business model projects</div>}
                                 itemLayout="horizontal"
-                                dataSource={data}
+                                dataSource={[
+                                    {
+                                        title: 'Marketing Biz',
+                                        description: "All in one marketing solution"
+                                    }
+                                ]}
                                 renderItem={item => (
                                     <List.Item>
                                         <List.Item.Meta
                                             avatar={<Avatar
                                                 src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"/>}
-                                            title={<a href="https://ant.design">{item.title}</a>}
-                                            description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                                            title={<a href="/business-profile">{item.title}</a>}
+                                            description={item.description}
                                         />
                                     </List.Item>
                                 )}
@@ -121,15 +134,6 @@ const UserProfile = () => {
                         </Card>
 
 
-                        <Row gutter={4}>
-                            {Object.keys(profile.socialMedia).map(k =>
-                                <Col span={4}>
-                                    <a href={profile.socialMedia[k]}>
-                                        <img alt={k} src={`/imgs/social-media/${k}.svg`}/></a>
-                                </Col>
-                            )}
-
-                        </Row>
 
                     </Col>
 
