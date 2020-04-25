@@ -6,8 +6,8 @@ const { Header, Content } = Layout
 
 const PageLayout = ({ children }) => (
   <Layout style={{ minHeight: '100vh' }}>
-    <Header>
-      <Menu mode='horizontal' theme='dark'>
+    <Header style={{ background: '#ffffff' }}>
+      <Menu mode='horizontal' theme='light'>
         <Menu.Item><Link to='/'>Home</Link></Menu.Item>
         <Menu.Item><Link to='/business-profile'>Business Profile</Link></Menu.Item>
         <Menu.Item><Link to='/user-profile'>User Profile</Link></Menu.Item>
