@@ -1,18 +1,10 @@
 import * as React from 'react'
-
-import { Layout } from 'antd';
-
-const { Header, Footer, Sider, Content } = Layout;
+import PageLayout from './PageLayout'
 
 const UserProfile = () => (
-  <Layout>
-    <Header>
-      Menu
-    </Header>
-    <Content>
-      User Profile
-    </Content>
-  </Layout>
+  <PageLayout>
+    User Profile
+  </PageLayout>
 )
 
 export default UserProfile
