@@ -2,7 +2,7 @@
   "marketingBiz": {
     "id": "marketingBiz",
     "name": "Marketing Biz",
-    "ownerId": "deborah",
+    "ownerId": ["deborah"],
     "tagline": "All in one marketing",
     "description": "",
     "status": "open",
@@ -20,7 +20,7 @@
   "lindasMarketing": {
     "id": "lindasMarketing",
     "name": "Linda's Marketing",
-    "ownerId": "linda",
+    "ownerId": ["linda"],
     "tagline": "Marketing on the move",
     "description": "",
     "status": "open"
@@ -28,7 +28,7 @@
   "medFindIt": {
     "id": "medFindIt",
     "name": "Med Find It",
-    "ownerId": "gregMalonas",
+    "ownerId": ["gregMalonas"],
     "tagline": "A social platform to find innovative medical solutions.",
     "description": "",
     "status": "Defining value proposition",
@@ -37,7 +37,7 @@
   "spacerapp": {
     "id": "spacerapp",
     "name": "Spacerapp",
-    "ownerId": "minasKalanda",
+    "ownerId": ["minasKalanda"],
     "tagline": "The best way to find space information",
     "description": "",
     "status": "Newly started",

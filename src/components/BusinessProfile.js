@@ -15,7 +15,7 @@ const BusinessProfile = () => {
 
     const {businessProfileId} = useParams()
     const business = businesses[businessProfileId];
-    const ownerIds = (Array.isArray(business.ownerId) ? business.ownerId : [business.ownerId]) || []
+    const ownerIds = business.ownerId || []
     const owners = ownerIds.map(ownedId => users[ownedId]).filter(x => x !== undefined)
     let image = require('../static/imgs/businesses/default.jpg')
     try {
