@@ -6,11 +6,20 @@ import PageIntro from './PageIntro'
 import Filter from './Filter'
 import {useLocation} from "react-router"
 import users from '../data/users.json'
+import userTags from "../utils/userTags";
 
 const Members = () => {
   const selectedString = new URLSearchParams(useLocation().search).get("selected") || "[]"
   const selectedArray = JSON.parse(selectedString)
-  console.log(selectedArray)
+  let selectedUsers = Object.values(users)
+  if (selectedArray.length > 0) {
+    const selectedSet = new Set(selectedArray)
+    selectedUsers = selectedUsers.filter(user =>
+      userTags(user)
+        .filter(tag => selectedSet.has(tag)).length > 0
+    )
+  }
+  const allUserTags = [...new Set([].concat(...Object.values(users).map(user => userTags(user))))].sort()
 
   return (
     <PageLayout>
@@ -22,14 +31,14 @@ const Members = () => {
         <Col span={8}>
           <Filter
             baseUrl="/members"
-            options={['Volunteering', 'Brand Management', 'Blockchain']}
+            options={allUserTags}
             selected={selectedArray}
             title='Filter Members by Tag'
             />
         </Col>
         <Col span={16}>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            {Object.values(users).map((user) => (<UserCard key={user.id} user={user}/>))}
+            {selectedUsers.map((user) => (<UserCard key={user.id} user={user}/>))}
           </div>
         </Col>
     </Row>

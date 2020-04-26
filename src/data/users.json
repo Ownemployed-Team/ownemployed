@@ -30,6 +30,22 @@
     "name": "Greg Malonas",
     "ownedModels": ["medFindIt"]
   },
+  "linda": {
+    "id": "linda",
+    "name": "Linda Blue",
+    "ownedModels": ["lindasMarketing"],
+    "interests": [
+      "Finance",
+      "Environment"
+    ],
+    "lookingFor": [
+      "Business Partners"
+    ],
+    "skills": [
+      "Brand Management",
+      "Marketing analytics"
+    ]
+  },
   "minasKalanda": {
     "id": "minasKalanda",
     "name": "Minas Kalanda",
