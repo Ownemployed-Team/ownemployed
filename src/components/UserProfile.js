@@ -63,14 +63,22 @@ const UserProfile = () => {
                             title="Interests"
                             tags={user.interests}
                         />
-
-                        <Card title="Founding">
-                            {user.ownedModels.map(businessId => businesses[businessId]).map((business) => (<BusinessCard business={business}/>))}
-                        </Card>
-                        <Card title="Connected">
-                            {user.connectedModels.map(businessId => businesses[businessId]).map((business) => (<BusinessCard business={business}/>))}
-                        </Card>
-                    </Col>
+                        {user.ownedModels && Array.isArray(user.ownedModels) &&
+                            <Card title="Founding">
+                                {(user.ownedModels || []).map(businessId => businesses[businessId])
+                                    .filter(Boolean)
+                                    .map((business) => (<BusinessCard business={business}/>))}
+                            </Card>
+                        }
+                        {user.connectedModels && Array.isArray(user.connectedModels) &&
+                            <Card title="Connected">
+                                {(user.connectedModels || []).map(businessId => businesses[businessId])
+                                    .filter(Boolean)
+                                    .map((business) => (<BusinessCard business={business}/>))
+                                }
+                            </Card>
+                        }
+                   </Col>
                 </Row>
             </div>
         </PageLayout>

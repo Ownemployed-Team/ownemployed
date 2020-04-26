@@ -1,14 +1,13 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import { Card, Tag } from 'antd'
+import { Card, Tag, Typography } from 'antd'
 import { colors } from '../utils/colors'
 
-const {Meta} = Card;
+const { Title, Text, Paragraph } = Typography;
 
 const Filter = ({ baseUrl, title, options, selected }) => (
-  <Card style={{ width: '300px', margin: '8px', paddingRight: '32px' }}>
-    <Meta title={title}/>
-    <br/>
+  <div style={{ textAlign: 'center', margin: '8px' }}>
+    <Paragraph strong>{title}</Paragraph>
     {Object.values(options).map((item, i) => {
       const active = selected.includes(item)
       const color = active
@@ -24,7 +23,7 @@ const Filter = ({ baseUrl, title, options, selected }) => (
         </Link>
         )
     })}
-</Card>
+</div>
 )
 
 export default Filter

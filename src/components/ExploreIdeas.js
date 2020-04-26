@@ -29,7 +29,7 @@ const ExploreIdeas = () => {
       actions={[{ text: "Add a Project", onClick: () => {}}]}
       />
     <Row>
-      <Col span={8}>
+      <Col span={4}>
         <Filter
           baseUrl="/projects"
           options={allBusinessTags}
@@ -37,8 +37,8 @@ const ExploreIdeas = () => {
           title='Filter Projects by Tag'
           />
       </Col>
-      <Col span={16}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', margin: 'auto' }}>
+      <Col span={20}>
+        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
           {selectedBusinesses.map((business) => (<BusinessCard key={business.id} business={business}/>))}
         </div>
       </Col>

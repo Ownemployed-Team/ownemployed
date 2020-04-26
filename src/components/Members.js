@@ -28,7 +28,7 @@ const Members = () => {
         summary="Look for Ownemployed members to collaborate with, or for others who share your interests."
         />
       <Row>
-        <Col span={8}>
+        <Col span={4}>
           <Filter
             baseUrl="/members"
             options={allUserTags}
@@ -36,7 +36,7 @@ const Members = () => {
             title='Filter Members by Tag'
             />
         </Col>
-        <Col span={16}>
+        <Col span={20}>
           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
             {selectedUsers.map((user) => (<UserCard key={user.id} user={user}/>))}
           </div>
