@@ -1,4 +1,13 @@
 {
+  "medFindIt": {
+    "id": "medFindIt",
+    "name": "Med Find It",
+    "ownerId": ["gregMalonas"],
+    "tagline": "A social platform to find innovative medical solutions.",
+    "description": "",
+    "status": "Defining value proposition",
+    "contributors": 3
+  },
   "marketingBiz": {
     "id": "marketingBiz",
     "name": "Marketing Biz",
@@ -33,15 +42,6 @@
     "costStructure": ["Development", "Marketing"],
     "revenueStream": ["Membership", "Reselling"],
     "keyPartners": ["Investors", "Cloud Services"]
-  },
-  "medFindIt": {
-    "id": "medFindIt",
-    "name": "Med Find It",
-    "ownerId": ["gregMalonas"],
-    "tagline": "A social platform to find innovative medical solutions.",
-    "description": "",
-    "status": "Defining value proposition",
-    "contributors": 3
   },
   "spacerapp": {
     "id": "spacerapp",
