@@ -13,9 +13,9 @@ const Home = () => (
       <Paragraph>Because why look for employment, when you can create it?</Paragraph>
       <Paragraph>Take the opportunity to start something you are passionate about and eventually make a living out of it!</Paragraph>
       <Row gutter={16}>
-        <Col span={8}><LandingPageCard text='I want to start a project' to=""/></Col>
+        <Col span={8}><LandingPageCard text='I want to start a project' to="/explore-ideas"/></Col>
         <Col span={8}><LandingPageCard text='I want to join others with a business idea' to="/explore-ideas"/></Col>
-        <Col span={8}><LandingPageCard text='I want to help others with their business idea' to=""/></Col>
+        <Col span={8}><LandingPageCard text='I want to help others with their business idea' to="/explore-ideas"/></Col>
       </Row>
     </div>
   </PageLayout>
