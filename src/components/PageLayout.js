@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { Layout, Menu } from 'antd'
+import { Card, Layout, Menu } from 'antd'
 import logo from '../static/ownemployed_logo.png'
 
-const { Header, Content } = Layout
+const { Header, Content, Footer } = Layout
 
 const PageLayout = ({ children }) => (
   <Layout style={{ minHeight: '100vh' }}>
@@ -22,6 +22,16 @@ const PageLayout = ({ children }) => (
     <Content style={{ padding: '20px 50px' }}>
       {children}
     </Content>
+    <Footer style={{background: '#ffffff', textAlign: 'right'}}>
+      <a href="https://euvsvirus.org/">
+        <Card size="small" bordered={false}>
+          <img alt="euvsvirus hackathon project"
+               src="/imgs/Pan-EUHackthron_topbanner-V2.jpg"
+               height="62px"/>
+          <Card.Meta description="An #EUvsVirus entry"/>
+        </Card>
+      </a>
+    </Footer>
   </Layout>
 )
 
