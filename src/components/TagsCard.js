@@ -4,8 +4,6 @@ import { colors } from '../utils/colors'
 const {Meta} = Card;
 
 const TagsCard = ({tags, title}) => {
-    console.log(typeof tags)
-
     if (!Array.isArray(tags)) {
         return <div/>
     }

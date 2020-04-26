@@ -6,7 +6,6 @@ import { Card, Col, Row, Descriptions } from "antd";
 import businesses from "../data/businesses.json";
 import users from "../data/users.json";
 import TagsCard from "./TagsCard";
-import BusinessCard from "./BusinessCard";
 import UserCard from "./UserCard";
 import PageIntro from "./PageIntro"
 
@@ -16,7 +15,8 @@ const BusinessProfile = () => {
 
     const {businessProfileId} = useParams()
     const business = businesses[businessProfileId];
-    const owner = users[business.ownerId]
+    const ownerIds = (Array.isArray(business.ownerId) ? business.ownerId : [business.ownerId]) || []
+    const owners = ownerIds.map(ownedId => users[ownedId]).filter(x => x !== undefined)
     let image = require('../static/imgs/businesses/default.jpg')
     try {
         image = require(`../static/imgs/businesses/${business.id}.png`)
@@ -39,8 +39,10 @@ const BusinessProfile = () => {
                                 {business.valueProposition &&
                                     <Descriptions.Item label="Value Proposition">{business.valueProposition || ''}</Descriptions.Item>
                                 }
-                                {owner &&
-                                    <Descriptions.Item label="Founder"><UserCard user={owner} /></Descriptions.Item>
+                                {owners.length > 0 &&
+                                    <Descriptions.Item label="Founder">
+                                        {owners.map(owner => <UserCard user={owner} />)}
+                                    </Descriptions.Item>
                                 }
                             </Descriptions>
                         </Card>
