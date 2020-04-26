@@ -6,7 +6,9 @@
     "tagline": "A social platform to find innovative medical solutions.",
     "description": "",
     "status": "Defining value proposition",
-    "contributors": 3
+    "contributors": 3,
+    "keyActivities": ["UX/UI", "Brainstorm", "PR"],
+    "channels": ["e-journals", "online"]
   },
   "marketingBiz": {
     "id": "marketingBiz",
@@ -24,7 +26,6 @@
     "costStructure": ["Servers", "Development", "Marketing"],
     "revenueStream": ["ads"],
     "keyPartners": ["Investors"]
-
   },
   "lindasMarketing": {
     "id": "lindasMarketing",
