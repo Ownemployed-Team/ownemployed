@@ -24,5 +24,40 @@
     ],
     "location": "Copenhagon, Denmark",
     "education": "Msc Logistics and Supply Chain, Aarhus University"
+  },
+  "gregMalonas": {
+    "id": "gregMalonas",
+    "name": "Greg Malonas",
+    "ownedModels": ["medFindIt"]
+  },
+  "minasKalanda": {
+    "id": "minasKalanda",
+    "name": "Minas Kalanda",
+    "ownedModels": ["Spacerapp"]
+  },
+  "jingasMinsson": {
+    "id": "jingasMinsson",
+    "name": "Jingas Minsson",
+    "ownedModels": ["FoodforGood"]
+  },
+  "gorgonMad": {
+    "id": "gorgonMad",
+    "name": "Gorgon Mad",
+    "ownedModels": ["FoodforGood"]
+  },
+  "fredricHansson": {
+    "id": "fredricHansson",
+    "name": "Fredric Hansson",
+    "ownedModels": ["FoodforGood"]
+  },
+  "georgeKan": {
+    "id": "georgeKan",
+    "name": "George Kan",
+    "ownedModels": ["The Wolve"]
+  },
+  "monaLi": {
+    "id": "monaLi",
+    "name": "Mona Li",
+    "ownedModels": ["The Wolve"]
   }
 }
