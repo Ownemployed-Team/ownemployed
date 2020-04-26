@@ -2,7 +2,7 @@ import * as React from 'react'
 import PageLayout from './PageLayout'
 import {useParams} from "react-router";
 
-import { Card, Col, Row} from "antd";
+import { Card, Col, Row, Descriptions } from "antd";
 import businesses from "../data/businesses.json";
 import users from "../data/users.json";
 import TagsCard from "./TagsCard";
@@ -15,11 +15,16 @@ import PageIntro from "./PageIntro"
 const BusinessProfile = () => {
 
     const {businessProfileId} = useParams()
-    let business = businesses[businessProfileId];
-    let owner = users[business.ownerId]
+    const business = businesses[businessProfileId];
+    const owner = users[business.ownerId]
+    let image = require('../static/imgs/businesses/default.jpg')
+    try {
+        image = require(`../static/imgs/businesses/${business.id}.png`)
+    } catch (e) {}
+
     return (<PageLayout>
                 <PageIntro
-                    title={business.name}
+                    title={business.name || ''}
                     summary={business.tagline || ''}
                     actions={[
                         { text: "Want to Join?", onClick: () => {}},
@@ -29,9 +34,17 @@ const BusinessProfile = () => {
                     />
                 <Row gutter={4}>
                     <Col span={12}>
-                        <BusinessCard business={business}/>
-                        <UserCard user={owner} />
-                        <Card title="Value Proposition">{business.valueProposition}</Card>
+                        <Card cover={<img alt='business' src={image}/>}>
+                            <Descriptions  column={1}>
+                                {business.valueProposition &&
+                                    <Descriptions.Item label="Value Proposition">{business.valueProposition || ''}</Descriptions.Item>
+                                }
+                                {owner &&
+                                    <Descriptions.Item label="Founder"><UserCard user={owner} /></Descriptions.Item>
+                                }
+                            </Descriptions>
+                        </Card>
+                        
                     </Col>
                     <Col span={12}>
                         <TagsCard

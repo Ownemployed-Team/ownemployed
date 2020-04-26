@@ -9,7 +9,7 @@ const PageIntro = ({ title, summary, actions }) => (
     <Paragraph>
       {summary}
     </Paragraph>
-    {(actions || []).map(({ text, onClick }) => <Button onClick={onClick} style={{ margin: '0 8px' }}>{text}</Button>)}
+    {(actions || []).map(({ text, onClick }, i) => <Button key={i} onClick={onClick} style={{ margin: '0 8px' }}>{text}</Button>)}
   </div>
 )
 

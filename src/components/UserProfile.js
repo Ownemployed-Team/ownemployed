@@ -21,8 +21,8 @@ const UserProfile = () => {
     return (
         <PageLayout>
             <PageIntro
-                title={user.name}
-                summary={user.summary}
+                title={user.name || ''}
+                summary={user.summary || ''}
                 actions={[{ text: "Connect", onClick: () => {}}]}
                 />
             <div>
@@ -32,12 +32,12 @@ const UserProfile = () => {
                             cover={<img alt='member' src={image}/>}
                                 >
                             <Descriptions  column={1}>
-                                <Descriptions.Item label="Location">{user.location}</Descriptions.Item>
-                                <Descriptions.Item label="Education">{user.education}</Descriptions.Item>
+                                <Descriptions.Item label="Location">{user.location || ''}</Descriptions.Item>
+                                <Descriptions.Item label="Education">{user.education || ''}</Descriptions.Item>
                             </Descriptions>
                         </Card>
                         <Row gutter={4}>
-                            {Object.keys(user.socialMedia).map(k =>
+                            {Object.keys(user.socialMedia || {}).map(k =>
                                 <Col span={4}>
                                     <Card>
                                     <a href={user.socialMedia[k]}>

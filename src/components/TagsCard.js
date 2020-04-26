@@ -1,6 +1,8 @@
 import React from 'react'
 import {Card, Tag} from "antd";
+import { colors } from '../utils/colors'
 const {Meta} = Card;
+
 const TagsCard = ({tags, title}) => {
     console.log(typeof tags)
 
@@ -11,7 +13,10 @@ const TagsCard = ({tags, title}) => {
         return    (
             <Card>
                 <Meta title={title}/>
-                {Object.values(tags).map((item) => (<Tag>{item}</Tag>))}
+                <br/>
+                {Object.values(tags).map((item, i) => (
+                    <Tag key={i} color={colors.primaryLight}>{item}</Tag>
+                ))}
             </Card>
         )
     }
