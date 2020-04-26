@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 
 const {Meta} = Card
 const UserCard = ({user, style}) => (
-  <Link to={`/user-profile/${user.id}`}>
+  <Link to={`/members/${user.id}`}>
     <Card
       cover={
         <div style={{height: '110px', margin: 'auto', width: '110px'}}>

@@ -7,7 +7,7 @@ const { Meta } = Card
 
 const BusinessCard = ({ business, style }) => {
     return (
-      <Link to={`/business-profile/${business.id}`}>
+      <Link to={`/projects/${business.id}`}>
         <Card style={{ height: '220px', width: '300px', margin: '8px' }} title={business.name}>
         <Meta
             avatar={<Avatar src={avatar}/>}

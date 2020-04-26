@@ -12,18 +12,20 @@ export default [
   },
   {
     component: ExploreIdeas,
-    path: '/explore-ideas'
+    path: '/projects',
+    exact: true,
   },
   {
     component: Members,
-    path: '/members'
+    path: '/members',
+    exact: true,
   },
   {
     component: BusinessProfile,
-    path: '/business-profile/:businessProfileId'
+    path: '/projects/:businessProfileId'
   },
   {
     component: UserProfile,
-    path: '/user-profile/:userProfileId'
+    path: '/members/:userProfileId'
   }
 ]
