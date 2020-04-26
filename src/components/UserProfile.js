@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Card, Col, Row,    Descriptions, Button} from 'antd'
+import {Card, Col, Row, Descriptions } from 'antd'
 import PageLayout from './PageLayout'
 import profiles from '../data/users.json'
 import businesses from '../data/businesses.json'
@@ -48,14 +48,23 @@ const UserProfile = () => {
                         <TagsCard
                             title="Seeking"
                             tags={user.lookingFor}
+                            linkRenderer={key =>
+                              "/members?selected=" + encodeURIComponent(JSON.stringify([key]))
+                            }
                         />
                         <TagsCard
                             title="Skills"
                             tags={user.skills}
+                            linkRenderer={key =>
+                              "/members?selected=" + encodeURIComponent(JSON.stringify([key]))
+                            }
                         />
                         <TagsCard
                             title="Interests"
                             tags={user.interests}
+                            linkRenderer={key =>
+                              "/members?selected=" + encodeURIComponent(JSON.stringify([key]))
+                            }
                         />
                         {user.ownedModels && Array.isArray(user.ownedModels) &&
                             <Card title="Founding">

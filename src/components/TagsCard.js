@@ -3,7 +3,8 @@ import {Card, Tag} from "antd";
 import { colors } from '../utils/colors'
 const {Meta} = Card;
 
-const TagsCard = ({tags, title}) => {
+const TagsCard = ({tags, title, linkRenderer}) => {
+
     if (!Array.isArray(tags)) {
         return <div/>
     }
@@ -12,9 +13,16 @@ const TagsCard = ({tags, title}) => {
             <Card>
                 <Meta title={title}/>
                 <br/>
-                {Object.values(tags).map((item, i) => (
-                    <Tag key={i} color={colors.primaryLight}>{item}</Tag>
-                ))}
+                {Object.values(tags).map((item, i) => {
+                  const tag = <><Tag key={i} color={colors.primaryLight}>{item}</Tag></>;
+                  if(linkRenderer !== undefined) {
+                    return <a href={linkRenderer(item)}>{tag}</a>
+                  }
+                  else {
+                    return tag
+                  }
+
+                })}
             </Card>
         )
     }
