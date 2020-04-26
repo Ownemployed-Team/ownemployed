@@ -36,19 +36,13 @@ const UserProfile = () => {
                                 <Descriptions.Item label="Education">{user.education || ''}</Descriptions.Item>
                             </Descriptions>
                         </Card>
-                        <Row gutter={4}>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'left' }}>
                             {Object.keys(user.socialMedia || {}).map(k =>
-                                <Col span={4}>
-                                    <Card>
-                                    <a href={user.socialMedia[k]}>
-                                        <img alt={k} src={`/imgs/social-media/${k}.svg`}/></a>
-                                    </Card>
-                                </Col>
+                                  <a href={user.socialMedia[k]}>
+                                      <img alt={k} src={`/imgs/social-media/${k}.svg`} style={{height: "72px", padding:"7px"}}/>
+                                  </a>
                             )}
-
-                        </Row>
-
-
+                        </div>
                     </Col>
                     <Col span={12}>
                         <TagsCard
