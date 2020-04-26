@@ -14,9 +14,9 @@ const Home = () => (
       <Paragraph style={{ fontSize: '18px', fontStyle: 'italic' }}>Because why look for employment, when you can create it?</Paragraph>
       <Paragraph style={{ fontSize: '18px', fontStyle: 'italic', color: colors.primaryDark, fontWeight: '600' }}>Take the opportunity to start something you are passionate about and eventually make a living out of it!</Paragraph>
       <Row gutter={16}>
-        <Col span={8}><LandingPageCard text='I want to start a project' to="/explore-ideas"/></Col>
-        <Col span={8}><LandingPageCard text='I want to join others with a business idea' to="/explore-ideas"/></Col>
-        <Col span={8}><LandingPageCard text='I want to help others with their business idea' to="/explore-ideas"/></Col>
+        <Col span={8}><LandingPageCard text='I want to start a project' to="/projects"/></Col>
+        <Col span={8}><LandingPageCard text='I want to join others with a business idea' to="/projects"/></Col>
+        <Col span={8}><LandingPageCard text='I want to help others with their business idea' to="/projects"/></Col>
       </Row>
     </div>
   </PageLayout>
