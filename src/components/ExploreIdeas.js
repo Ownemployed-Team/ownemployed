@@ -6,12 +6,20 @@ import businesses from '../data/businesses.json'
 import PageIntro from './PageIntro'
 import {useLocation} from "react-router"
 import Filter from './Filter'
+import businessTags from "../utils/businessTags";
 
 const ExploreIdeas = () => {
   const selectedString = new URLSearchParams(useLocation().search).get("selected") || "[]"
   const selectedArray = JSON.parse(selectedString)
-  console.log(selectedArray)
-
+  let selectedBusinesses = Object.values(businesses)
+  if (selectedArray.length > 0) {
+    const selectedSet = new Set(selectedArray)
+    selectedBusinesses = selectedBusinesses.filter(business =>
+      businessTags(business)
+        .filter(tag => selectedSet.has(tag)).length > 0
+    )
+  }
+  const allBusinessTags = [...new Set([].concat(...Object.values(businesses).map(business => businessTags(business))))].sort()
   return (
   <PageLayout>
     <PageIntro
@@ -24,14 +32,14 @@ const ExploreIdeas = () => {
       <Col span={8}>
         <Filter
           baseUrl="/projects"
-          options={['Volunteering', 'Blockchain', 'Platform Development']}
+          options={allBusinessTags}
           selected={selectedArray}
           title='Filter Projects by Tag'
           />
       </Col>
       <Col span={16}>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', margin: 'auto' }}>
-          {Object.values(businesses).map((business) => (<BusinessCard key={business.id} business={business}/>))}
+          {selectedBusinesses.map((business) => (<BusinessCard key={business.id} business={business}/>))}
         </div>
       </Col>
     </Row>

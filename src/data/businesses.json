@@ -23,7 +23,16 @@
     "ownerId": ["linda"],
     "tagline": "Marketing on the move",
     "description": "",
-    "status": "open"
+    "status": "open",
+    "keyActivities": ["Marketing"],
+    "keyResources": ["Membership", "Reselling contracts"],
+    "valueProposition": "Marketing services and support for remote teams",
+    "customerRelationships": ["Membership"],
+    "channels": ["online"],
+    "customerSegments": ["Executives"],
+    "costStructure": ["Development", "Marketing"],
+    "revenueStream": ["Membership", "Reselling"],
+    "keyPartners": ["Investors", "Cloud Services"]
   },
   "medFindIt": {
     "id": "medFindIt",
