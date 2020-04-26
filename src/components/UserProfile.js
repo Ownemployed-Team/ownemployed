@@ -7,30 +7,40 @@ import businesses from '../data/businesses.json'
 import {useParams} from "react-router";
 import TagsCard from "./TagsCard";
 import BusinessCard from "./BusinessCard";
-import UserCard from "./UserCard";
+import PageIntro from "./PageIntro";
 
 const UserProfile = () => {
 
     const {userProfileId} = useParams()
-    let profile = profiles[userProfileId];
+    let user = profiles[userProfileId];
+    let image = require('../static/imgs/users/default.png')
+    try {
+        image = require(`../static/imgs/users/${user.id}.png`)
+    } catch (e) {}
 
-    return (<PageLayout>
-            <div style={{textAlign: 'center'}}>
+    return (
+        <PageLayout>
+            <PageIntro
+                title={user.name}
+                summary={user.summary}
+                actions={[{ text: "Connect", onClick: () => {}}]}
+                />
+            <div>
                 <Row gutter={4}>
                     <Col span={12}>
-                        <UserCard user={profile}/>
-
-                        <Card>
+                        <Card
+                            cover={<img alt='member' src={image}/>}
+                                >
                             <Descriptions  column={1}>
-                                <Descriptions.Item label="Location">{profile.location}</Descriptions.Item>
-                                <Descriptions.Item label="Education">{profile.education}</Descriptions.Item>
-                            </Descriptions>,
+                                <Descriptions.Item label="Location">{user.location}</Descriptions.Item>
+                                <Descriptions.Item label="Education">{user.education}</Descriptions.Item>
+                            </Descriptions>
                         </Card>
                         <Row gutter={4}>
-                            {Object.keys(profile.socialMedia).map(k =>
+                            {Object.keys(user.socialMedia).map(k =>
                                 <Col span={4}>
                                     <Card>
-                                    <a href={profile.socialMedia[k]}>
+                                    <a href={user.socialMedia[k]}>
                                         <img alt={k} src={`/imgs/social-media/${k}.svg`}/></a>
                                     </Card>
                                 </Col>
@@ -41,37 +51,27 @@ const UserProfile = () => {
 
                     </Col>
                     <Col span={12}>
-
-
                         <TagsCard
                             title="Seeking"
-                            tags={profile.lookingFor}
+                            tags={user.lookingFor}
                         />
                         <TagsCard
                             title="Skills"
-                            tags={profile.skills}
+                            tags={user.skills}
                         />
                         <TagsCard
                             title="Interests"
-                            tags={profile.interests}
+                            tags={user.interests}
                         />
 
                         <Card title="Founding">
-                            {profile.ownedModels.map(businessId => businesses[businessId]).map((business) => (<BusinessCard business={business}/>))}
+                            {user.ownedModels.map(businessId => businesses[businessId]).map((business) => (<BusinessCard business={business}/>))}
                         </Card>
                         <Card title="Connected">
-                            {profile.connectedModels.map(businessId => businesses[businessId]).map((business) => (<BusinessCard business={business}/>))}
+                            {user.connectedModels.map(businessId => businesses[businessId]).map((business) => (<BusinessCard business={business}/>))}
                         </Card>
-
-                        <Card>
-                            <Button>Connect</Button>
-                        </Card>
-
                     </Col>
-
                 </Row>
-
-
             </div>
         </PageLayout>
     )

@@ -3,7 +3,6 @@ import { Card } from 'antd'
 import avatar from '../static/avatars/user/deborah.png'
 
 const { Meta } = Card
-let defaultStyle={ textAlign: 'center' }
 const UserCard = ({ user, style }) => (
   <Card
     cover={
@@ -11,7 +10,7 @@ const UserCard = ({ user, style }) => (
         <img alt='member' src={avatar}/>
       </div>
     }
-    style={{...defaultStyle,...style}}
+    style={{ height: '300px', width: '300px', margin: '16px', padding: '24px' }}
     >
     <Meta
       title={user.name}

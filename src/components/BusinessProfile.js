@@ -2,12 +2,13 @@ import * as React from 'react'
 import PageLayout from './PageLayout'
 import {useParams} from "react-router";
 
-import { Button, Card, Col, Row} from "antd";
+import { Card, Col, Row} from "antd";
 import businesses from "../data/businesses.json";
 import users from "../data/users.json";
 import TagsCard from "./TagsCard";
 import BusinessCard from "./BusinessCard";
 import UserCard from "./UserCard";
+import PageIntro from "./PageIntro"
 
 
 
@@ -17,15 +18,20 @@ const BusinessProfile = () => {
     let business = businesses[businessProfileId];
     let owner = users[business.ownerId]
     return (<PageLayout>
-            <div style={{textAlign: 'center'}}>
+                <PageIntro
+                    title={business.name}
+                    summary={business.tagline || ''}
+                    actions={[
+                        { text: "Want to Join?", onClick: () => {}},
+                        { text: "Offer Mentoring", onClick: () => {}},
+                        { text: "Follow", onClick: () => {}},
+                    ]}
+                    />
                 <Row gutter={4}>
                     <Col span={12}>
                         <BusinessCard business={business}/>
                         <UserCard user={owner} />
                         <Card title="Value Proposition">{business.valueProposition}</Card>
-                        <Card><Button>Want to Join?</Button></Card>
-                        <Card><Button>Offer Mentoring</Button></Card>
-                        <Card><Button>Follow</Button></Card>
                     </Col>
                     <Col span={12}>
                         <TagsCard
@@ -63,7 +69,6 @@ const BusinessProfile = () => {
                         />
                     </Col>
                 </Row>
-            </div>
         </PageLayout>
     )
 }

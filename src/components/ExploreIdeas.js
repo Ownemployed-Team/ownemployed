@@ -1,23 +1,19 @@
 import React from 'react'
-import { Typography, Button } from 'antd'
 import PageLayout from './PageLayout'
 import BusinessCard from './BusinessCard'
 import businesses from '../data/businesses.json'
-
-const { Title, Paragraph } = Typography
+import PageIntro from './PageIntro'
 
 const ExploreIdeas = () => (
   <PageLayout>
-    <div style={{ textAlign: 'center' }}>
-      <Title level={3}>Search among OwnEmployed's business ideas!</Title>
-      <Paragraph>
-        Our entrepreneurs share their stories behind how they've started and grown profitable online businesses.
-        Follow others and make a connection!
-      </Paragraph>
-      <Button>Add Your Product</Button>
-    </div>
+    <PageIntro
+      title="Search among OwnEmployed's business ideas!"
+      summary="Our entrepreneurs share their stories behind how they've started and grown profitable online businesses.
+      Follow others and make a connection!"
+      actions={[{ text: "Add Your Product", onClick: () => {}}]}
+      />
     <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', margin: 'auto' }}>
-      {Object.values(businesses).map((business) => (<BusinessCard business={business} style={{ width: '300px', margin: '8px' }}/>))}
+      {Object.values(businesses).map((business) => (<BusinessCard key={business.id} business={business}/>))}
     </div>
   </PageLayout>
 )
