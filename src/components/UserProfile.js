@@ -26,14 +26,14 @@ const UserProfile = () => {
                 actions={[{ text: "Connect", onClick: () => {}}]}
                 />
             <div>
-                <Row gutter={4}>
+                <Row gutter={16}>
                     <Col span={12}>
                         <Card
                             cover={<img alt='member' src={image}/>}
                                 >
                             <Descriptions  column={1}>
-                                <Descriptions.Item label="Location">{user.location || ''}</Descriptions.Item>
-                                <Descriptions.Item label="Education">{user.education || ''}</Descriptions.Item>
+                                {user.location && <Descriptions.Item label="Location">{user.location || ''}</Descriptions.Item>}
+                                {user.education && <Descriptions.Item label="Education">{user.education || ''}</Descriptions.Item>}
                             </Descriptions>
                         </Card>
                         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'left' }}>

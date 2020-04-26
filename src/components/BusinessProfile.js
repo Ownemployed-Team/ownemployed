@@ -32,7 +32,7 @@ const BusinessProfile = () => {
                         { text: "Follow", onClick: () => {}},
                     ]}
                     />
-                <Row gutter={4}>
+                <Row gutter={16}>
                     <Col span={12}>
                         <Card cover={<img alt='business' src={image}/>}>
                             <Descriptions  column={1}>

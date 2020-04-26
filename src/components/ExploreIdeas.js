@@ -38,7 +38,7 @@ const ExploreIdeas = () => {
           />
       </Col>
       <Col span={20}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+        <div style={{ display: 'flex', flexWrap: 'wrap' }}>
           {selectedBusinesses.map((business) => (<BusinessCard key={business.id} business={business}/>))}
         </div>
       </Col>
