@@ -28,33 +28,37 @@
   "medFindIt": {
     "id": "medFindIt",
     "name": "Med Find It",
-    "ownerId": null,
+    "ownerId": "gregMalonas",
     "tagline": "A social platform to find innovative medical solutions.",
     "description": "",
-    "status": "open"
+    "status": "Defining value proposition",
+    "contributors": 3
   },
   "spacerapp": {
     "id": "spacerapp",
     "name": "Spacerapp",
-    "ownerId": null,
+    "ownerId": "minasKalanda",
     "tagline": "The best way to find space information",
     "description": "",
-    "status": "closed"
+    "status": "Newly started",
+    "contributors": 1
   },
   "foodForGood": {
     "id": "foodForGood",
     "name": "FoodforGood",
-    "ownerId": null,
+    "ownerId": ["jingasMinsson", "fredricHansson", "gorgonMad"],
     "tagline": "Share food with your neighbours!",
     "description": "",
-    "status": "closed"
+    "status": "Launched",
+    "contributors": 5
   },
   "theWolve": {
     "id": "theWolve",
     "name": "The Wolve",
-    "ownerId": null,
+    "ownerId": ["georgeKan","monaLi"],
     "tagline": "A security solution to avoid damages on your motorbike",
     "description": "",
-    "status": "closed"
+    "status": "Raising capital",
+    "contributors": 6
   }
 }
