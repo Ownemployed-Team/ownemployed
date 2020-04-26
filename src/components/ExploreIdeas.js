@@ -7,6 +7,9 @@ import PageIntro from './PageIntro'
 import {useLocation} from "react-router"
 import Filter from './Filter'
 import businessTags from "../utils/businessTags";
+import { projects } from '../data/content.json'
+
+const { title, summary } = projects
 
 const ExploreIdeas = () => {
   const selectedString = new URLSearchParams(useLocation().search).get("selected") || "[]"
@@ -23,9 +26,8 @@ const ExploreIdeas = () => {
   return (
   <PageLayout>
     <PageIntro
-      title="Search among OwnEmployed's business ideas!"
-      summary="Our entrepreneurs share their stories behind how they've started and grown profitable online businesses.
-      Follow others and make a connection!"
+      title={title}
+      summary={summary}
       actions={[{ text: "Add a Project", onClick: () => {}}]}
       />
     <Row>
