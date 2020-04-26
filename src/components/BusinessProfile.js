@@ -21,7 +21,7 @@ const BusinessProfile = () => {
     try {
         image = require(`../static/imgs/businesses/${business.id}.png`)
     } catch (e) {}
-
+    const linkRenderer = key =>"/projects?selected=" + encodeURIComponent(JSON.stringify([key]))
     return (<PageLayout>
                 <PageIntro
                     title={business.name || ''}
@@ -52,35 +52,43 @@ const BusinessProfile = () => {
                         <TagsCard
                             title="Key Activities"
                             tags={business.keyActivities}
+                            linkRenderer={linkRenderer}
                         />
                         <TagsCard
                             title="Key Resources"
                             tags={business.keyResources}
+                            linkRenderer={linkRenderer}
                         />
                         <TagsCard
                             title="Customer Relationships"
                             tags={business.customerRelationships}
+                            linkRenderer={linkRenderer}
                         />
                         <TagsCard
                             title="Channels"
                             tags={business.channels}
+                            linkRenderer={linkRenderer}
                         />
                         <TagsCard
                             title="Customer Segments"
                             tags={business.customerSegments}
+                            linkRenderer={linkRenderer}
                         />
 
                         <TagsCard
                             title="Cost Structure"
                             tags={business.costStructure}
+                            linkRenderer={linkRenderer}
                         />
                         <TagsCard
                             title="Revenue Stream"
                             tags={business.revenueStream}
+                            linkRenderer={linkRenderer}
                         />
                         <TagsCard
                             title="Key Partners"
                             tags={business.keyPartners}
+                            linkRenderer={linkRenderer}
                         />
                     </Col>
                 </Row>
