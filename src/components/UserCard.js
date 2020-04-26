@@ -12,7 +12,7 @@ const UserCard = ({user, style}) => (
           <img alt='member' src={avatar}/>
         </div>
       }
-      style={{height: '300px', width: '300px', margin: '16px', padding: '24px'}}
+      style={{height: '300px', width: '300px', margin: '8px', padding: '24px'}}
     >
       <Meta
         title={user.name}
