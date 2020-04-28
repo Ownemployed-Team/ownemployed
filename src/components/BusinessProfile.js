@@ -33,7 +33,7 @@ const BusinessProfile = () => {
                     ]}
                     />
                 <Row gutter={16}>
-                    <Col span={12}>
+                    <Col md={24} lg={12}>
                         <Card cover={<img alt='business' src={image}/>}>
                             <Descriptions  column={1}>
                                 {business.valueProposition &&
@@ -41,14 +41,14 @@ const BusinessProfile = () => {
                                 }
                                 {owners.length > 0 &&
                                     <Descriptions.Item label="Founder">
-                                        {owners.map(owner => <UserCard user={owner} />)}
+                                        {owners.map(owner => <UserCard key={owner.id} user={owner} />)}
                                     </Descriptions.Item>
                                 }
                             </Descriptions>
                         </Card>
                         
                     </Col>
-                    <Col span={12}>
+                    <Col md={24} lg={12}>
                         <TagsCard
                             title="Key Activities"
                             tags={business.keyActivities}

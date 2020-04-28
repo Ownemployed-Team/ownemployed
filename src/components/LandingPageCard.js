@@ -7,20 +7,29 @@ const {Paragraph} = Typography
 
 const LandingPageCard = ({text, to}) => (
   <Link to={to}>
-    <Card
-      bodyStyle={{display: 'flex', alignItems: 'center', height: '300px'}}
-      style={{height: '300px', borderRadius: '10px', boxShadow: '4px 2px 10px lightgray', margin: '16px'}}
-    >
+    <div
+      style={{
+        height: '300px',
+        borderRadius: '10px',
+        boxShadow: '4px 2px 10px lightgray',
+        margin: '16px',
+        background: 'white',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+      >
       <Paragraph
         style={{
-          margin: 'auto',
           fontSize: '18px',
           color: colors.primaryLight,
-          fontWeight: '600'
+          fontWeight: '600',
+          width: '240px',
         }}
-      >{text}
+        >
+        {text}
       </Paragraph>
-    </Card>
+    </div>
   </Link>
 )
 

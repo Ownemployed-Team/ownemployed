@@ -26,8 +26,8 @@ const UserProfile = () => {
                 actions={[{ text: "Connect", onClick: () => {}}]}
                 />
             <div>
-                <Row justify="space-around" align="middle" gutter={16}>
-                    <Col xs={20} sm={16} md={12}>
+                <Row gutter={16}>
+                    <Col md={24} lg={12}>
                         <Card
                             cover={<img alt='member' src={image}/>}
                                 >
@@ -38,13 +38,13 @@ const UserProfile = () => {
                         </Card>
                         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'left' }}>
                             {Object.keys(user.socialMedia || {}).map(k =>
-                                  <a href={user.socialMedia[k]}>
+                                  <a href={user.socialMedia[k]} key={k}>
                                       <img alt={k} src={`/imgs/social-media/${k}.svg`} style={{height: "72px", padding:"7px"}}/>
                                   </a>
                             )}
                         </div>
                     </Col>
-                    <Col xs={20} sm={16} md={12}>
+                    <Col md={24} lg={12}>
                         <TagsCard
                             title="Seeking"
                             tags={user.lookingFor}
@@ -70,14 +70,14 @@ const UserProfile = () => {
                             <Card title="Founding">
                                 {(user.ownedModels || []).map(businessId => businesses[businessId])
                                     .filter(Boolean)
-                                    .map((business) => (<BusinessCard business={business}/>))}
+                                    .map((business) => (<BusinessCard business={business} key={business.id}/>))}
                             </Card>
                         }
                         {user.connectedModels && Array.isArray(user.connectedModels) &&
-                            <Card title="Connected" size="small">
+                            <Card title="Connected">
                                 {(user.connectedModels || []).map(businessId => businesses[businessId])
                                     .filter(Boolean)
-                                    .map((business) => (<BusinessCard business={business}/>))
+                                    .map((business) => (<BusinessCard business={business} key={business.id}/>))
                                 }
                             </Card>
                         }
