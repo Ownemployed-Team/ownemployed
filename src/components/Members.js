@@ -7,6 +7,7 @@ import Filter from './Filter'
 import {useLocation} from "react-router"
 import users from '../data/users.json'
 import userTags from "../utils/userTags";
+import BusinessCard from "./BusinessCard";
 
 const Members = () => {
   const selectedString = new URLSearchParams(useLocation().search).get("selected") || "[]"
@@ -37,10 +38,16 @@ const Members = () => {
             />
         </Col>
         <Col span={20}>
-          <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-            {selectedUsers.map((user) => (<UserCard key={user.id} user={user}/>))}
-          </div>
+          <Row  justify="space-around" align="top" gutter={[8,24]}>
+            {selectedUsers.map((user) => (
+              <Col xs={20} sm={16} md={12} lg={8} xl={4} >
+                <UserCard key={user.id} user={user} style={{minHeight: "260px"}}/>
+              </Col>
+            ))}
+          </Row>
         </Col>
+
+
     </Row>
     </PageLayout>
   )

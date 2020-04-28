@@ -8,24 +8,26 @@ const UserCard = ({user, style}) => {
   try {
       avatar = require(`../static/avatars/user/${user.id}.png`)
   } catch (e) {}
+  let summary = user.summary || ""
+  summary = summary.length < 40 ? summary : (summary.substring(0,40) + "...")
   return (
     <Link to={`/members/${user.id}`}>
       <Card
-        bodyStyle={{ padding: '16px 0' }}
         cover={
           <div style={{height: '110px', width: '100%'}}>
             <img alt='member' src={avatar} style={{ height: '110px'}}/>
           </div>
         }
-        style={{height: '300px', width: '300px', margin: '8px', padding: '24px'}}
+        size="small"
+        style={{...{},...style}}
       >
         <Meta
           title={user.name}
-          description={user.summary}
+          description={summary}
         />
         <div style={{ fontSize: '12px', paddingTop: '12px'}}>
           {user.location
-            ? `Location: ${user.location}`
+            ? `${user.location}`
             : ''
           }
         </div>

@@ -19,7 +19,7 @@ const PageLayout = ({ children }) => (
         <Menu.Item>Login/register</Menu.Item>
       </Menu>
     </Header>
-    <Content style={{ padding: '20px 100px' }}>
+    <Content >
       {children}
     </Content>
     <Footer style={{background: '#ffffff', textAlign: 'right'}}>
