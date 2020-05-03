@@ -2,22 +2,28 @@ import * as React from 'react'
 import { Typography, Row, Col } from 'antd'
 import PageLayout from './PageLayout'
 import LandingPageCard from './LandingPageCard'
+import { colors } from '../utils/colors'
+import { homepage } from '../data/content.json'
 
-const { Paragraph } = Typography
+const { Paragraph, Title} = Typography
+const { title, p1, p2, p3, box1, box2, box3 } = homepage
 
-const Home = () => (
-  <PageLayout>
-    <div style={{ textAlign: 'center'}}>
-      <Paragraph>From unemployed to entrepreneur - own your employment.</Paragraph>
-      <Paragraph>We are a networking site helping people like you take control & own your employment.</Paragraph>
-      <Paragraph>Find other budding entrepreneurs & start your new business today!</Paragraph>
-      <Row gutter={16}>
-        <Col span={8}><LandingPageCard text='I have a business idea'/></Col>
-        <Col span={8}><LandingPageCard text='I want to join others with a business idea'/></Col>
-        <Col span={8}><LandingPageCard text='I want to help others with their business idea'/></Col>
-      </Row>
-    </div>
-  </PageLayout>
-)
+const Home = () => {
+  return (
+    <PageLayout>
+      <div style={{ textAlign: 'center'}}>
+        <Title style={{ color: colors.primaryLight }}>{title}</Title>
+        <Paragraph style={{ fontSize: '18px', fontStyle: 'italic' }}>{p1}</Paragraph>
+        <Paragraph style={{ fontSize: '18px', fontStyle: 'italic' }}>{p2}</Paragraph>
+        <Paragraph style={{ fontSize: '18px', fontStyle: 'italic', color: colors.primaryDark, fontWeight: '600' }}>{p3}</Paragraph>
+        <Row gutter={16}>
+          <Col md={24} lg={8} flex='auto'><LandingPageCard text={box1} to="/projects"/></Col>
+          <Col md={24} lg={8} flex='auto'><LandingPageCard text={box2} to="/projects"/></Col>
+          <Col md={24} lg={8} flex='auto'><LandingPageCard text={box3} to="/projects"/></Col>
+        </Row>
+      </div>
+    </PageLayout>
+  )
+}
 
 export default Home

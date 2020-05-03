@@ -24,5 +24,83 @@
     ],
     "location": "Copenhagon, Denmark",
     "education": "Msc Logistics and Supply Chain, Aarhus University"
+  },
+  "clare": {
+    "id": "clare",
+    "name": "Clare",
+    "summary": "Experienced Brand Manager with 10 years FMCG experience wants to set up a new online ethical food business.",
+    "location": "London, UK"
+  },
+  "stina": {
+    "id": "stina",
+    "name": "Stina",
+    "summary": "Worked within biomedicine for 8 years, wants to explore the medtech sector with a sustainability touch",
+    "location": "Stockholm, Sweden",
+    "interests": [
+      "Sustainability",
+      "Environment",
+      "Medicine"
+    ]
+  },
+  "jon": {
+    "id": "jon",
+    "name": "Jon",
+    "summary": "Passionate about nutrition, nutrigenomics projects/ Looking for a co-founder",
+    "location": "Lund, Sweden",
+    "lookingFor": [
+      "Co-Founder",
+      "Product Launch"
+    ]
+  },
+  "monaLi": {
+    "id": "monaLi",
+    "name": "Mona Li",
+    "ownedModels": ["The Wolve"]
+  },
+  "gregMalonas": {
+    "id": "gregMalonas",
+    "name": "Greg Malonas",
+    "ownedModels": ["medFindIt"]
+  },
+  "linda": {
+    "id": "linda",
+    "name": "Linda Blue",
+    "ownedModels": ["lindasMarketing"],
+    "interests": [
+      "Finance",
+      "Environment"
+    ],
+    "lookingFor": [
+      "Business Partners"
+    ],
+    "skills": [
+      "Brand Management",
+      "Marketing analytics"
+    ]
+  },
+  "minasKalanda": {
+    "id": "minasKalanda",
+    "name": "Minas Kalanda",
+    "ownedModels": ["Spacerapp"]
+  },
+  "jingasMinsson": {
+    "id": "jingasMinsson",
+    "name": "Jingas Minsson",
+    "ownedModels": ["FoodforGood"]
+  },
+  "gorgonMad": {
+    "id": "gorgonMad",
+    "name": "Gorgon Mad",
+    "ownedModels": ["FoodforGood"]
+  },
+  "fredricHansson": {
+    "id": "fredricHansson",
+    "name": "Fredric Hansson",
+    "ownedModels": ["FoodforGood"]
+  },
+  "georgeKan": {
+    "id": "georgeKan",
+    "name": "George Kan",
+    "ownedModels": ["The Wolve"]
   }
 }
