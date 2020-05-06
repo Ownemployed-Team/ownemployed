@@ -3,6 +3,7 @@ import BusinessProfile from './components/BusinessProfile'
 import UserProfile from './components/UserProfile'
 import ExploreIdeas from './components/ExploreIdeas'
 import Members from './components/Members'
+import SignUpForm from './components/SignUpForm'
 
 export default [
     {
@@ -27,5 +28,9 @@ export default [
     {
         component: UserProfile,
         path: '/members/:userProfileId',
+    },
+    {
+        component: SignUpForm,
+        path: '/sign-up',
     },
 ]
