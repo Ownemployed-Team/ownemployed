@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Typography, Row, Col, Card, Divider } from 'antd'
-import PageLayout from './PageLayout'
+import PageLayout from 'components/PageLayout'
 import { Form, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
 

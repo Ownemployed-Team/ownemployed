@@ -1,9 +1,9 @@
-import Home from './components/Home'
-import BusinessProfile from './components/BusinessProfile'
-import UserProfile from './components/UserProfile'
-import ExploreIdeas from './components/ExploreIdeas'
-import Members from './components/Members'
-import SignUpForm from './components/SignUpForm'
+import Home from 'pages/home/home'
+import BusinessProfile from 'pages/business/profile'
+import UserProfile from 'pages/user/profile'
+import ExploreIdeas from 'pages/explore/explore'
+import Members from 'pages/members/members'
+import SignUpForm from 'pages/signup/signup'
 
 export default [
     {
