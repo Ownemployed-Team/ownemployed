@@ -1,9 +1,16 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { Card, Layout, Menu } from 'antd'
-import logo from '../static/ownemployed_logo.png'
+import { Card, Layout } from 'antd'
+import NavigationBar from './NavigationBar'
 
 const { Header, Content, Footer } = Layout
+
+const menuItems = [
+    { label: 'My Site', url: '/members/deborah' },
+    { label: 'Projects', url: '/projects' },
+    { label: 'Members', url: '/members' },
+    { label: 'Get Inspired', url: '/projects/marketingBiz' },
+    { label: 'Login/Register', url: '/' },
+]
 
 const PageLayout = ({ children }) => (
     <Layout style={{ minHeight: '100vh' }}>
@@ -14,28 +21,7 @@ const PageLayout = ({ children }) => (
                 textAlign: 'center',
             }}
         >
-            <Link to="/">
-                <div>
-                    <img alt="logo" src={logo} width="245px" />
-                </div>
-            </Link>
-            <Menu mode="horizontal" theme="light">
-                <Menu.Item>
-                    <Link to="/members/deborah">My Site</Link>
-                </Menu.Item>
-                <Menu.Item>
-                    <Link to="/projects">Projects</Link>
-                </Menu.Item>
-                <Menu.Item>
-                    <Link to="/members">Members</Link>
-                </Menu.Item>
-                <Menu.Item>
-                    <Link to="/projects/marketingBiz">Get Inspired!</Link>
-                </Menu.Item>
-                <Menu.Item>
-                    <Link to="sign-up">Login/register</Link>
-                </Menu.Item>
-            </Menu>
+            <NavigationBar items={menuItems} />
         </Header>
         <Content style={{ padding: '20px 100px' }}>{children}</Content>
         <Footer style={{ background: '#ffffff', textAlign: 'right' }}>
