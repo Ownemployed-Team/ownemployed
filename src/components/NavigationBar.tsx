@@ -3,7 +3,7 @@ import { Link } from 'components/NavLink'
 import { Flex, Box } from 'rebass'
 import logo from 'static/ownemployed_logo.png'
 import Button from './Button'
-import { useAuth0 } from 'react-auth0-spa'
+import { useAuth0 } from 'lib/react-auth0-spa'
 
 
 type NavigationItem = {
