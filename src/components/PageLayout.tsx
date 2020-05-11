@@ -9,7 +9,7 @@ const menuItems = [
     { label: 'Projects', url: '/projects' },
     { label: 'Members', url: '/members' },
     { label: 'Get Inspired', url: '/projects/marketingBiz' },
-    { label: 'Login/Register', url: '/' },
+    { label: 'Login/Register', url: '/auth', isAuth: true },
 ]
 
 const PageLayout = ({ children }) => (
