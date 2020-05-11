@@ -5,11 +5,16 @@ import { createBrowserHistory } from 'history'
 import 'antd/dist/antd.css'
 import './index.css'
 import routes from './routes'
+import ThemeProvider from 'components/ThemeProvider'
 
 const history = createBrowserHistory()
 
 function App() {
-    return <Router history={history}>{renderRoutes(routes)}</Router>
+    return (
+        <Router history={history}>
+            <ThemeProvider>{renderRoutes(routes)}</ThemeProvider>
+        </Router>
+    )
 }
 
 export default App
