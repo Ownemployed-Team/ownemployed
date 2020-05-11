@@ -1,8 +1,11 @@
 export default {
     breakpoints: ['40em', '52em', '64em'],
     fontSizes: {
-        body: '22px',
-        heading: '42px',
+        body: '18px',
+        h4: '20px',
+        h3: '22px',
+        h2: '34px',
+        h1: '42px',
     },
     colors: {
         primary: '#6F63AD',
@@ -13,7 +16,8 @@ export default {
         alertHover: '#ff8080',
         success: '#33d9b2',
         successHover: '#53dfbf',
-        text: '#000000',
+        heading: '#000000',
+        body: '#768598',
     },
     space: [0, 4, 8, 16, 32, 64, 128, 256],
     fonts: {
