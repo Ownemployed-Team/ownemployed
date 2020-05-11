@@ -31,7 +31,7 @@ export default {
         heading: '52px',
     },
     shadows: {
-        small: '0 0 4px rgba(0, 0, 0, .125)',
+        small: '0px 0px 8px rgba(0,0,0,0.15);',
         large: '0 0 24px rgba(0, 0, 0, .125)',
     },
     variants: {},

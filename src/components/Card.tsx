@@ -22,7 +22,7 @@ const Card = ({
         <RebassCard
             sx={{
                 backgroundColor: '#FFFFFF',
-                boxShadow: '0px 0px 8px rgba(0,0,0,0.15);',
+                boxShadow: 'small',
                 borderRadius: '39px',
                 textAlign: 'center',
                 padding: '10px',
