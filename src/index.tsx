@@ -4,9 +4,23 @@ import './index.css'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
 
+import { ApolloProvider } from 'react-apollo'
+import { ApolloClient } from 'apollo-client'
+import { createHttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+
 import { Auth0Provider } from 'lib/react-auth0-spa'
 import config from 'config/config'
 import history from 'utils/history'
+
+const httpLink = createHttpLink({
+    uri: 'http://localhost:3000',
+})
+
+const client = new ApolloClient({
+    link: httpLink,
+    cache: new InMemoryCache(),
+})
 
 const onRedirectCallback = appState => {
     history.push(
@@ -17,19 +31,22 @@ const onRedirectCallback = appState => {
 }
 
 ReactDOM.render(
-    <React.StrictMode>
-        <Auth0Provider
-            onRedirectCallback={onRedirectCallback}
-            options={{
-                domain: config.auth0Domain,
-                client_id: config.auth0ClientID,
-                redirect_uri: window.location.origin,
-                audience: config.auth0Audience,
-            }}
-        >
-            <App />
-        </Auth0Provider>
-    </React.StrictMode>,
+    <ApolloProvider client={client}>
+        <React.StrictMode>
+            <Auth0Provider
+                onRedirectCallback={onRedirectCallback}
+                options={{
+                    domain: config.auth0Domain,
+                    client_id: config.auth0ClientID,
+                    redirect_uri: window.location.origin,
+                    audience: config.auth0Audience,
+                }}
+            >
+                <App />
+            </Auth0Provider>
+        </React.StrictMode>
+        ,
+    </ApolloProvider>,
     document.getElementById('root')
 )
 
