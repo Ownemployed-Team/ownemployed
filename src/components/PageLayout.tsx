@@ -5,9 +5,11 @@ import NavigationBar from './NavigationBar'
 const { Header, Content, Footer } = Layout
 
 const menuItems = [
-    { label: 'My Site', url: '/members/deborah' },
     { label: 'Projects', url: '/projects' },
     { label: 'Members', url: '/members' },
+    { label: 'Learn', url: '/learn' },
+    { label: 'Community', url: '/community' },
+    { label: 'Account', url: '/members/deborah' },
     { label: 'Get Inspired', url: '/projects/marketingBiz' },
     { label: 'Login/Register', url: '/auth', isAuth: true },
 ]
@@ -17,7 +19,7 @@ const PageLayout = ({ children }) => (
         <Header
             style={{
                 background: '#ffffff',
-                height: '130px',
+                height: '60px',
                 textAlign: 'center',
             }}
         >
