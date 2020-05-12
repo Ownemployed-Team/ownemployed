@@ -10,9 +10,9 @@ const menuItems = [
     { label: 'Members', url: '/members' },
     { label: 'Learn', url: '/learn' },
     { label: 'Community', url: '/community' },
-    { label: 'Account', url: '/members/deborah' },
+    { label: 'Account', url: '/members/deborah', isPrivate: true },
     //{ label: 'Get Inspired', url: '/projects/marketingBiz' },
-    //{ label: 'Login/Register', url: '/auth', isAuth: true },
+    { label: 'Login/Register', url: '/auth', isAuth: true },
 ]
 
 const Main = ({ children }) => {

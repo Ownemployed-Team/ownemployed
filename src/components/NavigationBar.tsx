@@ -21,7 +21,7 @@ const Brand = () => {
 }
 
 const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
-    const { isAuthenticated } = useAuth0()
+    const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
 
     return (
         <Flex pl={5} pr={5} color="black" alignItems="center" bg="#fff">
@@ -33,11 +33,28 @@ const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
                         // NOTE check if private, then return the results of isAuthenticated
                         return item.isPrivate ? isAuthenticated : true
                     })
-                    .map((item, index) => (
-                        <NavLink key={index} to={item.url}>
-                            {item.label}
-                        </NavLink>
-                    ))}
+                    .map((item, index) => {
+                        if (item.isAuth) {
+                            return (
+                                <NavLink
+                                    to=""
+                                    key={index}
+                                    onClick={
+                                        isAuthenticated
+                                            ? () => logout()
+                                            : () => loginWithRedirect({})
+                                    }
+                                >
+                                    {isAuthenticated ? 'Logout' : item.label}
+                                </NavLink>
+                            )
+                        }
+                        return (
+                            <NavLink key={index} to={item.url}>
+                                {item.label}
+                            </NavLink>
+                        )
+                    })}
                 <Button>Create Project</Button>
             </Box>
         </Flex>

@@ -3,7 +3,6 @@ import { Router, Route, Switch } from 'react-router-dom'
 import PrivateRoute from 'components/PrivateRoute'
 import ThemeProvider from 'components/ThemeProvider'
 import history from 'utils/history'
-//import 'antd/dist/antd.css'
 import 'reset.css'
 
 import Home from 'pages/home/home'
