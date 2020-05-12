@@ -1,10 +1,9 @@
 import React from 'react'
-import { Link } from 'components/NavLink'
+import { NavLink } from 'components/NavLink'
 import { Flex, Box } from 'rebass'
 import logo from 'static/ownemployed_logo.png'
 import Button from './Button'
 import { useAuth0 } from 'lib/react-auth0-spa'
-
 
 type NavigationItem = {
     label: string
@@ -15,11 +14,9 @@ type NavigationItem = {
 
 const Brand = () => {
     return (
-        <Link to="/">
-            <div>
-                <img alt="logo" src={logo} width="245px" />
-            </div>
-        </Link>
+        <NavLink to="/">
+            <img alt="logo" src={logo} width="245px" />
+        </NavLink>
     )
 }
 
@@ -27,20 +24,23 @@ const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
     const { isAuthenticated } = useAuth0()
 
     return (
-        <div>
-            <Flex my={-2} color="black" alignItems="center">
-                <Link to="/">
-                    <img alt="logo" src={logo} width="245px" />
-                </Link>
-                <Box mx="auto" />
-                {items.map((item, index) => (
-                    <Link key={index} to={item.url}>
-                        {item.label}
-                    </Link>
-                ))}
-                <Button label="Create Project" />
-            </Flex>
-        </div>
+        <Flex pl={5} pr={5} color="black" alignItems="center" bg="#fff">
+            <Brand />
+            <Box mr="auto" />
+            <Box px={0}>
+                {items
+                    .filter(item => {
+                        // NOTE check if private, then return the results of isAuthenticated
+                        return item.isPrivate ? isAuthenticated : true
+                    })
+                    .map((item, index) => (
+                        <NavLink key={index} to={item.url}>
+                            {item.label}
+                        </NavLink>
+                    ))}
+                <Button>Create Project</Button>
+            </Box>
+        </Flex>
     )
 }
 

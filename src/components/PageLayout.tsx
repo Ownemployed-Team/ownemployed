@@ -1,8 +1,9 @@
 import React from 'react'
-import { Card, Layout } from 'antd'
-import NavigationBar from './NavigationBar'
+import PropTypes from 'prop-types'
+import { Box, Flex } from 'rebass'
 
-const { Header, Content, Footer } = Layout
+import NavigationBar from 'components/NavigationBar'
+import Footer from 'components/Footer'
 
 const menuItems = [
     { label: 'Projects', url: '/projects' },
@@ -10,35 +11,49 @@ const menuItems = [
     { label: 'Learn', url: '/learn' },
     { label: 'Community', url: '/community' },
     { label: 'Account', url: '/members/deborah' },
-    { label: 'Get Inspired', url: '/projects/marketingBiz' },
-    { label: 'Login/Register', url: '/auth', isAuth: true },
+    //{ label: 'Get Inspired', url: '/projects/marketingBiz' },
+    //{ label: 'Login/Register', url: '/auth', isAuth: true },
 ]
 
-const PageLayout = ({ children }) => (
-    <Layout style={{ minHeight: '100vh' }}>
-        <Header
-            style={{
-                background: '#ffffff',
-                height: '60px',
-                textAlign: 'center',
-            }}
+const Main = ({ children }) => {
+    return (
+        <Box
+            maxWidth={'1400px'}
+            width={1}
+            pt={3}
+            pb={3}
+            pl={[4, 4, 5]}
+            pr={[4, 4, 5]}
+            mx={'auto'}
+            sx={{ flex: 1 }}
+            fontFamily="body"
         >
-            <NavigationBar items={menuItems} />
-        </Header>
-        <Content style={{ padding: '20px 100px' }}>{children}</Content>
-        <Footer style={{ background: '#ffffff', textAlign: 'right' }}>
-            <a href="https://euvsvirus.org/">
-                <Card size="small" bordered={false}>
-                    <img
-                        alt="euvsvirus hackathon project"
-                        src="/imgs/Pan-EUHackthron_topbanner-V2.jpg"
-                        height="62px"
-                    />
-                    <Card.Meta description="An #EUvsVirus entry" />
-                </Card>
-            </a>
-        </Footer>
-    </Layout>
-)
+            <main>{children}</main>
+        </Box>
+    )
+}
 
-export default PageLayout
+const Layout = ({ children }) => {
+    return (
+        <>
+            <Flex
+                sx={{
+                    flexDirection: 'column',
+                    minHeight: '100vh',
+                    margin: 0,
+                    padding: 0,
+                }}
+            >
+                <NavigationBar items={menuItems} />
+                <Main>{children}</Main>
+                <Footer />
+            </Flex>
+        </>
+    )
+}
+
+Layout.propTypes = {
+    children: PropTypes.node.isRequired,
+}
+
+export default Layout
