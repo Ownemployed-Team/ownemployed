@@ -7,10 +7,12 @@ const Button = ({
     type,
     onClick,
 }: {
-    children: ReactChildren | ReactChild | ReactElement
+    children: ReactChildren | ReactChild | ReactElement | string[] | string
     size?: string
     type?: string
-    onClick?: (...args: any[]) => void
+    //onClick?: (...args: any[]) => void
+    onClick?: Function
+    style?: object
 }) => {
     return (
         <RebassButton

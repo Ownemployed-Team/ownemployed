@@ -4,26 +4,46 @@ import React, {
     ReactElement,
     FunctionComponent,
 } from 'react'
-import { Link as RebassLink } from 'rebass'
-import { Link as RouterLink } from 'react-router-dom'
-import { css } from 'emotion'
+import Button from 'components/Button'
 
 import Link from 'components/Link'
 
 type NavLinkProps = {
-    children: ReactChildren | ReactElement | ReactChild
+    children: ReactChildren | ReactElement | ReactChild | string | string[]
     to: string
     className?: string
     sx?: object
     css?: object
-    rest?: any
+    rest?: object
+    onClick?: Function
 }
 
 export const NavLink: FunctionComponent<NavLinkProps> = ({
     children,
     to,
+    onClick,
     ...rest
 }) => {
+    if (onClick) {
+        // TODO Fix button styling
+        return (
+            <Button
+                onClick={onClick}
+                sx={{
+                    textDecoration: 'none',
+                    padding: '0px 10px 0px',
+                    marginRight: 0,
+                    fontWeight: 500,
+                    fontSize: '14px',
+                    color: 'black',
+                }}
+                {...rest}
+            >
+                {children}
+            </Button>
+        )
+    }
+
     return (
         <Link
             to={to}

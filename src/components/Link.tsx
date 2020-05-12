@@ -8,7 +8,7 @@ import { Link as ReactRouterLink } from 'react-router-dom'
 import { Link as RebassLink } from 'rebass'
 
 type LinkProps = {
-    children: ReactChildren | ReactElement | ReactChild
+    children: ReactChildren | ReactElement | ReactChild | string | string[]
     className?: string
     to: string
     sx?: object
