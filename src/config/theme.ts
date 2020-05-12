@@ -21,14 +21,14 @@ export default {
     },
     space: [0, 4, 8, 16, 32, 64, 128, 256],
     fonts: {
-        body: 'Graphik',
-        heading: 'Poppins',
         monospace: 'Menlo, monospace',
+        body: 'Rubik, sans-serif',
+        heading: 'Poppins, sans-serif',
     },
     fontWeights: {
-        body: 'normal',
-        heading: 'bold',
-        bold: 'bold',
+        body: 400,
+        heading: 600,
+        bold: 700,
     },
     lineHeights: {
         body: '26px',

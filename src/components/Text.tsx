@@ -26,6 +26,7 @@ export const Text: FunctionComponent<TextProps> = ({ children, sx, as }) => {
     switch (as) {
         case TextType.H1:
             const head1 = {
+                fontFamily: 'heading',
                 fontSize: 'h1',
                 fontWeight: 'heading',
                 color: 'heading',
@@ -34,6 +35,7 @@ export const Text: FunctionComponent<TextProps> = ({ children, sx, as }) => {
         case TextType.H2:
             const head2 = {
                 fontSize: 'h2',
+                fontFamily: 'heading',
                 fontWeight: 'heading',
                 color: 'heading',
             }
@@ -41,6 +43,7 @@ export const Text: FunctionComponent<TextProps> = ({ children, sx, as }) => {
         case TextType.H3:
             const head3 = {
                 fontSize: 'h3',
+                fontFamily: 'heading',
                 fontWeight: 'body',
                 color: 'heading',
             }
@@ -48,13 +51,19 @@ export const Text: FunctionComponent<TextProps> = ({ children, sx, as }) => {
         case TextType.H4:
             const head4 = {
                 fontSize: 'h4',
+                fontFamily: 'heading',
                 fontWeight: 'heading',
                 color: 'heading',
             }
             return <RebassText sx={{ ...head4, ...sx }}>{children}</RebassText>
         case TextType.Body:
         default:
-            const body = { fontSize: 'body', fontWeight: 'body', color: 'body' }
+            const body = {
+                fontSize: 'body',
+                fontFamily: 'body',
+                fontWeight: 'body',
+                color: 'body',
+            }
             return (
                 <RebassText mt={2} sx={{ ...body, ...sx }}>
                     {children}
