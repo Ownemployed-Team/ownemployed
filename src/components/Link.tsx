@@ -4,13 +4,13 @@ import React, {
     ReactElement,
     FunctionComponent,
 } from 'react'
+import { Link as ReactRouterLink } from 'react-router-dom'
 import { Link as RebassLink } from 'rebass'
-import { Link as RouterLink } from 'react-router-dom'
 
 type LinkProps = {
     children: ReactChildren | ReactElement | ReactChild
-    to: string
     className?: string
+    to: string
     sx?: object
     css?: object
     rest?: any
@@ -29,21 +29,15 @@ export const Link: FunctionComponent<LinkProps> = ({
         )
     } else {
         return (
-            <RouterLink
+            <ReactRouterLink
                 to={to}
-                style={{
-                    textDecoration: 'none',
-                    padding: '0 10px 0',
-                    margin: 0,
-                    fontWeight: 500,
-                    fontSize: '14px',
-                    color: 'black',
-                }}
+                style={{ textDecoration: 'none' }}
                 {...rest}
             >
                 {children}
-            </RouterLink>
+            </ReactRouterLink>
         )
     }
 }
+
 export default Link
