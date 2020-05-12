@@ -14,6 +14,7 @@ type LinkProps = {
     sx?: object
     css?: object
     rest?: any
+    style?: object
 }
 
 export const Link: FunctionComponent<LinkProps> = ({

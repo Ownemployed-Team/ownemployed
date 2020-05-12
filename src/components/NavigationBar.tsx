@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'components/NavLink'
+import { NavLink } from 'components/NavLink'
 import { Flex, Box } from 'rebass'
 import logo from 'static/ownemployed_logo.png'
 import Button from './Button'
@@ -14,9 +14,9 @@ type NavigationItem = {
 
 const Brand = () => {
     return (
-        <Link to="/">
+        <NavLink to="/">
             <img alt="logo" src={logo} width="245px" />
-        </Link>
+        </NavLink>
     )
 }
 
@@ -28,11 +28,16 @@ const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
             <Brand />
             <Box mr="auto" />
             <Box px={0}>
-                {items.map((item, index) => (
-                    <Link key={index} to={item.url}>
-                        {item.label}
-                    </Link>
-                ))}
+                {items
+                    .filter(item => {
+                        // NOTE check if private, then return the results of isAuthenticated
+                        return item.isPrivate ? isAuthenticated : true
+                    })
+                    .map((item, index) => (
+                        <NavLink key={index} to={item.url}>
+                            {item.label}
+                        </NavLink>
+                    ))}
                 <Button>Create Project</Button>
             </Box>
         </Flex>

@@ -6,8 +6,11 @@ import React, {
 } from 'react'
 import { Link as RebassLink } from 'rebass'
 import { Link as RouterLink } from 'react-router-dom'
+import { css } from 'emotion'
 
-type LinkProps = {
+import Link from 'components/Link'
+
+type NavLinkProps = {
     children: ReactChildren | ReactElement | ReactChild
     to: string
     className?: string
@@ -16,34 +19,27 @@ type LinkProps = {
     rest?: any
 }
 
-export const Link: FunctionComponent<LinkProps> = ({
+export const NavLink: FunctionComponent<NavLinkProps> = ({
     children,
     to,
     ...rest
 }) => {
-    if (to.startsWith('http')) {
-        return (
-            <RebassLink href={to} target="_blank" {...rest}>
-                {children}
-            </RebassLink>
-        )
-    } else {
-        return (
-            <RouterLink
-                to={to}
-                style={{
-                    textDecoration: 'none',
-                    padding: '0 10px 0',
-                    margin: 0,
-                    fontWeight: 500,
-                    fontSize: '14px',
-                    color: 'black',
-                }}
-                {...rest}
-            >
-                {children}
-            </RouterLink>
-        )
-    }
+    return (
+        <Link
+            to={to}
+            style={{
+                textDecoration: 'none',
+                padding: '0px 10px 0px',
+                marginRight: 0,
+                fontWeight: 500,
+                fontSize: '14px',
+                color: 'black',
+            }}
+            {...rest}
+        >
+            {children}
+        </Link>
+    )
 }
-export default Link
+
+export default NavLink
