@@ -6,35 +6,43 @@ import React, {
 } from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Link as RebassLink } from 'rebass'
+import { css } from 'emotion'
 
 type LinkProps = {
+    to: string
     children: ReactChildren | ReactElement | ReactChild | string | string[]
     className?: string
-    to: string
     sx?: object
     css?: object
     rest?: any
     style?: object
 }
 
+const linkStyle = css`
+    text-decoration: none;
+`
+
 export const Link: FunctionComponent<LinkProps> = ({
     children,
     to,
+    sx,
     ...rest
 }) => {
     if (to.startsWith('http')) {
         return (
-            <RebassLink href={to} target="_blank" {...rest}>
+            <RebassLink
+                target="_blank"
+                className={linkStyle}
+                href={to}
+                sx={{ ...sx }}
+                {...rest}
+            >
                 {children}
             </RebassLink>
         )
     } else {
         return (
-            <ReactRouterLink
-                to={to}
-                style={{ textDecoration: 'none' }}
-                {...rest}
-            >
+            <ReactRouterLink to={to} className={linkStyle} {...rest}>
                 {children}
             </ReactRouterLink>
         )

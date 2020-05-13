@@ -1,47 +1,120 @@
 import * as React from 'react'
-import { Typography, Row, Col } from 'antd'
-import PageLayout from 'components/PageLayout'
-import LandingPageCard from 'components/LandingPageCard'
-import { colors } from 'utils/colors'
+import { Flex, Box, Image } from 'rebass'
 import { homepage } from 'data/content.json'
 
-const { Paragraph, Title } = Typography
+import Layout from 'components/PageLayout'
+import Text from 'components/Text'
+import Link from 'components/Link'
+import Button from 'components/Button'
+import Card from 'components/Card'
+
 const { title, p1, p2, p3, box1, box2, box3 } = homepage
 
 const Home = () => {
     return (
-        <PageLayout>
-            <div style={{ textAlign: 'center' }}>
-                <Title style={{ color: colors.primaryLight }}>{title}</Title>
-                <Paragraph style={{ fontSize: '18px', fontStyle: 'italic' }}>
-                    {p1}
-                </Paragraph>
-                <Paragraph style={{ fontSize: '18px', fontStyle: 'italic' }}>
-                    {p2}
-                </Paragraph>
-                <Paragraph
-                    style={{
-                        fontSize: '18px',
-                        fontStyle: 'italic',
-                        color: colors.primaryDark,
-                        fontWeight: 600,
+        <Layout>
+            <Flex
+                mt={5}
+                //flexDirection={['column', 'column', 'row']}
+                flexWrap="wrap"
+            >
+                <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
+                    <Text
+                        as="h1"
+                        sx={{
+                            lineHeight: '52px',
+                            fontWeight: 'bold',
+                        }}
+                    >
+                        Why wait to be employed, when you can be an
+                        entrepreneur?
+                    </Text>
+                    <Text as="body">
+                        Why wait to be employed, when you can be an
+                        entrepreneur?
+                    </Text>
+                    <Button
+                        sx={{
+                            marginTop: 4,
+                            pt: 2,
+                            pb: 2,
+                            pl: 4,
+                            pr: 4,
+                            fontSize: 'body',
+                        }}
+                    >
+                        Find a Project
+                    </Button>
+                </Box>
+
+                <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
+                    <Image
+                        sx={{
+                            //width: ['100%', '100%', '30%'],
+                            width: '100%',
+                        }}
+                        src="/imgs/illustrations/homepage-ideas.svg"
+                    ></Image>
+                </Box>
+            </Flex>
+
+            <Flex mt={5} mb={4} px={[0, 2, 6]} textAlign="center">
+                <Box>
+                    <Text as="h3">
+                        Take the opportunity to start something you are
+                        passionate about and eventually make a living out of it!
+                    </Text>
+                </Box>
+            </Flex>
+
+            <Flex
+                sx={{
+                    mt: 4,
+                    flexDirection: ['column', 'column', 'row'],
+                    //flexWrap: 'wrap',
+                    justifyContent: 'space-around',
+                }}
+            >
+                <Link
+                    to="/"
+                    sx={{
+                        mt: [4, 4, 0],
+                        px: 0,
+                        width: ['100%', '100%', '30%'],
                     }}
                 >
-                    {p3}
-                </Paragraph>
-                <Row gutter={16}>
-                    <Col md={24} lg={8} flex="auto">
-                        <LandingPageCard text={box1} to="/projects" />
-                    </Col>
-                    <Col md={24} lg={8} flex="auto">
-                        <LandingPageCard text={box2} to="/projects" />
-                    </Col>
-                    <Col md={24} lg={8} flex="auto">
-                        <LandingPageCard text={box3} to="/projects" />
-                    </Col>
-                </Row>
-            </div>
-        </PageLayout>
+                    <Card>
+                        <Text>I want to start a project</Text>
+                    </Card>
+                </Link>
+
+                <Link
+                    to="/"
+                    sx={{
+                        mt: [4, 4, 0],
+                        px: 0,
+                        width: ['100%', '100%', '30%'],
+                    }}
+                >
+                    <Card>
+                        <Text>I want to start a project</Text>
+                    </Card>
+                </Link>
+
+                <Link
+                    to="/"
+                    style={{
+                        mt: [4, 4, 0],
+                        px: 0,
+                        width: ['100%', '100%', '30%'],
+                    }}
+                >
+                    <Card>
+                        <Text>I want to start a project</Text>
+                    </Card>
+                </Link>
+            </Flex>
+        </Layout>
     )
 }
 

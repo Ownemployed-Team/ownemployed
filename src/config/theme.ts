@@ -1,5 +1,6 @@
 export default {
     breakpoints: ['40em', '52em', '64em'],
+    //breakpoints: ['720px', '920px', '1440px'],
     fontSizes: {
         body: '18px',
         h4: '20px',
@@ -18,6 +19,7 @@ export default {
         successHover: '#53dfbf',
         heading: '#000000',
         body: '#768598',
+        white: '#fff',
     },
     space: [0, 4, 8, 16, 32, 64, 128, 256],
     fonts: {
@@ -37,6 +39,10 @@ export default {
     shadows: {
         small: '0px 0px 8px rgba(0,0,0,0.15);',
         large: '0 0 24px rgba(0, 0, 0, .125)',
+    },
+    radii: {
+        default: 12,
+        large: 39,
     },
     variants: {},
     text: {},
