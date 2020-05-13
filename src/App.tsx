@@ -25,11 +25,6 @@ function App() {
                     />
                     <Route component={Members} path="/members" exact={true} />
                     <Route
-                        component={SignUpForm}
-                        path="/sign-up"
-                        exact={true}
-                    />
-                    <Route
                         component={BusinessProfile}
                         exact={true}
                         path="/projects/:businessProfileId"
@@ -39,6 +34,8 @@ function App() {
                         component={UserProfile}
                         path="/members/:userProfileId"
                     />
+
+                    <Route exact={true} component={Members} path="/community" />
                 </Switch>
             </ThemeProvider>
         </Router>

@@ -9,11 +9,11 @@ export const Footer = ({ ...props }) => {
         <Flex
             p={3}
             pb={5}
+            mt={4}
             sx={{
                 color: 'muted',
                 flexDirection: 'column',
                 alignItems: 'center',
-                backgroundColor: '#eee',
                 textAlign: 'center',
                 fontFamily: 'body',
                 width: '100',

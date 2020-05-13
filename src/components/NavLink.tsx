@@ -30,12 +30,17 @@ export const NavLink: FunctionComponent<NavLinkProps> = ({
             <Button
                 onClick={onClick}
                 sx={{
-                    textDecoration: 'none',
+                    cursor: 'pointer',
                     padding: '0px 10px 0px',
+                    backgroundColor: '#fff',
+                    textDecoration: 'none',
                     marginRight: 0,
                     fontWeight: 500,
                     fontSize: '14px',
                     color: 'black',
+                    '&:hover': {
+                        backgroundColor: '#fff',
+                    },
                 }}
                 {...rest}
             >
