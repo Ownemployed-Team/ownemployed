@@ -2,20 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import * as serviceWorker from './serviceWorker'
-
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from '@apollo/react-hooks'
-// import { ApolloProvider } from 'react-apollo'
-// import { ApolloClient } from 'apollo-client'
-// import { createHttpLink } from 'apollo-link-http'
-// import { InMemoryCache } from 'apollo-cache-inmemory'
-
 import { Auth0Provider } from 'lib/react-auth0-spa'
 import config from 'config/config'
 import history from 'utils/history'
 
 const client = new ApolloClient({
-    uri: 'https://ownemployed-backend.herokuapp.com/api/v1/graphql',
+    uri: config.graphQL,
 })
 
 const onRedirectCallback = appState => {
