@@ -1,39 +1,52 @@
 import React from 'react'
-import { Card } from 'antd'
-import { Link } from 'react-router-dom'
+import Card from 'components/Card'
+import Text from 'components/Text'
+import { Image } from 'rebass'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 
-const { Meta } = Card
-const UserCard = ({ user, style = {} }) => {
-    let avatar = require('../static/avatars/user/default.png')
-    try {
-        avatar = require(`../static/avatars/user/${user.id}.png`)
-    } catch (e) {}
+export type User = {
+    id: number
+    name: string
+    summary: string
+    location: string
+    image: string
+}
+
+const UserCard = ({ user }: { user: User }) => {
+    //TODO: Change the user type to fit the db
+    let avatar = user.image
+        ? user.image
+        : require('../static/avatars/user/default.png')
+
     return (
-        <Link to={`/members/${user.id}`}>
-            <Card
-                bodyStyle={{ padding: '16px 0' }}
-                cover={
-                    <div style={{ height: '110px', width: '100%' }}>
-                        <img
-                            alt="member"
-                            src={avatar}
-                            style={{ height: '110px' }}
-                        />
-                    </div>
-                }
-                style={{
-                    height: '300px',
-                    width: '300px',
-                    margin: '8px',
-                    padding: '24px',
-                }}
-            >
-                <Meta title={user.name} description={user.summary} />
-                <div style={{ fontSize: '12px', paddingTop: '12px' }}>
-                    {user.location ? `Location: ${user.location}` : ''}
-                </div>
-            </Card>
-        </Link>
+        <Card
+            style={{
+                height: '270px',
+                width: '265px',
+                padding: '16px 24px 24px 24px',
+            }}
+        >
+            <div style={{ textAlign: 'center' }}>
+                <Image
+                    src={avatar}
+                    sx={{
+                        height: '100px',
+                        borderRadius: 'round',
+                        margin: '0 auto',
+                    }}
+                />
+                <Text as="h3" sx={{ fontWeight: 'heading' }}>
+                    {user.name}
+                </Text>
+            </div>
+            <Text as="body" sx={{ fontSize: 'card' }}>
+                {user.summary.substring(0, 90).concat('...')}
+            </Text>
+            <Text as="body" sx={{ fontSize: 'card', color: 'primary' }}>
+                <FaMapMarkerAlt style={{ marginRight: 2 }} />
+                {user.location}
+            </Text>
+        </Card>
     )
 }
 
