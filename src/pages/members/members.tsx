@@ -56,6 +56,7 @@ const Members = () => {
                         }}
                     >
                         {selectedUsers.map(user => (
+                            //UserCard_Legacy has to be replaced with the newer UserCard component when the page is getting reworked
                             <UserCard_Legacy key={user.id} user={user} />
                         ))}
                     </div>

@@ -45,6 +45,7 @@ const BusinessProfile = () => {
                             {owners.length > 0 && (
                                 <Descriptions.Item label="Founder">
                                     {owners.map(owner => (
+                                        //UserCard_Legacy has to be replaced with the newer UserCard component when the page is getting reworked
                                         <UserCard_Legacy
                                             key={owner.id}
                                             user={owner}
