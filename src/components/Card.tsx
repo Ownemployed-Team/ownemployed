@@ -1,12 +1,12 @@
-import React, { ReactChild, ReactChildren, ReactElement } from 'react'
+import React, {
+    FunctionComponent,
+    ReactChild,
+    ReactChildren,
+    ReactElement,
+} from 'react'
 import { Card as RebassCard } from 'rebass'
 
-const Card = ({
-    children,
-    width,
-    height,
-    style,
-}: {
+type CardProps = {
     children?:
         | ReactChildren
         | ReactElement
@@ -14,22 +14,23 @@ const Card = ({
         | ReactChildren[]
         | ReactElement[]
         | ReactChild[]
-    width?: string
-    height?: string
     style?: object
-}) => {
+    sx?: object
+}
+
+const Card: FunctionComponent<CardProps> = ({ children, style = {}, sx }) => {
     return (
         <RebassCard
-            sx={{
-                backgroundColor: '#FFFFFF',
-                boxShadow: 'small',
-                borderRadius: '39px',
-                textAlign: 'center',
-                padding: '10px',
-            }}
             style={style}
-            height={height}
-            width={width}
+            sx={{
+                backgroundColor: 'white',
+                boxShadow: 'small',
+                borderRadius: 'default',
+                textAlign: 'center',
+                width: 'auto',
+                padding: 2,
+                ...sx,
+            }}
         >
             {children}
         </RebassCard>

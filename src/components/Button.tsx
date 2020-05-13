@@ -6,6 +6,7 @@ const Button = ({
     size,
     type,
     onClick,
+    sx,
 }: {
     children: ReactChildren | ReactChild | ReactElement | string[] | string
     size?: string
@@ -13,6 +14,7 @@ const Button = ({
     //onClick?: (...args: any[]) => void
     onClick?: Function
     style?: object
+    sx?: object
 }) => {
     return (
         <RebassButton
@@ -27,6 +29,7 @@ const Button = ({
                     backgroundColor: 'primaryHover',
                     cursor: 'pointer',
                 },
+                ...sx,
             }}
         >
             {children}
