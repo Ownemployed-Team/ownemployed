@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid, Row, Col } from 'antd'
 import PageLayout from 'components/PageLayout'
-import UserCard from 'components/UserCard'
+import UserCard_Legacy from 'components/UserCard_Legacy'
 import PageIntro from 'components/PageIntro'
 import Filter from 'components/Filter'
 import { useLocation } from 'react-router'
@@ -56,7 +56,8 @@ const Members = () => {
                         }}
                     >
                         {selectedUsers.map(user => (
-                            <UserCard key={user.id} user={user} />
+                            //UserCard_Legacy has to be replaced with the newer UserCard component when the page is getting reworked
+                            <UserCard_Legacy key={user.id} user={user} />
                         ))}
                     </div>
                 </Col>

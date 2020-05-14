@@ -26,7 +26,6 @@ const Card: FunctionComponent<CardProps> = ({ children, style = {}, sx }) => {
                 backgroundColor: 'white',
                 boxShadow: 'small',
                 borderRadius: 'default',
-                textAlign: 'center',
                 width: 'auto',
                 padding: 2,
                 ...sx,
