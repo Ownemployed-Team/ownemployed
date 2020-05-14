@@ -42,8 +42,8 @@ export const GET_USERS = gql`
 
 // Getting Project's profile data
 export const GET_PROJECT = gql`
-    query getBusiness($projectId: String!) {
-        getBusiness(id: $projectId) {
+    query getProject($projectId: String!) {
+        getProject(id: $projectId) {
             name
             ownerID
             status
@@ -60,7 +60,7 @@ export const GET_PROJECT = gql`
 //TODO: Determine which fields we'll need to lighten the query, and change the query in consequence
 export const GET_PROJECTS = gql`
     {
-        getBusinesses {
+        getProjects {
             name
             ownerID
             status
