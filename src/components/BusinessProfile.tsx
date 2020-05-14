@@ -6,7 +6,7 @@ import { Card, Col, Row, Descriptions } from 'antd'
 import businesses from '../data/businesses.json'
 import users from '../data/users.json'
 import TagsCard from './TagsCard'
-import UserCard from './UserCard'
+import UserCard_Legacy from './UserCard_Legacy'
 import PageIntro from './PageIntro'
 
 const BusinessProfile = () => {
@@ -45,7 +45,11 @@ const BusinessProfile = () => {
                             {owners.length > 0 && (
                                 <Descriptions.Item label="Founder">
                                     {owners.map(owner => (
-                                        <UserCard key={owner.id} user={owner} />
+                                        //UserCard_Legacy has to be replaced with the newer UserCard component when the page is getting reworked
+                                        <UserCard_Legacy
+                                            key={owner.id}
+                                            user={owner}
+                                        />
                                     ))}
                                 </Descriptions.Item>
                             )}

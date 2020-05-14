@@ -2,6 +2,7 @@ export default {
     breakpoints: ['40em', '52em', '64em'],
     //breakpoints: ['720px', '920px', '1440px'],
     fontSizes: {
+        card: '14px',
         body: '18px',
         h4: '20px',
         h3: '22px',
@@ -43,6 +44,7 @@ export default {
     radii: {
         default: 12,
         large: 39,
+        round: '100%',
     },
     variants: {},
     text: {},
