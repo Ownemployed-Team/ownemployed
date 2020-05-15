@@ -11,6 +11,7 @@ import UserProfile from 'pages/user/profile'
 import ExploreIdeas from 'pages/explore/explore'
 import Members from 'pages/members/members'
 import SignUpForm from 'pages/signup/signup'
+import NoMatch from 'pages/404/404'
 
 function App() {
     return (
@@ -36,6 +37,7 @@ function App() {
                     />
 
                     <Route exact={true} component={Members} path="/community" />
+                    <Route component={NoMatch} />
                 </Switch>
             </ThemeProvider>
         </Router>
