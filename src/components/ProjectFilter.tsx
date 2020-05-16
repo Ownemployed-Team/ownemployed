@@ -1,8 +1,10 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { css } from 'emotion'
 import { Text } from 'components/Text'
 import Card from 'components/Card'
 import { Box, Flex } from 'rebass'
-import { Input, Label, Select } from '@rebass/forms'
+import { Formik, Form, Field, FormikProps } from 'formik'
+import Select from 'react-select'
 import { colors } from '../utils/colors'
 
 // const { Title, Text, Paragraph } = Typography
@@ -10,7 +12,7 @@ import { colors } from '../utils/colors'
 const ProjectFilter = ({
     baseUrl,
     title,
-    options,
+    // options,
     selected,
 }: {
     baseUrl: string
@@ -18,12 +20,99 @@ const ProjectFilter = ({
     selected: any[]
     options: any[]
 }) => {
-    const countries = [
-        { key: '0', value: 'USA' },
-        { key: '1', value: 'Kina' },
-        { key: '2', value: 'Sverige' },
-        { key: '3', value: 'Danmark' },
+    const [sector, setSector] = useState([])
+    const [skills, setSkills] = useState([])
+    const [location, setLocation] = useState([])
+    const [projectStatus, setProjectStatus] = useState([])
+
+    const sectorOptions = [
+        { label: 'One', value: 1 },
+        { label: 'Two', value: 2 },
+        { label: 'Three', value: 3 },
     ]
+
+    const skillsOptions = [
+        { label: 'One', value: 1 },
+        { label: 'Two', value: 2 },
+        { label: 'Three', value: 3 },
+    ]
+
+    const locationOptions = [
+        { label: 'One', value: 1 },
+        { label: 'Two', value: 2 },
+        { label: 'Three', value: 3 },
+    ]
+
+    const projectStatusOptions = [
+        { label: 'One', value: 1 },
+        { label: 'Two', value: 2 },
+        { label: 'Three', value: 3 },
+    ]
+
+    const handleSectorSelected = values => {
+        setSector(values)
+    }
+
+    const handleSkillsSelected = values => {
+        setSkills(values)
+    }
+
+    const handleLocationSelected = values => {
+        setLocation(values)
+    }
+
+    const handleProjectStatusSelected = values => {
+        setProjectStatus(values)
+    }
+
+    const handleSearchSubmit = (values, actions) => {
+        setTimeout(() => {
+            //TODO : call backend to find project
+            alert(JSON.stringify(values, null, 2))
+            actions.setSubmitting(false)
+        }, 1000)
+    }
+
+    const styles = {
+        control: (base, state) => {
+            console.log(state)
+            const { className } = (state || {}).selectProps
+            switch (className) {
+                case 'sector':
+                    return { ...base, width: 150 }
+                case 'skills':
+                    return { ...base, width: 150 }
+                case 'location':
+                    return { ...base, width: 150 }
+                case 'project-status':
+                    return { ...base, width: 160 }
+                default:
+                    return { ...base, width: 150 }
+            }
+        },
+        menu: (base, state) => {
+            return { ...base, width: 300 }
+        },
+        multiValue: (base, state) => {
+            return state.data.isFixed
+                ? { ...base, backgroundColor: 'gray' }
+                : base
+        },
+        multiValueLabel: (base, state) => {
+            return state.data.isFixed
+                ? {
+                      ...base,
+                      fontWeight: 'bold',
+                      color: 'white',
+                      paddingRight: 6,
+                  }
+                : base
+        },
+        multiValueRemove: (base, state) => {
+            return state.data.isFixed ? { ...base, display: 'none' } : base
+        },
+    }
+
     return (
         <Card
             sx={{
@@ -37,57 +126,84 @@ const ProjectFilter = ({
                         <Text as="h3">Filter</Text>
                         <Box mx={2}>
                             <Select
-                                id="country"
-                                name="country"
-                                defaultValue="United States"
-                            >
-                                {countries.map(({ key, value }) => (
-                                    <option key={key}>{value}</option>
-                                ))}
-                            </Select>
+                                className="sector"
+                                classNamePrefix="select"
+                                closeMenuOnSelect={false}
+                                isMulti
+                                onChange={handleSectorSelected}
+                                options={sectorOptions}
+                                placeholder={'Sector'}
+                                styles={styles}
+                                value={sector}
+                            />
                         </Box>
                         <Box mx={2}>
                             <Select
-                                id="country"
-                                name="country"
-                                defaultValue="United States"
-                            >
-                                {countries.map(({ key, value }) => (
-                                    <option key={key}>{value}</option>
-                                ))}
-                            </Select>
+                                className="skills"
+                                classNamePrefix="select"
+                                closeMenuOnSelect={false}
+                                isMulti
+                                onChange={handleSkillsSelected}
+                                options={skillsOptions}
+                                placeholder={'Skills'}
+                                styles={styles}
+                                value={skills}
+                            />
                         </Box>
                         <Box mx={2}>
                             <Select
-                                id="country"
-                                name="country"
-                                defaultValue="United States"
-                            >
-                                {countries.map(({ key, value }) => (
-                                    <option key={key}>{value}</option>
-                                ))}
-                            </Select>
+                                className="location"
+                                classNamePrefix="select"
+                                closeMenuOnSelect={false}
+                                isMulti
+                                onChange={handleLocationSelected}
+                                options={locationOptions}
+                                placeholder={'Location'}
+                                styles={styles}
+                                value={location}
+                            />
                         </Box>
                         <Box mx={2}>
                             <Select
-                                id="country"
-                                name="country"
-                                defaultValue="United States"
-                            >
-                                {countries.map(({ key, value }) => (
-                                    <option key={key}>{value}</option>
-                                ))}
-                            </Select>
+                                className="project-status"
+                                classNamePrefix="select"
+                                closeMenuOnSelect={false}
+                                isMulti
+                                onChange={handleProjectStatusSelected}
+                                options={projectStatusOptions}
+                                placeholder={'Project status'}
+                                styles={styles}
+                                value={projectStatus}
+                            />
                         </Box>
                     </Flex>
                 </Box>
                 <Box width={1 / 4}>
                     <Flex m={3}>
-                        <Input
-                            id="search"
-                            name="name"
-                            placeholder="Sök"
-                        ></Input>
+                        <Formik
+                            initialValues={{ search: '' }}
+                            onSubmit={handleSearchSubmit}
+                        >
+                            {(props: FormikProps<any>) => (
+                                <Form>
+                                    <Field
+                                        className={css`
+                                            width: 100%;
+                                            padding: 10px;
+                                            height: 34px;
+                                            align-items: center;
+                                            background-color: hsl(0, 0%, 100%);
+                                            border-color: hsl(0, 0%, 80%);
+                                            border-radius: 4px;
+                                            border-style: solid;
+                                            border-width: 1px;
+                                        `}
+                                        name="search"
+                                        placeholder="Search"
+                                    />
+                                </Form>
+                            )}
+                        </Formik>
                     </Flex>
                 </Box>
             </Flex>

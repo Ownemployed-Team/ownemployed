@@ -1,15 +1,24 @@
 import React from 'react'
 import Card from 'components/Card'
 import Text from 'components/Text'
-import { Image, Box } from 'rebass'
+import { Box, Image } from 'rebass'
+import { Label } from '@rebass/forms'
 // Avatar as RebassAvatar,
 import { Link } from 'react-router-dom'
 import { colors } from '../utils/colors'
+import { UniqueInputFieldNamesRule } from 'graphql'
 
 // const { Meta } = Card
 
 const ProjectCard = ({ project }) => {
-    const { contributors, description, id, name, status } = project
+    const {
+        contributors,
+        description,
+        id,
+        keyActivities,
+        name,
+        status,
+    } = project
     let avatar = require('../static/avatars/business/default.png')
     try {
         avatar = require(`../static/avatars/business/${id}.png`)
@@ -42,29 +51,31 @@ const ProjectCard = ({ project }) => {
                     >
                         {name}
                     </Text>
-                    <Text as="body">{description}</Text>
+                    <Text
+                        as="body"
+                        sx={{
+                            mb: 2,
+                        }}
+                    >
+                        {description}
+                    </Text>
+                    {keyActivities &&
+                        keyActivities.map(keyActivity => (
+                            <Text
+                                sx={{
+                                    mr: 1,
+                                    p: 2,
+                                    borderRadius: '2px',
+                                    display: 'inline',
+                                    bg: '#124780',
+                                    color: 'white',
+                                    fontSize: '10px',
+                                }}
+                            >
+                                {keyActivity}
+                            </Text>
+                        ))}
                 </Box>
-                {/* <Meta
-                    // avatar={<Avatar src={avatar} />}
-                    title={project.name}
-                    description={project.tagline}
-                /> */}
-                <div
-                    style={{
-                        fontSize: '12px',
-                        color: colors.primaryLight,
-                        padding: '8px 24px',
-                        position: 'absolute',
-                        bottom: '10px',
-                        left: '0px',
-                    }}
-                >
-                    {status ? `Status: ${status}` : ''}
-                    <br />
-                    {contributors
-                        ? `Contributors: ${contributors.toString()}`
-                        : ''}
-                </div>
             </Card>
         </Link>
     )
