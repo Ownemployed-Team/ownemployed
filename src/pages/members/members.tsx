@@ -7,6 +7,10 @@ import Filter from 'components/Filter'
 import { useLocation } from 'react-router'
 import users from 'data/users.json'
 import userTags from 'utils/userTags'
+import { Route } from 'react-router-dom'
+
+const SingleMember = () => null
+const AllMembers = () => null
 
 const { useBreakpoint } = Grid
 

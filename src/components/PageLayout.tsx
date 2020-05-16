@@ -10,8 +10,7 @@ const menuItems = [
     { label: 'Members', url: '/members' },
     { label: 'Learn', url: '/learn' },
     { label: 'Community', url: '/community' },
-    { label: 'Account', url: '/members/deborah', isPrivate: true },
-    //{ label: 'Get Inspired', url: '/projects/marketingBiz' },
+    { label: 'Account', url: '/profile', isPrivate: true },
     { label: 'Login/Register', url: '/auth', isAuth: true },
 ]
 

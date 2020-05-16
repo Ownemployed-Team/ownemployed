@@ -19,6 +19,18 @@ function App() {
             <ThemeProvider>
                 <Switch>
                     <Route component={Home} path="/" exact={true} />
+                    <Route path="/community" exact={true} />
+                    <Route path="/auth" exact={true} />
+                    <Route path="/members" />
+                    <Route path="/projects" />
+                    <Route path="/learn" />
+
+                    <PrivateRoute path="/profile" component={UserProfile} />
+                    {/*
+                    <PrivateRoute path="/profile" component={UserProfile} />
+                    */}
+                    <Route component={NoMatch} />
+                    {/*
                     <Route
                         component={ExploreIdeas}
                         path="/projects"
@@ -37,7 +49,8 @@ function App() {
                     />
 
                     <Route exact={true} component={Members} path="/community" />
-                    <Route component={NoMatch} />
+
+                         */}
                 </Switch>
             </ThemeProvider>
         </Router>

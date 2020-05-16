@@ -2,15 +2,12 @@ import * as React from 'react'
 import { Flex, Box, Image } from 'rebass'
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
-import { homepage } from 'data/content.json'
 
 import Layout from 'components/PageLayout'
 import Text from 'components/Text'
 import Link from 'components/Link'
 import Button from 'components/Button'
 import Card from 'components/Card'
-
-const { title, p1, p2, p3, box1, box2, box3 } = homepage
 
 const GET_USER = gql`
     {
@@ -22,7 +19,8 @@ const GET_USER = gql`
 `
 
 const Home = () => {
-    const { loading, error, data } = useQuery(GET_USER)
+    const { loading, error, data, ...rest } = useQuery(GET_USER)
+    console.log(data, rest)
     return (
         <Layout>
             <Flex
