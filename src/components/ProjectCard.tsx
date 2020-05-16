@@ -15,7 +15,7 @@ const ProjectCard = ({ project }) => {
         avatar = require(`../static/avatars/business/${id}.png`)
     } catch (e) {}
     return (
-        <Link to={`/projects/${id}`}>
+        <Link to={`/projects/${id}`} style={{ textDecoration: 'none' }}>
             <Card
                 sx={{
                     borderRadius: '0',
