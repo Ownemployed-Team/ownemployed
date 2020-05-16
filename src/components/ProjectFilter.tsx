@@ -10,12 +10,9 @@ import { colors } from '../utils/colors'
 // const { Title, Text, Paragraph } = Typography
 
 const ProjectFilter = ({
-    baseUrl,
-    title,
-    // options,
-    selected,
+    onGet,
 }: {
-    baseUrl: string
+    onGet: Function
     title: string
     selected: any[]
     options: any[]
@@ -67,7 +64,13 @@ const ProjectFilter = ({
 
     const handleSearchSubmit = (values, actions) => {
         setTimeout(() => {
-            //TODO : call backend to find project
+            //TODO : call backend to find project with query function getProjects
+            const { search } = values
+            // getProjects({
+            // 	variables: {
+            // 		name: search
+            // 	}
+            // })
             alert(JSON.stringify(values, null, 2))
             actions.setSubmitting(false)
         }, 1000)
@@ -120,9 +123,9 @@ const ProjectFilter = ({
                 m: 2,
             }}
         >
-            <Flex m={3}>
+            <Flex>
                 <Box width={3 / 4}>
-                    <Flex m={3}>
+                    <Flex m={1}>
                         <Text as="h3">Filter</Text>
                         <Box mx={2}>
                             <Select
@@ -178,8 +181,18 @@ const ProjectFilter = ({
                         </Box>
                     </Flex>
                 </Box>
-                <Box width={1 / 4}>
-                    <Flex m={3}>
+                <Box
+                    width={1 / 4}
+                    sx={{
+                        alignContent: 'right',
+                    }}
+                >
+                    <Flex
+                        m={1}
+                        sx={{
+                            justifyContent: 'flex-end',
+                        }}
+                    >
                         <Formik
                             initialValues={{ search: '' }}
                             onSubmit={handleSearchSubmit}

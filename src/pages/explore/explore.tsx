@@ -11,14 +11,16 @@ import { useLocation } from 'react-router'
 import ProjectFilter from 'components/ProjectFilter'
 import businessTags from 'utils/businessTags'
 import { projects as content } from 'data/content.json'
-import { useQuery } from '@apollo/react-hooks'
+import { useLazyQuery } from '@apollo/react-hooks'
 import GET_PROJECTS from 'graphql/get-projects'
 
 const { title, summary } = content
 // const { useBreakpoint } = Grid
 
 const ExploreIdeas = () => {
-    // const { loading, error, data: projectsData } = useQuery(GET_PROJECTS)
+    // const [getProjects, { loading, data: projectsData }] = useLazyQuery(
+    //     GET_PROJECTS,
+    //   )
     // const { getProjects: projects } = projectsData || { getProjects : []}
 
     const selectedString =
@@ -59,7 +61,7 @@ const ExploreIdeas = () => {
             </Card>
             <div>
                 <ProjectFilter
-                    baseUrl="/projects"
+                    onGet={() => {}}
                     options={allBusinessTags}
                     selected={selectedArray}
                     title="Filter Projects by Tag"
