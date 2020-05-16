@@ -5,18 +5,8 @@ import Card from 'components/Card'
 import { Box, Flex } from 'rebass'
 import { Formik, Form, Field, FormikProps } from 'formik'
 import Select from 'react-select'
-import { colors } from '../utils/colors'
 
-// const { Title, Text, Paragraph } = Typography
-
-const ProjectFilter = ({
-    onGet,
-}: {
-    onGet: Function
-    title: string
-    selected: any[]
-    options: any[]
-}) => {
+const ProjectFilter = ({ onGet }: { onGet: Function }) => {
     const [sector, setSector] = useState([])
     const [skills, setSkills] = useState([])
     const [location, setLocation] = useState([])
