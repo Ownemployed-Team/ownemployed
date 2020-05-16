@@ -1,20 +1,29 @@
 import React from 'react'
-import { Grid, Row, Col } from 'antd'
+import { Box, Flex } from 'rebass'
+import Card from 'components/Card'
 import PageLayout from 'components/PageLayout'
-import BusinessCard from 'components/BusinessCard'
+import ProjectCard from 'components/ProjectCard'
+import Text from 'components/Text'
+import projects from 'data/projects.json'
 import businesses from 'data/businesses.json'
 import PageIntro from 'components/PageIntro'
 import { useLocation } from 'react-router'
-import Filter from 'components/Filter'
+import ProjectFilter from 'components/ProjectFilter'
 import businessTags from 'utils/businessTags'
-import { projects } from 'data/content.json'
+import { projects as content } from 'data/content.json'
+import { useQuery } from '@apollo/react-hooks'
+import GET_PROJECTS from 'graphql/get-projects'
 
-const { title, summary } = projects
-const { useBreakpoint } = Grid
+const { title, summary } = content
+// const { useBreakpoint } = Grid
 
 const ExploreIdeas = () => {
+    // const { loading, error, data: projectsData } = useQuery(GET_PROJECTS)
+    // const { getProjects: projects } = projectsData || { getProjects : []}
+
     const selectedString =
         new URLSearchParams(useLocation().search).get('selected') || '[]'
+    console.log(selectedString)
     const selectedArray = JSON.parse(selectedString)
     let selectedBusinesses = Object.values(businesses)
     if (selectedArray.length > 0) {
@@ -29,27 +38,45 @@ const ExploreIdeas = () => {
         .map(business => businessTags(business))
         .sort()
 
-    const screens = useBreakpoint()
-    const useFullWidth = !screens.xl
+    // const screens = useBreakpoint()
+    // const useFullWidth = !screens.xl
 
     return (
         <PageLayout>
-            <PageIntro
-                title={title}
-                summary={summary}
-                actions={[{ text: 'Add a Project', onClick: () => {} }]}
-            />
-            <Row gutter={[16, 16]}>
-                <Col lg={24} xl={4}>
-                    <Filter
-                        baseUrl="/projects"
-                        options={allBusinessTags}
-                        selected={selectedArray}
-                        title="Filter Projects by Tag"
-                    />
-                </Col>
-                <Col lg={24} xl={20} style={{ padding: '0 32px' }}>
-                    <div
+            <Card
+                sx={{
+                    borderRadius: '0',
+                    my: 4,
+                    mx: 2,
+                    p: 4,
+                    textAlign: 'center',
+                }}
+            >
+                <Text as="h2">{title}</Text>
+                <Text as="body" sx={{ width: '50%', m: 'auto' }}>
+                    {summary}
+                </Text>
+            </Card>
+            <div>
+                <ProjectFilter
+                    baseUrl="/projects"
+                    options={allBusinessTags}
+                    selected={selectedArray}
+                    title="Filter Projects by Tag"
+                />
+                <Box
+                    sx={{
+                        mx: 'auto',
+                        px: 2,
+                        py: 2,
+                    }}
+                >
+                    <Text>Showing 1 to 24 of XXX results</Text>
+                </Box>
+                {/* <Col lg={24} xl={4}>
+                </Col> */}
+                {/* <Col style={{ padding: '0 32px' }}> */}
+                {/* <div
                         style={{
                             display: 'flex',
                             flexWrap: 'wrap',
@@ -57,16 +84,26 @@ const ExploreIdeas = () => {
                                 ? 'center'
                                 : 'flex-start',
                         }}
-                    >
-                        {selectedBusinesses.map(business => (
-                            <BusinessCard
-                                key={business.id}
-                                business={business}
-                            />
+                    > */}
+                <Flex flexWrap="wrap">
+                    {!false &&
+                        projects &&
+                        projects.map(project => (
+                            <Box
+                                mr="auto"
+                                width={[1, 1 / 2, 1 / 3]}
+                                px={2}
+                                py={3}
+                            >
+                                <ProjectCard
+                                    key={project.id}
+                                    project={project}
+                                />
+                            </Box>
                         ))}
-                    </div>
-                </Col>
-            </Row>
+                </Flex>
+                {/* </Col> */}
+            </div>
         </PageLayout>
     )
 }
