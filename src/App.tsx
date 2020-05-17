@@ -21,7 +21,7 @@ function App() {
                     <Route component={Home} path="/" exact={true} />
                     <Route path="/community" exact={true} />
                     <Route path="/auth" exact={true} />
-                    <Route path="/members" />
+                    <Route path="/members" component={Members} />
                     <Route path="/projects" />
                     <Route path="/learn" />
 

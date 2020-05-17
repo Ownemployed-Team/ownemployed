@@ -1,19 +1,102 @@
 import React from 'react'
-import { Grid, Row, Col } from 'antd'
+import { Flex, Image } from 'rebass'
+import { Route, Switch, useParams } from 'react-router-dom'
+
 import PageLayout from 'components/PageLayout'
-import UserCard_Legacy from 'components/UserCard_Legacy'
-import PageIntro from 'components/PageIntro'
-import Filter from 'components/Filter'
-import { useLocation } from 'react-router'
-import users from 'data/users.json'
-import userTags from 'utils/userTags'
-import { Route } from 'react-router-dom'
+import Card from 'components/Card'
+import Link from 'components/Link'
+import Text from 'components/Text'
 
-const SingleMember = () => null
-const AllMembers = () => null
+import { times } from 'utils/lowdash'
 
+const SingleMember = () => {
+    const { member_id: memberId } = useParams()
+
+    return (
+        <>
+            <Text as="h3">Member {memberId}</Text>
+            <hr />
+        </>
+    )
+}
+
+const AllMembers = ({ match }) => {
+    const members: { id: number; name: string; img: string }[] = []
+
+    times(20, () => {
+        members.push({
+            id: 0,
+            name: 'Franklin Clinton',
+            img: 'https://i.picsum.photos/id/518/300/300.jpg?grayscale',
+        })
+        members.push({
+            id: 1,
+            name: 'Michael DeSanta',
+            img: 'https://i.picsum.photos/id/518/300/300.jpg?grayscale',
+        })
+        members.push({
+            id: 2,
+            name: 'Trevor Phillips',
+            img: 'https://i.picsum.photos/id/518/300/300.jpg?grayscale',
+        })
+    })
+
+    return (
+        <>
+            <Card
+                sx={{
+                    mt: 2,
+                    mb: 2,
+                    borderRadius: 'small',
+                }}
+            >
+                <Text as="h3">List of members</Text>
+            </Card>
+            <Flex flexWrap="wrap" justifyContent="space-around">
+                {members.map(member => {
+                    return (
+                        <Card
+                            sx={{
+                                mt: 2,
+                                mb: 2,
+                                width: '30%',
+                            }}
+                        >
+                            <Image
+                                src={member.img}
+                                borderRadius="default"
+                            ></Image>
+                            <Link to={`${match.url}/${member.id}`}>
+                                {member.name}
+                            </Link>
+                        </Card>
+                    )
+                })}
+            </Flex>
+        </>
+    )
+}
+
+const Members = ({ match }) => {
+    return (
+        <PageLayout>
+            <Switch>
+                <Route path={`${match.url}/`} component={AllMembers} exact />
+                <Route
+                    path={`${match.url}/:member_id`}
+                    component={SingleMember}
+                    exact
+                />
+            </Switch>
+        </PageLayout>
+    )
+}
+
+export default Members
+
+{
+    /*
 const { useBreakpoint } = Grid
-
 const Members = () => {
     const selectedString =
         new URLSearchParams(useLocation().search).get('selected') || '[]'
@@ -71,3 +154,5 @@ const Members = () => {
 }
 
 export default Members
+ */
+}

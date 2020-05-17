@@ -42,6 +42,7 @@ export default {
         large: '0 0 24px rgba(0, 0, 0, .125)',
     },
     radii: {
+        small: 3,
         default: 12,
         large: 39,
         round: '100%',

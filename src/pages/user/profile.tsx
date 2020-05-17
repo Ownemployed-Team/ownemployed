@@ -34,6 +34,7 @@ const Profile = ({ match }) => {
         <PageLayout>
             <Card
                 sx={{
+                    mt: 4,
                     padding: 4,
                     borderRadius: 'default',
                 }}
