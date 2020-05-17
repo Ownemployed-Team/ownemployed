@@ -1,6 +1,10 @@
 import React, { useState } from 'react'
 import { css } from 'emotion'
 import { Text } from 'components/Text'
+import sectorData from 'data/sector.json'
+import locationsData from 'data/locations.json'
+import projectStatusData from 'data/project-status.json'
+import skillsData from 'data/skills.json'
 import Card from 'components/Card'
 import { Box, Flex } from 'rebass'
 import { Formik, Form, Field, FormikProps } from 'formik'
@@ -12,29 +16,22 @@ const ProjectFilter = ({ onGet }: { onGet: Function }) => {
     const [location, setLocation] = useState([])
     const [projectStatus, setProjectStatus] = useState([])
 
-    const sectorOptions = [
-        { label: 'One', value: 1 },
-        { label: 'Two', value: 2 },
-        { label: 'Three', value: 3 },
-    ]
-
-    const skillsOptions = [
-        { label: 'One', value: 1 },
-        { label: 'Two', value: 2 },
-        { label: 'Three', value: 3 },
-    ]
-
-    const locationOptions = [
-        { label: 'One', value: 1 },
-        { label: 'Two', value: 2 },
-        { label: 'Three', value: 3 },
-    ]
-
-    const projectStatusOptions = [
-        { label: 'One', value: 1 },
-        { label: 'Two', value: 2 },
-        { label: 'Three', value: 3 },
-    ]
+    const sectorOptions = sectorData.map(({ id, name }) => ({
+        value: id,
+        label: name,
+    }))
+    const skillsOptions = skillsData.map(({ id, name }) => ({
+        value: id,
+        label: name,
+    }))
+    const locationOptions = locationsData.map(({ id, name }) => ({
+        value: id,
+        label: name,
+    }))
+    const projectStatusOptions = projectStatusData.map(({ id, name }) => ({
+        value: id,
+        label: name,
+    }))
 
     const handleSectorSelected = values => {
         setSector(values)
