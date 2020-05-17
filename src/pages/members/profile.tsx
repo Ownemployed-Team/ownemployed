@@ -1,6 +1,7 @@
 import * as React from 'react'
 import PageLayout from 'components/PageLayout'
 import Card from 'components/Card'
+import Button from 'components/Button'
 import ProjectCard from 'components/ProjectCard'
 import Text from 'components/Text'
 import { useParams } from 'react-router-dom'
@@ -113,6 +114,9 @@ const MemberProfile = ({ match }) => {
                             <Box sx={{ py: 2 }}>
                                 <Text as="h3">Email</Text>
                                 <Text as="body">{email}</Text>
+                            </Box>
+                            <Box sx={{ py: 4, textAlign: 'center' }}>
+                                <Button sx={{ width: '60%' }}>Connect</Button>
                             </Box>
                         </Box>
                     </Card>
