@@ -12,6 +12,7 @@ import Projects from 'pages/projects/projects'
 import Members from 'pages/members/members'
 import MemberProfile from 'pages/members/profile'
 import SignUpForm from 'pages/signup/signup'
+import CreateProject from 'pages/projects/createProject'
 
 function App() {
     return (
@@ -30,6 +31,11 @@ function App() {
                         component={MemberProfile}
                         exact={true}
                         path="/members/:memberProfileId"
+                    />
+                    <Route
+                        component={CreateProject}
+                        exact={true}
+                        path="/create-project/"
                     />
 
                     <Route exact={true} component={Members} path="/community" />

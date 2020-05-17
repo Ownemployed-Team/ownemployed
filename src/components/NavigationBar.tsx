@@ -1,5 +1,6 @@
 import React from 'react'
 import { NavLink } from 'components/NavLink'
+import { Link } from 'react-router-dom'
 import { Flex, Box } from 'rebass'
 import logo from 'static/ownemployed_logo.png'
 import Button from './Button'
@@ -55,7 +56,9 @@ const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
                             </NavLink>
                         )
                     })}
-                <Button>Create Project</Button>
+                <Link to="/create-project/">
+                    <Button>Create Project</Button>
+                </Link>
             </Box>
         </Flex>
     )
