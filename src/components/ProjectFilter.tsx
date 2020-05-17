@@ -65,7 +65,6 @@ const ProjectFilter = ({ onGet }: { onGet: Function }) => {
 
     const styles = {
         control: (base, state) => {
-            console.log(state)
             const { className } = (state || {}).selectProps
             switch (className) {
                 case 'sector':

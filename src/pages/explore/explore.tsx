@@ -51,15 +51,13 @@ const ExploreIdeas = () => {
                         projects &&
                         projects.map(project => (
                             <Box
+                                key={project.id}
                                 mr="auto"
                                 width={[1, 1 / 2, 1 / 3]}
                                 px={2}
                                 py={3}
                             >
-                                <ProjectCard
-                                    key={project.id}
-                                    project={project}
-                                />
+                                <ProjectCard project={project} />
                             </Box>
                         ))}
                 </Flex>

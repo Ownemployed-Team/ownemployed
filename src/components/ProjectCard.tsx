@@ -62,6 +62,7 @@ const ProjectCard = ({ project }) => {
                     {keyActivities &&
                         keyActivities.map(keyActivity => (
                             <Text
+                                key={keyActivity}
                                 sx={{
                                     mr: 1,
                                     p: 2,
