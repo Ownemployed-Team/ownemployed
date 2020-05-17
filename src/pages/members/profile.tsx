@@ -116,6 +116,38 @@ const MemberProfile = ({ match }) => {
                             </Box>
                         </Box>
                     </Card>
+                    <Card
+                        sx={{
+                            borderRadius: 2,
+                            p: 0,
+                            m: 4,
+                        }}
+                    >
+                        <Box
+                            sx={{
+                                p: 4,
+                            }}
+                        >
+                            <Text as="h3">Seeking</Text>
+                            {lookingFor &&
+                                lookingFor.map(lookingForItem => (
+                                    <Text
+                                        key={lookingForItem}
+                                        sx={{
+                                            mr: 1,
+                                            p: 2,
+                                            borderRadius: '2px',
+                                            display: 'inline',
+                                            bg: '#124780',
+                                            color: 'white',
+                                            fontSize: '10px',
+                                        }}
+                                    >
+                                        {lookingForItem}
+                                    </Text>
+                                ))}
+                        </Box>
+                    </Card>
                 </Box>
                 <Box width={[2 / 3]}>
                     <Card
