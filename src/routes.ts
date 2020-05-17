@@ -1,5 +1,5 @@
 import Home from 'pages/home/home'
-import BusinessProfile from 'pages/business/profile'
+import ProjectProfile from 'pages/business/profile'
 import UserProfile from 'pages/user/profile'
 import ExploreIdeas from 'pages/explore/explore'
 import Members from 'pages/members/members'
@@ -22,8 +22,8 @@ export default [
         exact: true,
     },
     {
-        component: BusinessProfile,
-        path: '/projects/:businessProfileId',
+        component: ProjectProfile,
+        path: '/projects/:projectProfileId',
     },
     {
         component: UserProfile,
