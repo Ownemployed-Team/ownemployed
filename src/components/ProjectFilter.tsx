@@ -10,7 +10,7 @@ import { Box, Flex } from 'rebass'
 import { Formik, Form, Field, FormikProps } from 'formik'
 import Select from 'react-select'
 
-const ProjectFilter = ({ onGet }: { onGet: Function }) => {
+const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
     const [sector, setSector] = useState([])
     const [skills, setSkills] = useState([])
     const [location, setLocation] = useState([])
@@ -47,20 +47,6 @@ const ProjectFilter = ({ onGet }: { onGet: Function }) => {
 
     const handleProjectStatusSelected = values => {
         setProjectStatus(values)
-    }
-
-    const handleSearchSubmit = (values, actions) => {
-        setTimeout(() => {
-            //TODO : call backend to find project with query function getProjects
-            const { search } = values
-            // getProjects({
-            // 	variables: {
-            // 		name: search
-            // 	}
-            // })
-            alert(JSON.stringify(values, null, 2))
-            actions.setSubmitting(false)
-        }, 1000)
     }
 
     const styles = {
@@ -181,7 +167,7 @@ const ProjectFilter = ({ onGet }: { onGet: Function }) => {
                     >
                         <Formik
                             initialValues={{ search: '' }}
-                            onSubmit={handleSearchSubmit}
+                            onSubmit={onSubmitSearch}
                         >
                             {(props: FormikProps<any>) => (
                                 <Form>

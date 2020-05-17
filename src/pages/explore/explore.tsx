@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 // import { jsx } from '@emotion/core'
-import { css, cx } from 'emotion'
+import { css } from 'emotion'
 import { Box, Flex } from 'rebass'
 import Card from 'components/Card'
 import PageLayout from 'components/PageLayout'
@@ -17,18 +17,40 @@ import GET_PROJECTS from 'graphql/get-projects'
 const { title, summary } = content
 
 const ExploreIdeas = () => {
-    const [pageCount, setPageCount] = useState(Math.ceil(22 / 9))
-    const [data, setData] = useState(15)
-    const [offset, setOffset] = useState(0)
+    const [searchWord, setSearchWord] = useState()
+    const pageSize = 9
     // const [getProjects, { loading, data: projectsData }] = useLazyQuery(
     //     GET_PROJECTS,
     //   )
     // const { getProjects: projects } = projectsData || { getProjects : []}
+    const pageCount = Math.ceil(projects.length / pageSize)
     const handlePageClick = data => {
         let selected = data.selected
-        let offset = Math.ceil(selected * 9)
+        let offset = Math.ceil(selected * pageSize)
 
-        setOffset(offset)
+        // getProjects({
+        //     variables: {
+        //         ...(searchWord ? { name: searchWord }: undefined)
+        //         skip: offset,
+        //         limit: pageSize
+        //     }
+        // })
+    }
+
+    const handleSearchSubmit = (values, actions) => {
+        setTimeout(() => {
+            //TODO : call backend to find project with query function getProjects
+            const { search } = values
+            setSearchWord(search)
+            // getProjects({
+            // 	variables: {
+            // 		name: search
+
+            // 	}
+            // })
+            alert(JSON.stringify(values, null, 2))
+            actions.setSubmitting(false)
+        }, 1000)
     }
 
     return (
@@ -48,7 +70,7 @@ const ExploreIdeas = () => {
                 </Text>
             </Card>
             <Box>
-                <ProjectFilter onGet={() => {}} />
+                <ProjectFilter onSubmitSearch={handleSearchSubmit} />
                 <Box
                     sx={{
                         mx: 'auto',
@@ -56,7 +78,9 @@ const ExploreIdeas = () => {
                         py: 2,
                     }}
                 >
-                    <Text>Showing 1 to 24 of XXX results</Text>
+                    <Text>
+                        Showing {projects.length} to 9 of {'22'} results
+                    </Text>
                 </Box>
                 <Flex flexWrap="wrap">
                     {!false &&
@@ -77,7 +101,7 @@ const ExploreIdeas = () => {
             <Flex justifyContent={'space-between'}>
                 <Box>
                     <Text as="h3">
-                        Showing {pageCount} to {'24'} results
+                        Showing {projects.length} to 9 of {'22'} results
                     </Text>
                 </Box>
                 <Box>
