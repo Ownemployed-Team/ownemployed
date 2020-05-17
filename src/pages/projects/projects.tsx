@@ -16,7 +16,7 @@ import GET_PROJECTS from 'graphql/get-projects'
 
 const { title, summary } = content
 
-const ExploreIdeas = () => {
+const Projects = () => {
     const [searchWord, setSearchWord] = useState()
     const pageSize = 9
     // const [getProjects, { loading, data: projectsData }] = useLazyQuery(
@@ -152,4 +152,4 @@ const ExploreIdeas = () => {
         </PageLayout>
     )
 }
-export default ExploreIdeas
+export default Projects

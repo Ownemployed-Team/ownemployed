@@ -48,7 +48,7 @@ const ProjectProfile = ({ match }) => {
                                 p: 4,
                             }}
                         >
-                            <Text as="h2">Project Name</Text>
+                            <Text as="h2">{name}</Text>
                             <Text>
                                 Lorem ipsum dolor sit amet, consectetur
                                 adipiscing elit, sed do eiusmod tempor
