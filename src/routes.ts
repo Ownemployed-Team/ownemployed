@@ -1,7 +1,7 @@
 import Home from 'pages/home/home'
-import BusinessProfile from 'pages/business/profile'
-import UserProfile from 'pages/user/profile'
-import ExploreIdeas from 'pages/explore/explore'
+import ProjectProfile from 'pages/projects/profile'
+import MemberProfile from 'pages/members/profile'
+import Projects from 'pages/projects/projects'
 import Members from 'pages/members/members'
 import SignUpForm from 'pages/signup/signup'
 
@@ -12,7 +12,7 @@ export default [
         exact: true,
     },
     {
-        component: ExploreIdeas,
+        component: Projects,
         path: '/projects',
         exact: true,
     },
@@ -22,12 +22,12 @@ export default [
         exact: true,
     },
     {
-        component: BusinessProfile,
-        path: '/projects/:businessProfileId',
+        component: ProjectProfile,
+        path: '/projects/:projectProfileId',
     },
     {
-        component: UserProfile,
-        path: '/members/:userProfileId',
+        component: MemberProfile,
+        path: '/members/:memberProfileId',
     },
     {
         component: SignUpForm,

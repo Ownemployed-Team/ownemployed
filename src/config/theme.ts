@@ -47,7 +47,14 @@ export default {
         large: 39,
         round: '100%',
     },
-    variants: {},
+    variants: {
+        card: {
+            p: 2,
+            bg: '#F3F3F3',
+            boxShadow: 'card',
+            borderRadius: 2,
+        },
+    },
     text: {},
     buttons: {
         primary: {

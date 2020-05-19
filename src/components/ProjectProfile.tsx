@@ -9,7 +9,7 @@ import TagsCard from './TagsCard'
 import UserCard_Legacy from './UserCard_Legacy'
 import PageIntro from './PageIntro'
 
-const BusinessProfile = () => {
+const ProjectProfile = () => {
     const { businessProfileId } = useParams()
     const business = businesses[businessProfileId]
     const ownerIds = business.ownerId || []
@@ -104,4 +104,4 @@ const BusinessProfile = () => {
     )
 }
 
-export default BusinessProfile
+export default ProjectProfile

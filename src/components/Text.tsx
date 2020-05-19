@@ -3,6 +3,7 @@ import React, {
     ReactChild,
     ReactChildren,
     ReactElement,
+    ReactNode,
 } from 'react'
 import { Text as RebassText } from 'rebass'
 enum TextType {
@@ -18,6 +19,7 @@ type TextProps = {
         | ReactChild
         | ReactElement
         | (ReactElement | string)[]
+        | ReactNode
     as?: string
     sx?: object
 }

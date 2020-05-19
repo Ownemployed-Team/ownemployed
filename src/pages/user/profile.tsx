@@ -2,7 +2,7 @@ import * as React from 'react'
 import PageLayout from 'components/PageLayout'
 
 import TagsCard from 'components/TagsCard'
-import BusinessCard from 'components/BusinessCard'
+import ProjectCard from 'components/ProjectCard'
 import PageIntro from 'components/PageIntro'
 
 import Text from 'components/Text'

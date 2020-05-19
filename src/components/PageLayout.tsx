@@ -9,7 +9,7 @@ const menuItems = [
     { label: 'Projects', url: '/projects' },
     { label: 'Members', url: '/members' },
     { label: 'Learn', url: '/learn' },
-    { label: 'Community', url: '/community' },
+    { label: 'Community', url: 'http://community.ownemployed.com/' },
     { label: 'Account', url: '/profile', isPrivate: true },
     { label: 'Login/Register', url: '/auth', isAuth: true },
 ]

@@ -6,10 +6,11 @@ import history from 'utils/history'
 import 'reset.css'
 
 import Home from 'pages/home/home'
-import BusinessProfile from 'pages/business/profile'
-import UserProfile from 'pages/user/profile'
-import ExploreIdeas from 'pages/explore/explore'
+import BusinessProfile from 'pages/projects/profile'
+// import UserProfile from 'pages/user/profile'
+import Projects from 'pages/projects/projects'
 import Members from 'pages/members/members'
+import MemberProfile from 'pages/members/profile'
 import SignUpForm from 'pages/signup/signup'
 import NoMatch from 'pages/404/404'
 
@@ -25,8 +26,8 @@ function App() {
                     <Route path="/projects" />
                     <Route path="/learn" />
 
-                    <PrivateRoute path="/profile" component={UserProfile} />
                     {/*
+                    <PrivateRoute path="/profile" component={MemberProfile} />
                     <PrivateRoute path="/profile" component={UserProfile} />
                     */}
                     <Route component={NoMatch} />
@@ -43,9 +44,9 @@ function App() {
                         path="/projects/:businessProfileId"
                     />
                     <Route
+                        component={MemberProfile}
                         exact={true}
-                        component={UserProfile}
-                        path="/members/:userProfileId"
+                        path="/members/:memberProfileId"
                     />
 
                     <Route exact={true} component={Members} path="/community" />
