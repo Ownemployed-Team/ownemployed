@@ -1,155 +1,108 @@
 import React, { useState } from 'react'
-// import { jsx } from '@emotion/core'
-import { css } from 'emotion'
 import { Box, Flex } from 'rebass'
+
+import { useLazyQuery } from '@apollo/react-hooks'
+import { GET_USERS } from 'graphql/get-users'
+
 import Card from 'components/Card'
+import Text from 'components/Text'
+import ItemsCount from 'components/ItemsCount'
+import Pagination from 'components/Pagination'
 import PageLayout from 'components/PageLayout'
 import MemberCard from 'components/MemberCard'
-import Text from 'components/Text'
-import members from 'data/members.json'
-import ReactPaginate from 'react-paginate'
-import { useLocation } from 'react-router'
 import MemberFilter from 'components/MemberFilter'
-import { members as content } from 'data/content.json'
-import { useLazyQuery } from '@apollo/react-hooks'
-import GET_PROJECTS from 'graphql/get-projects'
 
-const { title, summary } = content
+const Hero = () => {
+    return (
+        <Card
+            sx={{
+                borderRadius: '0',
+                my: 4,
+                mx: 2,
+                p: 4,
+                textAlign: 'center',
+            }}
+        >
+            <Text as="h2">Find Members</Text>
+            <Text as="body" sx={{ width: '50%', m: 'auto' }}>
+                Look for Ownemployed members to collaborate with, or for others
+                who share your interests.
+            </Text>
+        </Card>
+    )
+}
+
+const Filters = ({ onSubmit, members }) => {
+    return (
+        <Box>
+            <MemberFilter onSubmitSearch={onSubmit} />
+            <Box
+                sx={{
+                    mx: 'auto',
+                    px: 2,
+                    py: 2,
+                }}
+            >
+                <ItemsCount items={members} size={10} />
+            </Box>
+            <Flex flexWrap="wrap">
+                {members.map((member, index) => (
+                    <Box
+                        key={index}
+                        mr="auto"
+                        width={[1, 1 / 2, 1 / 4]}
+                        px={2}
+                        py={3}
+                    >
+                        <MemberCard member={member} />
+                    </Box>
+                ))}
+            </Flex>
+        </Box>
+    )
+}
 
 const Members = () => {
     const [searchWord, setSearchWord] = useState()
-    const pageSize = 9
-    // const [getProjects, { loading, data: projectsData }] = useLazyQuery(
-    //     GET_PROJECTS,
-    //   )
-    // const { getProjects: projects } = projectsData || { getProjects : []}
-    const pageCount = Math.ceil(members.length / pageSize)
-    const handlePageClick = data => {
-        let selected = data.selected
-        let offset = Math.ceil(selected * pageSize)
 
-        // getProjects({
-        //     variables: {
-        //         ...(searchWord ? { name: searchWord }: undefined)
-        //         skip: offset,
-        //         limit: pageSize
-        //     }
-        // })
+    const [getUsersQuery, result] = useLazyQuery(GET_USERS)
+    const { loading, called, data = {} } = result
+
+    if (called && loading) {
+        return (
+            <PageLayout>
+                <Text> Loading </Text>
+            </PageLayout>
+        )
     }
 
-    const handleSearchSubmit = (values, actions) => {
-        setTimeout(() => {
-            //TODO : call backend to find project with query function getProjects
-            const { search } = values
-            setSearchWord(search)
-            // getProjects({
-            // 	variables: {
-            // 		name: search
-
-            // 	}
-            // })
-            alert(JSON.stringify(values, null, 2))
-            actions.setSubmitting(false)
-        }, 1000)
+    if (!called) {
+        getUsersQuery()
     }
+
+    const users = data.getUsers || []
 
     return (
         <PageLayout>
-            <Card
-                sx={{
-                    borderRadius: '0',
-                    my: 4,
-                    mx: 2,
-                    p: 4,
-                    textAlign: 'center',
+            <Hero />
+            <Filters
+                members={users}
+                onSubmit={(values, actions) => {
+                    setTimeout(() => {
+                        //TODO : call backend to find project with query function getProjects
+                        const { search } = values
+
+                        setSearchWord(search)
+
+                        alert(JSON.stringify(values, null, 2))
+
+                        actions.setSubmitting(false)
+                    }, 1000)
                 }}
-            >
-                <Text as="h2">{title}</Text>
-                <Text as="body" sx={{ width: '50%', m: 'auto' }}>
-                    {summary}
-                </Text>
-            </Card>
-            <Box>
-                <MemberFilter onSubmitSearch={handleSearchSubmit} />
-                <Box
-                    sx={{
-                        mx: 'auto',
-                        px: 2,
-                        py: 2,
-                    }}
-                >
-                    <Text>
-                        Showing {members.length} to 9 of {'22'} results
-                    </Text>
-                </Box>
-                <Flex flexWrap="wrap">
-                    {!false &&
-                        members &&
-                        members.map(member => (
-                            <Box
-                                key={member.id}
-                                mr="auto"
-                                width={[1, 1 / 2, 1 / 4]}
-                                px={2}
-                                py={3}
-                            >
-                                <MemberCard member={member} />
-                            </Box>
-                        ))}
-                </Flex>
-            </Box>
-            <Flex justifyContent={'space-between'}>
-                <Box>
-                    <Text as="h3">
-                        Showing {members.length} to 9 of {'22'} results
-                    </Text>
-                </Box>
-                <Box>
-                    <ReactPaginate
-                        className={css`
-                            display: inline-block;
-                        `}
-                        previousLabel={'<'}
-                        previousClassName={css`
-                            display: inline-block;
-                            margin: 10px;
-                        `}
-                        nextLabel={'>'}
-                        nextClassName={css`
-                            display: inline-block;
-                            margin: 10px;
-                        `}
-                        breakLabel={'...'}
-                        breakClassName={css``}
-                        pageCount={pageCount}
-                        marginPagesDisplayed={2}
-                        pageRangeDisplayed={5}
-                        onPageChange={handlePageClick}
-                        containerClassName={css`
-                            display: inline-block;
-                            padding-left: 15px;
-                            padding-right: 15px;
-                        `}
-                        pageClassName={css`
-                            display: inline-block;
-                            width: 36px;
-                            height: 36px;
-                            padding: 8px;
-                            text-align: center;
-                        `}
-                        subContainerClassName={css`
-                            display: inline-block;
-                        `}
-                        activeClassName={css`
-                            display: inline-block;
-                            border-radius: 50%;
-                            background-color: #768598;
-                            color: white;
-                        `}
-                    />
-                </Box>
-            </Flex>
+            />
+            <Pagination items={data} />
         </PageLayout>
     )
 }
+
 export default Members

@@ -2,13 +2,8 @@ import React from 'react'
 import Card from 'components/Card'
 import Text from 'components/Text'
 import { Box, Image } from 'rebass'
-import { Label } from '@rebass/forms'
-// Avatar as RebassAvatar,
 import { Link } from 'react-router-dom'
-import { colors } from '../utils/colors'
 import { UniqueInputFieldNamesRule } from 'graphql'
-
-// const { Meta } = Card
 
 const MemberCard = ({ member }) => {
     const {
@@ -22,21 +17,22 @@ const MemberCard = ({ member }) => {
         skills,
         education,
         location,
+        avatar,
     } = member
-    let avatar = require('../static/avatars/business/default.png')
-    try {
-        avatar = require(`../static/avatars/business/${id}.png`)
-    } catch (e) {}
+
+    console.log('member', member)
+
+    const url = `/members/${id}`
+
     return (
-        <Link to={`/members/${id}`} style={{ textDecoration: 'none' }}>
+        <Link to={url} style={{ textDecoration: 'none' }}>
             <Card
                 sx={{
                     borderRadius: '0',
-                    bg: '#F3F3F3',
-                    mx: '0',
-                    padding: '0',
+                    bg: 'white',
+                    mx: 0,
+                    padding: 0,
                 }}
-                // style={{ margin: '8px' }}
             >
                 <Image src={avatar} m={'auto'} />
                 <Box
