@@ -6,10 +6,11 @@ import history from 'utils/history'
 import 'reset.css'
 
 import Home from 'pages/home/home'
-import BusinessProfile from 'pages/business/profile'
-import UserProfile from 'pages/user/profile'
-import ExploreIdeas from 'pages/explore/explore'
+import BusinessProfile from 'pages/projects/profile'
+// import UserProfile from 'pages/user/profile'
+import Projects from 'pages/projects/projects'
 import Members from 'pages/members/members'
+import MemberProfile from 'pages/members/profile'
 import SignUpForm from 'pages/signup/signup'
 
 function App() {
@@ -18,11 +19,7 @@ function App() {
             <ThemeProvider>
                 <Switch>
                     <Route component={Home} path="/" exact={true} />
-                    <Route
-                        component={ExploreIdeas}
-                        path="/projects"
-                        exact={true}
-                    />
+                    <Route component={Projects} exact={true} path="/projects" />
                     <Route component={Members} path="/members" exact={true} />
                     <Route
                         component={BusinessProfile}
@@ -30,9 +27,9 @@ function App() {
                         path="/projects/:businessProfileId"
                     />
                     <Route
+                        component={MemberProfile}
                         exact={true}
-                        component={UserProfile}
-                        path="/members/:userProfileId"
+                        path="/members/:memberProfileId"
                     />
 
                     <Route exact={true} component={Members} path="/community" />

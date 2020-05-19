@@ -2,15 +2,15 @@ import React, { useState } from 'react'
 import { Box, Flex } from 'rebass'
 
 import { useLazyQuery } from '@apollo/react-hooks'
-import { GET_USERS } from 'graphql/get-users'
+import GET_PROJECTS from 'graphql/get-projects'
 
-import Card from 'components/Card'
 import Text from 'components/Text'
+import Card from 'components/Card'
 import ItemsCount from 'components/ItemsCount'
-import Pagination from 'components/Pagination'
 import PageLayout from 'components/PageLayout'
-import MemberCard from 'components/MemberCard'
-import MemberFilter from 'components/MemberFilter'
+import Pagination from 'components/Pagination'
+import ProjectCard from 'components/ProjectCard'
+import ProjectFilter from 'components/ProjectFilter'
 
 const Hero = () => {
     return (
@@ -23,19 +23,20 @@ const Hero = () => {
                 textAlign: 'center',
             }}
         >
-            <Text as="h2">Find Members</Text>
+            <Text as="h2">Find Projects</Text>
             <Text as="body" sx={{ width: '50%', m: 'auto' }}>
-                Look for Ownemployed members to collaborate with, or for others
-                who share your interests.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim ... who share your interests.
             </Text>
         </Card>
     )
 }
 
-const Filters = ({ onSubmit, members }) => {
+const Filters = ({ onSubmit, projects }) => {
     return (
         <Box>
-            <MemberFilter onSubmitSearch={onSubmit} />
+            <ProjectFilter onSubmitSearch={onSubmit} />
             <Box
                 sx={{
                     mx: 'auto',
@@ -43,10 +44,10 @@ const Filters = ({ onSubmit, members }) => {
                     py: 2,
                 }}
             >
-                <ItemsCount items={members} size={10} />
+                <ItemsCount items={projects} size={10} />
             </Box>
             <Flex flexWrap="wrap">
-                {members.map((member, index) => (
+                {projects.map((project, index) => (
                     <Box
                         key={index}
                         mr="auto"
@@ -54,7 +55,7 @@ const Filters = ({ onSubmit, members }) => {
                         px={2}
                         py={3}
                     >
-                        <MemberCard member={member} />
+                        <ProjectCard project={project} />
                     </Box>
                 ))}
             </Flex>
@@ -62,10 +63,9 @@ const Filters = ({ onSubmit, members }) => {
     )
 }
 
-const Members = () => {
+const Projects = () => {
     const [searchWord, setSearchWord] = useState()
-
-    const [getUsersQuery, result] = useLazyQuery(GET_USERS)
+    const [getProjectsQuery, result] = useLazyQuery(GET_PROJECTS)
     const { loading, called, data = {} } = result
 
     if (called && loading) {
@@ -77,16 +77,16 @@ const Members = () => {
     }
 
     if (!called) {
-        getUsersQuery()
+        getProjectsQuery()
     }
 
-    const users = data.getUsers || []
+    const projects = data.getProjects || []
 
     return (
         <PageLayout>
             <Hero />
             <Filters
-                members={users}
+                projects={projects}
                 onSubmit={(values, actions) => {
                     setTimeout(() => {
                         //TODO : call backend to find project with query function getProjects
@@ -105,4 +105,4 @@ const Members = () => {
     )
 }
 
-export default Members
+export default Projects

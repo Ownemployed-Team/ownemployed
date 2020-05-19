@@ -6,7 +6,7 @@ import businesses from 'data/businesses.json'
 
 import { useParams } from 'react-router'
 import TagsCard from 'components/TagsCard'
-import BusinessCard from 'components/BusinessCard'
+import ProjectCard from 'components/ProjectCard'
 import PageIntro from 'components/PageIntro'
 
 const UserProfile = () => {
@@ -93,8 +93,8 @@ const UserProfile = () => {
                                     .map(businessId => businesses[businessId])
                                     .filter(Boolean)
                                     .map(business => (
-                                        <BusinessCard
-                                            business={business}
+                                        <ProjectCard
+                                            project={business}
                                             key={business.id}
                                         />
                                     ))}
@@ -109,8 +109,8 @@ const UserProfile = () => {
                                         )
                                         .filter(Boolean)
                                         .map(business => (
-                                            <BusinessCard
-                                                business={business}
+                                            <ProjectCard
+                                                project={business}
                                                 key={business.id}
                                             />
                                         ))}

@@ -14,6 +14,7 @@ type CardProps = {
         | ReactChildren[]
         | ReactElement[]
         | ReactChild[]
+        | Function
     style?: object
     sx?: object
 }

@@ -12,6 +12,7 @@ export const GET_USERS = gql`
                 name
                 url
             }
+            avatar
             interests
             lookingFor
             skills
