@@ -20,8 +20,6 @@ const MemberCard = ({ member }) => {
         avatar,
     } = member
 
-    console.log('member', member)
-
     const url = `/members/${id}`
 
     return (
