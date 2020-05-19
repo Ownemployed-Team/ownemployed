@@ -1,155 +1,108 @@
 import React, { useState } from 'react'
-// import { jsx } from '@emotion/core'
-import { css } from 'emotion'
 import { Box, Flex } from 'rebass'
-import Card from 'components/Card'
-import PageLayout from 'components/PageLayout'
-import ProjectCard from 'components/ProjectCard'
-import Text from 'components/Text'
-import projects from 'data/projects.json'
-import ReactPaginate from 'react-paginate'
-import { useLocation } from 'react-router'
-import ProjectFilter from 'components/ProjectFilter'
-import { projects as content } from 'data/content.json'
+
 import { useLazyQuery } from '@apollo/react-hooks'
 import GET_PROJECTS from 'graphql/get-projects'
 
-const { title, summary } = content
+import Text from 'components/Text'
+import Card from 'components/Card'
+import ItemsCount from 'components/ItemsCount'
+import PageLayout from 'components/PageLayout'
+import Pagination from 'components/Pagination'
+import ProjectCard from 'components/ProjectCard'
+import ProjectFilter from 'components/ProjectFilter'
+
+const Hero = () => {
+    return (
+        <Card
+            sx={{
+                borderRadius: '0',
+                my: 4,
+                mx: 2,
+                p: 4,
+                textAlign: 'center',
+            }}
+        >
+            <Text as="h2">Find Projects</Text>
+            <Text as="body" sx={{ width: '50%', m: 'auto' }}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+                enim ad minim ... who share your interests.
+            </Text>
+        </Card>
+    )
+}
+
+const Filters = ({ onSubmit, projects }) => {
+    return (
+        <Box>
+            <ProjectFilter onSubmitSearch={onSubmit} />
+            <Box
+                sx={{
+                    mx: 'auto',
+                    px: 2,
+                    py: 2,
+                }}
+            >
+                <ItemsCount items={projects} size={10} />
+            </Box>
+            <Flex flexWrap="wrap">
+                {projects.map((project, index) => (
+                    <Box
+                        key={index}
+                        mr="auto"
+                        width={[1, 1 / 2, 1 / 4]}
+                        px={2}
+                        py={3}
+                    >
+                        <ProjectCard project={project} />
+                    </Box>
+                ))}
+            </Flex>
+        </Box>
+    )
+}
 
 const Projects = () => {
     const [searchWord, setSearchWord] = useState()
-    const pageSize = 9
-    // const [getProjects, { loading, data: projectsData }] = useLazyQuery(
-    //     GET_PROJECTS,
-    //   )
-    // const { getProjects: projects } = projectsData || { getProjects : []}
-    const pageCount = Math.ceil(projects.length / pageSize)
-    const handlePageClick = data => {
-        let selected = data.selected
-        let offset = Math.ceil(selected * pageSize)
+    const [getProjectsQuery, result] = useLazyQuery(GET_PROJECTS)
+    const { loading, called, data = {} } = result
 
-        // getProjects({
-        //     variables: {
-        //         ...(searchWord ? { name: searchWord }: undefined)
-        //         skip: offset,
-        //         limit: pageSize
-        //     }
-        // })
+    if (called && loading) {
+        return (
+            <PageLayout>
+                <Text> Loading </Text>
+            </PageLayout>
+        )
     }
 
-    const handleSearchSubmit = (values, actions) => {
-        setTimeout(() => {
-            //TODO : call backend to find project with query function getProjects
-            const { search } = values
-            setSearchWord(search)
-            // getProjects({
-            // 	variables: {
-            // 		name: search
-
-            // 	}
-            // })
-            alert(JSON.stringify(values, null, 2))
-            actions.setSubmitting(false)
-        }, 1000)
+    if (!called) {
+        getProjectsQuery()
     }
+
+    const projects = data.getProjects || []
 
     return (
         <PageLayout>
-            <Card
-                sx={{
-                    borderRadius: '0',
-                    my: 4,
-                    mx: 2,
-                    p: 4,
-                    textAlign: 'center',
+            <Hero />
+            <Filters
+                projects={projects}
+                onSubmit={(values, actions) => {
+                    setTimeout(() => {
+                        //TODO : call backend to find project with query function getProjects
+                        const { search } = values
+
+                        setSearchWord(search)
+
+                        alert(JSON.stringify(values, null, 2))
+
+                        actions.setSubmitting(false)
+                    }, 1000)
                 }}
-            >
-                <Text as="h2">{title}</Text>
-                <Text as="body" sx={{ width: '50%', m: 'auto' }}>
-                    {summary}
-                </Text>
-            </Card>
-            <Box>
-                <ProjectFilter onSubmitSearch={handleSearchSubmit} />
-                <Box
-                    sx={{
-                        mx: 'auto',
-                        px: 2,
-                        py: 2,
-                    }}
-                >
-                    <Text>
-                        Showing {projects.length} to 9 of {'22'} results
-                    </Text>
-                </Box>
-                <Flex flexWrap="wrap">
-                    {!false &&
-                        projects &&
-                        projects.map(project => (
-                            <Box
-                                key={project.id}
-                                mr="auto"
-                                width={[1, 1 / 2, 1 / 3]}
-                                px={2}
-                                py={3}
-                            >
-                                <ProjectCard project={project} />
-                            </Box>
-                        ))}
-                </Flex>
-            </Box>
-            <Flex justifyContent={'space-between'}>
-                <Box>
-                    <Text as="h3">
-                        Showing {projects.length} to 9 of {'22'} results
-                    </Text>
-                </Box>
-                <Box>
-                    <ReactPaginate
-                        className={css`
-                            display: inline-block;
-                        `}
-                        previousLabel={'<'}
-                        previousClassName={css`
-                            display: inline-block;
-                            margin: 10px;
-                        `}
-                        nextLabel={'>'}
-                        nextClassName={css`
-                            display: inline-block;
-                            margin: 10px;
-                        `}
-                        breakLabel={'...'}
-                        breakClassName={css``}
-                        pageCount={pageCount}
-                        marginPagesDisplayed={2}
-                        pageRangeDisplayed={5}
-                        onPageChange={handlePageClick}
-                        containerClassName={css`
-                            display: inline-block;
-                            padding-left: 15px;
-                            padding-right: 15px;
-                        `}
-                        pageClassName={css`
-                            display: inline-block;
-                            width: 36px;
-                            height: 36px;
-                            padding: 8px;
-                            text-align: center;
-                        `}
-                        subContainerClassName={css`
-                            display: inline-block;
-                        `}
-                        activeClassName={css`
-                            display: inline-block;
-                            border-radius: 50%;
-                            background-color: #768598;
-                            color: white;
-                        `}
-                    />
-                </Box>
-            </Flex>
+            />
+            <Pagination items={data} />
         </PageLayout>
     )
 }
+
 export default Projects
