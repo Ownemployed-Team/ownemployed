@@ -9,7 +9,7 @@ import config from 'config/config'
 import history from 'utils/history'
 
 const client = new ApolloClient({
-    uri: config.graphQL,
+    uri: `${config.apiURL}/graphql`,
 })
 
 const onRedirectCallback = appState => {
