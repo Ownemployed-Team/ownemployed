@@ -12,8 +12,8 @@ const Main = ({ children }) => {
             width={1}
             pt={3}
             pb={3}
-            pl={[4, 4, 5]}
-            pr={[4, 4, 5]}
+            pl={[4, 4, 6]}
+            pr={[4, 4, 6]}
             mx={'auto'}
             sx={{ flex: 1 }}
             fontFamily="body"

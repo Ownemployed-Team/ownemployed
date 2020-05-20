@@ -1,9 +1,9 @@
 export default {
-    breakpoints: ['40em', '52em', '64em'],
+    breakpoints: ['40em', '55em', '64em'],
     //breakpoints: ['720px', '920px', '1440px'],
     fontSizes: {
         card: '14px',
-        body: '18px',
+        body: '16px',
         h4: '20px',
         h3: '22px',
         h2: '34px',
