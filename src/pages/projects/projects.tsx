@@ -7,7 +7,6 @@ import GET_PROJECTS from 'graphql/get-projects'
 import Text from 'components/Text'
 import Card from 'components/Card'
 import ItemsCount from 'components/ItemsCount'
-import PageLayout from 'components/PageLayout'
 import Pagination from 'components/Pagination'
 import ProjectCard from 'components/ProjectCard'
 import ProjectFilter from 'components/ProjectFilter'
@@ -63,16 +62,16 @@ const Filters = ({ onSubmit, projects }) => {
     )
 }
 
-const Projects = () => {
+const AllProjects = () => {
     const [searchWord, setSearchWord] = useState()
     const [getProjectsQuery, result] = useLazyQuery(GET_PROJECTS)
     const { loading, called, data = {} } = result
 
     if (called && loading) {
         return (
-            <PageLayout>
+            <>
                 <Text> Loading </Text>
-            </PageLayout>
+            </>
         )
     }
 
@@ -83,7 +82,7 @@ const Projects = () => {
     const projects = data.getProjects || []
 
     return (
-        <PageLayout>
+        <>
             <Hero />
             <Filters
                 projects={projects}
@@ -101,8 +100,8 @@ const Projects = () => {
                 }}
             />
             <Pagination items={data} />
-        </PageLayout>
+        </>
     )
 }
 
-export default Projects
+export default AllProjects

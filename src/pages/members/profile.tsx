@@ -1,5 +1,4 @@
 import * as React from 'react'
-import PageLayout from 'components/PageLayout'
 import Card from 'components/Card'
 import Button from 'components/Button'
 import ProjectCard from 'components/ProjectCard'
@@ -7,14 +6,10 @@ import Text from 'components/Text'
 import { useParams } from 'react-router-dom'
 import { Box, Flex, Image } from 'rebass'
 import members from 'data/members.json'
-import users from 'data/users.json'
-import TagsCard from 'components/TagsCard'
-import UserCard_Legacy from 'components/UserCard_Legacy'
-import PageIntro from 'components/PageIntro'
-import { AutoComplete } from 'antd'
 
 const MemberProfile = ({ match }) => {
-    const { memberProfileId } = (match || {}).params || {}
+    const { memberProfileId } = useParams()
+    //const { memberProfileId } = (match || {}).params || {}
     const member = members[memberProfileId]
     const {
         id,
@@ -48,7 +43,7 @@ const MemberProfile = ({ match }) => {
             socialObject => socialObject.name === 'Instagram'
         ) || {}
     return (
-        <PageLayout>
+        <>
             <Flex>
                 <Box width={[1 / 3]}>
                     <Card
@@ -314,7 +309,7 @@ const MemberProfile = ({ match }) => {
                     </Card>
                 </Box>
             </Flex>
-        </PageLayout>
+        </>
     )
 }
 

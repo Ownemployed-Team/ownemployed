@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { Flex, Box, Image } from 'rebass'
 
-import Layout from 'components/PageLayout'
 import Text from 'components/Text'
 import Link from 'components/Link'
 import Button from 'components/Button'
@@ -9,7 +8,7 @@ import Card from 'components/Card'
 
 const Home = () => {
     return (
-        <Layout>
+        <>
             <Flex
                 mt={5}
                 //flexDirection={['column', 'column', 'row']}
@@ -111,7 +110,7 @@ const Home = () => {
                     </Card>
                 </Link>
             </Flex>
-        </Layout>
+        </>
     )
 }
 

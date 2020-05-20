@@ -5,15 +5,6 @@ import { Box, Flex } from 'rebass'
 import NavigationBar from 'components/NavigationBar'
 import Footer from 'components/Footer'
 
-const menuItems = [
-    { label: 'Projects', url: '/projects' },
-    { label: 'Members', url: '/members' },
-    { label: 'Learn', url: '/learn' },
-    { label: 'Community', url: 'http://community.ownemployed.com/' },
-    { label: 'Account', url: '/profile', isPrivate: true },
-    { label: 'Login/Register', url: '/auth', isAuth: true },
-]
-
 const Main = ({ children }) => {
     return (
         <Box
@@ -32,7 +23,7 @@ const Main = ({ children }) => {
     )
 }
 
-const Layout = ({ children }) => {
+const Layout = ({ children, menuItems }) => {
     return (
         <>
             <Flex

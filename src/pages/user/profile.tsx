@@ -1,5 +1,4 @@
 import * as React from 'react'
-import PageLayout from 'components/PageLayout'
 
 import TagsCard from 'components/TagsCard'
 import ProjectCard from 'components/ProjectCard'
@@ -31,7 +30,7 @@ const Settings = () => {
 
 const Profile = ({ match }) => {
     return (
-        <PageLayout>
+        <>
             <Card
                 sx={{
                     mt: 4,
@@ -48,7 +47,7 @@ const Profile = ({ match }) => {
                     />
                 </Switch>
             </Card>
-        </PageLayout>
+        </>
     )
 }
 

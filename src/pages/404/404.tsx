@@ -3,7 +3,6 @@ import { Flex, Box, Image } from 'rebass'
 import { useQuery } from '@apollo/react-hooks'
 import { gql } from 'apollo-boost'
 
-import Layout from 'components/PageLayout'
 import Text from 'components/Text'
 import Link from 'components/Link'
 import Button from 'components/Button'
@@ -11,7 +10,7 @@ import Card from 'components/Card'
 
 export const NoMatch = () => {
     return (
-        <Layout>
+        <>
             <Box
                 sx={{
                     mt: 6,
@@ -29,7 +28,7 @@ export const NoMatch = () => {
                 </Text>
                 <Text>Not Found</Text>
             </Box>
-        </Layout>
+        </>
     )
 }
 
