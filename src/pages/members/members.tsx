@@ -9,8 +9,8 @@ import Text from 'components/Text'
 import ItemsCount from 'components/ItemsCount'
 import Pagination from 'components/Pagination'
 import PageLayout from 'components/PageLayout'
-import MemberCard from 'components/MemberCard'
 import MemberFilter from 'components/MemberFilter'
+import UserCard, { User } from '../../components/UserCard'
 
 const Hero = () => {
     return (
@@ -32,7 +32,13 @@ const Hero = () => {
     )
 }
 
-const Filters = ({ onSubmit, members }) => {
+const Filters = ({
+    onSubmit,
+    members,
+}: {
+    onSubmit: Function
+    members: User[]
+}) => {
     return (
         <Box>
             <MemberFilter onSubmitSearch={onSubmit} />
@@ -54,7 +60,7 @@ const Filters = ({ onSubmit, members }) => {
                         px={2}
                         py={3}
                     >
-                        <MemberCard member={member} />
+                        <UserCard user={member} />
                     </Box>
                 ))}
             </Flex>

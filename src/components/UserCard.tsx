@@ -7,15 +7,21 @@ import { FaMapMarkerAlt } from 'react-icons/fa'
 export type User = {
     id: number
     name: string
+    signupDate: number
     summary: string
+    socialMedia: any[]
+    interests: any[]
+    lookingFor: string[]
+    skills: string[]
+    education: string
     location: string
-    image: string
+    avatar: string
 }
 
 const UserCard = ({ user }: { user: User }) => {
     //TODO: Change the user type to fit the db
-    let avatar = user.image
-        ? user.image
+    let avatar = user.avatar
+        ? user.avatar
         : require('../static/avatars/user/default.png')
 
     return (
@@ -31,6 +37,7 @@ const UserCard = ({ user }: { user: User }) => {
                     src={avatar}
                     sx={{
                         height: '100px',
+                        width: '100px',
                         borderRadius: 'round',
                         margin: '0 auto',
                     }}
@@ -39,10 +46,19 @@ const UserCard = ({ user }: { user: User }) => {
                     {user.name}
                 </Text>
             </div>
-            <Text as="body" sx={{ fontSize: 'card' }}>
-                {user.summary.substring(0, 90).concat('...')}
+            <Text as="body" sx={{ fontSize: 'card', height: '70px' }}>
+                {user.summary
+                    ? user.summary.substring(0, 90).concat('...')
+                    : 'No summary yet'}
             </Text>
-            <Text as="body" sx={{ fontSize: 'card', color: 'primary' }}>
+            <Text
+                as="body"
+                sx={{
+                    fontSize: 'card',
+                    color: 'primary',
+                    verticalAlign: 'bottom',
+                }}
+            >
                 <FaMapMarkerAlt style={{ marginRight: 2 }} />
                 {user.location}
             </Text>
