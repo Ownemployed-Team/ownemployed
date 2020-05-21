@@ -16,6 +16,7 @@ type LinkProps = {
     css?: object
     rest?: any
     style?: object
+    variant?: string
 }
 
 const linkStyle = css`
@@ -25,6 +26,7 @@ const linkStyle = css`
 export const Link: FunctionComponent<LinkProps> = ({
     children,
     to,
+    variant,
     sx,
     ...rest
 }) => {
@@ -34,6 +36,7 @@ export const Link: FunctionComponent<LinkProps> = ({
                 target="_blank"
                 className={linkStyle}
                 href={to}
+                variant={variant || 'primary'}
                 sx={{ ...sx }}
                 {...rest}
             >
