@@ -31,6 +31,7 @@ const ProjectCard = ({ project }) => {
                     bg: '#F3F3F3',
                     mx: '0',
                     padding: '0',
+                    height: '300px',
                 }}
                 // style={{ margin: '8px' }}
             >

@@ -4,5 +4,4 @@ export default {
     auth0Domain: process.env.REACT_APP_AUTH0_DOMAIN || '',
     auth0Audience: process.env.REACT_APP_AUTH0_AUDIENCE || '',
     auth0ClientID: process.env.REACT_APP_AUTH0_CLIENT_ID || '',
-    graphQL: process.env.REACT_APP_GRAPHQL_URL,
 }

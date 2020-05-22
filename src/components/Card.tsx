@@ -15,20 +15,24 @@ type CardProps = {
         | ReactElement[]
         | ReactChild[]
         | Function
+        | boolean
+        | any
+    variant?: string
     style?: object
     sx?: object
 }
 
-const Card: FunctionComponent<CardProps> = ({ children, style = {}, sx }) => {
+const Card: FunctionComponent<CardProps> = ({
+    children,
+    variant,
+    style = {},
+    sx,
+}) => {
     return (
         <RebassCard
             style={style}
+            variant={variant || 'card.primary'}
             sx={{
-                backgroundColor: 'white',
-                boxShadow: 'small',
-                borderRadius: 'default',
-                width: 'auto',
-                padding: 2,
                 ...sx,
             }}
         >

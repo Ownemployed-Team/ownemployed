@@ -31,15 +31,13 @@ export const NavLink: FunctionComponent<NavLinkProps> = ({
                 onClick={onClick}
                 sx={{
                     cursor: 'pointer',
-                    padding: '0px 10px 0px',
-                    backgroundColor: '#fff',
+                    py: '10px',
                     textDecoration: 'none',
                     marginRight: 0,
                     fontWeight: 500,
-                    fontSize: '14px',
-                    color: 'black',
+                    fontSize: 'body',
                     '&:hover': {
-                        backgroundColor: '#fff',
+                        backgroundColor: 'primaryHover',
                     },
                 }}
                 {...rest}
@@ -52,13 +50,16 @@ export const NavLink: FunctionComponent<NavLinkProps> = ({
     return (
         <Link
             to={to}
-            style={{
+            sx={{
                 textDecoration: 'none',
                 padding: '0px 10px 0px',
                 marginRight: 0,
                 fontWeight: 500,
-                fontSize: '14px',
+                fontSize: 'body',
                 color: 'black',
+                '& a:visited': {
+                    color: 'black',
+                },
             }}
             {...rest}
         >

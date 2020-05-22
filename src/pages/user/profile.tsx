@@ -1,126 +1,96 @@
-import * as React from 'react'
-import { Card, Col, Row, Descriptions } from 'antd'
-import PageLayout from 'components/PageLayout'
-import profiles from 'data/users.json'
-import businesses from 'data/businesses.json'
+import React, { useState, useContext } from 'react'
+import { useAuth0 } from 'lib/react-auth0-spa'
+import ConfigContext from 'config/Context'
 
-import { useParams } from 'react-router'
-import TagsCard from 'components/TagsCard'
-import ProjectCard from 'components/ProjectCard'
-import PageIntro from 'components/PageIntro'
+import Text from 'components/Text'
+import Link from 'components/Link'
+import Card from 'components/Card'
 
-const UserProfile = () => {
-    const { userProfileId } = useParams()
-    let user = profiles[userProfileId]
-    let image = require('static/imgs/users/default.png')
-    try {
-        image = require(`static/imgs/users/${user.id}.png`)
-    } catch (e) {}
+const Profile = ({ match }) => {
+    const [showResult, setShowResult] = useState(false)
+    const [apiMessage, setApiMessage] = useState('')
+    const { getTokenSilently } = useAuth0()
+
+    const { apiURL } = useContext(ConfigContext)
+
+    const callApi = async () => {
+        try {
+            const token = await getTokenSilently()
+
+            const response = await fetch(`${apiURL}/graphql`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+
+            const responseData = await response.json()
+
+            setShowResult(true)
+            setApiMessage(responseData)
+        } catch (error) {
+            console.error(error)
+        }
+    }
 
     return (
-        <PageLayout>
-            <PageIntro
-                title={user.name || ''}
-                summary={user.summary || ''}
-                actions={[{ text: 'Connect', onClick: () => {} }]}
-            />
-            <div>
-                <Row gutter={16}>
-                    <Col md={24} lg={12}>
-                        <Card cover={<img alt="member" src={image} />}>
-                            <Descriptions column={1}>
-                                {user.location && (
-                                    <Descriptions.Item label="Location">
-                                        {user.location || ''}
-                                    </Descriptions.Item>
-                                )}
-                                {user.education && (
-                                    <Descriptions.Item label="Education">
-                                        {user.education || ''}
-                                    </Descriptions.Item>
-                                )}
-                            </Descriptions>
-                        </Card>
-                        <div
-                            style={{
-                                display: 'flex',
-                                flexWrap: 'wrap',
-                                justifyContent: 'left',
-                            }}
-                        >
-                            {Object.keys(user.socialMedia || {}).map(k => (
-                                <a href={user.socialMedia[k]} key={k}>
-                                    <img
-                                        alt={k}
-                                        src={`/imgs/social-media/${k}.svg`}
-                                        style={{
-                                            height: '72px',
-                                            padding: '7px',
-                                        }}
-                                    />
-                                </a>
-                            ))}
-                        </div>
-                    </Col>
-                    <Col md={24} lg={12}>
-                        <TagsCard
-                            title="Seeking"
-                            tags={user.lookingFor}
-                            linkRenderer={key =>
-                                '/members?selected=' +
-                                encodeURIComponent(JSON.stringify([key]))
-                            }
-                        />
-                        <TagsCard
-                            title="Skills"
-                            tags={user.skills}
-                            linkRenderer={key =>
-                                '/members?selected=' +
-                                encodeURIComponent(JSON.stringify([key]))
-                            }
-                        />
-                        <TagsCard
-                            title="Interests"
-                            tags={user.interests}
-                            linkRenderer={key =>
-                                '/members?selected=' +
-                                encodeURIComponent(JSON.stringify([key]))
-                            }
-                        />
-                        {user.ownedModels && Array.isArray(user.ownedModels) && (
-                            <Card title="Founding">
-                                {(user.ownedModels || [])
-                                    .map(businessId => businesses[businessId])
-                                    .filter(Boolean)
-                                    .map(business => (
-                                        <ProjectCard
-                                            project={business}
-                                            key={business.id}
-                                        />
-                                    ))}
-                            </Card>
-                        )}
-                        {user.connectedModels &&
-                            Array.isArray(user.connectedModels) && (
-                                <Card title="Connected">
-                                    {(user.connectedModels || [])
-                                        .map(
-                                            businessId => businesses[businessId]
-                                        )
-                                        .filter(Boolean)
-                                        .map(business => (
-                                            <ProjectCard
-                                                project={business}
-                                                key={business.id}
-                                            />
-                                        ))}
-                                </Card>
-                            )}
-                    </Col>
-                </Row>
-            </div>
-        </PageLayout>
+        <>
+            <Card
+                sx={{
+                    mt: 4,
+                    padding: 4,
+                    borderRadius: 'default',
+                }}
+            >
+                <Text as="h3">My Profile</Text>
+                <Text as="p">
+                    Help the Ownemployed community get to know you better.
+                </Text>
+                <hr />
+                <Link to={`${match.url}/settings`}>Settings</Link>
+                <button onClick={callApi}>Ping API</button>
+                {showResult && (
+                    <code>{JSON.stringify(apiMessage, null, 2)}</code>
+                )}
+            </Card>
+        </>
     )
 }
 
-export default UserProfile
+export default Profile
+
+/*
+const ExternalApi = () => {
+  const [showResult, setShowResult] = useState(false);
+  const [apiMessage, setApiMessage] = useState("");
+  const { getTokenSilently } = useAuth0();
+
+  const callApi = async () => {
+    try {
+      const token = await getTokenSilently();
+
+      const response = await fetch("http://localhost:3001/api/external", {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+
+      const responseData = await response.json();
+
+      setShowResult(true);
+      setApiMessage(responseData);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <>
+      <h1>External API</h1>
+      <button onClick={callApi}>Ping API</button>
+      {showResult && <code>{JSON.stringify(apiMessage, null, 2)}</code>}
+    </>
+  );
+};
+
+export default ExternalApi;
+*/

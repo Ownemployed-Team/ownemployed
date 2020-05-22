@@ -1,9 +1,9 @@
 export default {
-    breakpoints: ['40em', '52em', '64em'],
+    breakpoints: ['40em', '55em', '64em'],
     //breakpoints: ['720px', '920px', '1440px'],
     fontSizes: {
         card: '14px',
-        body: '18px',
+        body: '16px',
         h4: '20px',
         h3: '22px',
         h2: '34px',
@@ -11,7 +11,7 @@ export default {
     },
     colors: {
         primary: '#6F63AD',
-        primaryHover: 'rgb(111, 99, 173, 0.4)',
+        primaryHover: '#D0CDE1',
         secondary: '#FFDA63',
         secondaryHover: '#FFE180',
         alert: '#FF5252',
@@ -42,23 +42,69 @@ export default {
         large: '0 0 24px rgba(0, 0, 0, .125)',
     },
     radii: {
+        button: 4,
         default: 12,
+        small: 3,
         large: 39,
         round: '100%',
     },
     variants: {
+        box: {},
         card: {
-            p: 2,
-            bg: '#F3F3F3',
-            boxShadow: 'card',
-            borderRadius: 2,
+            primary: {
+                backgroundColor: 'white',
+                boxShadow: 'small',
+                borderRadius: 'default',
+                width: 'auto',
+                padding: 2,
+            },
         },
+        flex: {},
+        image: {},
+        link: {},
     },
     text: {},
     buttons: {
         primary: {
-            color: 'white',
-            bg: 'primary',
+            backgroundColor: 'primary',
+            borderRadius: 'button',
+            boxSizing: 'border-box',
+            padding: '6px 8px 6px 8px',
+            outline: 'none',
+            '&:hover': {
+                backgroundColor: 'primaryHover',
+                cursor: 'pointer',
+            },
+        },
+        secondary: {
+            backgroundColor: 'secondary',
+            borderRadius: 'button',
+            boxSizing: 'border-box',
+            padding: '6px 8px 6px 8px',
+            outline: 'none',
+            '&:hover': {
+                backgroundColor: 'secondaryHover',
+                cursor: 'pointer',
+            },
+        },
+        outlined: {
+            backgroundColor: 'white',
+            color: 'primary',
+            borderRadius: 'button',
+            border: '1px solid',
+            boxSizing: 'border-box',
+            padding: '6px 8px 6px 8px',
+            '&:hover': {
+                borderColor: 'primaryHover',
+                cursor: 'pointer',
+            },
+        },
+        disabled: {
+            backgroundColor: 'primaryHover',
+            borderRadius: 'button',
+            boxSizing: 'border-box',
+            padding: '6px 8px 6px 8px',
+            outline: 'none',
         },
     },
 }
