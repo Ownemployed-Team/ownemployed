@@ -28,7 +28,7 @@ export const Link: FunctionComponent<LinkProps> = ({
     sx,
     ...rest
 }) => {
-    if (to.startsWith('http')) {
+    if (to.startsWith('http') || to.startsWith('mailto')) {
         return (
             <RebassLink
                 target="_blank"

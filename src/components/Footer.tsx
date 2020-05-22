@@ -15,18 +15,23 @@ export const Footer = ({ ...props }) => {
                 justifySelf: 'end',
                 bg: 'white',
                 color: 'muted',
-                justifyContent: 'space-between',
+                justifyContent: 'flex-start',
                 fontFamily: 'body',
                 width: '100%',
             }}
             {...props}
         >
-            <Box>
+            <Box mr={4}>
                 <Text as="h3">Ownemployed</Text>
-                <Link to="/about">About</Link>
+                <Link to="/about" sx={{ color: 'muted' }}>
+                    About
+                </Link>
             </Box>
             <Box>
-                <Link to="/about">About</Link>
+                <Text as="h3">Contact</Text>
+                <Link to="mailto:ownemployed@gmail.com" sx={{ color: 'muted' }}>
+                    ownemployed@gmail.com
+                </Link>
             </Box>
         </Flex>
     )

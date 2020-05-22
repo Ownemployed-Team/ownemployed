@@ -75,7 +75,7 @@ function Hero() {
                 </Box>
             </Flex>
 
-            <Flex mt={5} mb={4} px={[0, 2, 6]} textAlign="center">
+            <Flex mt={5} mb={6} px={[0, 2, 6]} textAlign="center">
                 <Box>
                     <Text as="h3">
                         Take the opportunity to start something you are
@@ -170,18 +170,25 @@ function Initiative() {
             sx={{
                 ml: 0,
                 mr: 0,
-                mt: 4,
+                mt: 6,
                 pt: 6,
                 pb: 6,
                 justifyContent: 'space-between',
                 backgroundImage: 'url("/imgs/section_bg.png")',
-                backgroundSize: '100%',
+                backgroundSize: '100% 80%',
                 backgroundRepeat: 'no-repeat',
             }}
         >
-            <Box></Box>
-
-            <Box>
+            <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]} mr={[0, 0, 5]}>
+                <Image
+                    sx={{
+                        width: '100%',
+                        display: ['none', 'none', 'block'],
+                    }}
+                    src="/imgs/illustrations/social.png"
+                ></Image>
+            </Box>
+            <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
                 <Text as="h3">A COVID-19 Initiative</Text>
                 <Text>
                     This platform was built to help people forge their own path
@@ -197,21 +204,21 @@ function Reasons() {
     const reasons = [
         {
             title: 'Recession = opportunity',
-            icon: '',
+            icon: '/imgs/icons/idea.svg',
             body:
                 'Instagram, Whatsapp, Uber, Pintrest, Slack, Groupon, and Venmo were all founded during the 2008 global recession.',
         },
 
         {
             title: 'High unemployment rate',
-            icon: '',
+            icon: '/imgs/icons/bars.svg',
             body:
                 'Competition for jobs is higher than ever. You can wait to be chosen, or you can pick yourself.',
         },
 
         {
             title: 'Entrepreneurs are the future',
-            icon: '',
+            icon: '/imgs/icons/conn.svg',
             body:
                 'Our world is shaped by the ideas of people like Gates, Jobs, and Zuckerberg. The future belongs to innovators and entrepreneurs.',
         },
@@ -230,7 +237,7 @@ function Reasons() {
                 flexDirection: ['column', 'column', 'row'],
                 justifyContent: 'space-between',
                 backgroundImage: 'url("/imgs/section_bg.png")',
-                backgroundSize: '100%',
+                backgroundSize: '100% 100%',
                 backgroundRepeat: 'no-repeat',
             }}
         >
@@ -243,6 +250,14 @@ function Reasons() {
                             width: ['100%', '100%', '30%'],
                         }}
                     >
+                        <Image
+                            sx={{
+                                width: '30%',
+                                mx: 'auto',
+                                mb: 4,
+                            }}
+                            src={reason.icon}
+                        ></Image>
                         <Text as="h3">{reason.title}</Text>
                         <Text>{reason.body}</Text>
                     </Box>
@@ -277,7 +292,7 @@ function Skills() {
                         width: '100%',
                         display: ['none', 'none', 'block'],
                     }}
-                    src="/imgs/illustrations/homepage-ideas.svg"
+                    src="/imgs/illustrations/board.png"
                 ></Image>
             </Box>
         </Flex>
@@ -317,7 +332,7 @@ function CallToAction() {
                         width: '100%',
                         display: ['none', 'none', 'block'],
                     }}
-                    src="/imgs/illustrations/homepage-ideas.svg"
+                    src="/imgs/illustrations/team.png"
                 ></Image>
             </Box>
         </Flex>
