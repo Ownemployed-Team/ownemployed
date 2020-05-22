@@ -6,14 +6,12 @@ import history from 'utils/history'
 import 'reset.css'
 
 import Layout from 'components/PageLayout'
-
 import Home from 'pages/home/home'
-import BusinessProfile from 'pages/projects/profile'
-// import UserProfile from 'pages/user/profile'
+import UserProfile from 'pages/user'
 import Projects from 'pages/projects'
 import Members from 'pages/members'
-import SignUpForm from 'pages/signup/signup'
 import NoMatch from 'pages/404/404'
+//import SignUpForm from 'pages/signup/signup'
 
 const menuItems = [
     { label: 'Projects', url: '/projects' },
@@ -35,13 +33,13 @@ function App() {
                         <Route path="/auth" exact={true} />
                         <Route path="/members" component={Members} />
                         <Route path="/projects" component={Projects} />
-                        <Route path="/learn" />
+                        <PrivateRoute path="/profile" component={UserProfile} />
 
                         <Route component={NoMatch} />
 
                         {/*
-                    <PrivateRoute path="/profile" component={MemberProfile} />
-                    <PrivateRoute path="/profile" component={UserProfile} />
+                        <Route path="/learn" />
+                        <PrivateRoute path="/profile" component={MemberProfile} />
                     */}
                     </Switch>
                 </Layout>

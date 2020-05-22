@@ -32,14 +32,12 @@ export const NavLink: FunctionComponent<NavLinkProps> = ({
                 sx={{
                     cursor: 'pointer',
                     py: '10px',
-                    backgroundColor: '#fff',
                     textDecoration: 'none',
                     marginRight: 0,
                     fontWeight: 500,
                     fontSize: 'body',
-                    color: 'black',
                     '&:hover': {
-                        backgroundColor: '#fff',
+                        backgroundColor: 'primaryHover',
                     },
                 }}
                 {...rest}

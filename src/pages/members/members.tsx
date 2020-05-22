@@ -61,6 +61,21 @@ const Filters = ({ onSubmit, members }) => {
     )
 }
 
+const handlePageClick = (data, pageSize) => {
+    let selected = data.selected
+    let offset = Math.ceil(selected * pageSize)
+
+    console.log(data)
+
+    // getProjects({
+    //     variables: {
+    //         ...(searchWord ? { name: searchWord }: undefined)
+    //         skip: offset,
+    //         limit: pageSize
+    //     }
+    // })
+}
+
 const AllMembers = () => {
     const [searchWord, setSearchWord] = useState()
 
@@ -99,7 +114,7 @@ const AllMembers = () => {
                     }, 1000)
                 }}
             />
-            <Pagination items={data} />
+            <Pagination items={users} handler={handlePageClick} />
         </>
     )
 }

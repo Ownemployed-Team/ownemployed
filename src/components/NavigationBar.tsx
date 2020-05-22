@@ -55,7 +55,6 @@ const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
                             </NavLink>
                         )
                     })}
-                <Button>Create Project</Button>
             </Box>
         </Flex>
     )

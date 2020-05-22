@@ -43,7 +43,7 @@ export default {
     },
     radii: {
         small: 3,
-        default: 12,
+        default: 16,
         large: 39,
         round: '100%',
     },

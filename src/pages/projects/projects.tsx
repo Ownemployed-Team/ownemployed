@@ -32,33 +32,21 @@ const Hero = () => {
     )
 }
 
-const Filters = ({ onSubmit, projects }) => {
+const ProjectsList = ({ projects }) => {
     return (
-        <Box>
-            <ProjectFilter onSubmitSearch={onSubmit} />
-            <Box
-                sx={{
-                    mx: 'auto',
-                    px: 2,
-                    py: 2,
-                }}
-            >
-                <ItemsCount items={projects} size={10} />
-            </Box>
-            <Flex flexWrap="wrap">
-                {projects.map((project, index) => (
-                    <Box
-                        key={index}
-                        mr="auto"
-                        width={[1, 1 / 2, 1 / 4]}
-                        px={2}
-                        py={3}
-                    >
-                        <ProjectCard project={project} />
-                    </Box>
-                ))}
-            </Flex>
-        </Box>
+        <Flex flexWrap="wrap">
+            {projects.map((project, index) => (
+                <Box
+                    key={index}
+                    mr="auto"
+                    width={[1, 1 / 2, 1 / 4]}
+                    px={2}
+                    py={3}
+                >
+                    <ProjectCard project={project} />
+                </Box>
+            ))}
+        </Flex>
     )
 }
 
@@ -84,9 +72,8 @@ const AllProjects = () => {
     return (
         <>
             <Hero />
-            <Filters
-                projects={projects}
-                onSubmit={(values, actions) => {
+            <ProjectFilter
+                onSubmitSearch={(values, actions) => {
                     setTimeout(() => {
                         //TODO : call backend to find project with query function getProjects
                         const { search } = values
@@ -99,9 +86,26 @@ const AllProjects = () => {
                     }, 1000)
                 }}
             />
-            <Pagination items={data} />
+            <Pagination items={projects} handler={handlePageClick} />
+            <ProjectsList projects={projects} />
+            <Pagination items={projects} handler={handlePageClick} />
         </>
     )
 }
 
 export default AllProjects
+
+function handlePageClick(data, pageSize) {
+    let selected = data.selected
+    let offset = Math.ceil(selected * pageSize)
+
+    console.log(data)
+
+    // getProjects({
+    //     variables: {
+    //         ...(searchWord ? { name: searchWord }: undefined)
+    //         skip: offset,
+    //         limit: pageSize
+    //     }
+    // })
+}

@@ -1,9 +1,10 @@
 import React from 'react'
-import Card from 'components/Card'
-import Text from 'components/Text'
 import { Box, Image } from 'rebass'
 import { Link } from 'react-router-dom'
 import { UniqueInputFieldNamesRule } from 'graphql'
+
+import Card from 'components/Card'
+import Text from 'components/Text'
 
 const MemberCard = ({ member }) => {
     const {
@@ -26,21 +27,12 @@ const MemberCard = ({ member }) => {
         <Link to={url} style={{ textDecoration: 'none' }}>
             <Card
                 sx={{
-                    borderRadius: '0',
-                    bg: 'white',
-                    mx: 0,
-                    padding: 0,
+                    borderRadius: 'default',
+                    padding: 3,
                 }}
             >
-                <Image src={avatar} m={'auto'} />
-                <Box
-                    bg={'white'}
-                    sx={{
-                        maxWidth: 512,
-                        mx: 'auto',
-                        p: 4,
-                    }}
-                >
+                <Image src={avatar} m="auto" />
+                <Box mt={3}>
                     <Text
                         as="h1"
                         sx={{

@@ -5,17 +5,17 @@ import { Box, Flex } from 'rebass'
 import NavigationBar from 'components/NavigationBar'
 import Footer from 'components/Footer'
 
-const Main = ({ children }) => {
+const Main = ({ children, boxed }) => {
     return (
         <Box
-            maxWidth={'1400px'}
-            width={1}
             pt={3}
             pb={3}
-            pl={[4, 4, 6]}
-            pr={[4, 4, 6]}
-            mx={'auto'}
-            sx={{ flex: 1 }}
+            sx={{
+                flex: 1,
+                mx: boxed ? 'auto' : 0,
+                pl: boxed ? 0 : [4, 4, 6],
+                pr: boxed ? 0 : [4, 4, 6],
+            }}
             fontFamily="body"
         >
             <main>{children}</main>
@@ -23,7 +23,7 @@ const Main = ({ children }) => {
     )
 }
 
-const Layout = ({ children, menuItems }) => {
+const Layout = ({ children, menuItems, boxed = false }) => {
     return (
         <>
             <Flex
@@ -35,7 +35,7 @@ const Layout = ({ children, menuItems }) => {
                 }}
             >
                 <NavigationBar items={menuItems} />
-                <Main>{children}</Main>
+                <Main boxed>{children}</Main>
                 <Footer />
             </Flex>
         </>
