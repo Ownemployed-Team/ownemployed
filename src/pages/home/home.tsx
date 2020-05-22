@@ -3,19 +3,20 @@ import { Flex, Box, Image } from 'rebass'
 
 import Text from 'components/Text'
 import Link from 'components/Link'
+import Layout from 'components/Layout'
 import Button from 'components/Button'
 import Card from 'components/Card'
 
 const Home = () => {
     return (
-        <>
+        <Layout>
             <Hero />
             <Actions />
             <Initiative />
             <Skills />
             <Reasons />
             <CallToAction />
-        </>
+        </Layout>
     )
 }
 
@@ -41,7 +42,9 @@ function Hero() {
                             fontWeight: 'bold',
                         }}
                     >
-                        No, Ownemployed
+                        No,{' '}
+                        <span style={{ textDecoration: 'underline' }}>Own</span>
+                        employed
                     </Text>
                     <Text as="body">
                         Why wait to be employed, when you can be an
