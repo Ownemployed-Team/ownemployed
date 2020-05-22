@@ -9,23 +9,22 @@ const menuItems = [
     { label: 'Projects', url: '/projects' },
     { label: 'Members', url: '/members' },
     { label: 'Learn', url: '/learn' },
-    { label: 'Community', url: '/community' },
-    { label: 'Account', url: '/members/deborah', isPrivate: true },
-    //{ label: 'Get Inspired', url: '/projects/marketingBiz' },
+    { label: 'Community', url: 'https://ownemployed.tribe.so/' },
+    { label: 'Account', url: '/profile', isPrivate: true },
     { label: 'Login/Register', url: '/auth', isAuth: true },
 ]
 
-const Main = ({ children }) => {
+const Main = ({ children, boxed }) => {
     return (
         <Box
-            maxWidth={'1400px'}
-            width={1}
             pt={3}
             pb={3}
-            pl={[4, 4, 5]}
-            pr={[4, 4, 5]}
-            mx={'auto'}
-            sx={{ flex: 1 }}
+            sx={{
+                flex: 1,
+                mx: boxed ? 'auto' : 0,
+                pl: boxed ? [4, 4, 6] : 0,
+                pr: boxed ? [4, 4, 6] : 0,
+            }}
             fontFamily="body"
         >
             <main>{children}</main>
@@ -33,7 +32,7 @@ const Main = ({ children }) => {
     )
 }
 
-const Layout = ({ children }) => {
+const Layout = ({ children, boxed = false }) => {
     return (
         <>
             <Flex
@@ -45,7 +44,7 @@ const Layout = ({ children }) => {
                 }}
             >
                 <NavigationBar items={menuItems} />
-                <Main>{children}</Main>
+                <Main boxed={boxed}>{children}</Main>
                 <Footer />
             </Flex>
         </>

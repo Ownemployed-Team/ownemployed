@@ -8,7 +8,6 @@ import Card from 'components/Card'
 import Text from 'components/Text'
 import ItemsCount from 'components/ItemsCount'
 import Pagination from 'components/Pagination'
-import PageLayout from 'components/PageLayout'
 import MemberCard from 'components/MemberCard'
 import MemberFilter from 'components/MemberFilter'
 
@@ -62,7 +61,22 @@ const Filters = ({ onSubmit, members }) => {
     )
 }
 
-const Members = () => {
+const handlePageClick = (data, pageSize) => {
+    let selected = data.selected
+    let offset = Math.ceil(selected * pageSize)
+
+    console.log(data)
+
+    // getProjects({
+    //     variables: {
+    //         ...(searchWord ? { name: searchWord }: undefined)
+    //         skip: offset,
+    //         limit: pageSize
+    //     }
+    // })
+}
+
+const AllMembers = () => {
     const [searchWord, setSearchWord] = useState()
 
     const [getUsersQuery, result] = useLazyQuery(GET_USERS)
@@ -70,9 +84,9 @@ const Members = () => {
 
     if (called && loading) {
         return (
-            <PageLayout>
+            <>
                 <Text> Loading </Text>
-            </PageLayout>
+            </>
         )
     }
 
@@ -83,7 +97,7 @@ const Members = () => {
     const users = data.getUsers || []
 
     return (
-        <PageLayout>
+        <>
             <Hero />
             <Filters
                 members={users}
@@ -100,9 +114,9 @@ const Members = () => {
                     }, 1000)
                 }}
             />
-            <Pagination items={data} />
-        </PageLayout>
+            <Pagination items={users} handler={handlePageClick} />
+        </>
     )
 }
 
-export default Members
+export default AllMembers

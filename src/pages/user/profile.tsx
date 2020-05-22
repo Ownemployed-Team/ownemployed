@@ -1,126 +1,54 @@
 import * as React from 'react'
-import { Card, Col, Row, Descriptions } from 'antd'
-import PageLayout from 'components/PageLayout'
-import profiles from 'data/users.json'
-import businesses from 'data/businesses.json'
 
-import { useParams } from 'react-router'
 import TagsCard from 'components/TagsCard'
 import ProjectCard from 'components/ProjectCard'
 import PageIntro from 'components/PageIntro'
 
-const UserProfile = () => {
-    const { userProfileId } = useParams()
-    let user = profiles[userProfileId]
-    let image = require('static/imgs/users/default.png')
-    try {
-        image = require(`static/imgs/users/${user.id}.png`)
-    } catch (e) {}
+import Text from 'components/Text'
+import Link from 'components/Link'
+import Card from 'components/Card'
 
+import { Route, Switch, useParams } from 'react-router-dom'
+
+const Main = ({ match }) => {
+    // TODO eventually move this to its own component file
     return (
-        <PageLayout>
-            <PageIntro
-                title={user.name || ''}
-                summary={user.summary || ''}
-                actions={[{ text: 'Connect', onClick: () => {} }]}
-            />
-            <div>
-                <Row gutter={16}>
-                    <Col md={24} lg={12}>
-                        <Card cover={<img alt="member" src={image} />}>
-                            <Descriptions column={1}>
-                                {user.location && (
-                                    <Descriptions.Item label="Location">
-                                        {user.location || ''}
-                                    </Descriptions.Item>
-                                )}
-                                {user.education && (
-                                    <Descriptions.Item label="Education">
-                                        {user.education || ''}
-                                    </Descriptions.Item>
-                                )}
-                            </Descriptions>
-                        </Card>
-                        <div
-                            style={{
-                                display: 'flex',
-                                flexWrap: 'wrap',
-                                justifyContent: 'left',
-                            }}
-                        >
-                            {Object.keys(user.socialMedia || {}).map(k => (
-                                <a href={user.socialMedia[k]} key={k}>
-                                    <img
-                                        alt={k}
-                                        src={`/imgs/social-media/${k}.svg`}
-                                        style={{
-                                            height: '72px',
-                                            padding: '7px',
-                                        }}
-                                    />
-                                </a>
-                            ))}
-                        </div>
-                    </Col>
-                    <Col md={24} lg={12}>
-                        <TagsCard
-                            title="Seeking"
-                            tags={user.lookingFor}
-                            linkRenderer={key =>
-                                '/members?selected=' +
-                                encodeURIComponent(JSON.stringify([key]))
-                            }
-                        />
-                        <TagsCard
-                            title="Skills"
-                            tags={user.skills}
-                            linkRenderer={key =>
-                                '/members?selected=' +
-                                encodeURIComponent(JSON.stringify([key]))
-                            }
-                        />
-                        <TagsCard
-                            title="Interests"
-                            tags={user.interests}
-                            linkRenderer={key =>
-                                '/members?selected=' +
-                                encodeURIComponent(JSON.stringify([key]))
-                            }
-                        />
-                        {user.ownedModels && Array.isArray(user.ownedModels) && (
-                            <Card title="Founding">
-                                {(user.ownedModels || [])
-                                    .map(businessId => businesses[businessId])
-                                    .filter(Boolean)
-                                    .map(business => (
-                                        <ProjectCard
-                                            project={business}
-                                            key={business.id}
-                                        />
-                                    ))}
-                            </Card>
-                        )}
-                        {user.connectedModels &&
-                            Array.isArray(user.connectedModels) && (
-                                <Card title="Connected">
-                                    {(user.connectedModels || [])
-                                        .map(
-                                            businessId => businesses[businessId]
-                                        )
-                                        .filter(Boolean)
-                                        .map(business => (
-                                            <ProjectCard
-                                                project={business}
-                                                key={business.id}
-                                            />
-                                        ))}
-                                </Card>
-                            )}
-                    </Col>
-                </Row>
-            </div>
-        </PageLayout>
+        <>
+            <Text as="h3">My Profile</Text>
+            <Text as="p">
+                Help the Ownemployed community get to know you better.
+            </Text>
+            <hr />
+            <Link to={`${match.url}/settings`}>Settings</Link>
+        </>
+    )
+}
+const Settings = () => {
+    // TODO eventually move this to its own component file
+    return <Text as="h3">Settings</Text>
+}
+
+const Profile = ({ match }) => {
+    return (
+        <>
+            <Card
+                sx={{
+                    mt: 4,
+                    padding: 4,
+                    borderRadius: 'default',
+                }}
+            >
+                <Switch>
+                    <Route path={`${match.url}/`} component={Main} exact />
+                    <Route
+                        path={`${match.url}/settings`}
+                        component={Settings}
+                        exact
+                    />
+                </Switch>
+            </Card>
+        </>
     )
 }
 
-export default UserProfile
+export default Profile

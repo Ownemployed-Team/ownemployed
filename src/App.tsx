@@ -6,12 +6,11 @@ import history from 'utils/history'
 import 'reset.css'
 
 import Home from 'pages/home/home'
-import BusinessProfile from 'pages/projects/profile'
-// import UserProfile from 'pages/user/profile'
-import Projects from 'pages/projects/projects'
-import Members from 'pages/members/members'
-import MemberProfile from 'pages/members/profile'
-import SignUpForm from 'pages/signup/signup'
+import UserProfile from 'pages/user'
+import Projects from 'pages/projects'
+import Members from 'pages/members'
+import NoMatch from 'pages/404/404'
+//import SignUpForm from 'pages/signup/signup'
 
 function App() {
     return (
@@ -19,20 +18,18 @@ function App() {
             <ThemeProvider>
                 <Switch>
                     <Route component={Home} path="/" exact={true} />
-                    <Route component={Projects} exact={true} path="/projects" />
-                    <Route component={Members} path="/members" exact={true} />
-                    <Route
-                        component={BusinessProfile}
-                        exact={true}
-                        path="/projects/:businessProfileId"
-                    />
-                    <Route
-                        component={MemberProfile}
-                        exact={true}
-                        path="/members/:memberProfileId"
-                    />
+                    <Route path="/community" exact={true} />
+                    <Route path="/auth" exact={true} />
+                    <Route path="/members" component={Members} />
+                    <Route path="/projects" component={Projects} />
+                    <PrivateRoute path="/profile" component={UserProfile} />
 
-                    <Route exact={true} component={Members} path="/community" />
+                    <Route component={NoMatch} />
+
+                    {/*
+                        <Route path="/learn" />
+                        <PrivateRoute path="/profile" component={MemberProfile} />
+                    */}
                 </Switch>
             </ThemeProvider>
         </Router>

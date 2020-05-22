@@ -1,6 +1,6 @@
 import React from 'react'
 import { NavLink } from 'components/NavLink'
-import { Flex, Box } from 'rebass'
+import { Flex, Box, Image } from 'rebass'
 import logo from 'static/ownemployed_logo.png'
 import Button from './Button'
 import { useAuth0 } from 'lib/react-auth0-spa'
@@ -15,7 +15,7 @@ type NavigationItem = {
 const Brand = () => {
     return (
         <NavLink to="/">
-            <img alt="logo" src={logo} width="245px" />
+            <Image alt="logo" src={logo} width="245px" />
         </NavLink>
     )
 }
@@ -55,7 +55,6 @@ const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
                             </NavLink>
                         )
                     })}
-                <Button>Create Project</Button>
             </Box>
         </Flex>
     )
