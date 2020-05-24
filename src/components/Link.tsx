@@ -5,7 +5,7 @@ import React, {
     FunctionComponent,
 } from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { Link as RebassLink } from 'rebass'
+import { Link as RebassLink, Box } from 'rebass'
 import { css } from 'emotion'
 
 type LinkProps = {
@@ -30,7 +30,7 @@ export const Link: FunctionComponent<LinkProps> = ({
     sx,
     ...rest
 }) => {
-    if (to.startsWith('http')) {
+    if (to.startsWith('http') || to.startsWith('mailto')) {
         return (
             <RebassLink
                 target="_blank"
@@ -45,9 +45,11 @@ export const Link: FunctionComponent<LinkProps> = ({
         )
     } else {
         return (
-            <ReactRouterLink to={to} className={linkStyle} {...rest}>
-                {children}
-            </ReactRouterLink>
+            <Box sx={{ display: 'inline', ...sx }}>
+                <ReactRouterLink to={to} className={linkStyle} {...rest}>
+                    {children}
+                </ReactRouterLink>
+            </Box>
         )
     }
 }
