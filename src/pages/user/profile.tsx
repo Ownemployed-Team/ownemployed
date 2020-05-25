@@ -7,29 +7,9 @@ import Link from 'components/Link'
 import Card from 'components/Card'
 
 const Profile = ({ match }) => {
-    const [showResult, setShowResult] = useState(false)
-    const [apiMessage, setApiMessage] = useState('')
-    const { getTokenSilently } = useAuth0()
-
-    const { apiURL } = useContext(ConfigContext)
-
-    const callApi = async () => {
-        try {
-            const token = await getTokenSilently()
-
-            const response = await fetch(`${apiURL}/graphql`, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            })
-
-            const responseData = await response.json()
-
-            setShowResult(true)
-            setApiMessage(responseData)
-        } catch (error) {
-            console.error(error)
-        }
+    const { loading, user } = useAuth0()
+    if (loading || !user) {
+        return <Text>Loading...</Text>
     }
 
     return (
@@ -46,11 +26,12 @@ const Profile = ({ match }) => {
                     Help the Ownemployed community get to know you better.
                 </Text>
                 <hr />
+
+                <Text as="h3">{user.name}</Text>
+                <Text as="body">{user.email}</Text>
+                <Text as="body">{user.nickname}</Text>
                 <Link to={`${match.url}/settings`}>Settings</Link>
-                <button onClick={callApi}>Ping API</button>
-                {showResult && (
-                    <code>{JSON.stringify(apiMessage, null, 2)}</code>
-                )}
+                <Link to={`${match.url}/my-projects`}>My Projects</Link>
             </Card>
         </>
     )

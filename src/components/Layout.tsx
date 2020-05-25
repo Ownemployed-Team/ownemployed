@@ -10,7 +10,7 @@ const menuItems = [
     { label: 'Members', url: '/members' },
     { label: 'Learn', url: '/learn' },
     { label: 'Community', url: 'https://ownemployed.tribe.so/' },
-    { label: 'Account', url: '/profile', isPrivate: true },
+    { label: 'Account', url: '/user', isPrivate: true },
     { label: 'Login/Register', url: '/auth', isAuth: true },
 ]
 

@@ -5,8 +5,8 @@ import ThemeProvider from 'components/ThemeProvider'
 import history from 'utils/history'
 import 'reset.css'
 
+import User from 'pages/user'
 import Home from 'pages/home/home'
-import UserProfile from 'pages/user'
 import Projects from 'pages/projects'
 import Members from 'pages/members'
 import NoMatch from 'pages/404/404'
@@ -22,7 +22,7 @@ function App() {
                     <Route path="/auth" exact={true} />
                     <Route path="/members" component={Members} />
                     <Route path="/projects" component={Projects} />
-                    <PrivateRoute path="/profile" component={UserProfile} />
+                    <PrivateRoute path="/user" component={User} />
 
                     <Route component={NoMatch} />
 
