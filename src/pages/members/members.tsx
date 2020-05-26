@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-
+import { Box } from 'rebass'
 import { useLazyQuery } from '@apollo/react-hooks'
 import { GET_USERS } from 'graphql/get-users'
 
-import Text from 'components/Text'
-import Pagination from 'components/Pagination'
-import Filters from 'components/members/Filters'
 import Hero from 'components/members/Hero'
+import ItemsCount from 'components/ItemsCount'
+import MemberFilter from 'components/members/MemberFilter'
+import MembersList from 'components/members/MembersList'
+import Pagination from 'components/Pagination'
+import Text from 'components/Text'
 
 const AllMembers = () => {
     const [searchWord, setSearchWord] = useState()
@@ -46,21 +48,32 @@ const AllMembers = () => {
     return (
         <>
             <Hero />
-            <Filters
-                members={users}
-                onSubmit={(values, actions) => {
-                    setTimeout(() => {
-                        //TODO : call backend to find project with query function getProjects
-                        const { search } = values
+            <Box>
+                <MemberFilter
+                    onSubmitSearch={(values, actions) => {
+                        setTimeout(() => {
+                            //TODO : call backend to find project with query function getProjects
+                            const { search } = values
 
-                        setSearchWord(search)
+                            setSearchWord(search)
 
-                        alert(JSON.stringify(values, null, 2))
+                            alert(JSON.stringify(values, null, 2))
 
-                        actions.setSubmitting(false)
-                    }, 1000)
-                }}
-            />
+                            actions.setSubmitting(false)
+                        }, 1000)
+                    }}
+                />
+                <Box
+                    sx={{
+                        mx: 'auto',
+                        px: 2,
+                        py: 2,
+                    }}
+                >
+                    <ItemsCount items={users} size={10} />
+                </Box>
+            </Box>
+            <MembersList members={users} />
             <Pagination items={users} handler={handlePageClick} />
         </>
     )

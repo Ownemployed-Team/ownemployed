@@ -27,12 +27,23 @@ const MemberCard = ({ member }) => {
         <Link to={url} style={{ textDecoration: 'none' }}>
             <Card
                 sx={{
-                    borderRadius: 'default',
-                    padding: 3,
+                    borderRadius: '0',
+                    bg: '#F3F3F3',
+                    mx: '0',
+                    padding: '0',
+                    minHeight: 385,
                 }}
+                // style={{ margin: '8px' }}
             >
-                <Image src={avatar} m="auto" />
-                <Box mt={3}>
+                <Image src={avatar} m={'auto'} />
+                <Box
+                    bg={'white'}
+                    sx={{
+                        minHeight: 235,
+                        mx: 'auto',
+                        p: 4,
+                    }}
+                >
                     <Text
                         as="h1"
                         sx={{
@@ -45,17 +56,23 @@ const MemberCard = ({ member }) => {
                         as="body"
                         sx={{
                             mb: 2,
+                            overflow: 'auto',
+                            textOverflow: 'ellipsis',
+                            maxHeight: 70,
                         }}
                     >
-                        {education}
+                        {location}
                     </Text>
                     <Text
                         as="body"
                         sx={{
                             mb: 2,
+                            overflow: 'auto',
+                            textOverflow: 'ellipsis',
+                            maxHeight: 70,
                         }}
                     >
-                        {location}
+                        {education}
                     </Text>
                 </Box>
             </Card>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Box } from 'rebass'
 
 import { useLazyQuery } from '@apollo/react-hooks'
 import GET_PROJECTS from 'graphql/get-projects'
@@ -47,20 +48,31 @@ const AllProjects = () => {
     return (
         <>
             <Hero />
-            <ProjectFilter
-                onSubmitSearch={(values, actions) => {
-                    setTimeout(() => {
-                        //TODO : call backend to find project with query function getProjects
-                        const { search } = values
+            <Box>
+                <ProjectFilter
+                    onSubmitSearch={(values, actions) => {
+                        setTimeout(() => {
+                            //TODO : call backend to find project with query function getProjects
+                            const { search } = values
 
-                        setSearchWord(search)
+                            setSearchWord(search)
 
-                        alert(JSON.stringify(values, null, 2))
+                            alert(JSON.stringify(values, null, 2))
 
-                        actions.setSubmitting(false)
-                    }, 1000)
-                }}
-            />
+                            actions.setSubmitting(false)
+                        }, 1000)
+                    }}
+                />
+                <Box
+                    sx={{
+                        mx: 'auto',
+                        px: 2,
+                        py: 2,
+                    }}
+                >
+                    <ItemsCount items={projects} size={10} />
+                </Box>
+            </Box>
             <ProjectsList projects={projects} />
             <Pagination items={projects} handler={handlePageClick} />
         </>
