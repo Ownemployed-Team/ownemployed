@@ -2,7 +2,7 @@ import React from 'react'
 import Card from 'components/Card'
 import Text from 'components/Text'
 
-const ProjectHero = () => {
+const Hero = () => {
     return (
         <Card
             sx={{
@@ -23,4 +23,4 @@ const ProjectHero = () => {
     )
 }
 
-export default ProjectHero
+export default Hero
