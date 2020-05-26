@@ -6,6 +6,8 @@ import history from 'utils/history'
 import 'reset.css'
 
 import Home from 'pages/home/home'
+import TOS from 'pages/tos'
+import GDPR from 'pages/gdpr'
 import UserProfile from 'pages/user'
 import Projects from 'pages/projects'
 import Members from 'pages/members'
@@ -22,6 +24,8 @@ function App() {
                     <Route path="/auth" exact={true} />
                     <Route path="/members" component={Members} />
                     <Route path="/projects" component={Projects} />
+                    <Route path="/tos" component={TOS} />
+                    <Route path="/gdpr" component={GDPR} />
                     <PrivateRoute path="/profile" component={UserProfile} />
 
                     <Route component={NoMatch} />

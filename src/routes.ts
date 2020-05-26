@@ -1,9 +1,11 @@
+import GDPR from 'pages/gdpr'
 import Home from 'pages/home/home'
-import ProjectProfile from 'pages/projects/profile'
 import MemberProfile from 'pages/members/profile'
-import Projects from 'pages/projects/projects'
 import Members from 'pages/members/members'
+import ProjectProfile from 'pages/projects/profile'
+import Projects from 'pages/projects/projects'
 import SignUpForm from 'pages/signup/signup'
+import TOS from 'pages/tos'
 
 export default [
     {
@@ -32,5 +34,13 @@ export default [
     {
         component: SignUpForm,
         path: '/sign-up',
+    },
+    {
+        component: TOS,
+        path: '/tos',
+    },
+    {
+        component: GDPR,
+        path: '/gdpr',
     },
 ]
