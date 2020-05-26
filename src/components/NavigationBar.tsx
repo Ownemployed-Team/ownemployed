@@ -1,7 +1,9 @@
 import React from 'react'
 import { NavLink } from 'components/NavLink'
 import { Flex, Box, Image } from 'rebass'
-import logo from 'static/ownemployed_logo.png'
+import logo from 'static/ownemployed_logo.svg'
+import hamburger from 'static/hamburger.svg'
+import profile from 'static/profile.svg'
 import { useAuth0 } from 'lib/react-auth0-spa'
 
 type NavigationItem = {
@@ -14,7 +16,56 @@ type NavigationItem = {
 const Brand = () => {
     return (
         <NavLink to="/">
-            <Image alt="logo" src={logo} width="245px" />
+            <Image
+                alt="logo"
+                src={logo}
+                alignContent="center"
+                width="245px"
+                sx={{
+                    '@media screen and (max-width: 643px)': {
+                        width: '153px',
+                    },
+                }}
+            />
+        </NavLink>
+    )
+}
+
+const Hamburger = () => {
+    return (
+        <NavLink to="">
+            <Image
+                alt="hamburger"
+                pr={5}
+                src={hamburger}
+                sx={{
+                    '@media screen and (min-width: 643px)': {
+                        display: 'none',
+                    },
+                    '@media screen and (max-width: 643px)': {
+                        width: ['100%'],
+                    },
+                }}
+            />
+        </NavLink>
+    )
+}
+
+const Profile = () => {
+    return (
+        <NavLink to="/members/:memberProfileId">
+            <Image
+                alt="profile"
+                alignContent="center"
+                src={profile}
+                width="21px"
+                ml={4}
+                sx={{
+                    '@media screen and (min-width: 643px )': {
+                        display: 'none',
+                    },
+                }}
+            />
         </NavLink>
     )
 }
@@ -23,10 +74,19 @@ const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
 
     return (
-        <Flex pl={5} pr={5} color="black" alignItems="center" bg="#fff">
+        <Flex color="black" alignItems="center" bg="#fff">
+            <Hamburger />
             <Brand />
+            <Profile />
             <Box mr="auto" />
-            <Flex alignItems="center">
+            <Flex
+                alignItems="center"
+                sx={{
+                    '@media screen and (max-width: 643px)': {
+                        display: 'none',
+                    },
+                }}
+            >
                 {items
                     .filter(item => {
                         // NOTE check if private, then return the results of isAuthenticated
