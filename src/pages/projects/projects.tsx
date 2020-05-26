@@ -1,54 +1,14 @@
 import React, { useState } from 'react'
-import { Box, Flex } from 'rebass'
 
 import { useLazyQuery } from '@apollo/react-hooks'
 import GET_PROJECTS from 'graphql/get-projects'
 
-import Text from 'components/Text'
-import Card from 'components/Card'
 import ItemsCount from 'components/ItemsCount'
 import Pagination from 'components/Pagination'
-import ProjectCard from 'components/ProjectCard'
 import ProjectFilter from 'components/ProjectFilter'
-
-const Hero = () => {
-    return (
-        <Card
-            sx={{
-                borderRadius: '0',
-                my: 4,
-                mx: 2,
-                p: 4,
-                textAlign: 'center',
-            }}
-        >
-            <Text as="h2">Find Projects</Text>
-            <Text as="body" sx={{ width: '50%', m: 'auto' }}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim ... who share your interests.
-            </Text>
-        </Card>
-    )
-}
-
-const ProjectsList = ({ projects }) => {
-    return (
-        <Flex flexWrap="wrap">
-            {projects.map((project, index) => (
-                <Box
-                    key={index}
-                    mr="auto"
-                    width={[1, 1 / 2, 1 / 4]}
-                    px={2}
-                    py={3}
-                >
-                    <ProjectCard project={project} />
-                </Box>
-            ))}
-        </Flex>
-    )
-}
+import ProjectHero from './ProjectHero'
+import ProjectsList from './ProjectsList'
+import Text from 'components/Text'
 
 const AllProjects = () => {
     const [searchWord, setSearchWord] = useState()
@@ -64,14 +24,29 @@ const AllProjects = () => {
     }
 
     if (!called) {
-        getProjectsQuery()
+        getProjectsQuery() // TODO : Add { variables: { sector, skills, location, status, skip, limit } }
+    }
+
+    const handlePageClick = (data, pageSize) => {
+        let selected = data.selected
+        let offset = Math.ceil(selected * pageSize)
+
+        console.log(data)
+
+        // getProjectsQuery({
+        //     variables: {
+        //         ...(searchWord ? { name: searchWord }: undefined)
+        //         skip: offset,
+        //         limit: pageSize
+        //     }
+        // })
     }
 
     const projects = data.getProjects || []
 
     return (
         <>
-            <Hero />
+            <ProjectHero />
             <ProjectFilter
                 onSubmitSearch={(values, actions) => {
                     setTimeout(() => {
@@ -86,7 +61,6 @@ const AllProjects = () => {
                     }, 1000)
                 }}
             />
-            <Pagination items={projects} handler={handlePageClick} />
             <ProjectsList projects={projects} />
             <Pagination items={projects} handler={handlePageClick} />
         </>
@@ -94,18 +68,3 @@ const AllProjects = () => {
 }
 
 export default AllProjects
-
-function handlePageClick(data, pageSize) {
-    let selected = data.selected
-    let offset = Math.ceil(selected * pageSize)
-
-    console.log(data)
-
-    // getProjects({
-    //     variables: {
-    //         ...(searchWord ? { name: searchWord }: undefined)
-    //         skip: offset,
-    //         limit: pageSize
-    //     }
-    // })
-}
