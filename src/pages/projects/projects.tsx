@@ -6,8 +6,8 @@ import GET_PROJECTS from 'graphql/get-projects'
 import ItemsCount from 'components/ItemsCount'
 import Pagination from 'components/Pagination'
 import ProjectFilter from 'components/ProjectFilter'
-import ProjectHero from './ProjectHero'
-import ProjectsList from './ProjectsList'
+import Hero from 'components/projects/Hero'
+import ProjectsList from 'components/projects/ProjectsList'
 import Text from 'components/Text'
 
 const AllProjects = () => {
@@ -46,7 +46,7 @@ const AllProjects = () => {
 
     return (
         <>
-            <ProjectHero />
+            <Hero />
             <ProjectFilter
                 onSubmitSearch={(values, actions) => {
                     setTimeout(() => {
