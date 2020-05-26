@@ -10,7 +10,7 @@ const pagination = css`
 `
 
 const paginationContainer = css`
-    display: inline-block;
+    display: flex;
     padding-left: 15px;
     padding-right: 15px;
 `
