@@ -1,18 +1,17 @@
 import * as React from 'react'
-import PageLayout from 'components/PageLayout'
 import Card from 'components/Card'
 import Text from 'components/Text'
 import { useParams } from 'react-router-dom'
 import { Box, Flex, Image } from 'rebass'
 import projects from 'data/projects.json'
-import users from 'data/users.json'
-import TagsCard from 'components/TagsCard'
-import UserCard_Legacy from 'components/UserCard_Legacy'
-import PageIntro from 'components/PageIntro'
 
 const ProjectProfile = ({ match }) => {
-    const { businessProfileId } = (match || {}).params || {}
+    //const { businessProfileId } = (match || {}).params || {}
+
+    const { businessProfileId } = useParams()
+
     const project = projects[businessProfileId]
+
     const {
         id,
         name,
@@ -23,6 +22,7 @@ const ProjectProfile = ({ match }) => {
         keyActivities,
         channels,
     } = project
+
     // const owners = ownerIds
     //     .map(ownedId => users[ownedId])
     //     .filter(x => x !== undefined)
@@ -33,7 +33,7 @@ const ProjectProfile = ({ match }) => {
     // const linkRenderer = key =>
     //     '/projects?selected=' + encodeURIComponent(JSON.stringify([key]))
     return (
-        <PageLayout>
+        <>
             <Flex>
                 <Box width={[2 / 3]}>
                     <Card
@@ -235,7 +235,7 @@ const ProjectProfile = ({ match }) => {
                     </Card>
                 </Box>
             </Flex>
-        </PageLayout>
+        </>
     )
 }
 

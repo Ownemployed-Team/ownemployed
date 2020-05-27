@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Typography, Row, Col, Card, Divider } from 'antd'
-import PageLayout from 'components/PageLayout'
 import { Form, Input, Button } from 'antd'
 import { Link } from 'react-router-dom'
 
@@ -20,7 +19,7 @@ function passwordComparison(passwordValue: string, currentValue: string) {
 
 const SignUpForm = () => {
     return (
-        <PageLayout>
+        <>
             <div style={{ textAlign: 'center' }}>
                 <Row gutter={16}>
                     <Col span={10} offset={7} flex="auto">
@@ -96,7 +95,7 @@ const SignUpForm = () => {
                     </Col>
                 </Row>
             </div>
-        </PageLayout>
+        </>
     )
 }
 

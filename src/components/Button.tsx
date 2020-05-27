@@ -3,15 +3,13 @@ import { Button as RebassButton } from 'rebass'
 
 const Button = ({
     children,
-    size,
-    type,
+    variant,
     onClick,
     sx,
 }: {
     children: ReactChildren | ReactChild | ReactElement | string[] | string
-    size?: string
-    type?: string
-    //onClick?: (...args: any[]) => void
+    //onClick?: (...args: any[]) => void,
+    variant?: string
     onClick?: Function
     style?: object
     sx?: object
@@ -19,16 +17,8 @@ const Button = ({
     return (
         <RebassButton
             onClick={onClick}
+            variant={variant || 'primary'}
             sx={{
-                backgroundColor: 'primary',
-                borderRadius: '4px',
-                boxSizing: 'border-box',
-                padding: '6px 8px 6px 8px',
-                outline: 'none',
-                '&:hover': {
-                    backgroundColor: 'primaryHover',
-                    cursor: 'pointer',
-                },
                 ...sx,
             }}
         >

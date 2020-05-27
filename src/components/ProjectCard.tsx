@@ -31,6 +31,7 @@ const ProjectCard = ({ project }) => {
                     bg: '#F3F3F3',
                     mx: '0',
                     padding: '0',
+                    minHeight: 385,
                 }}
                 // style={{ margin: '8px' }}
             >
@@ -38,7 +39,7 @@ const ProjectCard = ({ project }) => {
                 <Box
                     bg={'white'}
                     sx={{
-                        maxWidth: 512,
+                        minHeight: 235,
                         mx: 'auto',
                         p: 4,
                     }}
@@ -55,6 +56,9 @@ const ProjectCard = ({ project }) => {
                         as="body"
                         sx={{
                             mb: 2,
+                            overflow: 'auto',
+                            textOverflow: 'ellipsis',
+                            maxHeight: 70,
                         }}
                     >
                         {description}

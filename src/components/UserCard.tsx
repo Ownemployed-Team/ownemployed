@@ -18,11 +18,20 @@ export type User = {
     avatar: string
 }
 
+function truncateValues(summary, location) {
+    if (summary && summary.length > 90)
+        summary = summary.substring(0, 90).concat(' ...')
+    if (location && location.length > 25)
+        location = location.substring(0, 25).concat(' ...')
+    return { summary: summary, location: location }
+}
+
 const UserCard = ({ user }: { user: User }) => {
     //TODO: Change the user type to fit the db
     let avatar = user.avatar
         ? user.avatar
         : require('../static/avatars/user/default.png')
+    const { summary, location } = truncateValues(user.summary, user.location)
 
     return (
         <Card
@@ -47,9 +56,7 @@ const UserCard = ({ user }: { user: User }) => {
                 </Text>
             </div>
             <Text as="body" sx={{ fontSize: 'card', height: '70px' }}>
-                {user.summary
-                    ? user.summary.substring(0, 90).concat('...')
-                    : 'No summary yet'}
+                {user.summary ? summary : 'No summary yet'}
             </Text>
             <Text
                 as="body"
@@ -60,7 +67,7 @@ const UserCard = ({ user }: { user: User }) => {
                 }}
             >
                 <FaMapMarkerAlt style={{ marginRight: 2 }} />
-                {user.location}
+                {user.location ? location : 'Unknown'}
             </Text>
         </Card>
     )

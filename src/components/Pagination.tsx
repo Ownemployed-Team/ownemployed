@@ -10,7 +10,7 @@ const pagination = css`
 `
 
 const paginationContainer = css`
-    display: inline-block;
+    display: flex;
     padding-left: 15px;
     padding-right: 15px;
 `
@@ -48,21 +48,7 @@ const activePage = css`
     background-color: #768598;
     color: white;
 `
-
-const handlePageClick = (data, pageSize) => {
-    let selected = data.selected
-    let offset = Math.ceil(selected * pageSize)
-
-    // getProjects({
-    //     variables: {
-    //         ...(searchWord ? { name: searchWord }: undefined)
-    //         skip: offset,
-    //         limit: pageSize
-    //     }
-    // })
-}
-
-const Pagination = ({ items, perPage = 10 }) => {
+const Pagination = ({ items, handler, perPage = 10 }) => {
     const pageSize = perPage
     const pageCount = Math.ceil(items.length / pageSize)
 
@@ -73,7 +59,8 @@ const Pagination = ({ items, perPage = 10 }) => {
             </Box>
             <Box>
                 <ReactPaginate
-                    onPageChange={data => handlePageClick(data, pageSize)}
+                    //onPageChange={data => handlePageClick(data, pageSize)}
+                    onPageChange={data => handler(data, pageSize)}
                     className={pagination}
                     previousClassName={pageChangeButton}
                     nextClassName={pageChangeButton}

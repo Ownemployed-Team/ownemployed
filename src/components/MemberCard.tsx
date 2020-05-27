@@ -1,9 +1,10 @@
 import React from 'react'
-import Card from 'components/Card'
-import Text from 'components/Text'
 import { Box, Image } from 'rebass'
 import { Link } from 'react-router-dom'
 import { UniqueInputFieldNamesRule } from 'graphql'
+
+import Card from 'components/Card'
+import Text from 'components/Text'
 
 const MemberCard = ({ member }) => {
     const {
@@ -20,8 +21,6 @@ const MemberCard = ({ member }) => {
         avatar,
     } = member
 
-    console.log('member', member)
-
     const url = `/members/${id}`
 
     return (
@@ -29,16 +28,18 @@ const MemberCard = ({ member }) => {
             <Card
                 sx={{
                     borderRadius: '0',
-                    bg: 'white',
-                    mx: 0,
-                    padding: 0,
+                    bg: '#F3F3F3',
+                    mx: '0',
+                    padding: '0',
+                    minHeight: 385,
                 }}
+                // style={{ margin: '8px' }}
             >
                 <Image src={avatar} m={'auto'} />
                 <Box
                     bg={'white'}
                     sx={{
-                        maxWidth: 512,
+                        minHeight: 235,
                         mx: 'auto',
                         p: 4,
                     }}
@@ -55,17 +56,23 @@ const MemberCard = ({ member }) => {
                         as="body"
                         sx={{
                             mb: 2,
+                            overflow: 'auto',
+                            textOverflow: 'ellipsis',
+                            maxHeight: 70,
                         }}
                     >
-                        {education}
+                        {location}
                     </Text>
                     <Text
                         as="body"
                         sx={{
                             mb: 2,
+                            overflow: 'auto',
+                            textOverflow: 'ellipsis',
+                            maxHeight: 70,
                         }}
                     >
-                        {location}
+                        {education}
                     </Text>
                 </Box>
             </Card>
