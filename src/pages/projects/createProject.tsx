@@ -17,7 +17,7 @@ import { Formik, Form, Field, FormikProps } from 'formik'
 import { projects as content } from 'data/content.json'
 import { useLazyQuery } from '@apollo/react-hooks'
 import GET_PROJECTS from 'graphql/get-projects'
-import UploadImage from 'components/UploadImage'
+import ImageUploader from 'components/common/ImageUploader'
 import Select from 'react-select'
 
 const CreateProject = () => {
@@ -156,7 +156,7 @@ const CreateProject = () => {
                                         </Text>
                                     </Box>
                                     <Box my={4}>
-                                        <UploadImage />
+                                        <ImageUploader />
                                     </Box>
                                     <Box my={4}>
                                         <Field
