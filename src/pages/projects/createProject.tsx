@@ -1,29 +1,21 @@
 import React, { useState } from 'react'
-// import { jsx } from '@emotion/core'
 import { css } from 'emotion'
-import { Box, Flex } from 'rebass'
+import { Box } from 'rebass'
 import Card from 'components/Card'
 import Button from 'components/Button'
-import ProjectCard from 'components/ProjectCard'
 import Text from 'components/Text'
 import sectorData from 'data/sector.json'
 import locationsData from 'data/locations.json'
 import projectsStatus from 'data/project-status.json'
 import skillsData from 'data/skills.json'
-import ReactPaginate from 'react-paginate'
-import { useLocation } from 'react-router'
-import ProjectFilter from 'components/ProjectFilter'
 import { Formik, Form, Field, FormikProps } from 'formik'
-import { projects as content } from 'data/content.json'
 import { useLazyQuery } from '@apollo/react-hooks'
-import GET_PROJECTS from 'graphql/get-projects'
 import ImageUploader from 'components/common/ImageUploader'
 import Select from 'react-select'
 
 const CreateProject = () => {
     const [sector, setSector] = useState([])
     const [skills, setSkills] = useState([])
-    const [location, setLocation] = useState([])
 
     const sectorOptions = sectorData.map(({ id, name }) => ({
         value: id,
@@ -46,21 +38,25 @@ const CreateProject = () => {
         setSkills(values)
     }
 
-    const handleLocationSelected = values => {
-        setLocation(values)
-    }
-
     const onSubmitSearch = (values, actions) => {
         setTimeout(() => {
-            //TODO : call backend to find project with query function getProjects
-            // const { search } = values
-            // getProjects({
-            // 	variables: {
-            // 		name: search
+            const skillsValues = skills.map(({ value }) => value)
+            const sectorValues = sector.map(({ value }) => value)
+            const mutatedValues = {
+                ...values,
+                sector: sectorValues,
+                skills: skillsValues,
+            }
 
+            //TODO : Add createProject request to BE.
+            // const { search } = values
+            // createProjects({
+            // 	variables: {
+            // 		...mutatedValues
             // 	}
             // })
-            alert(JSON.stringify(values, null, 2))
+
+            alert(JSON.stringify(mutatedValues, null, 2))
             actions.setSubmitting(false)
         }, 1000)
     }
@@ -244,15 +240,23 @@ const CreateProject = () => {
                                         />
                                     </Box>
                                     <Box my={4}>
-                                        <Select
-                                            className={selectLocation}
-                                            classNamePrefix="select"
-                                            onChange={handleLocationSelected}
-                                            options={locationOptions}
-                                            placeholder={'Location'}
-                                            styles={styles}
-                                            value={location}
-                                        />
+                                        <Field
+                                            as="select"
+                                            className={selectField}
+                                            name="location"
+                                        >
+                                            <option value={0}>
+                                                {'Location'}
+                                            </option>
+                                            {locationOptions &&
+                                                locationOptions.map(
+                                                    ({ label, value }) => (
+                                                        <option value={value}>
+                                                            {label}
+                                                        </option>
+                                                    )
+                                                )}
+                                        </Field>
                                     </Box>
                                     <Box my={4}>
                                         <Select
@@ -260,6 +264,7 @@ const CreateProject = () => {
                                             classNamePrefix="select"
                                             closeMenuOnSelect={false}
                                             isMulti
+                                            name="sector"
                                             onChange={handleSectorSelected}
                                             options={sectorOptions}
                                             placeholder={'Sector'}
@@ -273,6 +278,7 @@ const CreateProject = () => {
                                             classNamePrefix="select"
                                             closeMenuOnSelect={false}
                                             isMulti
+                                            name="skills"
                                             onChange={handleSkillsSelected}
                                             options={skillsOptions}
                                             placeholder={'Skills'}
