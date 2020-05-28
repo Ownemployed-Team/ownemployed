@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box, Flex } from 'rebass'
-import MemberCard from 'components/MemberCard'
+import UserCard from 'components/UserCard'
 
 const MembersList = ({ members }) => {
     return (
@@ -13,7 +13,7 @@ const MembersList = ({ members }) => {
                     px={2}
                     py={3}
                 >
-                    <MemberCard member={member} />
+                    <UserCard user={member} />
                 </Box>
             ))}
         </Flex>

@@ -1,67 +1,75 @@
 import React from 'react'
 import Card from 'components/Card'
 import Text from 'components/Text'
-import Link from 'components/Link'
-import { Image, Box, Flex } from 'rebass'
+import { Image } from 'rebass'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 
 export type User = {
     id: number
     name: string
+    signupDate: number
     summary: string
+    socialMedia: any[]
+    interests: any[]
+    lookingFor: string[]
+    skills: string[]
+    education: string
     location: string
-    image: string
+    avatar: string
+}
+
+function truncateValues(summary, location) {
+    if (summary && summary.length > 90)
+        summary = summary.substring(0, 90).concat(' ...')
+    if (location && location.length > 25)
+        location = location.substring(0, 25).concat(' ...')
+    return { summary: summary, location: location }
 }
 
 const UserCard = ({ user }: { user: User }) => {
     //TODO: Change the user type to fit the db
-    let avatar = user.image
-        ? user.image
+    let avatar = user.avatar
+        ? user.avatar
         : require('../static/avatars/user/default.png')
+    const { summary, location } = truncateValues(user.summary, user.location)
 
     return (
-        <Link
-            sx={{
-                width: ['100%', '100%', '30%'],
-                mt: 4,
+        <Card
+            style={{
+                height: '270px',
+                width: '265px',
+                padding: '16px 24px 24px 24px',
             }}
-            to={`/members/${user.id}`}
         >
-            <Card
+            <div style={{ textAlign: 'center' }}>
+                <Image
+                    src={avatar}
+                    sx={{
+                        height: '100px',
+                        width: '100px',
+                        borderRadius: 'round',
+                        margin: '0 auto',
+                    }}
+                />
+                <Text as="h3" sx={{ fontWeight: 'heading' }}>
+                    {user.name}
+                </Text>
+            </div>
+            <Text as="body" sx={{ fontSize: 'card', height: '70px' }}>
+                {user.summary ? summary : 'No summary yet'}
+            </Text>
+            <Text
+                as="body"
                 sx={{
-                    padding: 3,
-                    width: '100%',
+                    fontSize: 'card',
+                    color: 'primary',
+                    verticalAlign: 'bottom',
                 }}
             >
-                <Flex flexDirection="column">
-                    <Box>
-                        <Image
-                            src={avatar}
-                            sx={{
-                                height: '100px',
-                                borderRadius: 'round',
-                                margin: '0 auto',
-                            }}
-                        />
-                    </Box>
-                    <Box mt={3}>
-                        <Text as="h3" sx={{ fontWeight: 'heading' }}>
-                            {user.name}
-                        </Text>
-                        <Text as="body" sx={{ fontSize: 'card' }}>
-                            {user.summary.substring(0, 90).concat('...')}
-                        </Text>
-                        <Text
-                            as="body"
-                            sx={{ fontSize: 'card', color: 'primary' }}
-                        >
-                            <FaMapMarkerAlt style={{ marginRight: 2 }} />
-                            {user.location}
-                        </Text>
-                    </Box>
-                </Flex>
-            </Card>
-        </Link>
+                <FaMapMarkerAlt style={{ marginRight: 2 }} />
+                {user.location ? location : 'Unknown'}
+            </Text>
+        </Card>
     )
 }
 
