@@ -1,34 +1,76 @@
-import React, { useState } from 'react'
-import { Box, Button } from 'rebass'
-import { Input } from '@rebass/forms'
+import React, { useCallback, useState } from 'react'
+import { useDropzone } from 'react-dropzone'
+import { Box, Button, Flex, Image } from 'rebass'
+import Text from 'components/Text'
 import { useConfig } from 'config/Context'
 import { uploadImage } from 'lib/media'
 
-const ImageUploader = () => {
+function UploadImage() {
+    const [loading, setLoading] = useState(false)
+    const [uploadedImage, setUploadedImage] = useState(false)
     const { cloudinaryAPIEndpoint } = useConfig()
-
-    const [file, setFile] = useState(null)
-
     const uploadURL = `${cloudinaryAPIEndpoint}/image/upload`
+
+    const onDrop = useCallback(async acceptedFiles => {
+        setLoading(true)
+
+        const { secure_url } = await uploadImage(acceptedFiles[0], uploadURL)
+        const resizedImage = secure_url.replace(
+            '/upload',
+            '/upload/w_250,c_scale'
+        )
+
+        setLoading(false)
+        setUploadedImage(resizedImage)
+    }, [uploadURL])
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop,
+    })
 
     return (
         <Box
-            as="form"
-            onSubmit={e => {
-                e.preventDefault()
-                uploadImage(file, uploadURL)
+            width={[1 / 2]}
+            sx={{
+                borderRadius: '4px',
+                border: '1px dashed',
+                p: 2,
             }}
+            {...getRootProps()}
         >
-            <Input
-                // TODO refactor this so it looks nicer
-                type="file"
-                onChange={event => {
-                    setFile(event.target.files[0])
-                }}
-            />
-            <Button type="submit">Submit</Button>
+            <input {...getInputProps()} />
+            {loading ? (
+                <Text as="body">Loading ...</Text>
+            ) : isDragActive ? (
+                <Text as="body">Drop the files here ...</Text>
+            ) : (
+                <Box sx={{ textAlign: 'left' }}>
+                    <Box>
+                        <Text as="body">Image optional</Text>
+                    </Box>
+                    <Flex justifyContent="space-between">
+                        <Box>
+                            <Text as="body">
+                                Drop or choose file from computer
+                            </Text>
+                        </Box>
+                        <Box>
+                            <Button>Choose Image</Button>
+                        </Box>
+                    </Flex>
+                    {uploadedImage && (
+                        <Box width={250}>
+                            <Image
+                                src={uploadedImage}
+                                sx={{
+                                    width: ['100%'],
+                                }}
+                            ></Image>
+                        </Box>
+                    )}
+                </Box>
+            )}
         </Box>
     )
 }
 
-export default ImageUploader
+export default UploadImage
