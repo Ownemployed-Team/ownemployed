@@ -14,6 +14,22 @@ import ImageUploader from 'components/common/ImageUploader'
 import Select from 'react-select'
 import * as Yup from 'yup'
 
+const CreateProjectSchema = Yup.object().shape({
+    name: Yup.string()
+        .min(2, 'Too Short!')
+        .max(100, 'Too Long!')
+        .required('Required'),
+    shortDescription: Yup.string()
+        .min(2, 'Too Short!')
+        .max(100, 'Too Long!')
+        .required('Required'),
+    description: Yup.string().email('Invalid email').required('Required'),
+    projectStatus: Yup.string().required(),
+    location: Yup.string().required(),
+    sector: Yup.array().min(1),
+    skills: Yup.array().min(1),
+})
+
 const CreateProject = () => {
     const [sector, setSector] = useState([])
     const [skills, setSkills] = useState([])
@@ -168,10 +184,21 @@ const CreateProject = () => {
             </Card>
             <Card sx={{ borderRadius: 0 }}>
                 <Formik
-                    initialValues={{ search: '' }}
+                    initialValues={{
+                        name: '',
+                        usefulLinks: '',
+                        shortDescription: '',
+                        imageUrl: '',
+                        description: '',
+                        projectStatus: '',
+                        location: '',
+                        sector: [],
+                        skills: [],
+                    }}
                     onSubmit={onSubmitSearch}
+                    validationSchema={CreateProjectSchema}
                 >
-                    {(props: FormikProps<any>) => (
+                    {({ errors, touched }) => (
                         <Form>
                             <Box
                                 sx={{
@@ -186,18 +213,29 @@ const CreateProject = () => {
                                             name="name"
                                             placeholder="Name"
                                         />
+                                        {errors.name && touched.name ? (
+                                            <Text sx={{ color: 'red' }}>
+                                                {errors.name}
+                                            </Text>
+                                        ) : null}
                                     </Box>
                                     <Box my={4}>
                                         <Field
                                             as="textarea"
                                             className={areaInputField}
-                                            name="short-description"
+                                            name="shortDescription"
                                             placeholder="Short Description"
                                         />
                                         <Text as="body">
                                             Tell us about your project in 140
                                             charachters or less.
                                         </Text>
+                                        {errors.shortDescription &&
+                                        touched.shortDescription ? (
+                                            <Text sx={{ color: 'red' }}>
+                                                {errors.shortDescription}
+                                            </Text>
+                                        ) : null}
                                     </Box>
                                     <Box my={4}>
                                         <ImageUploader />
@@ -212,12 +250,18 @@ const CreateProject = () => {
                                             Describe the mission of your
                                             project.
                                         </Text>
+                                        {errors.description &&
+                                        touched.description ? (
+                                            <Text sx={{ color: 'red' }}>
+                                                {errors.description}
+                                            </Text>
+                                        ) : null}
                                     </Box>
                                     <Box my={4}>
                                         <Field
                                             as="select"
                                             className={selectField}
-                                            name="project-status"
+                                            name="projectStatus"
                                         >
                                             <option value={0}>
                                                 {'Select project status'}
@@ -231,14 +275,26 @@ const CreateProject = () => {
                                                     )
                                                 )}
                                         </Field>
+                                        {errors.projectStatus &&
+                                        touched.projectStatus ? (
+                                            <Text sx={{ color: 'red' }}>
+                                                {errors.projectStatus}
+                                            </Text>
+                                        ) : null}
                                     </Box>
                                     <Box my={4}>
                                         <Field
                                             as="textarea"
                                             className={selectField}
-                                            name="useful-links"
+                                            name="usefulLinks"
                                             placeholder="Useful Links (Optional)"
                                         />
+                                        {errors.usefulLinks &&
+                                        touched.usefulLinks ? (
+                                            <Text sx={{ color: 'red' }}>
+                                                {errors.usefulLinks}
+                                            </Text>
+                                        ) : null}
                                     </Box>
                                     <Box my={4}>
                                         <Field
@@ -258,6 +314,11 @@ const CreateProject = () => {
                                                     )
                                                 )}
                                         </Field>
+                                        {errors.location && touched.location ? (
+                                            <Text sx={{ color: 'red' }}>
+                                                {errors.location}
+                                            </Text>
+                                        ) : null}
                                     </Box>
                                     <Box my={4}>
                                         <Select
@@ -272,6 +333,11 @@ const CreateProject = () => {
                                             styles={styles}
                                             value={sector}
                                         />
+                                        {errors.sector && touched.sector ? (
+                                            <Text sx={{ color: 'red' }}>
+                                                {errors.sector}
+                                            </Text>
+                                        ) : null}
                                     </Box>
                                     <Box my={4}>
                                         <Select
@@ -286,6 +352,11 @@ const CreateProject = () => {
                                             styles={styles}
                                             value={skills}
                                         />
+                                        {errors.skills && touched.skills ? (
+                                            <Text sx={{ color: 'red' }}>
+                                                {errors.skills}
+                                            </Text>
+                                        ) : null}
                                     </Box>
                                 </Box>
                             </Box>
