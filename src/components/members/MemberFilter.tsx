@@ -79,6 +79,18 @@ const MemberFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
         },
     }
 
+    const searchButton = css`
+        width: 100%;
+        padding: 10px;
+        height: 34px;
+        align-items: center;
+        background-color: hsl(0, 0%, 100%);
+        border-color: hsl(0, 0%, 80%);
+        border-radius: 4px;
+        border-style: solid;
+        border-width: 1px;
+    `
+
     return (
         <Card
             sx={{
@@ -150,17 +162,7 @@ const MemberFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
                             {(props: FormikProps<any>) => (
                                 <Form>
                                     <Field
-                                        className={css`
-                                            width: 100%;
-                                            padding: 10px;
-                                            height: 34px;
-                                            align-items: center;
-                                            background-color: hsl(0, 0%, 100%);
-                                            border-color: hsl(0, 0%, 80%);
-                                            border-radius: 4px;
-                                            border-style: solid;
-                                            border-width: 1px;
-                                        `}
+                                        className={searchButton}
                                         name="search"
                                         placeholder="Search"
                                     />
