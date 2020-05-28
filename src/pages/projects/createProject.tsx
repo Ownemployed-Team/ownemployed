@@ -74,6 +74,52 @@ const CreateProject = () => {
         border-radius: 4px;
         border-style: solid;
         border-width: 1px;
+
+        ::placeholder {
+            color: #6f63ad;
+            vertical-align: top;
+        }
+    `
+
+    const selectField = css`
+        color: #6f63ad;
+        width: 100%;
+        padding: 10px;
+        height: 64px;
+        align-items: center;
+        background-color: hsl(0, 0%, 100%);
+        border-color: hsl(0, 0%, 80%);
+        border-radius: 4px;
+        border-style: solid;
+        border-width: 1px;
+
+        ::placeholder {
+            color: #6f63ad;
+            vertical-align: top;
+        }
+    `
+
+    const areaInputField = css`
+        width: 100%;
+        padding: 10px;
+        height: 100px;
+        align-items: center;
+        background-color: hsl(0, 0%, 100%);
+        border-color: hsl(0, 0%, 80%);
+        border-radius: 4px;
+        border-style: solid;
+        border-width: 1px;
+
+        ::placeholder {
+            color: #6f63ad;
+            vertical-align: top;
+        }
+    `
+
+    const selectLocation = css`
+        .select__placeholder {
+            color: #6f63ad;
+        }
     `
 
     const styles = {
@@ -146,13 +192,14 @@ const CreateProject = () => {
                                     </Box>
                                     <Box my={4}>
                                         <Field
-                                            className={normalInputField}
+                                            as="textarea"
+                                            className={areaInputField}
                                             name="short-description"
                                             placeholder="Short Description"
                                         />
                                         <Text as="body">
-                                            Give a brief description about your
-                                            project.{' '}
+                                            Tell us about your project in 140
+                                            charachters or less.
                                         </Text>
                                     </Box>
                                     <Box my={4}>
@@ -172,9 +219,8 @@ const CreateProject = () => {
                                     <Box my={4}>
                                         <Field
                                             as="select"
-                                            className={normalInputField}
-                                            name="description"
-                                            placeholder="Project Status"
+                                            className={selectField}
+                                            name="project-status"
                                         >
                                             <option value={0}>
                                                 {'Select project status'}
@@ -192,14 +238,14 @@ const CreateProject = () => {
                                     <Box my={4}>
                                         <Field
                                             as="textarea"
-                                            className={normalInputField}
+                                            className={selectField}
                                             name="useful-links"
                                             placeholder="Useful Links (Optional)"
                                         />
                                     </Box>
                                     <Box my={4}>
                                         <Select
-                                            className="location"
+                                            className={selectLocation}
                                             classNamePrefix="select"
                                             onChange={handleLocationSelected}
                                             options={locationOptions}
@@ -210,7 +256,7 @@ const CreateProject = () => {
                                     </Box>
                                     <Box my={4}>
                                         <Select
-                                            className="sector"
+                                            className={selectLocation}
                                             classNamePrefix="select"
                                             closeMenuOnSelect={false}
                                             isMulti
@@ -223,7 +269,7 @@ const CreateProject = () => {
                                     </Box>
                                     <Box my={4}>
                                         <Select
-                                            className="skills"
+                                            className={selectLocation}
                                             classNamePrefix="select"
                                             closeMenuOnSelect={false}
                                             isMulti
