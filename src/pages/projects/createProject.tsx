@@ -12,6 +12,7 @@ import { Formik, Form, Field, FormikProps } from 'formik'
 import { useLazyQuery } from '@apollo/react-hooks'
 import ImageUploader from 'components/common/ImageUploader'
 import Select from 'react-select'
+import * as Yup from 'yup'
 
 const CreateProject = () => {
     const [sector, setSector] = useState([])
