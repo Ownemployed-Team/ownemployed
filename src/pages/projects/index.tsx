@@ -11,7 +11,7 @@ const Projects = ({ match }) => {
     return (
         <Layout boxed>
             <Switch>
-                <Route path={'/'} component={AllProjects} exact />
+                <Route path={'/projects'} component={AllProjects} exact />
                 <Route path={'/create-project'} component={CreateProject} />
                 <Route
                     path={`${match.url}/:businessProfileId`}
