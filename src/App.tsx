@@ -4,7 +4,7 @@ import PrivateRoute from 'components/PrivateRoute'
 import ThemeProvider from 'components/ThemeProvider'
 import history from 'utils/history'
 import 'reset.css'
-
+import AboutPage from 'pages/about'
 import Home from 'pages/home/home'
 import UserProfile from 'pages/user'
 import Projects from 'pages/projects'
@@ -19,6 +19,7 @@ function App() {
             <ThemeProvider>
                 <Switch>
                     <Route component={Home} path="/" exact={true} />
+                    <Route path="/about" component={AboutPage} />
                     <Route path="/community" exact={true} />
                     <Route path="/auth" exact={true} />
                     <Route path="/members" component={Members} />
