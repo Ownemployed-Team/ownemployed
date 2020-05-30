@@ -11,6 +11,7 @@ const menuItems = [
     { label: 'Learn', url: '/learn' },
     { label: 'Community', url: 'https://ownemployed.tribe.so/' },
     { label: 'Account', url: '/profile', isPrivate: true },
+    { label: 'Create project', url: '/create-project', isPrivate: true },
     { label: 'Login/Register', url: '/auth', isAuth: true },
 ]
 

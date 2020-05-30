@@ -10,7 +10,6 @@ import UserProfile from 'pages/user'
 import Projects from 'pages/projects'
 import Members from 'pages/members'
 import NoMatch from 'pages/404/404'
-import CreateProject from 'pages/projects/createProject'
 //import SignUpForm from 'pages/signup/signup'
 
 function App() {
@@ -25,11 +24,7 @@ function App() {
                     <Route path="/members" component={Members} />
                     <Route path="/projects" component={Projects} />
                     <PrivateRoute path="/profile" component={UserProfile} />
-                    <Route
-                        component={CreateProject}
-                        exact={true}
-                        path="/create-project/"
-                    />
+                    <Route path="/create-project/" component={Projects} />
 
                     <Route component={NoMatch} />
 
