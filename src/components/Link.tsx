@@ -9,13 +9,13 @@ import { Link as RebassLink, Box } from 'rebass'
 import { css } from 'emotion'
 
 type LinkProps = {
-    to: string
     children: ReactChildren | ReactElement | ReactChild | string | string[]
     className?: string
-    sx?: object
     css?: object
-    rest?: any
+    props?: any
     style?: object
+    sx?: object
+    to: string
     variant?: string
 }
 
@@ -28,7 +28,7 @@ export const Link: FunctionComponent<LinkProps> = ({
     to,
     variant,
     sx,
-    ...rest
+    ...props
 }) => {
     if (to.startsWith('http') || to.startsWith('mailto')) {
         return (
@@ -38,7 +38,7 @@ export const Link: FunctionComponent<LinkProps> = ({
                 href={to}
                 variant={variant || 'primary'}
                 sx={{ ...sx }}
-                {...rest}
+                {...props}
             >
                 {children}
             </RebassLink>
@@ -46,7 +46,7 @@ export const Link: FunctionComponent<LinkProps> = ({
     } else {
         return (
             <Box sx={{ display: 'inline', ...sx }}>
-                <ReactRouterLink to={to} className={linkStyle} {...rest}>
+                <ReactRouterLink to={to} className={linkStyle} {...props}>
                     {children}
                 </ReactRouterLink>
             </Box>

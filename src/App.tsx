@@ -24,7 +24,7 @@ function App() {
                     <Route path="/members" component={Members} />
                     <Route path="/projects" component={Projects} />
                     <PrivateRoute path="/profile" component={UserProfile} />
-                    <Route path="/create-project/" component={Projects} />
+                    <Route path="/create-project" component={Projects} />
 
                     <Route component={NoMatch} />
 
