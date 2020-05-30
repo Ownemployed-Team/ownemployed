@@ -5,12 +5,14 @@ import Layout from 'components/Layout'
 
 import ProjectProfile from 'pages/projects/profile'
 import AllProjects from 'pages/projects/projects'
+import CreateProject from 'pages/projects/createProject'
 
 const Projects = ({ match }) => {
     return (
         <Layout boxed>
             <Switch>
-                <Route path={`${match.url}/`} component={AllProjects} exact />
+                <Route path={'/projects'} component={AllProjects} exact />
+                <Route path={'/create-project'} component={CreateProject} />
                 <Route
                     path={`${match.url}/:businessProfileId`}
                     component={ProjectProfile}

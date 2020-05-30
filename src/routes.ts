@@ -1,3 +1,4 @@
+import About from 'pages/about/about'
 import Home from 'pages/home/home'
 import ProjectProfile from 'pages/projects/profile'
 import CreateProject from 'pages/projects/createProject'
@@ -7,6 +8,11 @@ import Members from 'pages/members/members'
 import SignUpForm from 'pages/signup/signup'
 
 export default [
+    {
+        component: About,
+        path: '/about',
+        exact: true,
+    },
     {
         component: Home,
         path: '/',

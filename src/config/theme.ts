@@ -12,7 +12,7 @@ export default {
     colors: {
         primary: '#6F63AD',
         primaryHover: '#D0CDE1',
-        secondary: '#FFDA63',
+        secondary: '#124780',
         secondaryHover: '#FFE180',
         alert: '#FF5252',
         alertHover: '#ff8080',

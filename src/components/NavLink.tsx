@@ -14,7 +14,7 @@ type NavLinkProps = {
     className?: string
     sx?: object
     css?: object
-    rest?: object
+    props?: object
     onClick?: Function
 }
 
@@ -22,7 +22,7 @@ export const NavLink: FunctionComponent<NavLinkProps> = ({
     children,
     to,
     onClick,
-    ...rest
+    ...props
 }) => {
     if (onClick) {
         // TODO Fix button styling
@@ -40,7 +40,7 @@ export const NavLink: FunctionComponent<NavLinkProps> = ({
                         backgroundColor: 'primaryHover',
                     },
                 }}
-                {...rest}
+                {...props}
             >
                 {children}
             </Button>
@@ -61,7 +61,7 @@ export const NavLink: FunctionComponent<NavLinkProps> = ({
                     color: 'black',
                 },
             }}
-            {...rest}
+            {...props}
         >
             {children}
         </Link>
