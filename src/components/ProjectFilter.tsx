@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { css } from 'emotion'
+import facepaint from 'facepaint'
 import { Text } from 'components/Text'
 import sectorData from 'data/sector.json'
 import locationsData from 'data/locations.json'
@@ -49,20 +50,42 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
         setProjectStatus(values)
     }
 
+    const mq = facepaint([
+        '@media(min-width: 720px)',
+        '@media(min-width: 920px)',
+        '@media(min-width: 1440px)',
+    ])
+
+    const filterFieldsCss = css(
+        mq({
+            flexDirection: ['column', 'row', 'row'],
+        })
+    )
+
     const styles = {
         control: (base, state) => {
             const { className } = (state || {}).selectProps
+            const filterFieldCss = mq({
+                ...base,
+                width: ['100%', 150, 150],
+            })
+
+            const projectStatusCss = mq({
+                ...base,
+                width: ['100%', 160, 160],
+            })
+            console.log(filterFieldCss)
             switch (className) {
                 case 'sector':
-                    return { ...base, width: 150 }
+                    return filterFieldCss
                 case 'skills':
-                    return { ...base, width: 150 }
+                    return filterFieldCss
                 case 'location':
-                    return { ...base, width: 150 }
+                    return filterFieldCss
                 case 'project-status':
-                    return { ...base, width: 160 }
+                    return projectStatusCss
                 default:
-                    return { ...base, width: 150 }
+                    return filterFieldCss
             }
         },
         menu: (base, state) => {
@@ -95,11 +118,13 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
                 m: 2,
             }}
         >
-            <Flex>
-                <Box width={3 / 4}>
-                    <Flex m={1}>
-                        <Text as="h3">Filter</Text>
-                        <Box mx={2}>
+            <Flex flexWrap="wrap">
+                <Box width={[1, 1, 3 / 4]}>
+                    <Flex className={filterFieldsCss} flexWrap="wrap" m={1}>
+                        <Box>
+                            <Text as="h3">Filter</Text>
+                        </Box>
+                        <Box mx={[0, 2, 2]}>
                             <Select
                                 className="sector"
                                 classNamePrefix="select"
@@ -112,7 +137,7 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
                                 value={sector}
                             />
                         </Box>
-                        <Box mx={2}>
+                        <Box mx={[0, 2, 2]}>
                             <Select
                                 className="skills"
                                 classNamePrefix="select"
@@ -125,7 +150,7 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
                                 value={skills}
                             />
                         </Box>
-                        <Box mx={2}>
+                        <Box mx={[0, 2, 2]}>
                             <Select
                                 className="location"
                                 classNamePrefix="select"
@@ -138,7 +163,7 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
                                 value={location}
                             />
                         </Box>
-                        <Box mx={2}>
+                        <Box mx={[0, 2, 2]}>
                             <Select
                                 className="project-status"
                                 classNamePrefix="select"
@@ -154,12 +179,12 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
                     </Flex>
                 </Box>
                 <Box
-                    width={1 / 4}
+                    width={[1, 1, 1 / 4]}
                     sx={{
                         alignContent: 'right',
                     }}
                 >
-                    <Flex
+                    <Box
                         m={1}
                         sx={{
                             justifyContent: 'flex-end',
@@ -189,7 +214,7 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
                                 </Form>
                             )}
                         </Formik>
-                    </Flex>
+                    </Box>
                 </Box>
             </Flex>
         </Card>
