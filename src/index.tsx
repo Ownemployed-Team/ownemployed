@@ -1,38 +1,52 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './App'
-import * as serviceWorker from './serviceWorker'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from '@apollo/react-hooks'
+
+import App from './App'
 import { Auth0Provider } from 'lib/react-auth0-spa'
-import ConfigContext from 'config/Context'
+import * as serviceWorker from './serviceWorker'
+import { useConfig } from 'config/Context'
 import history from 'utils/history'
+import { CloudinaryContext } from 'cloudinary-react'
 
 const Application = () => {
-    const { apiURL, auth0Domain, auth0ClientID, auth0Audience } = useContext(
-        ConfigContext
-    )
+    const {
+        apiURL,
+        auth0Domain,
+        auth0ClientID,
+        auth0Audience,
+        cloudinaryCloudName,
+        cloudinaryAPIKey,
+        cloudinaryAPISecret,
+    } = useConfig()
 
     const client = new ApolloClient({
         uri: `${apiURL}/graphql`,
     })
 
     return (
-        <ApolloProvider client={client}>
-            <React.StrictMode>
-                <Auth0Provider
-                    onRedirectCallback={onRedirectCallback}
-                    options={{
-                        domain: auth0Domain,
-                        client_id: auth0ClientID,
-                        redirect_uri: window.location.origin,
-                        audience: auth0Audience,
-                    }}
-                >
-                    <App />
-                </Auth0Provider>
-            </React.StrictMode>
-        </ApolloProvider>
+        <CloudinaryContext
+            cloudName={cloudinaryCloudName}
+            apiKey={cloudinaryAPIKey}
+            apiSecret={cloudinaryAPISecret}
+        >
+            <ApolloProvider client={client}>
+                <React.StrictMode>
+                    <Auth0Provider
+                        onRedirectCallback={onRedirectCallback}
+                        options={{
+                            domain: auth0Domain,
+                            client_id: auth0ClientID,
+                            redirect_uri: window.location.origin,
+                            audience: auth0Audience,
+                        }}
+                    >
+                        <App />
+                    </Auth0Provider>
+                </React.StrictMode>
+            </ApolloProvider>
+        </CloudinaryContext>
     )
 }
 

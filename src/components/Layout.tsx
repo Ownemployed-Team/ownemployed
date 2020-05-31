@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Box, Flex } from 'rebass'
+import CookieConsent from 'react-cookie-consent'
 
 import NavigationBar from 'components/NavigationBar'
 import Footer from 'components/Footer'
@@ -11,6 +12,7 @@ const menuItems = [
     { label: 'Learn', url: '/learn' },
     { label: 'Community', url: 'https://ownemployed.tribe.so/' },
     { label: 'Account', url: '/profile', isPrivate: true },
+    { label: 'Create project', url: '/create-project', isPrivate: true },
     { label: 'Login/Register', url: '/auth', isAuth: true },
 ]
 
@@ -45,6 +47,17 @@ const Layout = ({ children, boxed = true }) => {
             >
                 <NavigationBar items={menuItems} />
                 <Main boxed={boxed}>{children}</Main>
+                <CookieConsent
+                    acceptOnScroll={true}
+                    buttonStyle={{}}
+                    buttonText="Agree"
+                    cookieName="ownemployed-cookie-accepted"
+                    contentStyle={{ flex: 'none' }}
+                    location="bottom"
+                    style={{ justifyContent: 'center', background: '#124780' }}
+                >
+                    This website uses cookies to enhance the user experience.
+                </CookieConsent>
                 <Footer />
             </Flex>
         </>

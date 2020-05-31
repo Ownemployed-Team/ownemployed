@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Flex, Box, Image } from 'rebass'
-
+import { NavLink } from 'components/NavLink'
 import Text from 'components/Text'
 import Link from 'components/Link'
 import Layout from 'components/Layout'
@@ -9,7 +9,7 @@ import Card from 'components/Card'
 
 const Home = () => {
     return (
-        <Layout>
+        <Layout boxed={false}>
             <Hero />
             <Actions />
             <Initiative />
@@ -27,41 +27,48 @@ function Hero() {
         <>
             <Flex mt={5} flexWrap="wrap" pr={[4, 4, 6]} pl={[4, 4, 6]}>
                 <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
-                    <Text
-                        as="h3"
-                        sx={{
-                            lineHeight: '42px',
-                        }}
-                    >
-                        Unemployed?
-                    </Text>
-                    <Text
-                        as="h1"
-                        sx={{
-                            lineHeight: '52px',
-                            fontWeight: 'bold',
-                        }}
-                    >
-                        No,{' '}
-                        <span style={{ textDecoration: 'underline' }}>Own</span>
-                        employed
-                    </Text>
-                    <Text as="body">
-                        Why wait to be employed, when you can be an
-                        entrepreneur?
-                    </Text>
-                    <Button
-                        sx={{
-                            marginTop: 4,
-                            pt: 2,
-                            pb: 2,
-                            pl: 4,
-                            pr: 4,
-                            fontSize: 'body',
-                        }}
-                    >
-                        Find a Project
-                    </Button>
+                    <Box>
+                        <Text
+                            as="h3"
+                            sx={{
+                                lineHeight: '42px',
+                            }}
+                        >
+                            Unemployed?
+                        </Text>
+                    </Box>
+                    <Box>
+                        <Text
+                            as="h1"
+                            sx={{
+                                lineHeight: '52px',
+                                fontWeight: 'bold',
+                            }}
+                        >
+                            No,{' '}
+                            <span style={{ textDecoration: 'underline' }}>
+                                Own
+                            </span>
+                            employed
+                        </Text>
+                    </Box>
+                    <Box>
+                        <Text as="body">
+                            Why wait to be employed, when you can be an
+                            entrepreneur?
+                        </Text>
+                    </Box>
+                    <Box my={2}>
+                        <NavLink
+                            to="/projects"
+                            sx={{
+                                pt: 6,
+                                fontSize: 'body',
+                            }}
+                        >
+                            <Button>Find a Project</Button>
+                        </NavLink>
+                    </Box>
                 </Box>
 
                 <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>

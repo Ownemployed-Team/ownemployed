@@ -1,11 +1,18 @@
+import About from 'pages/about/about'
 import Home from 'pages/home/home'
 import ProjectProfile from 'pages/projects/profile'
+import CreateProject from 'pages/projects/createProject'
 import MemberProfile from 'pages/members/profile'
 import Projects from 'pages/projects/projects'
 import Members from 'pages/members/members'
 import SignUpForm from 'pages/signup/signup'
 
 export default [
+    {
+        component: About,
+        path: '/about',
+        exact: true,
+    },
     {
         component: Home,
         path: '/',
@@ -32,5 +39,9 @@ export default [
     {
         component: SignUpForm,
         path: '/sign-up',
+    },
+    {
+        component: CreateProject,
+        path: '/create-project',
     },
 ]
