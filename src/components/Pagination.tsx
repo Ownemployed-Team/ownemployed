@@ -51,7 +51,7 @@ const activePage = css`
 const Pagination = ({ items, handler, perPage = 10 }) => {
     const pageSize = perPage
     const pageCount = Math.ceil(items.length / pageSize)
-
+    const handleWrapper = pageSize => data => handler(data, pageSize)
     return (
         <Flex justifyContent="space-between" width="100%">
             <Box>
@@ -60,7 +60,7 @@ const Pagination = ({ items, handler, perPage = 10 }) => {
             <Box>
                 <ReactPaginate
                     //onPageChange={data => handlePageClick(data, pageSize)}
-                    onPageChange={data => handler(data, pageSize)}
+                    onPageChange={handleWrapper(pageSize)}
                     className={pagination}
                     previousClassName={pageChangeButton}
                     nextClassName={pageChangeButton}

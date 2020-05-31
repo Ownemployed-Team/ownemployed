@@ -74,7 +74,6 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
                 ...base,
                 width: ['100%', 160, 160],
             })
-            console.log(filterFieldCss)
             switch (className) {
                 case 'sector':
                     return filterFieldCss
