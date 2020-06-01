@@ -25,9 +25,9 @@ const AllProjects = () => {
         console.log('useEffect')
         if (!loading && projects.length > 0) {
             console.log('useEffect pageIndex: ', pageIndex)
-            setItems([...items, ...projects]) //items
+            setItems(items => [...items, ...projects])
         }
-    }, [items, loading, pageIndex, projects])
+    }, [loading, pageIndex, projects])
 
     if (called && loading) {
         return (
