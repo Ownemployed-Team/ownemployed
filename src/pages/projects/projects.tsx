@@ -115,9 +115,7 @@ const AllProjects = () => {
                         </div>
                     }
                 >
-                    <div className="tracks">
-                        <ProjectsList projects={items} />
-                    </div>
+                    <ProjectsList projects={items} />
                 </InfiniteScroll>
             </Box>
             <Box display={['none', 'block', 'block']}>
