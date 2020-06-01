@@ -10,6 +10,7 @@ import Card from 'components/Card'
 import { Box, Flex } from 'rebass'
 import { Formik, Form, Field, FormikProps } from 'formik'
 import Select from 'react-select'
+import theme from 'config/theme'
 
 const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
     const [sector, setSector] = useState([])
@@ -50,11 +51,9 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
         setProjectStatus(values)
     }
 
-    const mq = facepaint([
-        '@media(min-width: 720px)',
-        '@media(min-width: 920px)',
-        '@media(min-width: 1440px)',
-    ])
+    const mq = facepaint(
+        theme.breakpoints.map(breakpoint => `@media(min-width: ${breakpoint})`)
+    )
 
     const filterFieldsCss = css(
         mq({
