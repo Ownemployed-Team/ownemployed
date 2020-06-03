@@ -18,7 +18,6 @@ const AllProjects = () => {
     const [searchWord, setSearchWord] = useState()
     const [getProjectsQuery, result] = useLazyQuery(GET_PROJECTS)
     const { loading, called, data = {} } = result
-
     const projects = data.getProjects || []
 
     useEffect(() => {
@@ -66,14 +65,6 @@ const AllProjects = () => {
             getProjectsQuery()
             setPageIndex(page)
         }
-
-        // getProjectsQuery({
-        //     variables: {
-        //         ...(searchWord ? { name: searchWord }: undefined)
-        //         skip: offset,
-        //         limit: 10
-        //     }
-        // })
     }
 
     return (
