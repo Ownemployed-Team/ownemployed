@@ -9,7 +9,7 @@ import Footer from 'components/Footer'
 const menuItems = [
     { label: 'Projects', url: '/projects' },
     { label: 'Members', url: '/members' },
-    { label: 'Learn', url: '/learn' },
+    // { label: 'Learn', url: '/learn' },
     { label: 'Community', url: 'https://ownemployed.tribe.so/' },
     { label: 'Account', url: '/profile', isPrivate: true },
     { label: 'Create project', url: '/create-project', isPrivate: true },
