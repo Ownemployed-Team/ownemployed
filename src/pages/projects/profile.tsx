@@ -1,20 +1,36 @@
 import * as React from 'react'
+
+import { useQuery } from '@apollo/react-hooks'
+import GET_PROJECT from 'graphql/get-project'
+
 import Card from 'components/Card'
 import Text from 'components/Text'
 import { useParams } from 'react-router-dom'
 import { Box, Flex, Image } from 'rebass'
-import projects from 'data/projects.json'
 
 const ProjectProfile = ({ match }) => {
-    //const { businessProfileId } = (match || {}).params || {}
+    const { projectProfileId } = useParams()
+    const result = useQuery(GET_PROJECT, {
+        variables: {
+            projectId: projectProfileId,
+        },
+    })
+    const { loading, called, data = {} } = result
+    const project = data.getProject || []
 
-    const { businessProfileId } = useParams()
-
-    const project = projects[businessProfileId]
+    if (called && loading) {
+        return (
+            <>
+                <Text> Loading </Text>
+            </>
+        )
+    }
 
     const {
         id,
         name,
+        creationDate,
+        ownerID,
         status,
         contributors,
         tagline,
@@ -23,19 +39,10 @@ const ProjectProfile = ({ match }) => {
         channels,
     } = project
 
-    // const owners = ownerIds
-    //     .map(ownedId => users[ownedId])
-    //     .filter(x => x !== undefined)
-    // let image = require('static/imgs/businesses/default.jpg')
-    // try {
-    //     image = require(`static/imgs/businesses/${project.id}.png`)
-    // } catch (e) {}
-    // const linkRenderer = key =>
-    //     '/projects?selected=' + encodeURIComponent(JSON.stringify([key]))
     return (
         <>
-            <Flex>
-                <Box width={[2 / 3]}>
+            <Box display={['block', 'block', 'flex']}>
+                <Box width={[1, 1, 2 / 3]}>
                     <Card
                         sx={{
                             borderRadius: 2,
@@ -80,7 +87,7 @@ const ProjectProfile = ({ match }) => {
                         </Box>
                     </Card>
                 </Box>
-                <Box width={[1 / 3]}>
+                <Box width={[1, 1, 1 / 3]}>
                     <Card
                         sx={{
                             borderRadius: 2,
@@ -104,9 +111,9 @@ const ProjectProfile = ({ match }) => {
                         </Box>
                     </Card>
                 </Box>
-            </Flex>
-            <Flex>
-                <Box width={[2 / 3]}>
+            </Box>
+            <Box display={['block', 'block', 'flex']}>
+                <Box width={[1, 1, 2 / 3]}>
                     <Card
                         sx={{
                             borderRadius: 2,
@@ -169,7 +176,7 @@ const ProjectProfile = ({ match }) => {
                         </Box>
                     </Card>
                 </Box>
-                <Box width={[1 / 3]}>
+                <Box width={[1, 1, 1 / 3]}>
                     <Card
                         sx={{
                             borderRadius: 2,
@@ -234,7 +241,7 @@ const ProjectProfile = ({ match }) => {
                         </Box>
                     </Card>
                 </Box>
-            </Flex>
+            </Box>
         </>
     )
 }

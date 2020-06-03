@@ -1,16 +1,33 @@
 import * as React from 'react'
+
+import { useQuery } from '@apollo/react-hooks'
+import GET_USER from 'graphql/get-user'
+
 import Card from 'components/Card'
 import Button from 'components/Button'
 import ProjectCard from 'components/ProjectCard'
 import Text from 'components/Text'
 import { useParams } from 'react-router-dom'
 import { Box, Flex, Image } from 'rebass'
-import members from 'data/members.json'
 
 const MemberProfile = ({ match }) => {
     const { memberProfileId } = useParams()
-    //const { memberProfileId } = (match || {}).params || {}
-    const member = members[memberProfileId]
+    const result = useQuery(GET_USER, {
+        variables: {
+            userId: memberProfileId,
+        },
+    })
+    const { loading, called, data = {} } = result
+    const member = data.getUser || []
+
+    if (called && loading) {
+        return (
+            <>
+                <Text> Loading </Text>
+            </>
+        )
+    }
+
     const {
         id,
         name,
@@ -44,8 +61,8 @@ const MemberProfile = ({ match }) => {
         ) || {}
     return (
         <>
-            <Flex>
-                <Box width={[1 / 3]}>
+            <Box display={['block', 'block', 'flex']}>
+                <Box width={[1, 1, 1 / 3]}>
                     <Card
                         sx={{
                             borderRadius: 2,
@@ -83,10 +100,10 @@ const MemberProfile = ({ match }) => {
                                 <Text as="body" sx={{ textAlign: 'center' }}>
                                     title
                                 </Text>
-                                <Text sx={{ textAlign: 'center' }}>
-                                    First name Last name
+                                <Text sx={{ textAlign: 'center' }}>{name}</Text>
+                                <Text as="body" sx={{ textAlign: 'center' }}>
+                                    {location}
                                 </Text>
-                                <Text>{location}</Text>
                             </Box>
                         </Box>
                         <Box sx={{ p: 4 }}>
@@ -148,7 +165,7 @@ const MemberProfile = ({ match }) => {
                         </Box>
                     </Card>
                 </Box>
-                <Box width={[2 / 3]}>
+                <Box width={[1, 1, 2 / 3]}>
                     <Card
                         sx={{
                             borderRadius: 2,
@@ -308,7 +325,7 @@ const MemberProfile = ({ match }) => {
                         </Box>
                     </Card>
                 </Box>
-            </Flex>
+            </Box>
         </>
     )
 }
