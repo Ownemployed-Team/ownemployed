@@ -15,14 +15,19 @@ const ProjectCard = ({ project }) => {
         contributors,
         description,
         id,
+        imageUrl,
         keyActivities,
         name,
         status,
     } = project
-    let avatar = require('../static/avatars/business/default.png')
-    try {
-        avatar = require(`../static/avatars/business/${id}.png`)
-    } catch (e) {}
+
+    const avatar =
+        'https://res.cloudinary.com/ownemployed/image/upload/v1590873376/user_uploads/3D-visning_cygugz.jpg'
+    const transformedAvatar = avatar.replace(
+        '/upload',
+        `/upload/w_auto:100:400`
+    )
+
     return (
         <Link to={`/projects/${id}`} style={{ textDecoration: 'none' }}>
             <Card
@@ -35,7 +40,7 @@ const ProjectCard = ({ project }) => {
                 }}
                 // style={{ margin: '8px' }}
             >
-                <Image src={avatar} m={'auto'} />
+                <Image src={transformedAvatar} width={'100%'} m={'auto'} />
                 <Box
                     bg={'white'}
                     sx={{
