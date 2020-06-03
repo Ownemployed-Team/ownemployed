@@ -53,31 +53,34 @@ const Pagination = ({ items, handler, perPage = 10 }) => {
     const pageCount = Math.ceil(items.length / pageSize)
     const handleWrapper = pageSize => data => handler(data, pageSize)
     return (
-        <Flex justifyContent="space-between" width="100%">
-            <Box>
-                <ItemsCount items={items} size={10} />
-            </Box>
-            <Box>
-                <ReactPaginate
-                    //onPageChange={data => handlePageClick(data, pageSize)}
-                    onPageChange={handleWrapper(pageSize)}
-                    className={pagination}
-                    previousClassName={pageChangeButton}
-                    nextClassName={pageChangeButton}
-                    previousLabel="<"
-                    nextLabel=">"
-                    breakLabel="..."
-                    //breakClassName={pageBreak}
-                    pageCount={pageCount}
-                    marginPagesDisplayed={2}
-                    pageRangeDisplayed={5}
-                    containerClassName={paginationContainer}
-                    pageClassName={page}
-                    subContainerClassName={paginationSubContainer}
-                    activeClassName={activePage}
-                />
-            </Box>
-        </Flex>
+        <>
+            <hr />
+            <Flex justifyContent="space-between" width="100%">
+                <Box>
+                    <ItemsCount items={items} size={10} />
+                </Box>
+                <Box>
+                    <ReactPaginate
+                        //onPageChange={data => handlePageClick(data, pageSize)}
+                        onPageChange={handleWrapper(pageSize)}
+                        className={pagination}
+                        previousClassName={pageChangeButton}
+                        nextClassName={pageChangeButton}
+                        previousLabel="<"
+                        nextLabel=">"
+                        breakLabel="..."
+                        //breakClassName={pageBreak}
+                        pageCount={pageCount}
+                        marginPagesDisplayed={2}
+                        pageRangeDisplayed={5}
+                        containerClassName={paginationContainer}
+                        pageClassName={page}
+                        subContainerClassName={paginationSubContainer}
+                        activeClassName={activePage}
+                    />
+                </Box>
+            </Flex>
+        </>
     )
 }
 
