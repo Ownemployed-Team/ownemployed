@@ -27,6 +27,12 @@ export const Footer = ({ ...props }) => {
                     About
                 </Link>
             </Box>
+            <Box mr={4}>
+                <Text as="h3">Terms of use</Text>
+                <Link to="/terms-of-use" sx={{ color: 'muted' }}>
+                    Terms of Use
+                </Link>
+            </Box>
             <Box>
                 <Text as="h3">Contact</Text>
                 <Link to="mailto:ownemployed@gmail.com" sx={{ color: 'muted' }}>

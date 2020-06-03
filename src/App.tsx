@@ -10,6 +10,7 @@ import UserProfile from 'pages/user'
 import Projects from 'pages/projects'
 import Members from 'pages/members'
 import NoMatch from 'pages/404/404'
+import TermsOfUsePage from 'pages/termsOfUse'
 //import SignUpForm from 'pages/signup/signup'
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/projects" component={Projects} />
                     <PrivateRoute path="/profile" component={UserProfile} />
                     <Route path="/create-project" component={Projects} />
+                    <Route path="/terms-of-use" component={TermsOfUsePage} />
 
                     <Route component={NoMatch} />
 

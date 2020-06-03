@@ -25,13 +25,13 @@ export default Home
 function Hero() {
     return (
         <>
-            <Flex mt={5} flexWrap="wrap" pr={[4, 4, 6]} pl={[4, 4, 6]}>
-                <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
+            <Flex mt={5} flexWrap="wrap" pr={[4, 4, 7]} pl={[4, 4, 7]}>
+                <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
                     <Box>
                         <Text
-                            as="h3"
+                            as="h2"
                             sx={{
-                                lineHeight: '42px',
+                                lineHeight: '36px',
                             }}
                         >
                             Unemployed?
@@ -41,7 +41,7 @@ function Hero() {
                         <Text
                             as="h1"
                             sx={{
-                                lineHeight: '52px',
+                                lineHeight: '66px',
                                 fontWeight: 'bold',
                             }}
                         >
@@ -49,11 +49,17 @@ function Hero() {
                             <span style={{ textDecoration: 'underline' }}>
                                 Own
                             </span>
-                            employed
+                            employed!
                         </Text>
                     </Box>
                     <Box>
-                        <Text as="body">
+                        <Text
+                            as="h2"
+                            sx={{
+                                color: 'body',
+                                lineHeight: '36px',
+                            }}
+                        >
                             Why wait to be employed, when you can be an
                             entrepreneur?
                         </Text>
@@ -66,28 +72,35 @@ function Hero() {
                                 fontSize: 'body',
                             }}
                         >
-                            <Button>Find a Project</Button>
+                            <Button
+                                sx={{
+                                    height: '72px',
+                                    my: 4,
+                                    width: ['200px', '300px', '500px'],
+                                }}
+                            >
+                                <Text
+                                    as="h2"
+                                    sx={{
+                                        color: '#fff',
+                                    }}
+                                >
+                                    Find a Project
+                                </Text>
+                            </Button>
                         </NavLink>
                     </Box>
                 </Box>
 
-                <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
+                <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
                     <Image
                         sx={{
+                            height: '419px',
                             width: '100%',
                             display: ['none', 'none', 'block'],
                         }}
                         src="/imgs/illustrations/homepage-ideas.svg"
                     ></Image>
-                </Box>
-            </Flex>
-
-            <Flex mt={5} mb={6} px={[0, 2, 6]} textAlign="center">
-                <Box>
-                    <Text as="h3">
-                        Take the opportunity to start something you are
-                        passionate about and eventually make a living out of it!
-                    </Text>
                 </Box>
             </Flex>
         </>
@@ -98,16 +111,16 @@ function Actions() {
     const actions = [
         {
             title: 'Find People',
-            url: '/',
-            image: '/imgs/illustrations/homepage-ideas.svg',
+            url: '/members',
+            image: '/imgs/illustrations/find-people.svg',
             body:
                 'Looking to round out your team? Find people with the skills and drive to make your project a success.',
         },
 
         {
             title: 'Find Projects',
-            url: '/',
-            image: '/imgs/illustrations/homepage-ideas.svg',
+            url: '/projects',
+            image: '/imgs/illustrations/find-projects.svg',
             body:
                 'Bring your talents to an idea you care about. Choose a project that aligns with your goals, values, and work style.',
         },
@@ -115,7 +128,7 @@ function Actions() {
         {
             title: 'Learn and Build',
             url: '/',
-            image: '/imgs/illustrations/homepage-ideas.svg',
+            image: '/imgs/illustrations/learn-and-build.svg',
             body:
                 'Our collection of resources are here to help you every step of the way. You’ve got questions, we’ve got answers.',
         },
@@ -123,10 +136,9 @@ function Actions() {
 
     return (
         <Flex
-            pr={[4, 4, 6]}
-            pl={[4, 4, 6]}
+            pr={[4, 4, 7]}
+            pl={[4, 4, 7]}
             sx={{
-                mt: 5,
                 flexDirection: ['column', 'column', 'row'],
                 justifyContent: 'space-between',
             }}
@@ -140,28 +152,43 @@ function Actions() {
                             width: ['100%', '100%', '30%'],
                         }}
                     >
-                        <Card
+                        <Box
                             sx={{
                                 px: 2,
                                 mb: 4,
+                                backgroundColor: '#f7f8fc',
                             }}
                         >
-                            <Image
+                            <NavLink to={action.url}>
+                                <Image
+                                    sx={{
+                                        width: '100%',
+                                    }}
+                                    src={action.image}
+                                />
+                            </NavLink>
+                        </Box>
+                        <Box m={2}>
+                            <Text
+                                as="h2"
                                 sx={{
-                                    width: '100%',
+                                    textAlign: 'center',
+                                    lineHeight: '36px',
                                 }}
-                                src={action.image}
-                            />
-                        </Card>
-                        <Text
-                            as="h3"
-                            sx={{
-                                textAlign: 'center',
-                            }}
-                        >
-                            {action.title}
-                        </Text>
-                        <Text>{action.body}</Text>
+                            >
+                                {action.title}
+                            </Text>
+                        </Box>
+                        <Box>
+                            <Text
+                                as="h3"
+                                sx={{
+                                    lineHeight: '32px',
+                                }}
+                            >
+                                {action.body}
+                            </Text>
+                        </Box>
                     </Box>
                 )
             })}
@@ -172,8 +199,8 @@ function Actions() {
 function Initiative() {
     return (
         <Flex
-            pr={[4, 4, 6]}
-            pl={[4, 4, 6]}
+            pr={[4, 4, 7]}
+            pl={[4, 4, 7]}
             sx={{
                 ml: 0,
                 mr: 0,
@@ -181,26 +208,32 @@ function Initiative() {
                 pt: 6,
                 pb: 6,
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 backgroundImage: 'url("/imgs/section_bg.png")',
                 backgroundSize: '100% 80%',
                 backgroundRepeat: 'no-repeat',
             }}
         >
-            <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]} mr={[0, 0, 5]}>
+            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]} mr={[0, 0, 5]}>
                 <Image
                     sx={{
+                        height: '331px',
                         width: '100%',
                         display: ['none', 'none', 'block'],
                     }}
-                    src="/imgs/illustrations/social.png"
+                    src="/imgs/illustrations/social.svg"
                 ></Image>
             </Box>
-            <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
-                <Text as="h3">A COVID-19 Initiative</Text>
-                <Text>
+            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
+                <Text as="h2" sx={{ my: 2 }}>
+                    A COVID-19 Initiative
+                </Text>
+                <Text as="h3" sx={{ mb: 4 }}>
                     This platform was built to help people forge their own path
-                    amidst our current environment. We believe the economy of
-                    the future will be driven by you.
+                    amidst our current environment.
+                </Text>
+                <Text as="h3">
+                    We believe the economy of the future will be driven by you.
                 </Text>
             </Box>
         </Flex>
@@ -233,8 +266,8 @@ function Reasons() {
 
     return (
         <Flex
-            pr={[4, 4, 6]}
-            pl={[4, 4, 6]}
+            pr={[4, 4, 7]}
+            pl={[4, 4, 7]}
             sx={{
                 ml: 0,
                 mr: 0,
@@ -276,7 +309,7 @@ function Reasons() {
 
 function Skills() {
     return (
-        <Flex mt={6} flexWrap="wrap" pr={[4, 4, 6]} pl={[4, 4, 6]}>
+        <Flex mt={6} flexWrap="wrap" pr={[4, 4, 7]} pl={[4, 4, 7]}>
             <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
                 <Text
                     as="h2"
@@ -299,7 +332,7 @@ function Skills() {
                         width: '100%',
                         display: ['none', 'none', 'block'],
                     }}
-                    src="/imgs/illustrations/board.png"
+                    src="/imgs/illustrations/board.svg"
                 ></Image>
             </Box>
         </Flex>
@@ -308,7 +341,7 @@ function Skills() {
 
 function CallToAction() {
     return (
-        <Flex mt={5} flexWrap="wrap" pr={[4, 4, 6]} pl={[4, 4, 6]}>
+        <Flex mt={5} flexWrap="wrap" pr={[4, 4, 7]} pl={[4, 4, 7]}>
             <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
                 <Text
                     as="h2"
@@ -339,7 +372,7 @@ function CallToAction() {
                         width: '100%',
                         display: ['none', 'none', 'block'],
                     }}
-                    src="/imgs/illustrations/team.png"
+                    src="/imgs/illustrations/team.svg"
                 ></Image>
             </Box>
         </Flex>

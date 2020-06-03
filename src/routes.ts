@@ -1,11 +1,12 @@
 import About from 'pages/about/about'
-import Home from 'pages/home/home'
-import ProjectProfile from 'pages/projects/profile'
 import CreateProject from 'pages/projects/createProject'
+import Home from 'pages/home/home'
 import MemberProfile from 'pages/members/profile'
-import Projects from 'pages/projects/projects'
 import Members from 'pages/members/members'
+import ProjectProfile from 'pages/projects/profile'
+import Projects from 'pages/projects/projects'
 import SignUpForm from 'pages/signup/signup'
+import TermsOfUse from 'pages/termsOfUse/termsOfUse'
 
 export default [
     {
@@ -43,5 +44,9 @@ export default [
     {
         component: CreateProject,
         path: '/create-project',
+    },
+    {
+        component: TermsOfUse,
+        path: '/terms-of-use',
     },
 ]
