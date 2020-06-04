@@ -1,5 +1,5 @@
 import About from 'pages/about/about'
-import CreateProject from 'pages/projects/createProject'
+import CreateProjectPage from 'pages/createProjects'
 import Home from 'pages/home/home'
 import MemberProfile from 'pages/members/profile'
 import Members from 'pages/members/members'
@@ -42,7 +42,7 @@ export default [
         path: '/sign-up',
     },
     {
-        component: CreateProject,
+        component: CreateProjectPage,
         path: '/create-project',
     },
     {

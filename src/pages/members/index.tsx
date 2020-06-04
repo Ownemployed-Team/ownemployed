@@ -8,7 +8,7 @@ import AllMembers from 'pages/members/members'
 
 const Members = ({ match }) => {
     return (
-        <Layout boxed>
+        <Layout>
             <Switch>
                 <Route path={`${match.url}/`} component={AllMembers} exact />
                 <Route

@@ -8,6 +8,7 @@ import AboutPage from 'pages/about'
 import Home from 'pages/home/home'
 import UserProfile from 'pages/user'
 import Projects from 'pages/projects'
+import CreateProjectPage from 'pages/createProjects'
 import Members from 'pages/members'
 import NoMatch from 'pages/404/404'
 import TermsOfUsePage from 'pages/termsOfUse'
@@ -25,7 +26,10 @@ function App() {
                     <Route path="/members" component={Members} />
                     <Route path="/projects" component={Projects} />
                     <PrivateRoute path="/profile" component={UserProfile} />
-                    <Route path="/create-project" component={Projects} />
+                    <Route
+                        path="/create-project"
+                        component={CreateProjectPage}
+                    />
                     <Route path="/terms-of-use" component={TermsOfUsePage} />
 
                     <Route component={NoMatch} />

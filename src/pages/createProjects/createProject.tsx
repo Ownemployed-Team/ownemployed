@@ -23,11 +23,14 @@ const CreateProjectSchema = Yup.object().shape({
         .min(2, 'Too Short!')
         .max(100, 'Too Long!')
         .required('Required'),
-    description: Yup.string().email('Invalid email').required('Required'),
+    description: Yup.string()
+        .min(2, 'Too Short!')
+        .max(140, 'Too Long!')
+        .required('Required'),
     projectStatus: Yup.string().required(),
     location: Yup.string().required(),
-    sector: Yup.array().min(1),
-    skills: Yup.array().min(1),
+    sector: Yup.array(),
+    skills: Yup.array(),
 })
 
 const CreateProject = () => {
@@ -173,7 +176,7 @@ const CreateProject = () => {
     }
 
     return (
-        <Box>
+        <Box mx={7} my={2}>
             <Card sx={{ borderRadius: 0, borderBottom: '1px solid' }}>
                 <Box mx={6} my={4}>
                     <Text as="h3">Create Project</Text>
@@ -204,6 +207,7 @@ const CreateProject = () => {
                                 sx={{
                                     borderRadius: 0,
                                     borderBottom: '1px solid',
+                                    m: 4,
                                 }}
                             >
                                 <Box sx={{ mx: 6 }}>
@@ -238,7 +242,7 @@ const CreateProject = () => {
                                         ) : null}
                                     </Box>
                                     <Box my={4}>
-                                        <ImageUploader />
+                                        <ImageUploader isImageVisibleInBox />
                                     </Box>
                                     <Box my={4}>
                                         <Field
