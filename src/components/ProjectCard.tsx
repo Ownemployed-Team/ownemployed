@@ -30,16 +30,7 @@ const ProjectCard = ({ project }) => {
 
     return (
         <Link to={`/projects/${id}`} style={{ textDecoration: 'none' }}>
-            <Card
-                sx={{
-                    borderRadius: '0',
-                    bg: '#F3F3F3',
-                    mx: '0',
-                    padding: '0',
-                    minHeight: 385,
-                }}
-                // style={{ margin: '8px' }}
-            >
+            <Card variant="secondary">
                 <Image src={transformedAvatar} width={'100%'} m={'auto'} />
                 <Box
                     bg={'white'}
@@ -49,12 +40,7 @@ const ProjectCard = ({ project }) => {
                         p: 4,
                     }}
                 >
-                    <Text
-                        as="h1"
-                        sx={{
-                            fontSize: [16, 20, 20],
-                        }}
-                    >
+                    <Text as="h1" sx={{ fontSize: [16, 20, 20] }}>
                         {name}
                     </Text>
                     <Text
