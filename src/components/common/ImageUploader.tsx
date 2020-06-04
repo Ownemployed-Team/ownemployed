@@ -5,7 +5,14 @@ import Text from 'components/Text'
 import { useConfig } from 'config/Context'
 import { uploadImage } from 'lib/media'
 
-function UploadImage() {
+type UploadImageProps = {
+    onUploadedImage?: (resizedImage: String) => void
+    isImageVisibleInBox?: Boolean
+}
+function UploadImage({
+    onUploadedImage,
+    isImageVisibleInBox = false,
+}: UploadImageProps) {
     const [loading, setLoading] = useState(false)
     const [uploadedImage, setUploadedImage] = useState(false)
     const { cloudinaryAPIEndpoint } = useConfig()
@@ -26,8 +33,11 @@ function UploadImage() {
 
             setLoading(false)
             setUploadedImage(resizedImage)
+            if (onUploadedImage) {
+                onUploadedImage(resizedImage)
+            }
         },
-        [uploadURL]
+        [onUploadedImage, uploadURL]
     )
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
@@ -70,7 +80,7 @@ function UploadImage() {
                             <Button>Choose Image</Button>
                         </Box>
                     </Flex>
-                    {uploadedImage && (
+                    {isImageVisibleInBox && uploadedImage && (
                         <Box width={250}>
                             <Image
                                 src={uploadedImage}
