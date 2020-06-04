@@ -1,10 +1,12 @@
 import { gql } from 'apollo-boost'
 
 // Getting Project's profile data
-export const GET_PROJECT = gql`
+const GET_PROJECT = gql`
     query getProject($projectId: String!) {
         getProject(id: $projectId) {
+            id
             name
+            creationDate
             ownerID
             status
             contributors
@@ -15,3 +17,5 @@ export const GET_PROJECT = gql`
         }
     }
 `
+
+export default GET_PROJECT
