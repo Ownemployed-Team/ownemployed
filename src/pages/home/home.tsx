@@ -4,6 +4,7 @@ import { NavLink } from 'components/NavLink'
 import Text from 'components/Text'
 import Layout from 'components/Layout'
 import Button from 'components/Button'
+import { useAuth0 } from 'lib/react-auth0-spa'
 
 const Home = () => {
     return (
@@ -338,6 +339,7 @@ function Skills() {
 }
 
 function CallToAction() {
+    const { isAuthenticated, loginWithRedirect } = useAuth0()
     return (
         <Flex flexWrap="wrap" mt={5} pr={[4, 4, 7]} pl={[4, 4, 7]}>
             <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
@@ -350,18 +352,22 @@ function CallToAction() {
                 >
                     Ready to join our community and transform the world?
                 </Text>
-                <Button
-                    sx={{
-                        fontSize: 'body',
-                        marginTop: 4,
-                        pb: 2,
-                        pl: 4,
-                        pr: 4,
-                        pt: 2,
-                    }}
-                >
-                    Create an Account
-                </Button>
+                {!isAuthenticated && (
+                    <NavLink
+                        sx={{
+                            fontSize: 'body',
+                            marginTop: 4,
+                            pb: 2,
+                            pl: 4,
+                            pr: 4,
+                            pt: 2,
+                        }}
+                        to=""
+                        onClick={() => loginWithRedirect({})}
+                    >
+                        {'Create an Account'}
+                    </NavLink>
+                )}
             </Box>
 
             <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
