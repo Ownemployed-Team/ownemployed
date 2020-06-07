@@ -12,7 +12,6 @@ import CreateProjectPage from 'pages/createProjects'
 import Members from 'pages/members'
 import NoMatch from 'pages/404/404'
 import TermsOfUsePage from 'pages/termsOfUse'
-//import SignUpForm from 'pages/signup/signup'
 
 function App() {
     return (
