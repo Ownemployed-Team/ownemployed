@@ -13,6 +13,7 @@ import { CloudinaryContext } from 'cloudinary-react'
 
 Sentry.init({
     dsn: process.env.REACT_APP_SNETRY_DSN,
+    release: `ownemployed@${process.env.REACT_APP_VERSION || 1}`,
 })
 
 const Application = () => {
