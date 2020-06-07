@@ -5,7 +5,6 @@ import MemberProfile from 'pages/members/profile'
 import Members from 'pages/members/members'
 import ProjectProfile from 'pages/projects/profile'
 import Projects from 'pages/projects/projects'
-import SignUpForm from 'pages/signup/signup'
 import TermsOfUse from 'pages/termsOfUse/termsOfUse'
 
 export default [
@@ -36,10 +35,6 @@ export default [
     {
         component: MemberProfile,
         path: '/members/:memberProfileId',
-    },
-    {
-        component: SignUpForm,
-        path: '/sign-up',
     },
     {
         component: CreateProjectPage,
