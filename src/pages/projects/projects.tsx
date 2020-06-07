@@ -39,7 +39,12 @@ const AllProjects = () => {
     if (!called && !loading) {
         console.log('getProjects')
         // TODO : Add { variables: { sector, skills, location, status, skip, limit } }
-        getProjectsQuery() //Initial fetch
+        getProjectsQuery({
+            variables: {
+                skip: 0,
+                take: 25,
+            },
+        }) //Initial fetch
     }
 
     const handlePageClick = (data, pageSize) => {

@@ -1,26 +1,25 @@
 import React from 'react'
 import Card from 'components/Card'
 import Text from 'components/Text'
-import { Box, Image } from 'rebass'
+import { Box, Flex, Image } from 'rebass'
 import { Label } from '@rebass/forms'
 // Avatar as RebassAvatar,
 import { Link } from 'react-router-dom'
 import { colors } from '../utils/colors'
 import { UniqueInputFieldNamesRule } from 'graphql'
 
-// const { Meta } = Card
-
 const ProjectCard = ({ project }) => {
     const {
-        contributors,
         description,
         id,
-        imageUrl,
-        keyActivities,
         name,
-        status,
+        picture,
+        sectors,
+        shortDescription,
+        skillsRequired,
     } = project
 
+    // TODO : wait till cloudinary images is in database and use picture instead of hardcoded image.
     const avatar =
         'https://res.cloudinary.com/ownemployed/image/upload/v1590873376/user_uploads/3D-visning_cygugz.jpg'
     const transformedAvatar = avatar.replace(
@@ -35,7 +34,7 @@ const ProjectCard = ({ project }) => {
                 <Box
                     bg={'white'}
                     sx={{
-                        minHeight: 235,
+                        minHeight: 280,
                         mx: 'auto',
                         p: 4,
                     }}
@@ -52,25 +51,44 @@ const ProjectCard = ({ project }) => {
                             maxHeight: 70,
                         }}
                     >
-                        {description}
+                        {shortDescription}
                     </Text>
-                    {keyActivities &&
-                        keyActivities.map(keyActivity => (
-                            <Text
-                                key={keyActivity}
-                                sx={{
-                                    mr: 1,
-                                    p: 2,
-                                    borderRadius: '2px',
-                                    display: 'inline',
-                                    bg: '#124780',
-                                    color: 'white',
-                                    fontSize: '10px',
-                                }}
-                            >
-                                {keyActivity}
-                            </Text>
-                        ))}
+                    <Flex flexWrap={'wrap'}>
+                        {sectors &&
+                            sectors.map(({ title }) => (
+                                <Text
+                                    key={title}
+                                    sx={{
+                                        mr: 1,
+                                        p: 2,
+                                        borderRadius: '2px',
+                                        display: 'inline',
+                                        bg: '#124780',
+                                        color: 'white',
+                                        fontSize: '10px',
+                                    }}
+                                >
+                                    {title}
+                                </Text>
+                            ))}
+                        {skillsRequired &&
+                            skillsRequired.map(({ title }) => (
+                                <Text
+                                    key={title}
+                                    sx={{
+                                        mr: 1,
+                                        p: 2,
+                                        borderRadius: '2px',
+                                        display: 'inline',
+                                        bg: '#124780',
+                                        color: 'white',
+                                        fontSize: '10px',
+                                    }}
+                                >
+                                    {title}
+                                </Text>
+                            ))}
+                    </Flex>
                 </Box>
             </Card>
         </Link>
