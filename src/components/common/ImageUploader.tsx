@@ -8,12 +8,12 @@ import { uploadImage } from 'lib/media'
 type UploadImageProps = {
     onUploadedImage?: (resizedImage: String) => void
     isImageVisibleInBox?: Boolean
-    isTextAbove?: Boolean
+    isTextAboveBrowseButton?: Boolean
 }
 function UploadImage({
     onUploadedImage,
     isImageVisibleInBox = false,
-    isTextAbove = false,
+    isTextAboveBrowseButton = false,
 }: UploadImageProps) {
     const [loading, setLoading] = useState(false)
     const [uploadedImage, setUploadedImage] = useState(false)
@@ -62,7 +62,13 @@ function UploadImage({
                 <Text as="body">Drop the files here ...</Text>
             ) : (
                 <Box sx={{ textAlign: 'left' }}>
-                    <Box sx={{ textAlign: isTextAbove ? 'center' : 'left' }}>
+                    <Box
+                        sx={{
+                            textAlign: isTextAboveBrowseButton
+                                ? 'center'
+                                : 'left',
+                        }}
+                    >
                         <Box>
                             <Text
                                 as="body"
@@ -74,7 +80,11 @@ function UploadImage({
                             </Text>
                         </Box>
                         <Box
-                            sx={{ display: isTextAbove ? 'block' : 'flex' }}
+                            sx={{
+                                display: isTextAboveBrowseButton
+                                    ? 'block'
+                                    : 'flex',
+                            }}
                             justifyContent="space-between"
                         >
                             <Box>

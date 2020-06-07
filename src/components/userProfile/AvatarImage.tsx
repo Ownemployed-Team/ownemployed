@@ -114,7 +114,7 @@ const AvatarImage = ({
             </Box>
             <Box m={[0, 0, 0]} width={[1, 1, 1]}>
                 <ImageUploader
-                    isTextAbove
+                    isTextAboveBrowseButton
                     onUploadedImage={onUploadedImage}
                 ></ImageUploader>
             </Box>
