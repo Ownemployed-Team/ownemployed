@@ -8,7 +8,7 @@ const Settings = () => null
 
 const Members = ({ match }) => {
     return (
-        <Layout>
+        <Layout boxed={false}>
             <Switch>
                 <Route path={`${match.url}/`} component={UserProfile} exact />
                 <Route
