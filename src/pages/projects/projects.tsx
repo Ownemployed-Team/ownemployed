@@ -88,7 +88,6 @@ const AllProjects = () => {
                 <Box
                     sx={{
                         mx: 'auto',
-                        px: 2,
                         py: 2,
                     }}
                 >

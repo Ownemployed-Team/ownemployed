@@ -125,7 +125,7 @@ const ProjectFilter = ({ onSubmitSearch }: { onSubmitSearch: any }) => {
         <Card
             sx={{
                 borderRadius: '0',
-                m: 2,
+                my: 2,
             }}
         >
             <Flex flexWrap="wrap">
