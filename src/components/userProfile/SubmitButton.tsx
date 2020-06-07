@@ -4,7 +4,6 @@ import Button from 'components/Button'
 
 const SubmitButton = ({ onSubmitForm }) => (
     <Box
-        mx={[0, 0, 0]}
         my={4}
         textAlign={'right'}
         sx={{

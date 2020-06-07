@@ -85,7 +85,6 @@ const DetailedInfo = ({
                 <Text as="body">Email privacy</Text>
                 <Field
                     name="emailPrivacy"
-                    type="checkbox"
                     checked={values.emailPrivacy}
                     onChange={checkBoxValue => {
                         onSetFieldValue('emailPrivacy', checkBoxValue)
