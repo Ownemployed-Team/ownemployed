@@ -2,17 +2,18 @@ import React, { useState, useContext } from 'react'
 import { css } from 'emotion'
 import { useAuth0 } from 'lib/react-auth0-spa'
 import ConfigContext from 'config/Context'
-import { Box, Flex, Image } from 'rebass'
-import { Formik, Form, Field } from 'formik'
+import { Box } from 'rebass'
+import { Formik, Form } from 'formik'
 import skillsData from 'data/skills.json'
 import locationsData from 'data/locations.json'
-import Button from 'components/Button'
 import Card from 'components/Card'
 import Link from 'components/Link'
 import Text from 'components/Text'
-import ImageUploader from 'components/common/ImageUploader'
-import Select from 'react-select'
 import * as Yup from 'yup'
+import AvatarImage from 'components/userProfile/AvatarImage'
+import BasicInfo from 'components/userProfile/BasicInfo'
+import DetailedInfo from 'components/userProfile/DetailedInfo'
+import SubmitButton from 'components/userProfile/SubmitButton'
 
 const CreateUserSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -23,18 +24,21 @@ const CreateUserSchema = Yup.object().shape({
         .min(2, 'Too Short!')
         .max(100, 'Too Long!')
         .required('Required'),
-    email: Yup.string().email('E-mail is not valid').required('Required'),
     bio: Yup.string()
+        .min(2, 'Too Short!')
+        .max(100, 'Too Long!')
+        .required('Required'),
+    headline: Yup.string()
         .min(2, 'Too Short!')
         .max(100, 'Too Long!')
         .required('Required'),
     location: Yup.string().required(),
     sector: Yup.array(),
     skills: Yup.array(),
+    website: Yup.string().url(),
 })
 
 const Profile = ({ match }) => {
-    const [profileImage, setProfileImage] = useState('')
     const [avatarImage, setAvatarImage] = useState('')
     const [showResult, setShowResult] = useState(false)
     const [apiMessage, setApiMessage] = useState('')
@@ -76,9 +80,6 @@ const Profile = ({ match }) => {
     }
 
     const handleUploadedImage = image => {
-        console.log(image)
-        setProfileImage(image)
-
         const avatarImage = image.replace(
             '/upload',
             '/upload/w_400,h_400,c_crop,g_face,r_max/w_200'
@@ -108,7 +109,7 @@ const Profile = ({ match }) => {
         }, 1000)
     }
 
-    const normalInputField = css`
+    const defaultNormalInputFieldStyle = css`
         width: 100%;
         padding: 10px;
         height: 64px;
@@ -125,7 +126,7 @@ const Profile = ({ match }) => {
         }
     `
 
-    const selectField = css`
+    const defaultSelectFieldStyle = css`
         color: #6f63ad;
         width: 100%;
         padding: 10px;
@@ -184,7 +185,7 @@ const Profile = ({ match }) => {
                     return { ...base, width: '100%' }
             }
         },
-        menu: (base, state) => {
+        menu: base => {
             return { ...base, width: 300 }
         },
         multiValue: (base, state) => {
@@ -208,7 +209,7 @@ const Profile = ({ match }) => {
     }
 
     return (
-        <Box mx={7} my={2}>
+        <Box mx={[0, 0, 7]} my={2}>
             <Card
                 sx={{
                     mt: 4,
@@ -216,7 +217,7 @@ const Profile = ({ match }) => {
                     borderRadius: 0,
                 }}
             >
-                <Box mx={4}>
+                <Box mx={[0, 0, 6]}>
                     <Box>
                         <Text as="h3">My Profile</Text>
                     </Box>
@@ -227,41 +228,13 @@ const Profile = ({ match }) => {
                         </Text>
                     </Box>
                     <hr />
-                    <Flex m={4}>
-                        <Box m={4}>
-                            {avatarImage ? (
-                                <Image
-                                    src={avatarImage}
-                                    sx={{
-                                        verticalAlign: 'middle',
-                                        width: '100px',
-                                        height: '100px',
-                                    }}
-                                />
-                            ) : (
-                                <Image
-                                    sx={{
-                                        verticalAlign: 'middle',
-                                        width: '100px',
-                                        height: '100px',
-                                        borderRadius: '50%',
-                                        bg: 'primaryHover',
-                                    }}
-                                />
-                            )}
-                        </Box>
-                        <Box py={2} my={4} width={[3 / 4]}>
-                            <ImageUploader
-                                onUploadedImage={handleUploadedImage}
-                            ></ImageUploader>
-                        </Box>
-                    </Flex>
-                    <Box m={4}>
+                    <Box>
                         <Formik
                             initialValues={{
                                 education: '',
-                                email: '',
+                                emailPrivacy: '',
                                 facebook: '',
+                                headline: '',
                                 linkedin: '',
                                 location: '',
                                 firstName: '',
@@ -270,320 +243,59 @@ const Profile = ({ match }) => {
                                 bio: '',
                                 skills: [],
                                 twitter: '',
+                                website: '',
                             }}
                             onSubmit={onSubmitSearch}
                             validationSchema={CreateUserSchema}
                         >
-                            {({ errors, touched }) => (
+                            {({
+                                errors,
+                                setFieldValue,
+                                submitForm,
+                                touched,
+                                values,
+                            }) => (
                                 <Form>
-                                    <Box
-                                        sx={{
-                                            borderRadius: 0,
-                                            borderBottom: '1px solid',
-                                            m: 4,
-                                        }}
-                                    >
-                                        <Box sx={{ mx: 6 }}>
-                                            <Box>
-                                                <Text as="h3">
-                                                    Basic information
-                                                </Text>
-                                            </Box>
-                                            <Box>
-                                                <Flex width={[3 / 4]}>
-                                                    <Box m={2} width={[1]}>
-                                                        <Field
-                                                            as="input"
-                                                            name="userType"
-                                                            type="radio"
-                                                        ></Field>
-                                                        I am a starter/seeker
-                                                    </Box>
-                                                    <Box m={2} width={[1]}>
-                                                        <Field
-                                                            as="input"
-                                                            name="userType"
-                                                            type="radio"
-                                                        ></Field>
-                                                        I am a mentor
-                                                    </Box>
-                                                </Flex>
-                                                <Flex width={[3 / 4]}>
-                                                    <Box m={2} width={[1]}>
-                                                        <Field
-                                                            as="input"
-                                                            name="collaborationType"
-                                                            type="radio"
-                                                            checked={true}
-                                                        ></Field>
-                                                        Open for collaborations
-                                                    </Box>
-                                                    <Box m={2} width={[1]}>
-                                                        <Field
-                                                            as="input"
-                                                            name="collaborationType"
-                                                            type="radio"
-                                                            checked={false}
-                                                        ></Field>
-                                                        Not actively open for
-                                                        collaborations
-                                                    </Box>
-                                                </Flex>
-                                            </Box>
-                                            <Flex>
-                                                <Box m={2} width={[1 / 2]}>
-                                                    <Field
-                                                        className={
-                                                            normalInputField
-                                                        }
-                                                        name="firstName"
-                                                        placeholder="First name"
-                                                    />
-                                                    {errors.firstName &&
-                                                    touched.firstName ? (
-                                                        <Text
-                                                            sx={{
-                                                                color: 'red',
-                                                            }}
-                                                        >
-                                                            {errors.firstName}
-                                                        </Text>
-                                                    ) : null}
-                                                </Box>
-                                                <Box m={2} width={[1 / 2]}>
-                                                    <Field
-                                                        className={
-                                                            normalInputField
-                                                        }
-                                                        name="lastName"
-                                                        placeholder="Last name"
-                                                    />
-                                                    {errors.lastName &&
-                                                    touched.lastName ? (
-                                                        <Text
-                                                            sx={{
-                                                                color: 'red',
-                                                            }}
-                                                        >
-                                                            {errors.lastName}
-                                                        </Text>
-                                                    ) : null}
-                                                </Box>
-                                            </Flex>
-                                            <Box m={2}>
-                                                <Field
-                                                    as="textarea"
-                                                    className={areaInputField}
-                                                    name="bio"
-                                                    placeholder="Bio"
-                                                />
-                                                <Text as="body">
-                                                    Give a brief description
-                                                    about yourself and what you
-                                                    do. Max 100 characters.
-                                                </Text>
-                                                {errors.bio && touched.bio ? (
-                                                    <Text
-                                                        sx={{
-                                                            color: 'red',
-                                                        }}
-                                                    >
-                                                        {errors.bio}
-                                                    </Text>
-                                                ) : null}
-                                            </Box>
-                                            <Box m={2}>
-                                                <Field
-                                                    as="select"
-                                                    className={selectField}
-                                                    name="location"
-                                                >
-                                                    <option value={0}>
-                                                        {'Location'}
-                                                    </option>
-                                                    {locationOptions &&
-                                                        locationOptions.map(
-                                                            ({
-                                                                label,
-                                                                value,
-                                                            }) => (
-                                                                <option
-                                                                    value={
-                                                                        value
-                                                                    }
-                                                                >
-                                                                    {label}
-                                                                </option>
-                                                            )
-                                                        )}
-                                                </Field>
-                                                <Text as="body">
-                                                    Select the country you are
-                                                    based in.
-                                                </Text>
-                                                {errors.location &&
-                                                touched.location ? (
-                                                    <Text
-                                                        sx={{
-                                                            color: 'red',
-                                                        }}
-                                                    >
-                                                        {errors.location}
-                                                    </Text>
-                                                ) : null}
-                                            </Box>
-                                            <Box m={2}>
-                                                <Field
-                                                    className={normalInputField}
-                                                    name="education"
-                                                    placeholder="Education"
-                                                ></Field>
-                                                <Text as="body">
-                                                    Add education
-                                                </Text>
-                                                {errors.education &&
-                                                touched.education ? (
-                                                    <Text
-                                                        sx={{
-                                                            color: 'red',
-                                                        }}
-                                                    >
-                                                        {errors.education}
-                                                    </Text>
-                                                ) : null}
-                                            </Box>
-                                            <Box m={2}>
-                                                <Select
-                                                    className={selectClass}
-                                                    classNamePrefix="select"
-                                                    closeMenuOnSelect={false}
-                                                    isMulti
-                                                    name="skills"
-                                                    onChange={
-                                                        handleSkillsSelected
-                                                    }
-                                                    options={skillsOptions}
-                                                    placeholder={'Skills'}
-                                                    styles={styles}
-                                                    value={skills}
-                                                />
-                                                <Text as="body">
-                                                    Search for skills
-                                                </Text>
-                                                {errors.skills &&
-                                                touched.skills ? (
-                                                    <Text
-                                                        sx={{
-                                                            color: 'red',
-                                                        }}
-                                                    >
-                                                        {errors.skills}
-                                                    </Text>
-                                                ) : null}
-                                            </Box>
-                                            <Box my={4}>
-                                                <Box m={2}>
-                                                    <Text as="h3">
-                                                        Social media information
-                                                    </Text>
-                                                </Box>
-                                                <Flex>
-                                                    <Box m={2} width={[1 / 2]}>
-                                                        <Field
-                                                            className={
-                                                                normalInputField
-                                                            }
-                                                            name="email"
-                                                            placeholder="Email"
-                                                        />
-                                                        {errors.email &&
-                                                        touched.email ? (
-                                                            <Text
-                                                                sx={{
-                                                                    color:
-                                                                        'red',
-                                                                }}
-                                                            >
-                                                                {errors.email}
-                                                            </Text>
-                                                        ) : null}
-                                                    </Box>
-                                                    <Box m={2} width={[1 / 2]}>
-                                                        <Field
-                                                            className={
-                                                                normalInputField
-                                                            }
-                                                            name="facebook"
-                                                            placeholder="Facebook"
-                                                        />
-                                                        {errors.facebook &&
-                                                        touched.facebook ? (
-                                                            <Text
-                                                                sx={{
-                                                                    color:
-                                                                        'red',
-                                                                }}
-                                                            >
-                                                                {
-                                                                    errors.facebook
-                                                                }
-                                                            </Text>
-                                                        ) : null}
-                                                    </Box>
-                                                </Flex>
-                                                <Flex>
-                                                    <Box m={2} width={[1 / 2]}>
-                                                        <Field
-                                                            className={
-                                                                normalInputField
-                                                            }
-                                                            name="linkedin"
-                                                            placeholder="Linkedin"
-                                                        />
-                                                        {errors.linkedin &&
-                                                        touched.linkedin ? (
-                                                            <Text
-                                                                sx={{
-                                                                    color:
-                                                                        'red',
-                                                                }}
-                                                            >
-                                                                {
-                                                                    errors.linkedin
-                                                                }
-                                                            </Text>
-                                                        ) : null}
-                                                    </Box>
-                                                    <Box m={2} width={[1 / 2]}>
-                                                        <Field
-                                                            className={
-                                                                normalInputField
-                                                            }
-                                                            name="twitter"
-                                                            placeholder="Twitter"
-                                                        />
-                                                        {errors.twitter &&
-                                                        touched.twitter ? (
-                                                            <Text
-                                                                sx={{
-                                                                    color:
-                                                                        'red',
-                                                                }}
-                                                            >
-                                                                {errors.twitter}
-                                                            </Text>
-                                                        ) : null}
-                                                    </Box>
-                                                </Flex>
-                                            </Box>
-                                        </Box>
-                                    </Box>
                                     <Box>
-                                        <Box mx={6} my={4} textAlign={'right'}>
-                                            <Button sx={{ width: '265px' }}>
-                                                Update Profile
-                                            </Button>
-                                        </Box>
+                                        <AvatarImage
+                                            avatarImage={avatarImage}
+                                            errors={errors}
+                                            onUploadedImage={
+                                                handleUploadedImage
+                                            }
+                                            normalInputField={
+                                                defaultNormalInputFieldStyle
+                                            }
+                                            touched={touched}
+                                        ></AvatarImage>
+                                        <BasicInfo
+                                            areaInputField={areaInputField}
+                                            errors={errors}
+                                            locationOptions={locationOptions}
+                                            selectField={
+                                                defaultSelectFieldStyle
+                                            }
+                                            touched={touched}
+                                        ></BasicInfo>
+                                        <DetailedInfo
+                                            defaultNormalInputFieldStyle={
+                                                defaultNormalInputFieldStyle
+                                            }
+                                            errors={errors}
+                                            onSkillsSelected={
+                                                handleSkillsSelected
+                                            }
+                                            selectClass={selectClass}
+                                            onSetFieldValue={setFieldValue}
+                                            skills={skills}
+                                            skillsOptions={skillsOptions}
+                                            styles={styles}
+                                            touched={touched}
+                                            values={values}
+                                        ></DetailedInfo>
+                                        <SubmitButton
+                                            onSubmitForm={submitForm}
+                                        ></SubmitButton>
                                     </Box>
                                 </Form>
                             )}

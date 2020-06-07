@@ -8,10 +8,12 @@ import { uploadImage } from 'lib/media'
 type UploadImageProps = {
     onUploadedImage?: (resizedImage: String) => void
     isImageVisibleInBox?: Boolean
+    isTextAbove?: Boolean
 }
 function UploadImage({
     onUploadedImage,
     isImageVisibleInBox = false,
+    isTextAbove = false,
 }: UploadImageProps) {
     const [loading, setLoading] = useState(false)
     const [uploadedImage, setUploadedImage] = useState(false)
@@ -45,7 +47,7 @@ function UploadImage({
 
     return (
         <Box
-            width={[1 / 2]}
+            width={[1, 1, 1]}
             sx={{
                 borderRadius: '4px',
                 border: '1px dashed',
@@ -60,26 +62,31 @@ function UploadImage({
                 <Text as="body">Drop the files here ...</Text>
             ) : (
                 <Box sx={{ textAlign: 'left' }}>
-                    <Box>
-                        <Text
-                            as="body"
-                            sx={{
-                                color: '#6F63AD',
-                            }}
-                        >
-                            Image (optional)
-                        </Text>
-                    </Box>
-                    <Flex justifyContent="space-between">
+                    <Box sx={{ textAlign: isTextAbove ? 'center' : 'left' }}>
                         <Box>
-                            <Text as="body">
-                                Drop or choose file from computer
+                            <Text
+                                as="body"
+                                sx={{
+                                    color: '#6F63AD',
+                                }}
+                            >
+                                Image (optional)
                             </Text>
                         </Box>
-                        <Box>
-                            <Button>Choose Image</Button>
+                        <Box
+                            sx={{ display: isTextAbove ? 'block' : 'flex' }}
+                            justifyContent="space-between"
+                        >
+                            <Box>
+                                <Text as="body">
+                                    Drop or choose file from computer
+                                </Text>
+                            </Box>
+                            <Box>
+                                <Button>Choose Image</Button>
+                            </Box>
                         </Box>
-                    </Flex>
+                    </Box>
                     {isImageVisibleInBox && uploadedImage && (
                         <Box width={250}>
                             <Image
