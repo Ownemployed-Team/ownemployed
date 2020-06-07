@@ -36,7 +36,7 @@ function UploadImage({
             setLoading(false)
             setUploadedImage(resizedImage)
             if (onUploadedImage) {
-                onUploadedImage(resizedImage)
+                onUploadedImage(secure_url)
             }
         },
         [onUploadedImage, uploadURL]

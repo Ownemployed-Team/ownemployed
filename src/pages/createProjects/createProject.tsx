@@ -1,20 +1,26 @@
 import React, { useState } from 'react'
+
+import { useMutation } from '@apollo/react-hooks'
 import { css } from 'emotion'
+import ADD_PROJECT from 'graphql/add-project'
+import { useAuth0 } from 'lib/react-auth0-spa'
+import * as Yup from 'yup'
+
+import { Formik, Form, Field } from 'formik'
 import { Box } from 'rebass'
+import Select from 'react-select'
 import Card from 'components/Card'
 import Button from 'components/Button'
 import Text from 'components/Text'
+import ImageUploader from 'components/common/ImageUploader'
+
 import sectorData from 'data/sector.json'
 import locationsData from 'data/locations.json'
 import projectsStatus from 'data/project-status.json'
 import skillsData from 'data/skills.json'
-import { Formik, Form, Field } from 'formik'
-import { useLazyQuery } from '@apollo/react-hooks'
-import ImageUploader from 'components/common/ImageUploader'
-import Select from 'react-select'
-import * as Yup from 'yup'
 
 const CreateProjectSchema = Yup.object().shape({
+    links: Yup.string(),
     name: Yup.string()
         .min(2, 'Too Short!')
         .max(100, 'Too Long!')
@@ -28,14 +34,16 @@ const CreateProjectSchema = Yup.object().shape({
         .max(140, 'Too Long!')
         .required('Required'),
     projectStatus: Yup.string().required(),
-    location: Yup.string().required(),
-    sector: Yup.array(),
-    skills: Yup.array(),
+    location: Yup.array().required(),
+    sectors: Yup.array(),
+    skillsRequired: Yup.array(),
 })
 
 const CreateProject = () => {
-    const [sector, setSector] = useState([])
-    const [skills, setSkills] = useState([])
+    const useAuth = useAuth0()
+    console.log(useAuth)
+    const [projectImage, setProjectImage] = useState('')
+    const [addProject, { data }] = useMutation(ADD_PROJECT)
 
     const sectorOptions = sectorData.map(({ id, name }) => ({
         value: id,
@@ -50,33 +58,50 @@ const CreateProject = () => {
         label: name,
     }))
 
-    const handleSectorSelected = values => {
-        setSector(values)
+    const handleSelected = (name, setFieldValue) => values => {
+        setFieldValue(name, values)
     }
 
-    const handleSkillsSelected = values => {
-        setSkills(values)
+    const handleUploadedImage = imageUrl => {
+        setProjectImage(imageUrl)
     }
 
-    const onSubmitSearch = (values, actions) => {
-        setTimeout(() => {
-            const skillsValues = skills.map(({ value }) => value)
-            const sectorValues = sector.map(({ value }) => value)
+    const formatDate = date => {
+        const d = new Date(date)
+        let month = `${d.getMonth() + 1}`
+        let day = `${d.getDate()}`
+        const year = d.getFullYear()
+
+        if (month.length < 2) month = `0${month}`
+        if (day.length < 2) day = `0${day}`
+
+        return [year, month, day].join('-')
+    }
+
+    const onCreateProject = (values, actions) => {
+        setTimeout(async () => {
+            const locationssValues = values.location.map(({ label }) => label)
+            const skillsRequiredValues = values.skillsRequired.map(
+                ({ label }) => label
+            )
+            const sectorValues = values.sectors.map(({ label }) => label)
+            // const user = await getUser()
+            // console.log(user)
             const mutatedValues = {
                 ...values,
-                sector: sectorValues,
-                skills: skillsValues,
+                creationDate: formatDate(Date.now()),
+                //contributors:
+                // ownerId: user.id
+                location: locationssValues,
+                //picture: projectImage,
+                sectors: sectorValues,
+                skillsRequired: skillsRequiredValues,
             }
 
-            //TODO : Add createProject request to BE.
-            // const { search } = values
-            // createProjects({
-            // 	variables: {
-            // 		...mutatedValues
-            // 	}
-            // })
+            console.log(JSON.stringify(mutatedValues))
 
-            alert(JSON.stringify(mutatedValues, null, 2))
+            // addProject({ variables: mutatedValues })
+
             actions.setSubmitting(false)
         }, 1000)
     }
@@ -142,9 +167,9 @@ const CreateProject = () => {
         control: (base, state) => {
             const { className } = (state || {}).selectProps
             switch (className) {
-                case 'sector':
+                case 'sectors':
                     return { ...base, width: '100%' }
-                case 'skills':
+                case 'skillsRequired':
                     return { ...base, width: '100%' }
                 case 'location':
                     return { ...base, width: '100%' }
@@ -188,20 +213,20 @@ const CreateProject = () => {
             <Card sx={{ borderRadius: 0 }}>
                 <Formik
                     initialValues={{
-                        name: '',
-                        usefulLinks: '',
-                        shortDescription: '',
-                        imageUrl: '',
                         description: '',
-                        projectStatus: '',
+                        imageUrl: '',
+                        links: '',
                         location: '',
-                        sector: [],
-                        skills: [],
+                        name: '',
+                        projectStatus: '',
+                        sectors: [],
+                        shortDescription: '',
+                        skillsRequired: [],
                     }}
-                    onSubmit={onSubmitSearch}
+                    onSubmit={onCreateProject}
                     validationSchema={CreateProjectSchema}
                 >
-                    {({ errors, touched }) => (
+                    {({ errors, touched, setFieldValue }) => (
                         <Form>
                             <Box
                                 sx={{
@@ -241,7 +266,12 @@ const CreateProject = () => {
                                         ) : null}
                                     </Box>
                                     <Box my={4}>
-                                        <ImageUploader isImageVisibleInBox />
+                                        <ImageUploader
+                                            onUploadedImage={
+                                                handleUploadedImage
+                                            }
+                                            isImageVisibleInBox
+                                        />
                                     </Box>
                                     <Box my={4}>
                                         <Field
@@ -289,34 +319,43 @@ const CreateProject = () => {
                                         <Field
                                             as="textarea"
                                             className={selectField}
-                                            name="usefulLinks"
+                                            name="links"
                                             placeholder="Useful Links (Optional)"
                                         />
-                                        {errors.usefulLinks &&
-                                        touched.usefulLinks ? (
+                                        {errors.links && touched.links ? (
                                             <Text sx={{ color: 'red' }}>
-                                                {errors.usefulLinks}
+                                                {errors.links}
                                             </Text>
                                         ) : null}
                                     </Box>
                                     <Box my={4}>
                                         <Field
-                                            as="select"
-                                            className={selectField}
+                                            className={selectLocation}
+                                            classNamePrefix="select"
+                                            closeMenuOnSelect={false}
+                                            component={Select}
+                                            isMulti={true}
                                             name="location"
-                                        >
-                                            <option value={0}>
-                                                {'Location'}
-                                            </option>
-                                            {locationOptions &&
-                                                locationOptions.map(
-                                                    ({ label, value }) => (
-                                                        <option value={value}>
-                                                            {label}
-                                                        </option>
-                                                    )
-                                                )}
-                                        </Field>
+                                            onChange={handleSelected(
+                                                'location',
+                                                setFieldValue
+                                            )}
+                                            options={locationOptions}
+                                            placeholder={'Locations'}
+                                            styles={styles}
+                                        ></Field>
+                                        {/* <Select
+                                            className={selectLocation}
+                                            classNamePrefix="select"
+                                            closeMenuOnSelect={false}
+                                            isMulti
+                                            name="location"
+                                            onChange={handleLocationSelected}
+                                            options={locationOptions}
+                                            placeholder={'Locations'}
+                                            styles={styles}
+                                            value={locations}
+                                        /> */}
                                         {errors.location && touched.location ? (
                                             <Text sx={{ color: 'red' }}>
                                                 {errors.location}
@@ -324,40 +363,47 @@ const CreateProject = () => {
                                         ) : null}
                                     </Box>
                                     <Box my={4}>
-                                        <Select
+                                        <Field
                                             className={selectLocation}
                                             classNamePrefix="select"
                                             closeMenuOnSelect={false}
+                                            component={Select}
                                             isMulti
-                                            name="sector"
-                                            onChange={handleSectorSelected}
+                                            name="sectors"
+                                            onChange={handleSelected(
+                                                'sectors',
+                                                setFieldValue
+                                            )}
                                             options={sectorOptions}
                                             placeholder={'Sector'}
                                             styles={styles}
-                                            value={sector}
                                         />
-                                        {errors.sector && touched.sector ? (
+                                        {errors.sectors && touched.sectors ? (
                                             <Text sx={{ color: 'red' }}>
-                                                {errors.sector}
+                                                {errors.sectors}
                                             </Text>
                                         ) : null}
                                     </Box>
                                     <Box my={4}>
-                                        <Select
+                                        <Field
                                             className={selectLocation}
                                             classNamePrefix="select"
                                             closeMenuOnSelect={false}
+                                            component={Select}
                                             isMulti
-                                            name="skills"
-                                            onChange={handleSkillsSelected}
+                                            name="skillsRequired"
+                                            onChange={handleSelected(
+                                                'skillsRequired',
+                                                setFieldValue
+                                            )}
                                             options={skillsOptions}
                                             placeholder={'Skills'}
                                             styles={styles}
-                                            value={skills}
                                         />
-                                        {errors.skills && touched.skills ? (
+                                        {errors.skillsRequired &&
+                                        touched.skillsRequired ? (
                                             <Text sx={{ color: 'red' }}>
-                                                {errors.skills}
+                                                {errors.skillsRequired}
                                             </Text>
                                         ) : null}
                                     </Box>
