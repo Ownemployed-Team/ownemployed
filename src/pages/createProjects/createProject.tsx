@@ -93,7 +93,7 @@ const CreateProject = () => {
                 //contributors:
                 // ownerId: user.id
                 location: locationssValues,
-                //picture: projectImage,
+                picture: projectImage,
                 sectors: sectorValues,
                 skillsRequired: skillsRequiredValues,
             }
