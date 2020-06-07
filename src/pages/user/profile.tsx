@@ -39,6 +39,7 @@ const CreateUserSchema = Yup.object().shape({
 })
 
 const Profile = ({ match }) => {
+    const [profileImage, setProfileImage] = useState('')
     const [avatarImage, setAvatarImage] = useState('')
     const [showResult, setShowResult] = useState(false)
     const [apiMessage, setApiMessage] = useState('')
@@ -80,6 +81,8 @@ const Profile = ({ match }) => {
     }
 
     const handleUploadedImage = image => {
+        //profile image should be saved to database while avatar image is just for viewing.
+        setProfileImage(image)
         const avatarImage = image.replace(
             '/upload',
             '/upload/w_400,h_400,c_crop,g_face,r_max/w_200'
