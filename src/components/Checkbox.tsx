@@ -1,48 +1,34 @@
 import React from 'react'
 import { css } from 'emotion'
-import { Flex, Image } from 'rebass'
+import { Flex } from 'rebass'
 import Text from 'components/Text'
+import { Label, Checkbox as RebassCheckbox } from '@rebass/forms'
 
-function Checkbox({ field, type, checked, onChange, text }) {
-    const inputDefaultStyle = css`
-        height: 14px;
-        width: 14px;
-        position: relative;
-        display: inline-block;
-        margin: 0;
-        border: 1px solid #b8becc;
-        border-radius: 4px;
-        background: #fff;
-        transition: background 300ms ease;
-    `
+function Checkbox({ field, checked, onChange, text }) {
+    console.log(checked)
 
     return (
         <Flex alignItems="center">
-            {!checked && (
-                <input
-                    className={inputDefaultStyle}
-                    {...field}
-                    type={type}
+            <Label>
+                <RebassCheckbox
+                    my={2}
+                    name={field.name}
                     checked={checked}
-                />
-            )}
-            {checked && (
-                <Image
-                    onClick={() => {
-                        onChange(false)
+                    onChange={() => {
+                        onChange(!checked)
                     }}
-                    src={'/imgs/icons/check.svg'}
-                ></Image>
-            )}
-            <Text
-                className={css``}
-                as="body"
-                sx={{
-                    m: 2,
-                }}
-            >
-                {text}
-            </Text>
+                />
+                <Text
+                    className={css``}
+                    as="body"
+                    sx={{
+                        my: 2,
+                        lineHeight: '26px',
+                    }}
+                >
+                    {text}
+                </Text>
+            </Label>
         </Flex>
     )
 }

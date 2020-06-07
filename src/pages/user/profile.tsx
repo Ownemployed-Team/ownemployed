@@ -200,8 +200,8 @@ const Profile = ({ match }) => {
             return state.data.isFixed
                 ? {
                       ...base,
-                      fontWeight: 'bold',
                       color: 'white',
+                      fontWeight: 'bold',
                       paddingRight: 6,
                   }
                 : base
@@ -215,9 +215,9 @@ const Profile = ({ match }) => {
         <Box mx={[0, 0, 7]} my={2}>
             <Card
                 sx={{
+                    borderRadius: 0,
                     mt: 4,
                     padding: 4,
-                    borderRadius: 0,
                 }}
             >
                 <Box mx={[0, 0, 6]}>
@@ -234,16 +234,16 @@ const Profile = ({ match }) => {
                     <Box>
                         <Formik
                             initialValues={{
+                                bio: '',
                                 education: '',
                                 emailPrivacy: '',
                                 facebook: '',
+                                firstName: '',
                                 headline: '',
+                                lastName: '',
                                 linkedin: '',
                                 location: '',
-                                firstName: '',
-                                lastName: '',
                                 sector: [],
-                                bio: '',
                                 skills: [],
                                 twitter: '',
                                 userType: 'true',
@@ -264,11 +264,11 @@ const Profile = ({ match }) => {
                                         <AvatarImage
                                             avatarImage={avatarImage}
                                             errors={errors}
-                                            onUploadedImage={
-                                                handleUploadedImage
-                                            }
                                             normalInputField={
                                                 defaultNormalInputFieldStyle
+                                            }
+                                            onUploadedImage={
+                                                handleUploadedImage
                                             }
                                             touched={touched}
                                         ></AvatarImage>
@@ -282,15 +282,15 @@ const Profile = ({ match }) => {
                                             touched={touched}
                                         ></BasicInfo>
                                         <DetailedInfo
+                                            errors={errors}
                                             defaultNormalInputFieldStyle={
                                                 defaultNormalInputFieldStyle
                                             }
-                                            errors={errors}
+                                            onSetFieldValue={setFieldValue}
                                             onSkillsSelected={
                                                 handleSkillsSelected
                                             }
                                             selectClass={selectClass}
-                                            onSetFieldValue={setFieldValue}
                                             skills={skills}
                                             skillsOptions={skillsOptions}
                                             styles={styles}
