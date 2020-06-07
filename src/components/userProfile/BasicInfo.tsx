@@ -66,11 +66,21 @@ const BasicInfo = ({
                     </Text>
                 </Box>
                 <Box m={2} width={[1 / 2, 1 / 2, 1]}>
-                    <Field as="input" name="userType" type="radio"></Field>
+                    <Field
+                        as="input"
+                        name="userType"
+                        type="radio"
+                        value="true"
+                    ></Field>
                     Yes, I'm interested in working remotely
                 </Box>
                 <Box m={2} width={[1 / 2, 1 / 2, 1]}>
-                    <Field as="input" name="userType" type="radio"></Field>
+                    <Field
+                        as="input"
+                        name="userType"
+                        type="radio"
+                        value="false"
+                    ></Field>
                     No, I only want to work with people in my location.
                 </Box>
             </Box>

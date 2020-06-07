@@ -246,6 +246,7 @@ const Profile = ({ match }) => {
                                 bio: '',
                                 skills: [],
                                 twitter: '',
+                                userType: 'true',
                                 website: '',
                             }}
                             onSubmit={onSubmitSearch}
