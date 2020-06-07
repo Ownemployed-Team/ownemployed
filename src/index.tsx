@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from '@apollo/react-hooks'
+import * as Sentry from '@sentry/browser'
 
 import App from './App'
 import { Auth0Provider } from 'lib/react-auth0-spa'
@@ -9,6 +10,10 @@ import * as serviceWorker from './serviceWorker'
 import { useConfig } from 'config/Context'
 import history from 'utils/history'
 import { CloudinaryContext } from 'cloudinary-react'
+
+Sentry.init({
+    dsn: process.env.REACT_APP_SNETRY_DSN,
+})
 
 const Application = () => {
     const {
