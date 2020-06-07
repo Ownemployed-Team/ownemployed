@@ -9,27 +9,28 @@ const DetailedInfo = ({
     defaultNormalInputFieldStyle,
     errors,
     onSetFieldValue,
-    onSkillsSelected,
     selectClass,
-    skills,
     skillsOptions,
     styles,
     touched,
-    values,
+    values: fieldValues,
 }) => (
     <Box>
         <Box my={4}>
-            <Select
+            <Field
                 className={selectClass}
                 classNamePrefix="select"
                 closeMenuOnSelect={false}
+                component={Select}
                 isMulti
                 name="skills"
-                onChange={onSkillsSelected}
+                onChange={values => {
+                    console.log(values)
+                    onSetFieldValue('skills', values)
+                }}
                 options={skillsOptions}
                 placeholder={'Skills'}
                 styles={styles}
-                value={skills}
             />
             <Text as="body">Search for skills</Text>
             {errors.skills && touched.skills ? (
@@ -85,7 +86,7 @@ const DetailedInfo = ({
                 <Text as="body">Email privacy</Text>
                 <Field
                     name="emailPrivacy"
-                    checked={values.emailPrivacy}
+                    checked={fieldValues.emailPrivacy}
                     onChange={checkBoxValue => {
                         onSetFieldValue('emailPrivacy', checkBoxValue)
                     }}
