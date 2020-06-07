@@ -6,17 +6,19 @@ import { Box, Image } from 'rebass'
 import { FaMapMarkerAlt } from 'react-icons/fa'
 
 export type User = {
-    id: number
-    name: string
-    signupDate: number
-    summary: string
-    socialMedia: any[]
-    interests: any[]
-    lookingFor: string[]
-    skills: string[]
-    education: string
-    location: string
     avatar: string
+    education: string
+    firstName: string
+    headline: string
+    id: number
+    interests: any[]
+    lastName: string
+    location: string
+    lookingFor: string[]
+    signupDate: number
+    skills: string[]
+    socialMedia: any[]
+    summary: string
 }
 
 function truncateValues(summary, location) {
@@ -29,12 +31,19 @@ function truncateValues(summary, location) {
     return { summary: summary, location: location }
 }
 
-const UserCard = ({ user }: { user: User }) => {
+const UserCard = ({
+    user: { avatar, summary, id, headline, firstName, lastName, location },
+}: {
+    user: User
+}) => {
     //TODO: Change the user type to fit the db
-    let avatar = user.avatar
-        ? `https://res.cloudinary.com/demo/image/fetch/w_200,h_200,c_crop,g_face,r_max/w_200,f_png/${user.avatar}`
+    let avatarUrl = avatar
+        ? `https://res.cloudinary.com/demo/image/fetch/w_200,h_200,c_crop,g_face,r_max/w_200,f_png/${avatar}`
         : require('../static/avatars/user/default.png')
-    const { summary, location } = truncateValues(user.summary, user.location)
+    const {
+        summary: truncatedSummary,
+        location: truncatedLocation,
+    } = truncateValues(summary, location)
 
     // const avatar2 =
     //     'https://res.cloudinary.com/ownemployed/image/upload/v1590873376/user_uploads/3D-visning_cygugz.jpg'
@@ -44,9 +53,9 @@ const UserCard = ({ user }: { user: User }) => {
     // )
 
     return (
-        <Link to={`/members/${user.id}`} style={{ textDecoration: 'none' }}>
+        <Link to={`/members/${id}`} style={{ textDecoration: 'none' }}>
             <Card variant="secondary" sx={{ bg: 'white' }}>
-                <Image src={avatar} width={200} m={'auto'} p={4} />
+                <Image src={avatarUrl} width={200} m={'auto'} p={4} />
                 <Box
                     bg={'white'}
                     sx={{
@@ -55,11 +64,17 @@ const UserCard = ({ user }: { user: User }) => {
                         p: 4,
                     }}
                 >
-                    <Text as="h1" sx={{ fontSize: [16, 20, 20] }}>
-                        {user.name}
+                    <Text as="body" sx={{ textAlign: 'center' }}>
+                        {headline}
+                    </Text>
+                    <Text
+                        as="h1"
+                        sx={{ fontSize: [16, 20, 20], textAlign: 'center' }}
+                    >
+                        {`${firstName} ${lastName}`}
                     </Text>
                     <Text as="body" sx={{ fontSize: 'card', height: '70px' }}>
-                        {user.summary ? summary : 'No summary yet'}
+                        {truncatedSummary ? truncatedSummary : 'No summary yet'}
                     </Text>
                     <Text
                         as="body"
@@ -70,7 +85,7 @@ const UserCard = ({ user }: { user: User }) => {
                         }}
                     >
                         <FaMapMarkerAlt style={{ marginRight: 2 }} />
-                        {user.location ? location : 'Unknown'}
+                        {truncatedLocation ? truncatedLocation : 'Unknown'}
                     </Text>
                 </Box>
             </Card>

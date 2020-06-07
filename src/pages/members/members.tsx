@@ -35,7 +35,12 @@ const AllMembers = () => {
 
     if (!called && !loading) {
         // TODO : Add { variables: { sector, skills, location, status, skip, limit } }
-        getUsersQuery() //Initial fetch
+        getUsersQuery({
+            variables: {
+                skip: 0,
+                take: 25,
+            },
+        }) //Initial fetch
     }
 
     const handlePageClick = (data, pageSize) => {
