@@ -176,9 +176,9 @@ const CreateProject = () => {
     }
 
     return (
-        <Box mx={7} my={2}>
+        <Box mx={[4, 4, 7]} my={4}>
             <Card sx={{ borderRadius: 0, borderBottom: '1px solid' }}>
-                <Box mx={6} my={4}>
+                <Box mx={[4, 4, 6]} my={4}>
                     <Text as="h3">Create Project</Text>
                     <Text as="body">
                         Ready to get started? Tell us about your idea.
@@ -207,10 +207,9 @@ const CreateProject = () => {
                                 sx={{
                                     borderRadius: 0,
                                     borderBottom: '1px solid',
-                                    m: 4,
                                 }}
                             >
-                                <Box sx={{ mx: 6 }}>
+                                <Box sx={{ mx: [2, 4, 6] }}>
                                     <Box my={4}>
                                         <Field
                                             className={normalInputField}
@@ -364,8 +363,8 @@ const CreateProject = () => {
                                     </Box>
                                 </Box>
                             </Box>
-                            <Box>
-                                <Box mx={6} my={4} textAlign={'right'}>
+                            <Box mx={[2, 4, 6]}>
+                                <Box my={4} textAlign={'right'}>
                                     <Button sx={{ width: '265px' }}>
                                         Create Project
                                     </Button>
