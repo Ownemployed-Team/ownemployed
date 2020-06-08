@@ -78,7 +78,7 @@ export class AuditDatabase extends Audit {
     evaluate(): Promise<boolean> {
         console.log('Evaluating health audit for:  ' + this.name)
 
-        return new Promise(resolve => {
+        return new Promise((resolve, reject) => {
             switch (this.database_type) {
                 case auditDatabaseConnectionType.BACKEND_API:
                     // Check the connection to our backend
@@ -97,13 +97,8 @@ export class AuditDatabase extends Audit {
                 case auditDatabaseConnectionType.APOLLOCLIENT:
                     // Check the apollo client connection to the graphQL db.
                     const _res = useQuery(GET_PROJECTS)
-                    console.log(_res)
-
-                    if (_res.error != undefined) {
-                        resolve(true)
-                    } else {
-                        resolve(false)
-                    }
+                    if (_res.error != undefined) ? resolve(true) : reject(false)
+                    
                 default:
                     break
             }
