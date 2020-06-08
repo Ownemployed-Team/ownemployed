@@ -97,8 +97,8 @@ export class AuditDatabase extends Audit {
                 case auditDatabaseConnectionType.APOLLOCLIENT:
                     // Check the apollo client connection to the graphQL db.
                     const _res = useQuery(GET_PROJECTS)
-                    if (_res.error != undefined) ? resolve(true) : reject(false)
-                    
+                    _res.error != undefined ? resolve(true) : reject(false)
+
                 default:
                     break
             }
