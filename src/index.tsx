@@ -49,9 +49,9 @@ const Application = () => {
                             audience: auth0Audience,
                         }}
                     >
-                        <HealthCheck />
 
                         <App />
+                        
                     </Auth0Provider>
                 </React.StrictMode>
             </ApolloProvider>
