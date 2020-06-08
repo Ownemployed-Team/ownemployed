@@ -8,7 +8,6 @@ const Hero = () => {
             sx={{
                 borderRadius: '0',
                 my: 4,
-                mx: 2,
                 p: 4,
                 textAlign: 'center',
             }}

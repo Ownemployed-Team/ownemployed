@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import ApolloClient from 'apollo-boost'
 import { ApolloProvider } from '@apollo/react-hooks'
+import * as Sentry from '@sentry/browser'
 
 import App from './App'
 import { Auth0Provider } from 'lib/react-auth0-spa'
@@ -10,6 +11,11 @@ import { useConfig } from 'config/Context'
 import history from 'utils/history'
 import { CloudinaryContext } from 'cloudinary-react'
 import { HealthCheck } from './utils/healthCheck/healthCheck'
+
+Sentry.init({
+    dsn: process.env.REACT_APP_SNETRY_DSN,
+    release: `ownemployed@${process.env.REACT_APP_VERSION || 1}`,
+})
 
 const Application = () => {
     const {
