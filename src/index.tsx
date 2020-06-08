@@ -10,7 +10,6 @@ import * as serviceWorker from './serviceWorker'
 import { useConfig } from 'config/Context'
 import history from 'utils/history'
 import { CloudinaryContext } from 'cloudinary-react'
-import { HealthCheck } from './utils/healthCheck/healthCheck'
 
 Sentry.init({
     dsn: process.env.REACT_APP_SNETRY_DSN,
@@ -49,9 +48,7 @@ const Application = () => {
                             audience: auth0Audience,
                         }}
                     >
-
                         <App />
-                        
                     </Auth0Provider>
                 </React.StrictMode>
             </ApolloProvider>
