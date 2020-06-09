@@ -9,7 +9,11 @@ import Home from 'pages/home/home'
 import UserProfile from 'pages/user'
 import Projects from 'pages/projects'
 import Members from 'pages/members'
+import Privacy from 'pages/privacy'
+import PrivacyPolicy from 'pages/privacy/privacyPolicy'
+import TermsOfService from 'pages/privacy/termsOfService'
 import NoMatch from 'pages/404/404'
+
 //import SignUpForm from 'pages/signup/signup'
 
 function App() {
@@ -25,6 +29,17 @@ function App() {
                     <Route path="/projects" component={Projects} />
                     <PrivateRoute path="/profile" component={UserProfile} />
                     <Route path="/create-project" component={Projects} />
+                    <Route path="/legal" component={Privacy} exact={true} />
+                    <Route
+                        path="/legal/privacy-policy"
+                        component={PrivacyPolicy}
+                        exact={true}
+                    />
+                    <Route
+                        path="/legal/terms-of-service"
+                        component={TermsOfService}
+                        exact={true}
+                    />
 
                     <Route component={NoMatch} />
 

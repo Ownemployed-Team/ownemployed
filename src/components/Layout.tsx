@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link, useHistory } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Box, Flex } from 'rebass'
 import CookieConsent from 'react-cookie-consent'
@@ -48,15 +49,25 @@ const Layout = ({ children, boxed = true }) => {
                 <NavigationBar items={menuItems} />
                 <Main boxed={boxed}>{children}</Main>
                 <CookieConsent
-                    acceptOnScroll={true}
+                    // acceptOnScroll={true}
+                    // acceptOnScrollPercentage={50}
+                    onAccept={() => {
+                        alert('consent given')
+                    }}
                     buttonStyle={{}}
                     buttonText="Agree"
                     cookieName="ownemployed-cookie-accepted"
+                    enableDeclineButton
+                    onDecline={() => {
+                        alert('nay!')
+                    }}
                     contentStyle={{ flex: 'none' }}
                     location="bottom"
                     style={{ justifyContent: 'center', background: '#124780' }}
+                    debug={true}
                 >
-                    This website uses cookies to enhance the user experience.
+                    By continuing you agree to our terms of service. Read our
+                    Privacy Policy <Link to="/legal">here</Link>
                 </CookieConsent>
                 <Footer />
             </Flex>
