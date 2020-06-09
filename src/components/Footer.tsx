@@ -29,8 +29,14 @@ export const Footer = ({ ...props }) => {
             </Box>
             <Box mr={4}>
                 <Text as="h3">Terms of use</Text>
-                <Link to="/terms-of-use" sx={{ color: 'muted' }}>
+                <Link to="/legal/terms-of-use" sx={{ color: 'muted' }}>
                     Terms of Use
+                </Link>
+            </Box>
+            <Box mr={4}>
+                <Text as="h3">Privacy policy</Text>
+                <Link to="/legal/privacy-policy" sx={{ color: 'muted' }}>
+                    Privacy policy
                 </Link>
             </Box>
             <Box>

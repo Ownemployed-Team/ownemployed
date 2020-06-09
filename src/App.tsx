@@ -10,8 +10,10 @@ import UserProfile from 'pages/user'
 import Projects from 'pages/projects'
 import CreateProjectPage from 'pages/createProjects'
 import Members from 'pages/members'
+import Privacy from 'pages/privacy'
+import PrivacyPolicy from 'pages/privacy/privacyPolicy'
 import NoMatch from 'pages/404/404'
-import TermsOfUsePage from 'pages/termsOfUse'
+import TermsOfUse from 'pages/privacy/termsOfUse'
 
 function App() {
     return (
@@ -25,12 +27,17 @@ function App() {
                     <Route path="/members" component={Members} />
                     <Route path="/projects" component={Projects} />
                     <PrivateRoute path="/profile" component={UserProfile} />
+                    <Route path="/legal" component={Privacy} exact={true} />
+                    <Route
+                        path="/legal/privacy-policy"
+                        component={PrivacyPolicy}
+                        exact={true}
+                    />
+                    <Route path="/legal/terms-of-use" component={TermsOfUse} />
                     <Route
                         path="/create-project"
                         component={CreateProjectPage}
                     />
-                    <Route path="/terms-of-use" component={TermsOfUsePage} />
-
                     <Route component={NoMatch} />
 
                     {/*

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { Box, Flex } from 'rebass'
 import CookieConsent from 'react-cookie-consent'
@@ -52,11 +53,13 @@ const Layout = ({ children, boxed = true }) => {
                     buttonStyle={{}}
                     buttonText="Agree"
                     cookieName="ownemployed-cookie-accepted"
+                    enableDeclineButton
                     contentStyle={{ flex: 'none' }}
                     location="bottom"
                     style={{ justifyContent: 'center', background: '#124780' }}
                 >
-                    This website uses cookies to enhance the user experience.
+                    By continuing you agree to our terms of service. Read our
+                    Privacy Policy <Link to="/legal">here</Link>
                 </CookieConsent>
                 <Footer />
             </Flex>

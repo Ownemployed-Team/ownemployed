@@ -1,6 +1,8 @@
 import React from 'react'
 import ReactMarkdown from 'react-markdown'
 
+import Layout from 'components/Layout'
+
 const TermsOfUse = () => {
     const markdown = `
 ## ToS&GDPR
@@ -249,7 +251,11 @@ We may update our Privacy Policy from time to time. We will notify you of any ch
 If you have any questions about this Privacy Policy, please contact us: By email: XXX
 `
 
-    return <ReactMarkdown source={markdown} />
+    return (
+        <Layout boxed={true}>
+            <ReactMarkdown source={markdown} />
+        </Layout>
+    )
 }
 
 export default TermsOfUse
