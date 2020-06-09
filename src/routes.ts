@@ -1,11 +1,11 @@
 import About from 'pages/about/about'
+import CreateProjectPage from 'pages/createProjects'
 import Home from 'pages/home/home'
-import ProjectProfile from 'pages/projects/profile'
-import CreateProject from 'pages/projects/createProject'
 import MemberProfile from 'pages/members/profile'
-import Projects from 'pages/projects/projects'
 import Members from 'pages/members/members'
-import SignUpForm from 'pages/signup/signup'
+import ProjectProfile from 'pages/projects/profile'
+import Projects from 'pages/projects/projects'
+import TermsOfUse from 'pages/termsOfUse/termsOfUse'
 
 export default [
     {
@@ -37,11 +37,11 @@ export default [
         path: '/members/:memberProfileId',
     },
     {
-        component: SignUpForm,
-        path: '/sign-up',
+        component: CreateProjectPage,
+        path: '/create-project',
     },
     {
-        component: CreateProject,
-        path: '/create-project',
+        component: TermsOfUse,
+        path: '/terms-of-use',
     },
 ]

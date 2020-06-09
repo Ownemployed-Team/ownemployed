@@ -23,11 +23,14 @@ const CreateProjectSchema = Yup.object().shape({
         .min(2, 'Too Short!')
         .max(100, 'Too Long!')
         .required('Required'),
-    description: Yup.string().email('Invalid email').required('Required'),
+    description: Yup.string()
+        .min(2, 'Too Short!')
+        .max(140, 'Too Long!')
+        .required('Required'),
     projectStatus: Yup.string().required(),
     location: Yup.string().required(),
-    sector: Yup.array().min(1),
-    skills: Yup.array().min(1),
+    sector: Yup.array(),
+    skills: Yup.array(),
 })
 
 const CreateProject = () => {
@@ -173,9 +176,9 @@ const CreateProject = () => {
     }
 
     return (
-        <Box>
+        <Box mx={[4, 4, 7]} my={4}>
             <Card sx={{ borderRadius: 0, borderBottom: '1px solid' }}>
-                <Box mx={6} my={4}>
+                <Box mx={[4, 4, 6]} my={4}>
                     <Text as="h3">Create Project</Text>
                     <Text as="body">
                         Ready to get started? Tell us about your idea.
@@ -206,7 +209,7 @@ const CreateProject = () => {
                                     borderBottom: '1px solid',
                                 }}
                             >
-                                <Box sx={{ mx: 6 }}>
+                                <Box sx={{ mx: [2, 4, 6] }}>
                                     <Box my={4}>
                                         <Field
                                             className={normalInputField}
@@ -238,7 +241,7 @@ const CreateProject = () => {
                                         ) : null}
                                     </Box>
                                     <Box my={4}>
-                                        <ImageUploader />
+                                        <ImageUploader isImageVisibleInBox />
                                     </Box>
                                     <Box my={4}>
                                         <Field
@@ -360,8 +363,8 @@ const CreateProject = () => {
                                     </Box>
                                 </Box>
                             </Box>
-                            <Box>
-                                <Box mx={6} my={4} textAlign={'right'}>
+                            <Box mx={[2, 4, 6]}>
+                                <Box my={4} textAlign={'right'}>
                                     <Button sx={{ width: '265px' }}>
                                         Create Project
                                     </Button>

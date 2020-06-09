@@ -5,7 +5,16 @@ import Text from 'components/Text'
 import { useConfig } from 'config/Context'
 import { uploadImage } from 'lib/media'
 
-function UploadImage() {
+type UploadImageProps = {
+    onUploadedImage?: (resizedImage: String) => void
+    isImageVisibleInBox?: Boolean
+    isTextAboveBrowseButton?: Boolean
+}
+function UploadImage({
+    onUploadedImage,
+    isImageVisibleInBox = false,
+    isTextAboveBrowseButton = false,
+}: UploadImageProps) {
     const [loading, setLoading] = useState(false)
     const [uploadedImage, setUploadedImage] = useState(false)
     const { cloudinaryAPIEndpoint } = useConfig()
@@ -26,8 +35,11 @@ function UploadImage() {
 
             setLoading(false)
             setUploadedImage(resizedImage)
+            if (onUploadedImage) {
+                onUploadedImage(resizedImage)
+            }
         },
-        [uploadURL]
+        [onUploadedImage, uploadURL]
     )
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
@@ -35,7 +47,7 @@ function UploadImage() {
 
     return (
         <Box
-            width={[1 / 2]}
+            width={[1, 1, 1]}
             sx={{
                 borderRadius: '4px',
                 border: '1px dashed',
@@ -50,27 +62,42 @@ function UploadImage() {
                 <Text as="body">Drop the files here ...</Text>
             ) : (
                 <Box sx={{ textAlign: 'left' }}>
-                    <Box>
-                        <Text
-                            as="body"
-                            sx={{
-                                color: '#6F63AD',
-                            }}
-                        >
-                            Image (optional)
-                        </Text>
-                    </Box>
-                    <Flex justifyContent="space-between">
+                    <Box
+                        sx={{
+                            textAlign: isTextAboveBrowseButton
+                                ? 'center'
+                                : 'left',
+                        }}
+                    >
                         <Box>
-                            <Text as="body">
-                                Drop or choose file from computer
+                            <Text
+                                as="body"
+                                sx={{
+                                    color: '#6F63AD',
+                                }}
+                            >
+                                Image (optional)
                             </Text>
                         </Box>
-                        <Box>
-                            <Button>Choose Image</Button>
+                        <Box
+                            sx={{
+                                display: isTextAboveBrowseButton
+                                    ? 'block'
+                                    : 'flex',
+                            }}
+                            justifyContent="space-between"
+                        >
+                            <Box>
+                                <Text as="body">
+                                    Drop or choose file from computer
+                                </Text>
+                            </Box>
+                            <Box>
+                                <Button>Choose Image</Button>
+                            </Box>
                         </Box>
-                    </Flex>
-                    {uploadedImage && (
+                    </Box>
+                    {isImageVisibleInBox && uploadedImage && (
                         <Box width={250}>
                             <Image
                                 src={uploadedImage}

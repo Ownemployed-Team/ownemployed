@@ -7,7 +7,7 @@ import Layout from 'components/Layout'
 
 export const NoMatch = () => {
     return (
-        <Layout boxed>
+        <Layout>
             <Box
                 sx={{
                     mt: 6,

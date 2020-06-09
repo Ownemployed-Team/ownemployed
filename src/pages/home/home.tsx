@@ -2,10 +2,9 @@ import * as React from 'react'
 import { Flex, Box, Image } from 'rebass'
 import { NavLink } from 'components/NavLink'
 import Text from 'components/Text'
-import Link from 'components/Link'
 import Layout from 'components/Layout'
 import Button from 'components/Button'
-import Card from 'components/Card'
+import { useAuth0 } from 'lib/react-auth0-spa'
 
 const Home = () => {
     return (
@@ -25,13 +24,13 @@ export default Home
 function Hero() {
     return (
         <>
-            <Flex mt={5} flexWrap="wrap" pr={[4, 4, 6]} pl={[4, 4, 6]}>
-                <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
+            <Flex mt={5} flexWrap="wrap" pr={[4, 4, 7]} pl={[4, 4, 7]}>
+                <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
                     <Box>
                         <Text
-                            as="h3"
+                            as="h2"
                             sx={{
-                                lineHeight: '42px',
+                                lineHeight: '36px',
                             }}
                         >
                             Unemployed?
@@ -41,19 +40,25 @@ function Hero() {
                         <Text
                             as="h1"
                             sx={{
-                                lineHeight: '52px',
                                 fontWeight: 'bold',
+                                lineHeight: '66px',
                             }}
                         >
                             No,{' '}
                             <span style={{ textDecoration: 'underline' }}>
                                 Own
                             </span>
-                            employed
+                            employed!
                         </Text>
                     </Box>
                     <Box>
-                        <Text as="body">
+                        <Text
+                            as="h2"
+                            sx={{
+                                color: 'body',
+                                lineHeight: '36px',
+                            }}
+                        >
                             Why wait to be employed, when you can be an
                             entrepreneur?
                         </Text>
@@ -62,32 +67,39 @@ function Hero() {
                         <NavLink
                             to="/projects"
                             sx={{
-                                pt: 6,
                                 fontSize: 'body',
+                                pt: 6,
                             }}
                         >
-                            <Button>Find a Project</Button>
+                            <Button
+                                sx={{
+                                    height: '72px',
+                                    my: 4,
+                                    width: ['200px', '300px', '500px'],
+                                }}
+                            >
+                                <Text
+                                    as="h2"
+                                    sx={{
+                                        color: '#fff',
+                                    }}
+                                >
+                                    Find a Project
+                                </Text>
+                            </Button>
                         </NavLink>
                     </Box>
                 </Box>
 
-                <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
+                <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
                     <Image
                         sx={{
-                            width: '100%',
                             display: ['none', 'none', 'block'],
+                            height: '419px',
+                            width: '100%',
                         }}
                         src="/imgs/illustrations/homepage-ideas.svg"
                     ></Image>
-                </Box>
-            </Flex>
-
-            <Flex mt={5} mb={6} px={[0, 2, 6]} textAlign="center">
-                <Box>
-                    <Text as="h3">
-                        Take the opportunity to start something you are
-                        passionate about and eventually make a living out of it!
-                    </Text>
                 </Box>
             </Flex>
         </>
@@ -97,41 +109,40 @@ function Hero() {
 function Actions() {
     const actions = [
         {
-            title: 'Find People',
-            url: '/',
-            image: '/imgs/illustrations/homepage-ideas.svg',
             body:
                 'Looking to round out your team? Find people with the skills and drive to make your project a success.',
+            image: '/imgs/illustrations/find-people.svg',
+            title: 'Find People',
+            url: '/members',
         },
 
         {
-            title: 'Find Projects',
-            url: '/',
-            image: '/imgs/illustrations/homepage-ideas.svg',
             body:
                 'Bring your talents to an idea you care about. Choose a project that aligns with your goals, values, and work style.',
+            image: '/imgs/illustrations/find-projects.svg',
+            title: 'Find Projects',
+            url: '/projects',
         },
 
         {
-            title: 'Learn and Build',
-            url: '/',
-            image: '/imgs/illustrations/homepage-ideas.svg',
             body:
                 'Our collection of resources are here to help you every step of the way. You’ve got questions, we’ve got answers.',
+            image: '/imgs/illustrations/learn-and-build.svg',
+            title: 'Learn and Build',
+            url: 'https://ownemployed.tribe.so/',
         },
     ]
 
     return (
         <Flex
-            pr={[4, 4, 6]}
-            pl={[4, 4, 6]}
+            pr={[4, 4, 7]}
+            pl={[4, 4, 7]}
             sx={{
-                mt: 5,
                 flexDirection: ['column', 'column', 'row'],
                 justifyContent: 'space-between',
             }}
         >
-            {actions.map((action, index) => {
+            {actions.map(({ body, image, title, url }, index) => {
                 return (
                     <Box
                         key={index}
@@ -140,28 +151,43 @@ function Actions() {
                             width: ['100%', '100%', '30%'],
                         }}
                     >
-                        <Card
+                        <Box
                             sx={{
-                                px: 2,
+                                backgroundColor: '#f7f8fc',
                                 mb: 4,
+                                px: 2,
                             }}
                         >
-                            <Image
+                            <NavLink to={url}>
+                                <Image
+                                    sx={{
+                                        width: '100%',
+                                    }}
+                                    src={image}
+                                />
+                            </NavLink>
+                        </Box>
+                        <Box m={2}>
+                            <Text
+                                as="h2"
                                 sx={{
-                                    width: '100%',
+                                    lineHeight: '36px',
+                                    textAlign: 'center',
                                 }}
-                                src={action.image}
-                            />
-                        </Card>
-                        <Text
-                            as="h3"
-                            sx={{
-                                textAlign: 'center',
-                            }}
-                        >
-                            {action.title}
-                        </Text>
-                        <Text>{action.body}</Text>
+                            >
+                                {title}
+                            </Text>
+                        </Box>
+                        <Box>
+                            <Text
+                                as="h3"
+                                sx={{
+                                    lineHeight: '32px',
+                                }}
+                            >
+                                {body}
+                            </Text>
+                        </Box>
                     </Box>
                 )
             })}
@@ -172,8 +198,8 @@ function Actions() {
 function Initiative() {
     return (
         <Flex
-            pr={[4, 4, 6]}
-            pl={[4, 4, 6]}
+            pr={[4, 4, 7]}
+            pl={[4, 4, 7]}
             sx={{
                 ml: 0,
                 mr: 0,
@@ -181,26 +207,32 @@ function Initiative() {
                 pt: 6,
                 pb: 6,
                 justifyContent: 'space-between',
+                alignItems: 'center',
                 backgroundImage: 'url("/imgs/section_bg.png")',
                 backgroundSize: '100% 80%',
                 backgroundRepeat: 'no-repeat',
             }}
         >
-            <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]} mr={[0, 0, 5]}>
+            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]} mr={[0, 0, 5]}>
                 <Image
                     sx={{
+                        height: '331px',
                         width: '100%',
                         display: ['none', 'none', 'block'],
                     }}
-                    src="/imgs/illustrations/social.png"
+                    src="/imgs/illustrations/social.svg"
                 ></Image>
             </Box>
-            <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
-                <Text as="h3">A COVID-19 Initiative</Text>
-                <Text>
+            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
+                <Text as="h2" sx={{ my: 2 }}>
+                    A COVID-19 Initiative
+                </Text>
+                <Text as="h3" sx={{ mb: 4 }}>
                     This platform was built to help people forge their own path
-                    amidst our current environment. We believe the economy of
-                    the future will be driven by you.
+                    amidst our current environment.
+                </Text>
+                <Text as="h3">
+                    We believe the economy of the future will be driven by you.
                 </Text>
             </Box>
         </Flex>
@@ -233,19 +265,19 @@ function Reasons() {
 
     return (
         <Flex
-            pr={[4, 4, 6]}
-            pl={[4, 4, 6]}
+            pr={[4, 4, 7]}
+            pl={[4, 4, 7]}
             sx={{
+                backgroundImage: 'url("/imgs/section_bg.png")',
+                backgroundRepeat: 'no-repeat',
+                backgroundSize: '100% 100%',
+                flexDirection: ['column', 'column', 'row'],
+                justifyContent: 'space-between',
                 ml: 0,
                 mr: 0,
                 mt: 4,
-                pt: 6,
                 pb: 6,
-                flexDirection: ['column', 'column', 'row'],
-                justifyContent: 'space-between',
-                backgroundImage: 'url("/imgs/section_bg.png")',
-                backgroundSize: '100% 100%',
-                backgroundRepeat: 'no-repeat',
+                pt: 6,
             }}
         >
             {reasons.map((reason, index) => {
@@ -259,9 +291,9 @@ function Reasons() {
                     >
                         <Image
                             sx={{
-                                width: '30%',
-                                mx: 'auto',
                                 mb: 4,
+                                mx: 'auto',
+                                width: '30%',
                             }}
                             src={reason.icon}
                         ></Image>
@@ -276,13 +308,13 @@ function Reasons() {
 
 function Skills() {
     return (
-        <Flex mt={6} flexWrap="wrap" pr={[4, 4, 6]} pl={[4, 4, 6]}>
+        <Flex flexWrap="wrap" mt={6} pr={[4, 4, 7]} pl={[4, 4, 7]}>
             <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
                 <Text
                     as="h2"
                     sx={{
-                        lineHeight: '52px',
                         fontWeight: 'normal',
+                        lineHeight: '52px',
                     }}
                 >
                     Turn your skills and passion into your next opportunity.
@@ -296,10 +328,10 @@ function Skills() {
             <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
                 <Image
                     sx={{
-                        width: '100%',
                         display: ['none', 'none', 'block'],
+                        width: '100%',
                     }}
-                    src="/imgs/illustrations/board.png"
+                    src="/imgs/illustrations/board.svg"
                 ></Image>
             </Box>
         </Flex>
@@ -307,39 +339,44 @@ function Skills() {
 }
 
 function CallToAction() {
+    const { isAuthenticated, loginWithRedirect } = useAuth0()
     return (
-        <Flex mt={5} flexWrap="wrap" pr={[4, 4, 6]} pl={[4, 4, 6]}>
+        <Flex flexWrap="wrap" mt={5} pr={[4, 4, 7]} pl={[4, 4, 7]}>
             <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
                 <Text
                     as="h2"
                     sx={{
-                        lineHeight: '52px',
                         fontWeight: 'normal',
+                        lineHeight: '52px',
                     }}
                 >
                     Ready to join our community and transform the world?
                 </Text>
-                <Button
-                    sx={{
-                        marginTop: 4,
-                        pt: 2,
-                        pb: 2,
-                        pl: 4,
-                        pr: 4,
-                        fontSize: 'body',
-                    }}
-                >
-                    Create an Account
-                </Button>
+                {!isAuthenticated && (
+                    <NavLink
+                        sx={{
+                            fontSize: 'body',
+                            marginTop: 4,
+                            pb: 2,
+                            pl: 4,
+                            pr: 4,
+                            pt: 2,
+                        }}
+                        to=""
+                        onClick={() => loginWithRedirect({})}
+                    >
+                        {'Create an Account'}
+                    </NavLink>
+                )}
             </Box>
 
             <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
                 <Image
+                    src="/imgs/illustrations/team.svg"
                     sx={{
-                        width: '100%',
                         display: ['none', 'none', 'block'],
+                        width: '100%',
                     }}
-                    src="/imgs/illustrations/team.png"
                 ></Image>
             </Box>
         </Flex>

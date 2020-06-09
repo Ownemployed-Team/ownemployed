@@ -1,55 +1,45 @@
 import React from 'react'
 import Card from 'components/Card'
 import Text from 'components/Text'
-import { Box, Image } from 'rebass'
+import { Box, Flex, Image } from 'rebass'
 import { Label } from '@rebass/forms'
 // Avatar as RebassAvatar,
 import { Link } from 'react-router-dom'
 import { colors } from '../utils/colors'
 import { UniqueInputFieldNamesRule } from 'graphql'
 
-// const { Meta } = Card
-
 const ProjectCard = ({ project }) => {
     const {
-        contributors,
         description,
         id,
-        keyActivities,
         name,
-        status,
+        picture,
+        sectors,
+        shortDescription,
+        skillsRequired,
     } = project
-    let avatar = require('../static/avatars/business/default.png')
-    try {
-        avatar = require(`../static/avatars/business/${id}.png`)
-    } catch (e) {}
+
+    // TODO : wait till cloudinary images is in database and use picture instead of hardcoded image.
+    const avatar =
+        'https://res.cloudinary.com/ownemployed/image/upload/v1590873376/user_uploads/3D-visning_cygugz.jpg'
+    const transformedAvatar = avatar.replace(
+        '/upload',
+        `/upload/w_auto:100:400`
+    )
+
     return (
         <Link to={`/projects/${id}`} style={{ textDecoration: 'none' }}>
-            <Card
-                sx={{
-                    borderRadius: '0',
-                    bg: '#F3F3F3',
-                    mx: '0',
-                    padding: '0',
-                    minHeight: 385,
-                }}
-                // style={{ margin: '8px' }}
-            >
-                <Image src={avatar} m={'auto'} />
+            <Card variant="secondary">
+                <Image src={transformedAvatar} width={'100%'} m={'auto'} />
                 <Box
                     bg={'white'}
                     sx={{
-                        minHeight: 235,
+                        minHeight: 280,
                         mx: 'auto',
                         p: 4,
                     }}
                 >
-                    <Text
-                        as="h1"
-                        sx={{
-                            fontSize: [16, 20, 20],
-                        }}
-                    >
+                    <Text as="h1" sx={{ fontSize: [16, 20, 20] }}>
                         {name}
                     </Text>
                     <Text
@@ -61,25 +51,44 @@ const ProjectCard = ({ project }) => {
                             maxHeight: 70,
                         }}
                     >
-                        {description}
+                        {shortDescription}
                     </Text>
-                    {keyActivities &&
-                        keyActivities.map(keyActivity => (
-                            <Text
-                                key={keyActivity}
-                                sx={{
-                                    mr: 1,
-                                    p: 2,
-                                    borderRadius: '2px',
-                                    display: 'inline',
-                                    bg: '#124780',
-                                    color: 'white',
-                                    fontSize: '10px',
-                                }}
-                            >
-                                {keyActivity}
-                            </Text>
-                        ))}
+                    <Flex flexWrap={'wrap'}>
+                        {sectors &&
+                            sectors.map(({ title }) => (
+                                <Text
+                                    key={title}
+                                    sx={{
+                                        mr: 1,
+                                        p: 2,
+                                        borderRadius: '2px',
+                                        display: 'inline',
+                                        bg: '#124780',
+                                        color: 'white',
+                                        fontSize: '10px',
+                                    }}
+                                >
+                                    {title}
+                                </Text>
+                            ))}
+                        {skillsRequired &&
+                            skillsRequired.map(({ title }) => (
+                                <Text
+                                    key={title}
+                                    sx={{
+                                        mr: 1,
+                                        p: 2,
+                                        borderRadius: '2px',
+                                        display: 'inline',
+                                        bg: '#124780',
+                                        color: 'white',
+                                        fontSize: '10px',
+                                    }}
+                                >
+                                    {title}
+                                </Text>
+                            ))}
+                    </Flex>
                 </Box>
             </Card>
         </Link>

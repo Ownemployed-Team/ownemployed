@@ -2,12 +2,12 @@ export default {
     breakpoints: ['40em', '55em', '64em'],
     //breakpoints: ['720px', '920px', '1440px'],
     fontSizes: {
-        card: '14px',
-        body: '16px',
-        h4: '20px',
+        body: '14px',
+        h1: '34px',
+        h2: '28px',
         h3: '22px',
-        h2: '34px',
-        h1: '42px',
+        h4: '18px',
+        small: '12px',
     },
     colors: {
         primary: '#6F63AD',
@@ -29,9 +29,9 @@ export default {
         heading: 'Poppins, sans-serif',
     },
     fontWeights: {
-        body: 400,
-        heading: 600,
-        bold: 700,
+        semibold: 600,
+        regular: 400,
+        medium: 500,
     },
     lineHeights: {
         body: '26px',
@@ -53,10 +53,17 @@ export default {
         card: {
             primary: {
                 backgroundColor: 'white',
-                boxShadow: 'small',
                 borderRadius: 'default',
-                width: 'auto',
+                boxShadow: 'small',
                 padding: 2,
+                width: 'auto',
+            },
+            secondary: {
+                bg: '#F3F3F3',
+                borderRadius: '0',
+                minHeight: 385,
+                mx: '0',
+                padding: '0',
             },
         },
         flex: {},
