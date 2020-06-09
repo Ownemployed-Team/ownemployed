@@ -5,7 +5,7 @@ import MemberProfile from 'pages/members/profile'
 import Members from 'pages/members/members'
 import ProjectProfile from 'pages/projects/profile'
 import Projects from 'pages/projects/projects'
-import TermsOfUse from 'pages/termsOfUse/termsOfUse'
+// import TermsOfUse from 'pages/privacy/termsOfUse'
 
 export default [
     {
@@ -40,8 +40,8 @@ export default [
         component: CreateProjectPage,
         path: '/create-project',
     },
-    {
-        component: TermsOfUse,
-        path: '/terms-of-use',
-    },
+    // {
+    //     component: TermsOfUse,
+    //     path: '/terms-of-use',
+    // },
 ]

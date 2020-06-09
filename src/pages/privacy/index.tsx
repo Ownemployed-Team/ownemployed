@@ -10,16 +10,6 @@ export const Privacy = ({ match }) => {
         <Layout boxed={false}>
             <Heading />
             <Actions />
-            {/* <Switch>
-                <Route 
-                path={`/legal/terms-of-service`} 
-                component={TermsOfService}  
-                />
-                <Route 
-                path={`/legal/privacy-policy`} 
-                component={PrivacyPolicy} 
-                />
-            </Switch> */}
         </Layout>
     )
 }
@@ -46,10 +36,10 @@ function Actions() {
         },
 
         {
-            title: 'Terms & Conditions',
+            title: 'Terms of Service',
             url: '/',
             image: '',
-            to: '/legal/terms-of-service',
+            to: '/legal/terms-of-use',
             body:
                 'These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.',
         },
