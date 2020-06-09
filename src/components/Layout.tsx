@@ -49,22 +49,14 @@ const Layout = ({ children, boxed = true }) => {
                 <NavigationBar items={menuItems} />
                 <Main boxed={boxed}>{children}</Main>
                 <CookieConsent
-                    // acceptOnScroll={true}
-                    // acceptOnScrollPercentage={50}
-                    onAccept={() => {
-                        alert('consent given')
-                    }}
+                    acceptOnScroll={true}
                     buttonStyle={{}}
                     buttonText="Agree"
                     cookieName="ownemployed-cookie-accepted"
                     enableDeclineButton
-                    onDecline={() => {
-                        alert('nay!')
-                    }}
                     contentStyle={{ flex: 'none' }}
                     location="bottom"
                     style={{ justifyContent: 'center', background: '#124780' }}
-                    debug={true}
                 >
                     By continuing you agree to our terms of service. Read our
                     Privacy Policy <Link to="/legal">here</Link>
