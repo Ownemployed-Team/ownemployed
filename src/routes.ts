@@ -40,8 +40,4 @@ export default [
         component: CreateProjectPage,
         path: '/create-project',
     },
-    // {
-    //     component: TermsOfUse,
-    //     path: '/terms-of-use',
-    // },
 ]
