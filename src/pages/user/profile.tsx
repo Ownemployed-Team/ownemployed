@@ -43,7 +43,6 @@ const Profile = ({ match }) => {
     const [avatarImage, setAvatarImage] = useState('')
     const [showResult, setShowResult] = useState(false)
     const [apiMessage, setApiMessage] = useState('')
-    const [skills, setSkills] = useState([])
     const { getTokenSilently } = useAuth0()
 
     const skillsOptions = skillsData.map(({ id, name }) => ({
@@ -76,10 +75,6 @@ const Profile = ({ match }) => {
         }
     }
 
-    const handleSkillsSelected = values => {
-        setSkills(values)
-    }
-
     const handleUploadedImage = image => {
         //profile image should be saved to database while avatar image is just for viewing.
         setProfileImage(image)
@@ -93,7 +88,7 @@ const Profile = ({ match }) => {
 
     const onSubmitSearch = (values, actions) => {
         setTimeout(() => {
-            const skillsValues = skills.map(({ value }) => value)
+            const skillsValues = values.skills.map(({ value }) => value)
             const mutatedValues = {
                 ...values,
                 skills: skillsValues,
@@ -287,11 +282,7 @@ const Profile = ({ match }) => {
                                                 defaultNormalInputFieldStyle
                                             }
                                             onSetFieldValue={setFieldValue}
-                                            onSkillsSelected={
-                                                handleSkillsSelected
-                                            }
                                             selectClass={selectClass}
-                                            skills={skills}
                                             skillsOptions={skillsOptions}
                                             styles={styles}
                                             touched={touched}
