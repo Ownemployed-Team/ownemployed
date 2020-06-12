@@ -6,7 +6,6 @@ import React, {
 } from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
 import { Link as RebassLink, Box } from 'rebass'
-import { css } from 'emotion'
 
 type LinkProps = {
     children: ReactChildren | ReactElement | ReactChild | string | string[]
@@ -18,11 +17,9 @@ type LinkProps = {
     to: string
     variant?: string
 }
-
-const linkStyle = css`
-    text-decoration: none;
-`
-
+const defaultStyles = {
+    textDecoration: 'none',
+}
 export const Link: FunctionComponent<LinkProps> = ({
     children,
     to,
@@ -34,10 +31,9 @@ export const Link: FunctionComponent<LinkProps> = ({
         return (
             <RebassLink
                 target="_blank"
-                className={linkStyle}
                 href={to}
                 variant={variant || 'primary'}
-                sx={{ ...sx }}
+                sx={{ ...defaultStyles, ...sx }}
                 {...props}
             >
                 {children}
@@ -45,8 +41,8 @@ export const Link: FunctionComponent<LinkProps> = ({
         )
     } else {
         return (
-            <Box sx={{ display: 'inline', ...sx }}>
-                <ReactRouterLink to={to} className={linkStyle} {...props}>
+            <Box sx={{ display: 'inline', ...defaultStyles, ...sx }}>
+                <ReactRouterLink to={to} {...props}>
                     {children}
                 </ReactRouterLink>
             </Box>

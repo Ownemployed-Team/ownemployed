@@ -14,7 +14,7 @@ const menuItems = [
     { label: 'Community', url: 'https://ownemployed.tribe.so/' },
     { label: 'Account', url: '/profile', isPrivate: true },
     { label: 'Create project', url: '/create-project', isPrivate: true },
-    { label: 'Login/Register', url: '/auth', isAuth: true },
+    { label: 'My Account', url: '/signup', isAuth: true },
 ]
 
 const Main = ({ children, boxed }) => {
