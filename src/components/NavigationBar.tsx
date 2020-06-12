@@ -36,17 +36,18 @@ const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
                     .map((item, index) => {
                         if (item.isAuth) {
                             return (
-                                <NavLink
-                                    to=""
-                                    key={index}
-                                    onClick={
-                                        isAuthenticated
-                                            ? () => logout()
-                                            : () => loginWithRedirect({})
-                                    }
-                                >
-                                    {isAuthenticated ? 'Logout' : item.label}
-                                </NavLink>
+                                <Button>
+                                    <Link
+                                        style={{
+                                            textDecoration: 'none',
+                                            color: 'white',
+                                        }}
+                                        key={index}
+                                        to={item.url}
+                                    >
+                                        {item.label}
+                                    </Link>
+                                </Button>
                             )
                         }
                         return (

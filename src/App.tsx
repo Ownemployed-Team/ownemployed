@@ -7,6 +7,7 @@ import 'reset.css'
 import AboutPage from 'pages/about'
 import Home from 'pages/home/home'
 import UserProfile from 'pages/user'
+import LoginPage from 'pages/login'
 import Projects from 'pages/projects'
 import CreateProjectPage from 'pages/createProjects'
 import Members from 'pages/members'
@@ -20,18 +21,19 @@ function App() {
         <Router history={history}>
             <ThemeProvider>
                 <Switch>
-                    <Route component={Home} path="/" exact={true} />
+                    <Route component={Home} path="/" exact />
                     <Route path="/about" component={AboutPage} />
-                    <Route path="/community" exact={true} />
-                    <Route path="/auth" exact={true} />
+                    <Route path="/community" exact />
+                    <Route path="/login" exact component={LoginPage} />
+                    <Route path="/signup" exact component={LoginPage} />
                     <Route path="/members" component={Members} />
                     <Route path="/projects" component={Projects} />
                     <PrivateRoute path="/profile" component={UserProfile} />
-                    <Route path="/legal" component={Privacy} exact={true} />
+                    <Route path="/legal" component={Privacy} exact />
                     <Route
                         path="/legal/privacy-policy"
                         component={PrivacyPolicy}
-                        exact={true}
+                        exact
                     />
                     <Route path="/legal/terms-of-use" component={TermsOfUse} />
                     <Route

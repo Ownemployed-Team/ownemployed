@@ -6,6 +6,7 @@ const Button = ({
     variant,
     onClick,
     sx,
+    type,
 }: {
     children: ReactChildren | ReactChild | ReactElement | string[] | string
     //onClick?: (...args: any[]) => void,
@@ -13,6 +14,7 @@ const Button = ({
     onClick?: Function
     style?: object
     sx?: object
+    type?: string
 }) => {
     return (
         <RebassButton
@@ -21,6 +23,7 @@ const Button = ({
             sx={{
                 ...sx,
             }}
+            type={type}
         >
             {children}
         </RebassButton>
