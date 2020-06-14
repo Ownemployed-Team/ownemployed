@@ -6,6 +6,7 @@ const Main = () => (
     <Box
         sx={{
             pt: 6,
+            width: '100%',
         }}
     >
         <Box

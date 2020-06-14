@@ -22,15 +22,23 @@ const Main = ({ children, boxed }) => {
         <Box
             pt={3}
             pb={3}
-            sx={{
-                flex: 1,
-                mx: boxed ? 'auto' : 0,
-                pl: boxed ? [4, 4, 6] : 0,
-                pr: boxed ? [4, 4, 6] : 0,
-            }}
-            fontFamily="body"
+            // sx={{
+
+            //     mx: boxed ? 'auto' : 0,
+            //     pl: boxed ? [4,4, 4, 6] : 0,
+            //     pr: boxed ? [4,4, 4, 6] : 0,
+            //     fontFamily:"body"
+            // }}
         >
-            <main>{children}</main>
+            <Flex
+                sx={{
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
+                <main>{children}</main>
+            </Flex>
         </Box>
     )
 }
@@ -41,9 +49,12 @@ const Layout = ({ children, boxed = true }) => {
             <Flex
                 sx={{
                     flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     minHeight: '100vh',
                     margin: 0,
                     padding: 0,
+                    width: '100%',
                 }}
             >
                 <NavigationBar items={menuItems} />

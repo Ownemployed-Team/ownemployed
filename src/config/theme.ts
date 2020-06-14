@@ -1,5 +1,5 @@
 export default {
-    breakpoints: ['40em', '55em', '64em'],
+    breakpoints: ['26em', '40em', '55em', '64em'],
     //breakpoints: ['720px', '920px', '1440px'],
     space: [0, 4, 8, 16, 32, 64, 128, 256],
     fontSizes: {
@@ -33,10 +33,7 @@ export default {
         regular: 400,
         medium: 500,
     },
-    lineHeights: {
-        body: '26px',
-        heading: '52px',
-    },
+    lineHeights: ['16px', '18px', '24px', '32px', '36px', '44px'],
     letterSpacings: {},
     sizes: {},
     borders: {
