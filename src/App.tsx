@@ -15,6 +15,10 @@ import Privacy from 'pages/privacy'
 import PrivacyPolicy from 'pages/privacy/privacyPolicy'
 import NoMatch from 'pages/404/404'
 import TermsOfUse from 'pages/privacy/termsOfUse'
+import backendSettings from './backend.env'
+import Amplify from '@aws-amplify/core'
+
+Amplify.configure(backendSettings)
 
 function App() {
     return (

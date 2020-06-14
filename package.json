@@ -5,6 +5,8 @@
     "dependencies": {
         "@apollo/react-hooks": "^3.1.5",
         "@auth0/auth0-spa-js": "^1.8.1",
+        "@aws-amplify/auth": "^3.2.13",
+        "@aws-amplify/core": "^3.3.3",
         "@rebass/forms": "^4.0.6",
         "@rebass/preset": "^4.0.5",
         "@sentry/browser": "^5.16.1",
