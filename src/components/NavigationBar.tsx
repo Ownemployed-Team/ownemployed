@@ -24,7 +24,14 @@ const NavigationBar = ({ items }: { items: NavigationItem[] }) => {
     const { isAuthenticated, loginWithRedirect, logout } = useAuth0()
 
     return (
-        <Flex pl={5} pr={5} color="black" alignItems="center" bg="#fff">
+        <Flex
+            pl={5}
+            pr={5}
+            color="black"
+            alignItems="center"
+            bg="#fff"
+            sx={{ width: '100%' }}
+        >
             <Brand />
             <Box mr="auto" />
             <Flex alignItems="center">

@@ -25,24 +25,29 @@ function Hero() {
     return (
         <>
             <Flex
-                mt={1}
                 flexWrap="wrap"
                 pr={[0, 4, 4, 6]}
                 pl={[0, 4, 4, 6]}
                 width="100%"
+                mt={[0, 0, 0, 5]}
             >
                 <Box
                     mb={[0, 0, 0, 5]}
-                    sx={{ width: ['100%', '100%', '100%', '40%'] }}
+                    sx={{ width: ['100%', '100%', '100%', '50%'] }}
                 >
                     <Flex
                         sx={{
                             flexDirection: 'column',
                             justifyContent: 'space-between',
-                            alignItems: 'center',
+                            alignItems: [
+                                'center',
+                                'center',
+                                'center',
+                                'flex-start',
+                            ],
                             width: '100%',
-                            marginTop: '5',
-                            marginBottom: '5',
+                            marginTop: '4',
+                            marginBottom: '4',
                         }}
                     >
                         <Text
@@ -60,6 +65,7 @@ function Hero() {
                                     'center',
                                     'left',
                                 ],
+                                marginBottom: '1',
                             }}
                         >
                             Take control of your career
@@ -79,6 +85,7 @@ function Hero() {
                                     'center',
                                     'left',
                                 ],
+                                marginBottom: '2',
                             }}
                         >
                             Be{' '}
@@ -101,6 +108,7 @@ function Hero() {
                                     'center',
                                     'left',
                                 ],
+                                marginBottom: '4',
                             }}
                         >
                             Our community can help you turn an idea into a
@@ -136,6 +144,21 @@ function Hero() {
                                     sx={{
                                         margin: '0',
                                         padding: '0',
+                                        fontFamily: 'body',
+                                        fontStyle: 'normal',
+                                        fontWeight: 'normal',
+                                        fontSize: [
+                                            '14px',
+                                            '14px',
+                                            '14px',
+                                            'h2',
+                                        ],
+                                        lineHeight: [
+                                            '18px',
+                                            '18px',
+                                            '18px',
+                                            '36px',
+                                        ],
                                         color: 'baseWhite',
                                         textDecoration: 'none',
                                     }}
@@ -147,11 +170,18 @@ function Hero() {
                     </Flex>
                 </Box>
                 <Box mx="auto" />
-                <Box width="40%" mb={[0, 0, 0, 5]}>
+                <Box
+                    width="40%"
+                    mb={[0, 0, 0, 5]}
+                    sx={{
+                        display: ['none', 'none', 'none', 'block'],
+                        height: '387px',
+                        width: '100%',
+                    }}
+                >
                     <Image
                         sx={{
-                            display: ['none', 'none', 'none', 'block'],
-                            height: '419px',
+                            height: '387px',
                             width: '100%',
                         }}
                         src="/imgs/illustrations/homepage-ideas.svg"
@@ -526,7 +556,26 @@ function CallToAction() {
                             to=""
                             onClick={() => loginWithRedirect({})}
                         >
-                            <Button>Create a Free Account</Button>
+                            <Button
+                                sx={{
+                                    margin: '0',
+                                    padding: '0',
+                                    fontFamily: 'body',
+                                    fontStyle: 'normal',
+                                    fontWeight: 'normal',
+                                    fontSize: ['14px', '14px', '14px', 'h2'],
+                                    lineHeight: [
+                                        '18px',
+                                        '18px',
+                                        '18px',
+                                        '36px',
+                                    ],
+                                    color: 'baseWhite',
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                Create a Free Account
+                            </Button>
                         </NavLink>
                     )}
                 </Flex>
