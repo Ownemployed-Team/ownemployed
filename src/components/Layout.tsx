@@ -7,16 +7,6 @@ import CookieConsent from 'react-cookie-consent'
 import NavigationBar from 'components/NavigationBar'
 import Footer from 'components/Footer'
 
-const menuItems = [
-    { label: 'Projects', url: '/projects' },
-    { label: 'Members', url: '/members' },
-    // { label: 'Learn', url: '/learn' },
-    { label: 'Community', url: 'https://ownemployed.tribe.so/' },
-    { label: 'Account', url: '/profile', isPrivate: true },
-    { label: 'Create project', url: '/create-project', isPrivate: true },
-    { label: 'My Account', url: '/signup', isAuth: true },
-]
-
 const Main = ({ children, boxed }) => {
     return (
         <Box
@@ -46,7 +36,7 @@ const Layout = ({ children, boxed = true }) => {
                     padding: 0,
                 }}
             >
-                <NavigationBar items={menuItems} />
+                <NavigationBar />
                 <Main boxed={boxed}>{children}</Main>
                 <CookieConsent
                     acceptOnScroll={true}
