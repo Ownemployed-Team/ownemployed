@@ -87,7 +87,7 @@ export default class MembershipForm extends PureComponent<any> {
                     />
                     <br />
                     <br />
-                    <Link to="/forgot" variant="secondary" sx={forgotStyles}>
+                    <Link href="/forgot" variant="secondary" sx={forgotStyles}>
                         Forgotten Password?
                     </Link>
                     <br />

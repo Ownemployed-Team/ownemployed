@@ -5,7 +5,7 @@ import React, {
     ReactElement,
     ReactNode,
 } from 'react'
-import { Text as RebassText } from 'rebass'
+import { Text as RebassText, SxStyleProp } from 'rebass'
 
 enum TextType {
     Body = 'body',
@@ -16,23 +16,13 @@ enum TextType {
     Small = 'small',
 }
 type TextProps = {
-    children:
-        | ReactChildren
-        | ReactChild
-        | ReactElement
-        | (ReactElement | string)[]
-        | ReactNode
+    children: ReactNode
     className?: string
-    as?: string
-    sx?: object
+    as?: 'body' | 'h1' | 'h2' | 'h3' | 'h4' | 'small'
+    sx?: SxStyleProp
 }
 
-export const Text: FunctionComponent<TextProps> = ({
-    children,
-    className,
-    sx,
-    as,
-}) => {
+export function Text({ children, className, sx, as }: TextProps) {
     switch (as) {
         case TextType.H1:
             const head1 = {

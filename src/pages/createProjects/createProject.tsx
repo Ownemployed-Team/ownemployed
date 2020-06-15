@@ -410,7 +410,7 @@ const CreateProject = () => {
                                 </Box>
                             </Box>
                             <Box mx={[2, 4, 6]}>
-                                <Box my={4} textAlign={'right'}>
+                                <Box my={4} sx={{ textAlign: 'right' }}>
                                     <Button sx={{ width: '265px' }}>
                                         Create Project
                                     </Button>

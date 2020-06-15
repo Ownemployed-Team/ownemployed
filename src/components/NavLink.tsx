@@ -1,21 +1,17 @@
-import React, {
-    ReactChildren,
-    ReactChild,
-    ReactElement,
-    FunctionComponent,
-} from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import Button from 'components/Button'
 
 import Link from 'components/Link'
+import { SxStyleProp } from 'rebass'
 
 type NavLinkProps = {
-    children: ReactChildren | ReactElement | ReactChild | string | string[]
+    children: ReactNode
     to: string
     className?: string
-    sx?: object
+    sx?: SxStyleProp
     css?: object
     props?: object
-    onClick?: Function
+    onClick?: React.MouseEventHandler<HTMLButtonElement>
 }
 
 export const NavLink: FunctionComponent<NavLinkProps> = ({
