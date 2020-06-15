@@ -4,7 +4,7 @@ import React, {
     ReactChildren,
     ReactElement,
 } from 'react'
-import { Card as RebassCard } from 'rebass'
+import { Card as RebassCard, SxStyleProp } from 'rebass'
 
 type CardProps = {
     children?:
@@ -19,18 +19,12 @@ type CardProps = {
         | any
     variant?: string
     style?: object
-    sx?: object
+    sx?: SxStyleProp
 }
 
-const Card: FunctionComponent<CardProps> = ({
-    children,
-    variant,
-    style = {},
-    sx,
-}) => {
+const Card: FunctionComponent<CardProps> = ({ children, variant, sx }) => {
     return (
         <RebassCard
-            style={style}
             variant={variant || 'card.primary'}
             sx={{
                 ...sx,

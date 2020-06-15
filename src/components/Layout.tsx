@@ -27,8 +27,8 @@ const Main = ({ children, boxed }) => {
                 mx: boxed ? 'auto' : 0,
                 pl: boxed ? [4, 4, 6] : 0,
                 pr: boxed ? [4, 4, 6] : 0,
+                fontFamily: 'body',
             }}
-            fontFamily="body"
         >
             <main>{children}</main>
         </Box>

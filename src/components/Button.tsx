@@ -1,5 +1,5 @@
-import React, { ReactChild, ReactChildren, ReactElement } from 'react'
-import { Button as RebassButton } from 'rebass'
+import React from 'react'
+import { Button as RebassButton, SxStyleProp } from 'rebass'
 
 const Button = ({
     children,
@@ -8,12 +8,11 @@ const Button = ({
     sx,
     type,
 }: {
-    children: ReactChildren | ReactChild | ReactElement | string[] | string
-    //onClick?: (...args: any[]) => void,
+    children: React.ReactNode
     variant?: string
-    onClick?: Function
+    onClick?: React.MouseEventHandler<HTMLButtonElement>
     style?: object
-    sx?: object
+    sx?: SxStyleProp
     type?: string
 }) => {
     return (

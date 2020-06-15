@@ -40,6 +40,7 @@
         "yup": "^0.29.1"
     },
     "devDependencies": {
+        "@types/rebass": "^4.0.6",
         "eslint": "^6.8.0",
         "husky": "^4.2.5",
         "lint-staged": "^10.2.2",
