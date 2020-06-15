@@ -24,12 +24,21 @@ export default Home
 function Hero() {
     return (
         <>
-            <Flex mt={5} flexWrap="wrap" pr={[0, 4, 4, 7]} pl={[0, 4, 4, 7]}>
-                <Box width={[1, 1, 1, 1 / 2]} mb={[0, 0, 0, 5]}>
+            <Flex
+                mt={1}
+                flexWrap="wrap"
+                pr={[0, 4, 4, 6]}
+                pl={[0, 4, 4, 6]}
+                width="100%"
+            >
+                <Box
+                    mb={[0, 0, 0, 5]}
+                    sx={{ width: ['100%', '100%', '100%', '40%'] }}
+                >
                     <Flex
                         sx={{
                             flexDirection: 'column',
-                            justifyContent: 'center',
+                            justifyContent: 'space-between',
                             alignItems: 'center',
                             width: '100%',
                             marginTop: '5',
@@ -137,8 +146,8 @@ function Hero() {
                         </Button>
                     </Flex>
                 </Box>
-
-                <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
+                <Box mx="auto" />
+                <Box width="40%" mb={[0, 0, 0, 5]}>
                     <Image
                         sx={{
                             display: ['none', 'none', 'none', 'block'],
@@ -179,8 +188,8 @@ function Actions() {
 
     return (
         <Flex
-            pr={[4, 4, 7]}
-            pl={[4, 4, 7]}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
             sx={{
                 flexDirection: ['column', 'column', 'column', 'row'],
                 justifyContent: 'space-between',
@@ -192,7 +201,7 @@ function Actions() {
                         key={index}
                         sx={{
                             mt: [4, 4, 0],
-                            width: ['100%', '100%', '30%'],
+                            width: ['100%', '100%', '100%', '30%'],
                         }}
                     >
                         <Box
@@ -261,8 +270,8 @@ function Actions() {
 function Initiative() {
     return (
         <Flex
-            pr={[4, 4, 7]}
-            pl={[4, 4, 7]}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
             sx={{
                 ml: 0,
                 mr: 0,
@@ -276,7 +285,7 @@ function Initiative() {
                 backgroundRepeat: 'no-repeat',
             }}
         >
-            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]} mr={[0, 0, 5]}>
+            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 0, 5]} mr={[0, 0, 0, 5]}>
                 <Image
                     sx={{
                         height: '331px',
@@ -286,7 +295,12 @@ function Initiative() {
                     src="/imgs/illustrations/social.svg"
                 ></Image>
             </Box>
-            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
+            <Box mx="auto" />
+            <Box
+                width={[1, 1, 1 / 2]}
+                mb={[0, 0, 5]}
+                sx={{ width: ['100%', '100%', '100%', '40%'] }}
+            >
                 <Text
                     sx={{
                         fontFamily: 'heading',
@@ -345,8 +359,8 @@ function Reasons() {
 
     return (
         <Flex
-            pr={[4, 4, 7]}
-            pl={[4, 4, 7]}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
             sx={{
                 backgroundImage: 'url("/imgs/section_bg.png")',
                 backgroundRepeat: 'no-repeat',
@@ -365,8 +379,8 @@ function Reasons() {
                     <Box
                         key={index}
                         sx={{
-                            mt: [4, 4, 0],
-                            width: ['100%', '100%', '30%'],
+                            mt: [4, 4, 4, 0],
+                            width: ['100%', '100%', '100%', '30%'],
                         }}
                     >
                         <Image
@@ -411,8 +425,18 @@ function Reasons() {
 
 function Skills() {
     return (
-        <Flex flexWrap="wrap" mt={6} pr={[4, 4, 7]} pl={[4, 4, 7]}>
-            <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
+        <Flex
+            flexWrap="wrap"
+            mt={2}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
+            sx={{
+                flexDirection: ['column', 'column', 'column', 'column', 'row'],
+                justifyContent: 'space-between',
+                alignItems: 'center',
+            }}
+        >
+            <Box mb={[0, 0, 5]} sx={{ width: ['100%', '100%', '100%', '40%'] }}>
                 <Text
                     sx={{
                         fontFamily: 'heading',
@@ -441,11 +465,11 @@ function Skills() {
                     and start something new.
                 </Text>
             </Box>
-
-            <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
+            <Box mx="auto" />
+            <Box mb={[0, 0, 5]} sx={{ width: ['100%', '100%', '100%', '40%'] }}>
                 <Image
                     sx={{
-                        display: ['none', 'none', 'block'],
+                        display: ['none', 'none', 'none', 'block'],
                         width: '100%',
                     }}
                     src="/imgs/illustrations/board.svg"
@@ -458,39 +482,57 @@ function Skills() {
 function CallToAction() {
     const { isAuthenticated, loginWithRedirect } = useAuth0()
     return (
-        <Flex flexWrap="wrap" mt={5} pr={[4, 4, 7]} pl={[4, 4, 7]}>
-            <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
-                <Text
+        <Flex
+            flexWrap="wrap"
+            mt={5}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
+            sx={{ flexDirection: ['column', 'column', 'column', 'row'] }}
+        >
+            <Box
+                mt={[0, 0, 0, 5]}
+                sx={{ width: ['100%', '100%', '100%', '40%'] }}
+            >
+                <Flex
                     sx={{
-                        fontFamily: 'heading',
-                        fontStyle: 'normal',
-                        fontWeight: '500',
-                        fontSize: ['h4', 'h4', 'h4', 'h1'],
-                        lineHeight: ['24px', '24px', '24px', '44px'],
-                        textAlign: 'center',
-                        color: 'baseBlack',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                     }}
                 >
-                    Ready to join our community and be Ownemployed?
-                </Text>
-                {!isAuthenticated && (
-                    <NavLink
+                    <Text
                         sx={{
-                            marginTop: 4,
-                            pb: 2,
-                            pl: 4,
-                            pr: 4,
-                            pt: 2,
+                            fontFamily: 'heading',
+                            fontStyle: 'normal',
+                            fontWeight: '500',
+                            fontSize: ['h4', 'h4', 'h4', 'h1'],
+                            lineHeight: ['24px', '24px', '24px', '44px'],
+                            textAlign: 'center',
+                            color: 'baseBlack',
+                            width: '100%',
                         }}
-                        to=""
-                        onClick={() => loginWithRedirect({})}
                     >
-                        <Button>Create a Free Account</Button>
-                    </NavLink>
-                )}
+                        Ready to join our community and be Ownemployed?
+                    </Text>
+                    {!isAuthenticated && (
+                        <NavLink
+                            sx={{
+                                marginTop: 4,
+                                pb: 2,
+                                pl: 4,
+                                pr: 4,
+                                pt: 2,
+                            }}
+                            to=""
+                            onClick={() => loginWithRedirect({})}
+                        >
+                            <Button>Create a Free Account</Button>
+                        </NavLink>
+                    )}
+                </Flex>
             </Box>
-
-            <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
+            <Box mx="auto" />
+            <Box mb={[0, 0, 5]} sx={{ width: ['100%', '100%', '100%', '40%'] }}>
                 <Image
                     src="/imgs/illustrations/team.svg"
                     sx={{
