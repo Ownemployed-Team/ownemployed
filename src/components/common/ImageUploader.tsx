@@ -16,7 +16,7 @@ function UploadImage({
     isTextAboveBrowseButton = false,
 }: UploadImageProps) {
     const [loading, setLoading] = useState(false)
-    const [uploadedImage, setUploadedImage] = useState(false)
+    const [uploadedImage, setUploadedImage] = useState(undefined)
     const { cloudinaryAPIEndpoint } = useConfig()
     const uploadURL = `${cloudinaryAPIEndpoint}/image/upload`
 
@@ -84,8 +84,8 @@ function UploadImage({
                                 display: isTextAboveBrowseButton
                                     ? 'block'
                                     : 'flex',
+                                justifyContent: 'space-between',
                             }}
-                            justifyContent="space-between"
                         >
                             <Box>
                                 <Text as="body">

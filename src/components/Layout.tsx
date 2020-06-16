@@ -22,13 +22,13 @@ const Main = ({ children, boxed }) => {
         <Box
             pt={3}
             pb={3}
-            // sx={{
-
-            //     mx: boxed ? 'auto' : 0,
-            //     pl: boxed ? [4,4, 4, 6] : 0,
-            //     pr: boxed ? [4,4, 4, 6] : 0,
-            //     fontFamily:"body"
-            // }}
+            sx={{
+                flex: 1,
+                mx: boxed ? 'auto' : 0,
+                pl: boxed ? [4, 4, 6] : 0,
+                pr: boxed ? [4, 4, 6] : 0,
+                fontFamily: 'body',
+            }}
         >
             <Flex
                 sx={{

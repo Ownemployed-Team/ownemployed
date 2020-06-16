@@ -1,19 +1,13 @@
-import React, {
-    ReactChildren,
-    ReactChild,
-    ReactElement,
-    FunctionComponent,
-} from 'react'
+import React, { FunctionComponent, ReactNode } from 'react'
 import { Link as ReactRouterLink } from 'react-router-dom'
-import { Link as RebassLink, Box } from 'rebass'
+import { Link as RebassLink, Box, SxStyleProp } from 'rebass'
 
 type LinkProps = {
-    children: ReactChildren | ReactElement | ReactChild | string | string[]
+    children: ReactNode
     className?: string
-    css?: object
     props?: any
     style?: object
-    sx?: object
+    sx?: SxStyleProp
     to: string
     variant?: string
 }

@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { Label, Input } from '@rebass/forms'
-import { Link } from 'rebass'
+import { Link } from 'components/Link'
 import Text from '../../components/Text'
 import Button from '../../components/Button'
 import './index.css'

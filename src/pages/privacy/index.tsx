@@ -17,7 +17,7 @@ export const Privacy = ({ match }) => {
 function Heading() {
     return (
         <Flex mt={3} mb={2} px={[0, 2, 6]}>
-            <Box textAlign="center" width={'100%'}>
+            <Box sx={{ textAlign: 'center' }} width={'100%'}>
                 <Text as="h3">OwnEmployed Terms of Service</Text>
             </Box>
         </Flex>
