@@ -12,6 +12,7 @@ export default {
     colors: {
         primary: '#6F63AD',
         primaryHover: '#D0CDE1',
+        primaryLight: '#6E6895',
         secondary: '#124780',
         secondaryHover: '#FFE180',
         alert: '#FF5252',
@@ -21,6 +22,7 @@ export default {
         heading: '#000000',
         body: '#768598',
         white: '#fff',
+        secondaryGrey: '#c4c4c4',
     },
     space: [0, 4, 8, 16, 32, 64, 128, 256],
     fonts: {
@@ -99,6 +101,18 @@ export default {
             color: 'primary',
             borderRadius: 'button',
             border: '1px solid',
+            boxSizing: 'border-box',
+            padding: '6px 8px 6px 8px',
+            '&:hover': {
+                borderColor: 'primaryHover',
+                cursor: 'pointer',
+            },
+        },
+        secondaryOutlined: {
+            backgroundColor: 'primary',
+            color: 'white',
+            borderRadius: 'button',
+            border: '1px solid white',
             boxSizing: 'border-box',
             padding: '6px 8px 6px 8px',
             '&:hover': {
