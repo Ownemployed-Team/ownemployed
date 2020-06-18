@@ -89,5 +89,11 @@ const authService = {
                 return message
             })
     },
+
+    async forgotPassword(username: string): Promise<any> {
+        // TODO: Error handling
+        const forgotResponse = await Auth.forgotPassword(username)
+        return forgotResponse
+    },
 }
 export default authService

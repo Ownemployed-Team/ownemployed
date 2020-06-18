@@ -163,6 +163,10 @@ export function withSignup(WrappedComponent: any) {
 export function withForgot(WrappedComponent: any) {
     const forgot = (email: string) => {
         console.log('Sending out password verification link.')
+        AuthService.forgotPassword(email).then(response => {
+            console.log('Link sent.')
+            console.log(response)
+        })
     }
     return class extends React.PureComponent {
         render() {
