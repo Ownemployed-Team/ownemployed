@@ -12,36 +12,76 @@ export const Footer = ({ ...props }) => {
             pl={[4, 4, 6]}
             pr={[4, 4, 6]}
             sx={{
-                justifySelf: 'end',
-                bg: 'white',
-                color: 'muted',
-                justifyContent: 'flex-start',
-                fontFamily: 'body',
+                backgroundColor: 'baseWhite',
+                alignItems: 'center',
+                justifyContent: 'space-between',
                 width: '100%',
+                flexWrap: 'wrap',
             }}
             {...props}
         >
             <Box mr={4}>
-                <Text as="h3">Ownemployed</Text>
-                <Link to="/about" sx={{ color: 'muted' }}>
+                <Text
+                    sx={{
+                        color: '#000000',
+                        fontSize: ['body', 'body', 'h4', 'h4'],
+                        fontFamily: ['body', 'heading', 'heading'],
+                    }}
+                >
+                    Ownemployed
+                </Text>
+                <Link to="/about" sx={{ color: '#768598', fontSize: 'body' }}>
                     About
                 </Link>
             </Box>
             <Box mr={4}>
-                <Text as="h3">Terms of use</Text>
-                <Link to="/legal/terms-of-use" sx={{ color: 'muted' }}>
+                <Text
+                    sx={{
+                        color: '#000000',
+                        fontSize: ['body', 'body', 'h4', 'h4'],
+                        fontFamily: ['body', 'body', 'heading', 'heading'],
+                    }}
+                >
+                    Terms of use
+                </Text>
+                <Link
+                    to="/legal/terms-of-use"
+                    sx={{ color: '#768598', fontSize: 'body' }}
+                >
                     Terms of Use
                 </Link>
             </Box>
             <Box mr={4}>
-                <Text as="h3">Privacy policy</Text>
-                <Link to="/legal/privacy-policy" sx={{ color: 'muted' }}>
+                <Text
+                    sx={{
+                        color: '#000000',
+                        fontSize: ['body', 'body', 'h4', 'h4'],
+                        fontFamily: ['body', 'body', 'heading', 'heading'],
+                    }}
+                >
+                    Privacy policy
+                </Text>
+                <Link
+                    to="/legal/privacy-policy"
+                    sx={{ color: '#768598', fontSize: 'body' }}
+                >
                     Privacy policy
                 </Link>
             </Box>
             <Box>
-                <Text as="h3">Contact</Text>
-                <Link to="mailto:ownemployed@gmail.com" sx={{ color: 'muted' }}>
+                <Text
+                    sx={{
+                        color: '#000000',
+                        fontSize: ['body', 'body', 'h4', 'h4'],
+                        fontFamily: ['body', 'body', 'heading', 'heading'],
+                    }}
+                >
+                    Contact
+                </Text>
+                <Link
+                    to="mailto:ownemployed@gmail.com"
+                    sx={{ color: '#768598', fontSize: 'body' }}
+                >
                     ownemployed@gmail.com
                 </Link>
             </Box>

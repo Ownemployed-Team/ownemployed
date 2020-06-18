@@ -1,6 +1,7 @@
 export default {
-    breakpoints: ['40em', '55em', '64em'],
+    breakpoints: ['26em', '40em', '55em', '64em'],
     //breakpoints: ['720px', '920px', '1440px'],
+    space: [0, 4, 8, 16, 32, 64, 128, 256],
     fontSizes: {
         body: '14px',
         h1: '34px',
@@ -10,9 +11,20 @@ export default {
         small: '12px',
     },
     colors: {
+        baseWhite: '#FFFFFF',
+        baseGrey: '#F3F3F3',
+        baseBlack: '#1D1D1D',
+        baseYellow: '#FFDA63',
+        baseBlue: '#124780',
+        basePurple: '#6F63AD',
+        backgroundGrey: '#F7F8FC',
+        secondaryGrey: '#C4C4C4',
+        secondaryBlue: '#124780',
+        secondaryPurple: '#D0CDE1',
+        errorRed: '#CB1528',
+        primaryLight: '#6E6895',
         primary: '#6F63AD',
         primaryHover: '#D0CDE1',
-        primaryLight: '#6E6895',
         secondary: '#124780',
         secondaryHover: '#FFE180',
         alert: '#FF5252',
@@ -22,9 +34,7 @@ export default {
         heading: '#000000',
         body: '#768598',
         white: '#fff',
-        secondaryGrey: '#c4c4c4',
     },
-    space: [0, 4, 8, 16, 32, 64, 128, 256],
     fonts: {
         monospace: 'Menlo, monospace',
         body: 'Rubik, sans-serif',
@@ -35,14 +45,14 @@ export default {
         regular: 400,
         medium: 500,
     },
-    lineHeights: {
-        body: '26px',
-        heading: '52px',
+    lineHeights: ['16px', '18px', '24px', '32px', '36px', '44px'],
+    letterSpacings: {},
+    sizes: {},
+    borders: {
+        secondary: '1px solid #6F63AD',
     },
-    shadows: {
-        small: '0px 0px 8px rgba(0,0,0,0.15);',
-        large: '0 0 24px rgba(0, 0, 0, .125)',
-    },
+    borderWidths: {},
+    borderStyles: {},
     radii: {
         button: 4,
         default: 12,
@@ -50,11 +60,17 @@ export default {
         large: 39,
         round: '100%',
     },
+    shadows: {
+        small: '0px 4px 8px rgba(92, 92, 92, 0.25);',
+        large: '0 0 24px rgba(0, 0, 0, 0.125)',
+    },
+    zIndices: {},
+    transitions: {},
     variants: {
         box: {},
         card: {
             primary: {
-                backgroundColor: 'white',
+                backgroundColor: 'basePurple',
                 borderRadius: 'default',
                 boxShadow: 'small',
                 padding: 2,
@@ -71,42 +87,36 @@ export default {
         flex: {},
         image: {},
         link: {},
+        text: {},
+        heading: {},
     },
     text: {},
     buttons: {
         primary: {
-            backgroundColor: 'primary',
+            backgroundColor: 'basePurple',
             borderRadius: 'button',
             boxSizing: 'border-box',
             padding: '6px 8px 6px 8px',
             outline: 'none',
             '&:hover': {
-                backgroundColor: 'primaryHover',
                 cursor: 'pointer',
             },
         },
         secondary: {
-            backgroundColor: 'secondary',
+            backgroundColor: '#E5E5E5',
+            borderRadius: 'button',
+            border: 'secondary',
+            boxSizing: 'border-box',
+            padding: '6px 8px 6px 8px',
+            outline: 'none',
+        },
+        primaryInactive: {
+            backgroundColor: 'secondaryPurple',
             borderRadius: 'button',
             boxSizing: 'border-box',
             padding: '6px 8px 6px 8px',
             outline: 'none',
-            '&:hover': {
-                backgroundColor: 'secondaryHover',
-                cursor: 'pointer',
-            },
-        },
-        outlined: {
-            backgroundColor: 'white',
-            color: 'primary',
-            borderRadius: 'button',
-            border: '1px solid',
-            boxSizing: 'border-box',
-            padding: '6px 8px 6px 8px',
-            '&:hover': {
-                borderColor: 'primaryHover',
-                cursor: 'pointer',
-            },
+            color: 'baseWhite',
         },
         secondaryOutlined: {
             backgroundColor: 'primary',
@@ -126,6 +136,10 @@ export default {
             boxSizing: 'border-box',
             padding: '6px 8px 6px 8px',
             outline: 'none',
+            '&:hover': {
+                backgroundColor: 'secondaryPurple',
+                color: '#6356A6',
+            },
         },
     },
 }

@@ -20,7 +20,15 @@ const Main = ({ children, boxed }) => {
                 fontFamily: 'body',
             }}
         >
-            <main>{children}</main>
+            <Flex
+                sx={{
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+            >
+                <main>{children}</main>
+            </Flex>
         </Box>
     )
 }
@@ -31,9 +39,12 @@ const Layout = ({ children, boxed = true }) => {
             <Flex
                 sx={{
                     flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
                     minHeight: '100vh',
                     margin: 0,
                     padding: 0,
+                    width: '100%',
                 }}
             >
                 <NavigationBar />

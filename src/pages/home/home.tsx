@@ -24,78 +24,164 @@ export default Home
 function Hero() {
     return (
         <>
-            <Flex mt={5} flexWrap="wrap" pr={[4, 4, 7]} pl={[4, 4, 7]}>
-                <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
-                    <Box>
+            <Flex
+                flexWrap="wrap"
+                pr={[0, 4, 4, 6]}
+                pl={[0, 4, 4, 6]}
+                width="100%"
+                mt={[0, 0, 0, 5]}
+            >
+                <Box
+                    mb={[0, 0, 0, 5]}
+                    sx={{ width: ['100%', '100%', '100%', '50%'] }}
+                >
+                    <Flex
+                        sx={{
+                            flexDirection: 'column',
+                            justifyContent: 'space-between',
+                            alignItems: [
+                                'center',
+                                'center',
+                                'center',
+                                'flex-start',
+                            ],
+                            width: '100%',
+                            marginTop: '4',
+                            marginBottom: '4',
+                        }}
+                    >
                         <Text
-                            as="h2"
                             sx={{
-                                lineHeight: '36px',
-                            }}
-                        >
-                            Unemployed?
-                        </Text>
-                    </Box>
-                    <Box>
-                        <Text
-                            as="h1"
-                            sx={{
+                                fontFamily: 'heading',
+                                fontStyle: 'normal',
                                 fontWeight: 'bold',
-                                lineHeight: '66px',
+                                fontSize: ['16px', '16px', '16px', 'h2'],
+                                lineHeight: ['20px', '20px', '20px', '36px'],
+                                color: 'baseBlack',
+                                width: '100%',
+                                textAlign: [
+                                    'center',
+                                    'center',
+                                    'center',
+                                    'left',
+                                ],
+                                marginBottom: '1',
                             }}
                         >
-                            No,{' '}
+                            Take control of your career
+                        </Text>
+
+                        <Text
+                            sx={{
+                                fontFamily: 'heading',
+                                fontSize: ['h2', 'h2', 'h2', '44px'],
+                                fontWeight: 'bold',
+                                lineHeight: ['36px', '36px', '36px', '66px'],
+                                color: 'baseBlack',
+                                width: '100%',
+                                textAlign: [
+                                    'center',
+                                    'center',
+                                    'center',
+                                    'left',
+                                ],
+                                marginBottom: '2',
+                            }}
+                        >
+                            Be{' '}
                             <span style={{ textDecoration: 'underline' }}>
                                 Own
                             </span>
                             employed!
                         </Text>
-                    </Box>
-                    <Box>
                         <Text
-                            as="h2"
                             sx={{
-                                color: 'body',
-                                lineHeight: '36px',
+                                fontFamily: 'body',
+                                fontSize: ['14px', '14px', '14px', 'h3'],
+                                fontWeight: 'normal',
+                                lineHeight: ['18px', '18px', '18px', '32px'],
+                                color: '#768598',
+                                width: '100%',
+                                textAlign: [
+                                    'center',
+                                    'center',
+                                    'center',
+                                    'left',
+                                ],
+                                marginBottom: '4',
                             }}
                         >
-                            Why wait to be employed, when you can be an
-                            entrepreneur?
+                            Our community can help you turn an idea into a
+                            career.
                         </Text>
-                    </Box>
-                    <Box my={2}>
-                        <NavLink
-                            to="/projects"
+
+                        <Button
                             sx={{
-                                fontSize: 'body',
-                                pt: 6,
+                                height: ['42px', '42px', '42px', '72px'],
+                                width: ['205px', '205px', '205px', '500px'],
+                                margin: '0',
+                                padding: '0',
+                                boxShadow: [
+                                    '0px 3px 6px rgba(92, 92, 92, 0.25)',
+                                    '0px 3px 6px rgba(92, 92, 92, 0.25)',
+                                    '0px 3px 6px rgba(92, 92, 92, 0.25)',
+                                    '',
+                                ],
+                                backgroundColor: 'basePurple',
+
+                                borderRadius: 'button',
+                                maxWidth: '100%',
                             }}
                         >
-                            <Button
+                            <NavLink
+                                to="/signup"
                                 sx={{
-                                    height: '72px',
-                                    my: 4,
-                                    width: ['200px', '300px', '500px'],
+                                    margin: '0',
+                                    padding: '0',
                                 }}
                             >
                                 <Text
-                                    as="h2"
                                     sx={{
-                                        color: '#fff',
+                                        margin: '0',
+                                        padding: '0',
+                                        fontFamily: 'body',
+                                        fontStyle: 'normal',
+                                        fontWeight: 'normal',
+                                        fontSize: [
+                                            '14px',
+                                            '14px',
+                                            '14px',
+                                            'h2',
+                                        ],
+                                        lineHeight: [
+                                            '18px',
+                                            '18px',
+                                            '18px',
+                                            '36px',
+                                        ],
+                                        color: 'baseWhite',
+                                        textDecoration: 'none',
                                     }}
                                 >
-                                    Find a Project
+                                    Create a Free Account
                                 </Text>
-                            </Button>
-                        </NavLink>
-                    </Box>
+                            </NavLink>
+                        </Button>
+                    </Flex>
                 </Box>
-
-                <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
+                <Box mx="auto" />
+                <Box
+                    width="40%"
+                    mb={[0, 0, 0, 5]}
+                    sx={{
+                        display: ['none', 'none', 'none', 'block'],
+                        height: '387px',
+                        width: '100%',
+                    }}
+                >
                     <Image
                         sx={{
-                            display: ['none', 'none', 'block'],
-                            height: '419px',
+                            height: '387px',
                             width: '100%',
                         }}
                         src="/imgs/illustrations/homepage-ideas.svg"
@@ -109,24 +195,21 @@ function Hero() {
 function Actions() {
     const actions = [
         {
-            body:
-                'Looking to round out your team? Find people with the skills and drive to make your project a success.',
+            body: 'Find People with the skills your project needs',
             image: '/imgs/illustrations/find-people.svg',
             title: 'Find People',
             url: '/members',
         },
 
         {
-            body:
-                'Bring your talents to an idea you care about. Choose a project that aligns with your goals, values, and work style.',
+            body: 'Find projects that are right for you and need your help.',
             image: '/imgs/illustrations/find-projects.svg',
             title: 'Find Projects',
             url: '/projects',
         },
 
         {
-            body:
-                'Our collection of resources are here to help you every step of the way. You’ve got questions, we’ve got answers.',
+            body: "Find free advice and support that's right for you.",
             image: '/imgs/illustrations/learn-and-build.svg',
             title: 'Learn and Build',
             url: 'https://ownemployed.tribe.so/',
@@ -135,10 +218,10 @@ function Actions() {
 
     return (
         <Flex
-            pr={[4, 4, 7]}
-            pl={[4, 4, 7]}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
             sx={{
-                flexDirection: ['column', 'column', 'row'],
+                flexDirection: ['column', 'column', 'column', 'row'],
                 justifyContent: 'space-between',
             }}
         >
@@ -148,7 +231,7 @@ function Actions() {
                         key={index}
                         sx={{
                             mt: [4, 4, 0],
-                            width: ['100%', '100%', '30%'],
+                            width: ['100%', '100%', '100%', '30%'],
                         }}
                     >
                         <Box
@@ -169,10 +252,19 @@ function Actions() {
                         </Box>
                         <Box m={2}>
                             <Text
-                                as="h2"
                                 sx={{
-                                    lineHeight: '36px',
+                                    fontFamily: 'heading',
+                                    fontStyle: 'normal',
+                                    fontWeight: '500',
+                                    fontSize: ['h4', 'h4', 'h4', 'h2'],
+                                    lineHeight: [
+                                        '24px',
+                                        '24px',
+                                        '24px',
+                                        '36px',
+                                    ],
                                     textAlign: 'center',
+                                    color: '#000000',
                                 }}
                             >
                                 {title}
@@ -180,9 +272,19 @@ function Actions() {
                         </Box>
                         <Box>
                             <Text
-                                as="h3"
                                 sx={{
-                                    lineHeight: '32px',
+                                    fontFamily: 'body',
+                                    fontStyle: 'normal',
+                                    fontWeight: 'normal',
+                                    fontSize: ['body', 'body', 'body', 'h3'],
+                                    lineHeight: [
+                                        '18px',
+                                        '18px',
+                                        '18px',
+                                        '32px',
+                                    ],
+                                    textAlign: 'center',
+                                    color: '#768598',
                                 }}
                             >
                                 {body}
@@ -198,8 +300,8 @@ function Actions() {
 function Initiative() {
     return (
         <Flex
-            pr={[4, 4, 7]}
-            pl={[4, 4, 7]}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
             sx={{
                 ml: 0,
                 mr: 0,
@@ -213,7 +315,7 @@ function Initiative() {
                 backgroundRepeat: 'no-repeat',
             }}
         >
-            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]} mr={[0, 0, 5]}>
+            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 0, 5]} mr={[0, 0, 0, 5]}>
                 <Image
                     sx={{
                         height: '331px',
@@ -223,16 +325,38 @@ function Initiative() {
                     src="/imgs/illustrations/social.svg"
                 ></Image>
             </Box>
-            <Box width={[1, 1, 1 / 2]} mb={[0, 0, 5]}>
-                <Text as="h2" sx={{ my: 2 }}>
-                    A COVID-19 Initiative
+            <Box mx="auto" />
+            <Box
+                width={[1, 1, 1 / 2]}
+                mb={[0, 0, 5]}
+                sx={{ width: ['100%', '100%', '100%', '40%'] }}
+            >
+                <Text
+                    sx={{
+                        fontFamily: 'heading',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        fontSize: ['h4', 'h4', 'h4', 'h2'],
+                        lineHeight: ['24px', '24px', '24px', '36px'],
+                        color: '#000000',
+                    }}
+                >
+                    A COVID-19 initiative
                 </Text>
-                <Text as="h3" sx={{ mb: 4 }}>
-                    This platform was built to help people forge their own path
-                    amidst our current environment.
-                </Text>
-                <Text as="h3">
-                    We believe the economy of the future will be driven by you.
+                <Text
+                    sx={{
+                        fontFamily: 'body',
+                        fontStyle: 'normal',
+                        fontWeight: 'normal',
+                        fontSize: ['body', 'body', 'body', 'h3'],
+                        lineHeight: ['24px', '24px', '24px', '36px'],
+                        color: '#768598',
+                    }}
+                >
+                    COVID-19 has changed what employment means for millions of
+                    people. <br /> We know this is a difficult time. We want to
+                    help you start something new and take control of your
+                    career.
                 </Text>
             </Box>
         </Flex>
@@ -242,36 +366,36 @@ function Initiative() {
 function Reasons() {
     const reasons = [
         {
-            title: 'Recession = opportunity',
+            title: 'New starts in difficult times',
             icon: '/imgs/icons/idea.svg',
             body:
                 'Instagram, Whatsapp, Uber, Pintrest, Slack, Groupon, and Venmo were all founded during the 2008 global recession.',
         },
 
         {
-            title: 'High unemployment rate',
+            title: 'Fewer jobs for more people',
             icon: '/imgs/icons/bars.svg',
             body:
-                'Competition for jobs is higher than ever. You can wait to be chosen, or you can pick yourself.',
+                'There are fewer jobs, and more people want them. Being your own boss means you can choose your work.',
         },
 
         {
-            title: 'Entrepreneurs are the future',
+            title: 'The world is changing',
             icon: '/imgs/icons/conn.svg',
             body:
-                'Our world is shaped by the ideas of people like Gates, Jobs, and Zuckerberg. The future belongs to innovators and entrepreneurs.',
+                'The world is changing, and the way people work is changing. Taking control of your career and starting something new can prepare you for this change.',
         },
     ]
 
     return (
         <Flex
-            pr={[4, 4, 7]}
-            pl={[4, 4, 7]}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
             sx={{
                 backgroundImage: 'url("/imgs/section_bg.png")',
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: '100% 100%',
-                flexDirection: ['column', 'column', 'row'],
+                flexDirection: ['column', 'column', 'column', 'row'],
                 justifyContent: 'space-between',
                 ml: 0,
                 mr: 0,
@@ -285,8 +409,8 @@ function Reasons() {
                     <Box
                         key={index}
                         sx={{
-                            mt: [4, 4, 0],
-                            width: ['100%', '100%', '30%'],
+                            mt: [4, 4, 4, 0],
+                            width: ['100%', '100%', '100%', '30%'],
                         }}
                     >
                         <Image
@@ -297,8 +421,31 @@ function Reasons() {
                             }}
                             src={reason.icon}
                         ></Image>
-                        <Text as="h3">{reason.title}</Text>
-                        <Text>{reason.body}</Text>
+                        <Text
+                            sx={{
+                                fontFamily: 'heading',
+                                fontStyle: 'normal',
+                                fontWeight: '500',
+                                fontSize: ['h4', 'h4', 'h4', 'h3'],
+                                lineHeight: ['24px', '24px', '24px', '32px'],
+                                textAlign: 'center',
+                                color: '#000000',
+                            }}
+                        >
+                            {reason.title}
+                        </Text>
+                        <Text
+                            sx={{
+                                fontFamily: 'body',
+                                fontStyle: 'normal',
+                                fontWeight: 'normal',
+                                fontSize: ['body', 'body', 'body', 'h3'],
+                                lineHeight: ['18px', '18px', '18px', '24px'],
+                                color: '#768598',
+                            }}
+                        >
+                            {reason.body}
+                        </Text>
                     </Box>
                 )
             })}
@@ -308,27 +455,51 @@ function Reasons() {
 
 function Skills() {
     return (
-        <Flex flexWrap="wrap" mt={6} pr={[4, 4, 7]} pl={[4, 4, 7]}>
-            <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
+        <Flex
+            flexWrap="wrap"
+            mt={2}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
+            sx={{
+                flexDirection: ['column', 'column', 'column', 'column', 'row'],
+                justifyContent: 'space-between',
+                alignItems: 'center',
+            }}
+        >
+            <Box mb={[0, 0, 5]} sx={{ width: ['100%', '100%', '100%', '40%'] }}>
                 <Text
-                    as="h2"
                     sx={{
-                        fontWeight: 'normal',
-                        lineHeight: '52px',
+                        fontFamily: 'heading',
+                        fontStyle: 'normal',
+                        fontWeight: '500',
+                        fontSize: ['h4', 'h4', 'h4', 'h2'],
+                        lineHeight: ['24px', '24px', '24px', '36px'],
+                        textAlign: ['center', 'center', 'center', ''],
+                        color: '#000000',
                     }}
                 >
-                    Turn your skills and passion into your next opportunity.
+                    Be your own boss and do the things you love
                 </Text>
 
-                <Text as="body">
-                    Embrace entrepreneurship as the next step in your career.
+                <Text
+                    sx={{
+                        fontFamily: 'body',
+                        fontStyle: 'normal',
+                        fontWeight: 'normal',
+                        fontSize: ['body', 'body', 'body', 'h3'],
+                        lineHeight: ['18px', '18px', '18px', '32px'],
+                        color: '#768598',
+                    }}
+                >
+                    With our help and suport you can turn ideas into projects
+                    and start something new.
                 </Text>
             </Box>
-
-            <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
+            <Box mx="auto" />
+            <Box mb={[0, 0, 5]} sx={{ width: ['100%', '100%', '100%', '40%'] }}>
                 <Image
                     sx={{
-                        display: ['none', 'none', 'block'],
+                        display: ['none', 'none', 'none', 'block'],
                         width: '100%',
                     }}
                     src="/imgs/illustrations/board.svg"
@@ -341,40 +512,80 @@ function Skills() {
 function CallToAction() {
     const { isAuthenticated, loginWithRedirect } = useAuth0()
     return (
-        <Flex flexWrap="wrap" mt={5} pr={[4, 4, 7]} pl={[4, 4, 7]}>
-            <Box width={[1, 1, 2 / 3]} mb={[0, 0, 5]}>
-                <Text
-                    as="h2"
+        <Flex
+            flexWrap="wrap"
+            mt={5}
+            pr={[4, 4, 4, 6]}
+            pl={[4, 4, 4, 6]}
+            sx={{ flexDirection: ['column', 'column', 'column', 'row'] }}
+        >
+            <Box
+                mt={[0, 0, 0, 5]}
+                sx={{ width: ['100%', '100%', '100%', '40%'] }}
+            >
+                <Flex
                     sx={{
-                        fontWeight: 'normal',
-                        lineHeight: '52px',
+                        flexDirection: 'column',
+                        justifyContent: 'center',
+                        alignItems: 'center',
                     }}
                 >
-                    Ready to join our community and transform the world?
-                </Text>
-                {!isAuthenticated && (
-                    <NavLink
+                    <Text
                         sx={{
-                            fontSize: 'body',
-                            marginTop: 4,
-                            pb: 2,
-                            pl: 4,
-                            pr: 4,
-                            pt: 2,
+                            fontFamily: 'heading',
+                            fontStyle: 'normal',
+                            fontWeight: '500',
+                            fontSize: ['h4', 'h4', 'h4', 'h1'],
+                            lineHeight: ['24px', '24px', '24px', '44px'],
+                            textAlign: 'center',
+                            color: 'baseBlack',
+                            width: '100%',
                         }}
-                        to=""
-                        onClick={() => loginWithRedirect({})}
                     >
-                        {'Create an Account'}
-                    </NavLink>
-                )}
+                        Ready to join our community and be Ownemployed?
+                    </Text>
+                    {!isAuthenticated && (
+                        <NavLink
+                            sx={{
+                                marginTop: 4,
+                                pb: 2,
+                                pl: 4,
+                                pr: 4,
+                                pt: 2,
+                            }}
+                            to=""
+                            onClick={() => loginWithRedirect({})}
+                        >
+                            <Button
+                                sx={{
+                                    margin: '0',
+                                    padding: '0',
+                                    fontFamily: 'body',
+                                    fontStyle: 'normal',
+                                    fontWeight: 'normal',
+                                    fontSize: ['14px', '14px', '14px', 'h2'],
+                                    lineHeight: [
+                                        '18px',
+                                        '18px',
+                                        '18px',
+                                        '36px',
+                                    ],
+                                    color: 'baseWhite',
+                                    textDecoration: 'none',
+                                }}
+                            >
+                                Create a Free Account
+                            </Button>
+                        </NavLink>
+                    )}
+                </Flex>
             </Box>
-
-            <Box width={[1, 1, 1 / 3]} mb={[0, 0, 5]}>
+            <Box mx="auto" />
+            <Box mb={[0, 0, 5]} sx={{ width: ['100%', '100%', '100%', '40%'] }}>
                 <Image
                     src="/imgs/illustrations/team.svg"
                     sx={{
-                        display: ['none', 'none', 'block'],
+                        display: ['none', 'none', 'none', 'block'],
                         width: '100%',
                     }}
                 ></Image>
