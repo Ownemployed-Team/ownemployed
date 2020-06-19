@@ -4,15 +4,17 @@ import { gql } from 'apollo-boost'
 //TODO: Determine which fields we'll need to lighten the query, and change the query in consequence
 const GET_PROJECTS = gql`
     query getProjects($skip: Int, $take: Int) {
-        getProjects(skip: $skip, take: $take) {
+        getProjects {
             id
             name
-            creationDate
-            ownerId
-            shortDescription
+            createdAt
+            owner {
+                id
+            }
+            summary
             description
             status
-            links
+            website
             remote
             sectors {
                 id
@@ -24,7 +26,9 @@ const GET_PROJECTS = gql`
                 title
                 category
             }
-            contributors
+            contributors {
+                id
+            }
             picture
         }
     }

@@ -6,14 +6,16 @@ const GET_PROJECT = gql`
         getProject(id: $projectId) {
             id
             name
-            creationDate
-            ownerID
+            createdAt
+            owner {
+                id
+            }
+            contributors {
+                id
+            }
             status
-            contributors
-            tagline
+            summary
             description
-            keyActivities
-            channels
         }
     }
 `

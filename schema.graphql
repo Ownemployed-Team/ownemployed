@@ -1,0 +1,187 @@
+input AddContributorsInput {
+  id: String!
+  contributorIds: [String!]!
+}
+
+# The javascript `Date` as string. Type represents date and time as the ISO Date string.
+scalar DateTime
+
+input GetMembersInput {
+  skip: Int
+  limit: Int
+}
+
+type Location {
+  id: String!
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Member {
+  id: String!
+  firstName: String!
+  lastName: String
+  email: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  ownedProjects: [Project]
+  headline: String
+  education: String
+  bio: String
+  location: String
+  remote: Boolean
+  skills: [Tag]
+  sectors: [Tag]
+  socialMedia: [SocialMedia]
+  avatar: String
+  website: String
+}
+
+input MemberSocialMediaInput {
+  name: String!
+  url: String!
+}
+
+input MemberTagInput {
+  id: String!
+}
+
+type Mutation {
+  addMember(data: NewMemberInput): Member
+  updateMember(data: UpdateMemberInput): Member
+  removeMember(data: UpdateMemberInput): Member
+  addProject(data: NewProjectInput): Project
+  removeProjects(data: RemoveProjectsInput): Boolean
+  updateProject(data: UpdateProjectInput): Project
+  addContributors(data: AddContributorsInput): Project
+  removeContributors(data: RemoveContributorsInput): Project
+}
+
+input NewMemberInput {
+  email: String!
+  firstName: String!
+  lastName: String!
+  headline: String
+  education: String
+  bio: String
+  location: String
+  remote: Boolean
+  skills: [MemberTagInput]
+  sectors: [MemberTagInput]
+  socialMedia: [MemberSocialMediaInput]
+  emailVisibility: Boolean
+  avatar: String
+  website: String
+}
+
+input NewProjectInput {
+  name: String!
+  ownerId: String!
+  contributors: [String]
+  summary: String
+  description: String
+  status: String
+  remote: Boolean
+  sectors: [String]
+  skillsRequired: [String]
+  picture: [String]
+  website: [String]
+}
+
+type Project {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  name: String!
+  owner: Member!
+  contributors: [Member]
+  summary: String
+  description: String
+  status: String
+  location: [Location]
+  remote: [String]
+  sectors: [Tag]
+  skillsRequired: [Tag]
+  picture: String
+  website: [String]
+}
+
+type Query {
+  getMembers(data: GetMembersInput): [Member]
+  getMember(id: String): Member
+  getProjects: [Project]
+  getProject(id: String): Project
+}
+
+input RemoveContributorsInput {
+  id: String!
+  contributorIds: [String!]!
+}
+
+input RemoveProjectsInput {
+  ownerId: String!
+  projectIds: [String!]!
+  soft: Boolean
+}
+
+type SocialMedia {
+  id: String!
+  name: String!
+  url: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Tag {
+  id: String!
+  title: String
+  category: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+input UpdateMemberInput {
+  id: String!
+  email: String
+  firstName: String
+  lastName: String
+  headline: String
+  education: String
+  bio: String
+  location: String
+  status: String
+  remote: Boolean
+  skills: [UpdateMemberTagInput]
+  sectors: [UpdateMemberTagInput]
+  socialMedia: [UpdateMemberSocialMediaInput]
+  emailVisibility: Boolean
+  avatar: String
+  website: String
+}
+
+input UpdateMemberSocialMediaInput {
+  id: String!
+  name: String
+  url: String
+}
+
+input UpdateMemberTagInput {
+  id: String!
+}
+
+input UpdateProjectInput {
+  id: String!
+  name: String
+  ownerId: String
+  contributors: [String]
+  summary: String
+  description: String
+  status: String
+  remote: Boolean
+  sectors: [String]
+  skillsRequired: [String]
+  picture: String
+  website: [String]
+}
+

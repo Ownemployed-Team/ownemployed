@@ -2,29 +2,14 @@ import { gql } from 'apollo-boost'
 
 // Getting all users profiles data
 //TODO: Determine which fields we'll need to lighten the query, and change the query in consequence
-export const GET_USERS = gql`
-    query getUsers(
-        $name: String
-        $location: String
-        $skills: [String]
-        $sectors: [String]
-        $skip: Int
-        $take: Int
-    ) {
-        getUsers(
-            name: $name
-            location: $location
-            skills: $skills
-            sectors: $sectors
-            skip: $skip
-            take: $take
-        ) {
+export const GET_MEMBERS = gql`
+    query getMembers {
+        getMembers {
             id
             firstName
             lastName
             email
-            signupDate
-            headline
+            createdAt
             education
             bio
             location
@@ -43,7 +28,6 @@ export const GET_USERS = gql`
                 name
                 url
             }
-            emailVisibility
             avatar
         }
     }
