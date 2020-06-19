@@ -2,7 +2,7 @@ import React from 'react'
 import { Dispatch, Action, ProviderProps } from '../types'
 import AuthService, { AuthStates } from './cognitoAuth'
 
-interface UserState {
+export interface UserState {
     active: any
     journeyPoint: AuthStates
 }
@@ -40,8 +40,22 @@ export const userActions = {
     SET_AUTH_STATE: 'SET_AUTH_STATE',
 }
 
-export function UserProvider(props: ProviderProps): React.ReactNode {
+export function UserProvider(props: ProviderProps) {
     const [state, dispatch] = React.useReducer(userReducer, defaultState)
+    // TODO: Add initialization logic here based on user token claims
+    const setupAuthState = () => {
+        AuthService.getCredentials().then(creds => {
+            // add conditional to prevent too many dispatches
+            console.log('Auth credentials: ', creds)
+            if (creds && creds.authenticated) {
+                dispatch({
+                    type: userActions.SET_AUTH_STATE,
+                    payload: AuthStates.LOGGED_IN,
+                })
+            }
+        })
+    }
+    React.useEffect(setupAuthState)
 
     return (
         <UserStateContext.Provider value={state}>
@@ -106,7 +120,6 @@ export function withUserID(WrappedComponent: any) {
     }
 }
 export function withUserStore(WrappedComponent: any) {
-    // TODO: Refactor to use UserStateContext.Consumer
     return class extends React.PureComponent {
         render() {
             return (
@@ -152,6 +165,7 @@ export function withSignup(WrappedComponent: any) {
                             signup={(username: string, password: string) =>
                                 signup(username, password, userDispatch)
                             }
+                            {...this.props}
                         />
                     )}
                 </UserDispatchContext.Consumer>

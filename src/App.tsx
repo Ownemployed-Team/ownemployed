@@ -17,6 +17,7 @@ import NoMatch from 'pages/404/404'
 import TermsOfUse from 'pages/privacy/termsOfUse'
 import backendSettings from './backend.env'
 import Amplify from '@aws-amplify/core'
+import { UserProvider } from 'data/user/context'
 
 Amplify.configure(backendSettings)
 
@@ -24,33 +25,38 @@ function App() {
     return (
         <Router history={history}>
             <ThemeProvider>
-                <Switch>
-                    <Route component={Home} path="/" exact />
-                    <Route path="/about" component={AboutPage} />
-                    <Route path="/community" exact />
-                    <Route path="/login" exact component={LoginPage} />
-                    <Route path="/signup" exact component={LoginPage} />
-                    <Route path="/members" component={Members} />
-                    <Route path="/projects" component={Projects} />
-                    <PrivateRoute path="/profile" component={UserProfile} />
-                    <Route path="/legal" component={Privacy} exact />
-                    <Route
-                        path="/legal/privacy-policy"
-                        component={PrivacyPolicy}
-                        exact
-                    />
-                    <Route path="/legal/terms-of-use" component={TermsOfUse} />
-                    <Route
-                        path="/create-project"
-                        component={CreateProjectPage}
-                    />
-                    <Route component={NoMatch} />
+                <UserProvider>
+                    <Switch>
+                        <Route component={Home} path="/" exact />
+                        <Route path="/about" component={AboutPage} />
+                        <Route path="/community" exact />
+                        <Route path="/login" exact component={LoginPage} />
+                        <Route path="/signup" exact component={LoginPage} />
+                        <Route path="/members" component={Members} />
+                        <Route path="/projects" component={Projects} />
+                        <PrivateRoute path="/profile" component={UserProfile} />
+                        <Route path="/legal" component={Privacy} exact />
+                        <Route
+                            path="/legal/privacy-policy"
+                            component={PrivacyPolicy}
+                            exact
+                        />
+                        <Route
+                            path="/legal/terms-of-use"
+                            component={TermsOfUse}
+                        />
+                        <Route
+                            path="/create-project"
+                            component={CreateProjectPage}
+                        />
+                        <Route component={NoMatch} />
 
-                    {/*
-                        <Route path="/learn" />
-                        <PrivateRoute path="/profile" component={MemberProfile} />
-                    */}
-                </Switch>
+                        {/*
+                            <Route path="/learn" />
+                            <PrivateRoute path="/profile" component={MemberProfile} />
+                        */}
+                    </Switch>
+                </UserProvider>
             </ThemeProvider>
         </Router>
     )

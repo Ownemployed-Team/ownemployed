@@ -37,7 +37,11 @@ interface MembershipFormState {
     email?: string
     password?: string
 }
-export default class MembershipForm extends PureComponent<any> {
+interface MFProps {
+    onSubmit?: (event: { email?: string; password?: string }) => any
+    location?: any
+}
+export default class MembershipForm extends PureComponent<MFProps> {
     state: MembershipFormState = {}
 
     updateStateField = (fieldKey: string, value: any) => {
@@ -47,7 +51,10 @@ export default class MembershipForm extends PureComponent<any> {
     }
     handleSignup = (event: any) => {
         event.preventDefault()
-        console.log('Registering your account')
+        if (this.props.onSubmit) {
+            const { email, password } = this.state
+            this.props.onSubmit({ email, password })
+        }
     }
 
     render() {

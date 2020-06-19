@@ -55,7 +55,11 @@ const authService = {
             attributes: { email },
         })
         console.log('Was the user confirmed? ', confirmedUser)
-        return confirmedUser
+        if (confirmedUser) {
+            return this.login(username || email, password)
+        } else {
+            return confirmedUser || Promise.reject('Unable to register')
+        }
     },
 
     async login(email: string, password: string): Promise<any> {
