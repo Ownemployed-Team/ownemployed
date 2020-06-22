@@ -47,7 +47,11 @@ export function UserProvider(props: ProviderProps) {
         AuthService.getCredentials().then(creds => {
             // add conditional to prevent too many dispatches
             console.log('Auth credentials: ', creds)
-            if (creds && creds.authenticated) {
+            if (
+                creds &&
+                creds.authenticated &&
+                state.journeyPoint !== AuthStates.LOGGED_IN
+            ) {
                 dispatch({
                     type: userActions.SET_AUTH_STATE,
                     payload: AuthStates.LOGGED_IN,
